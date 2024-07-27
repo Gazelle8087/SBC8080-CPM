@@ -1,0 +1,6036 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"132 fatfs/../fatfs/ff.h
+[; ;fatfs/../fatfs/ff.h: 132: typedef struct {
+[s S2 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `us 1 `us 1 `us 1 `ul 1 `ul 1 `ul 1 `ul 1 `ul 1 `ul 1 `ul 1 `ul 1 `ul 1 `uc -> 512 `i ]
+[n S2 . fs_type pdrv ldrv n_fats wflag fsi_flag id n_rootdir csize last_clst free_clst n_fatent fsize volbase fatbase dirbase database winsect win ]
+"1055 fatfs/ff.c
+[; ;fatfs/ff.c: 1055: static FRESULT sync_window (
+[c E275 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 .. ]
+[n E275 . FR_OK FR_DISK_ERR FR_INT_ERR FR_NOT_READY FR_NO_FILE FR_NO_PATH FR_INVALID_NAME FR_DENIED FR_EXIST FR_INVALID_OBJECT FR_WRITE_PROTECTED FR_INVALID_DRIVE FR_NOT_ENABLED FR_NO_FILESYSTEM FR_MKFS_ABORTED FR_TIMEOUT FR_LOCKED FR_NOT_ENOUGH_CORE FR_TOO_MANY_OPEN_FILES FR_INVALID_PARAMETER  ]
+"1063
+[; ;fatfs/ff.c: 1063:   if (disk_write(fs->pdrv, fs->win, fs->winsect, 1) == RES_OK) {
+[c E415 0 1 2 3 4 .. ]
+[n E415 . RES_OK RES_ERROR RES_WRPRT RES_NOTRDY RES_PARERR  ]
+"32 fatfs/../fatfs/diskio.h
+[; ;fatfs/../fatfs/diskio.h: 32: DRESULT disk_write (BYTE pdrv, const BYTE* buff, LBA_t sector, UINT count);
+[v _disk_write `(E415 ~T0 @X0 0 ef4`uc`*Cuc`ul`ui ]
+"31
+[; ;fatfs/../fatfs/diskio.h: 31: DRESULT disk_read (BYTE pdrv, BYTE* buff, LBA_t sector, UINT count);
+[v _disk_read `(E415 ~T0 @X0 0 ef4`uc`*uc`ul`ui ]
+"29 C:\Program Files\Microchip\xc8\v2.46\pic\include\c99\string.h
+[; ;C:\Program Files\Microchip\xc8\v2.46\pic\include\c99\string.h: 29: void *memset (void *, int, size_t);
+[v _memset `(*v ~T0 @X0 0 ef3`*v`i`ui ]
+"33 fatfs/../fatfs/diskio.h
+[; ;fatfs/../fatfs/diskio.h: 33: DRESULT disk_ioctl (BYTE pdrv, BYTE cmd, void* buff);
+[v _disk_ioctl `(E415 ~T0 @X0 0 ef3`uc`uc`*v ]
+"180 fatfs/../fatfs/ff.h
+[; ;fatfs/../fatfs/ff.h: 180: typedef struct {
+[s S3 `*S2 1 `us 1 `uc 1 `uc 1 `ul 1 `ul 1 ]
+[n S3 . fs id attr stat sclust objsize ]
+"226
+[; ;fatfs/../fatfs/ff.h: 226: typedef struct {
+[s S5 `S3 1 `ul 1 `ul 1 `ul 1 `*uc 1 `uc -> 12 `i ]
+[n S5 . obj dptr clust sect dir fn ]
+"30 C:\Program Files\Microchip\xc8\v2.46\pic\include\c99\string.h
+[; ;C:\Program Files\Microchip\xc8\v2.46\pic\include\c99\string.h: 30: int memcmp (const void *, const void *, size_t);
+[v _memcmp `(i ~T0 @X0 0 ef3`*Cv`*Cv`ui ]
+"27
+[; ;C:\Program Files\Microchip\xc8\v2.46\pic\include\c99\string.h: 27: void *memcpy (void *restrict, const void *restrict, size_t);
+[v _memcpy `(*v ~T0 @X0 0 ef3`*v`*Cv`ui ]
+"245 fatfs/../fatfs/ff.h
+[; ;fatfs/../fatfs/ff.h: 245: typedef struct {
+[s S6 `ul 1 `us 1 `us 1 `uc 1 `uc -> 13 `i ]
+[n S6 . fsize fdate ftime fattrib fname ]
+"45 C:\Program Files\Microchip\xc8\v2.46\pic\include\c99\string.h
+[; ;C:\Program Files\Microchip\xc8\v2.46\pic\include\c99\string.h: 45: char *strchr (const char *, int);
+[v _strchr `(*uc ~T0 @X0 0 ef2`*Cuc`i ]
+"30 fatfs/../fatfs/diskio.h
+[; ;fatfs/../fatfs/diskio.h: 30: DSTATUS disk_status (BYTE pdrv);
+[v _disk_status `(uc ~T0 @X0 0 ef1`uc ]
+"29
+[; ;fatfs/../fatfs/diskio.h: 29: DSTATUS disk_initialize (BYTE pdrv);
+[v _disk_initialize `(uc ~T0 @X0 0 ef1`uc ]
+"203 fatfs/../fatfs/ff.h
+[; ;fatfs/../fatfs/ff.h: 203: typedef struct {
+[s S4 `S3 1 `uc 1 `uc 1 `ul 1 `ul 1 `ul 1 `ul 1 `*uc 1 `uc -> 512 `i ]
+[n S4 . obj flag err fptr clust sect dir_sect dir_ptr buf ]
+"359
+[; ;fatfs/../fatfs/ff.h: 359: DWORD get_fattime (void);
+[v _get_fattime `(ul ~T0 @X0 0 ef ]
+"464 fatfs/ff.c
+[; ;fatfs/ff.c: 464: static FATFS *FatFs[1];
+[v _FatFs `*S2 ~T0 @X0 -> -> 1 `i `ux s ]
+"465
+[; ;fatfs/ff.c: 465: static WORD Fsid;
+[v _Fsid `us ~T0 @X0 1 s ]
+"600
+[; ;fatfs/ff.c: 600: static const BYTE DbcTbl[] = {0x81, 0x9F, 0xE0, 0xFC, 0x40, 0x7E, 0x80, 0xFC, 0x00, 0x00};
+[v _DbcTbl `Cuc ~T0 @X0 -> 10 `i s ]
+[i _DbcTbl
+:U ..
+-> -> 129 `i `uc
+-> -> 159 `i `uc
+-> -> 224 `i `uc
+-> -> 252 `i `uc
+-> -> 64 `i `uc
+-> -> 126 `i `uc
+-> -> 128 `i `uc
+-> -> 252 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+..
+]
+"618
+[; ;fatfs/ff.c: 618: static WORD ld_word (const BYTE* ptr)
+[v _ld_word `(us ~T0 @X0 1 sf1`*Cuc ]
+"619
+[; ;fatfs/ff.c: 619: {
+{
+[e :U _ld_word ]
+"618
+[; ;fatfs/ff.c: 618: static WORD ld_word (const BYTE* ptr)
+[v _ptr `*Cuc ~T0 @X0 1 r1 ]
+"619
+[; ;fatfs/ff.c: 619: {
+[f ]
+"620
+[; ;fatfs/ff.c: 620:  WORD rv;
+[v _rv `us ~T0 @X0 1 a ]
+"622
+[; ;fatfs/ff.c: 622:  rv = ptr[1];
+[e = _rv -> *U + _ptr * -> -> 1 `i `x -> -> # *U _ptr `i `x `us ]
+"623
+[; ;fatfs/ff.c: 623:  rv = rv << 8 | ptr[0];
+[e = _rv -> | << -> _rv `ui -> 8 `i -> *U + _ptr * -> -> 0 `i `x -> -> # *U _ptr `i `x `ui `us ]
+"624
+[; ;fatfs/ff.c: 624:  return rv;
+[e ) _rv ]
+[e $UE 8  ]
+"625
+[; ;fatfs/ff.c: 625: }
+[e :UE 8 ]
+}
+"627
+[; ;fatfs/ff.c: 627: static DWORD ld_dword (const BYTE* ptr)
+[v _ld_dword `(ul ~T0 @X0 1 sf1`*Cuc ]
+"628
+[; ;fatfs/ff.c: 628: {
+{
+[e :U _ld_dword ]
+"627
+[; ;fatfs/ff.c: 627: static DWORD ld_dword (const BYTE* ptr)
+[v _ptr `*Cuc ~T0 @X0 1 r1 ]
+"628
+[; ;fatfs/ff.c: 628: {
+[f ]
+"629
+[; ;fatfs/ff.c: 629:  DWORD rv;
+[v _rv `ul ~T0 @X0 1 a ]
+"631
+[; ;fatfs/ff.c: 631:  rv = ptr[3];
+[e = _rv -> *U + _ptr * -> -> 3 `i `x -> -> # *U _ptr `i `x `ul ]
+"632
+[; ;fatfs/ff.c: 632:  rv = rv << 8 | ptr[2];
+[e = _rv | << _rv -> 8 `i -> *U + _ptr * -> -> 2 `i `x -> -> # *U _ptr `i `x `ul ]
+"633
+[; ;fatfs/ff.c: 633:  rv = rv << 8 | ptr[1];
+[e = _rv | << _rv -> 8 `i -> *U + _ptr * -> -> 1 `i `x -> -> # *U _ptr `i `x `ul ]
+"634
+[; ;fatfs/ff.c: 634:  rv = rv << 8 | ptr[0];
+[e = _rv | << _rv -> 8 `i -> *U + _ptr * -> -> 0 `i `x -> -> # *U _ptr `i `x `ul ]
+"635
+[; ;fatfs/ff.c: 635:  return rv;
+[e ) _rv ]
+[e $UE 9  ]
+"636
+[; ;fatfs/ff.c: 636: }
+[e :UE 9 ]
+}
+"656
+[; ;fatfs/ff.c: 656: static void st_word (BYTE* ptr, WORD val)
+[v _st_word `(v ~T0 @X0 1 sf2`*uc`us ]
+"657
+[; ;fatfs/ff.c: 657: {
+{
+[e :U _st_word ]
+"656
+[; ;fatfs/ff.c: 656: static void st_word (BYTE* ptr, WORD val)
+[v _ptr `*uc ~T0 @X0 1 r1 ]
+[v _val `us ~T0 @X0 1 r2 ]
+"657
+[; ;fatfs/ff.c: 657: {
+[f ]
+"658
+[; ;fatfs/ff.c: 658:  *ptr++ = (BYTE)val; val >>= 8;
+[e = *U ++ _ptr * -> -> 1 `i `x -> -> # *U _ptr `i `x -> _val `uc ]
+[e =>> _val -> -> 8 `i `us ]
+"659
+[; ;fatfs/ff.c: 659:  *ptr++ = (BYTE)val;
+[e = *U ++ _ptr * -> -> 1 `i `x -> -> # *U _ptr `i `x -> _val `uc ]
+"660
+[; ;fatfs/ff.c: 660: }
+[e :UE 10 ]
+}
+"662
+[; ;fatfs/ff.c: 662: static void st_dword (BYTE* ptr, DWORD val)
+[v _st_dword `(v ~T0 @X0 1 sf2`*uc`ul ]
+"663
+[; ;fatfs/ff.c: 663: {
+{
+[e :U _st_dword ]
+"662
+[; ;fatfs/ff.c: 662: static void st_dword (BYTE* ptr, DWORD val)
+[v _ptr `*uc ~T0 @X0 1 r1 ]
+[v _val `ul ~T0 @X0 1 r2 ]
+"663
+[; ;fatfs/ff.c: 663: {
+[f ]
+"664
+[; ;fatfs/ff.c: 664:  *ptr++ = (BYTE)val; val >>= 8;
+[e = *U ++ _ptr * -> -> 1 `i `x -> -> # *U _ptr `i `x -> _val `uc ]
+[e =>> _val -> -> 8 `i `ul ]
+"665
+[; ;fatfs/ff.c: 665:  *ptr++ = (BYTE)val; val >>= 8;
+[e = *U ++ _ptr * -> -> 1 `i `x -> -> # *U _ptr `i `x -> _val `uc ]
+[e =>> _val -> -> 8 `i `ul ]
+"666
+[; ;fatfs/ff.c: 666:  *ptr++ = (BYTE)val; val >>= 8;
+[e = *U ++ _ptr * -> -> 1 `i `x -> -> # *U _ptr `i `x -> _val `uc ]
+[e =>> _val -> -> 8 `i `ul ]
+"667
+[; ;fatfs/ff.c: 667:  *ptr++ = (BYTE)val;
+[e = *U ++ _ptr * -> -> 1 `i `x -> -> # *U _ptr `i `x -> _val `uc ]
+"668
+[; ;fatfs/ff.c: 668: }
+[e :UE 11 ]
+}
+"692
+[; ;fatfs/ff.c: 692: static int dbc_1st (BYTE c)
+[v _dbc_1st `(i ~T0 @X0 1 sf1`uc ]
+"693
+[; ;fatfs/ff.c: 693: {
+{
+[e :U _dbc_1st ]
+"692
+[; ;fatfs/ff.c: 692: static int dbc_1st (BYTE c)
+[v _c `uc ~T0 @X0 1 r1 ]
+"693
+[; ;fatfs/ff.c: 693: {
+[f ]
+"700
+[; ;fatfs/ff.c: 700:  if (c >= DbcTbl[0]) {
+[e $ ! >= -> _c `i -> *U + &U _DbcTbl * -> -> -> 0 `i `ui `ux -> -> # *U &U _DbcTbl `ui `ux `i 13  ]
+{
+"701
+[; ;fatfs/ff.c: 701:   if (c <= DbcTbl[1]) return 1;
+[e $ ! <= -> _c `i -> *U + &U _DbcTbl * -> -> -> 1 `i `ui `ux -> -> # *U &U _DbcTbl `ui `ux `i 14  ]
+[e ) -> 1 `i ]
+[e $UE 12  ]
+[e :U 14 ]
+"702
+[; ;fatfs/ff.c: 702:   if (c >= DbcTbl[2] && c <= DbcTbl[3]) return 1;
+[e $ ! && >= -> _c `i -> *U + &U _DbcTbl * -> -> -> 2 `i `ui `ux -> -> # *U &U _DbcTbl `ui `ux `i <= -> _c `i -> *U + &U _DbcTbl * -> -> -> 3 `i `ui `ux -> -> # *U &U _DbcTbl `ui `ux `i 15  ]
+[e ) -> 1 `i ]
+[e $UE 12  ]
+[e :U 15 ]
+"703
+[; ;fatfs/ff.c: 703:  }
+}
+[e :U 13 ]
+"707
+[; ;fatfs/ff.c: 707:  return 0;
+[e ) -> 0 `i ]
+[e $UE 12  ]
+"708
+[; ;fatfs/ff.c: 708: }
+[e :UE 12 ]
+}
+"712
+[; ;fatfs/ff.c: 712: static int dbc_2nd (BYTE c)
+[v _dbc_2nd `(i ~T0 @X0 1 sf1`uc ]
+"713
+[; ;fatfs/ff.c: 713: {
+{
+[e :U _dbc_2nd ]
+"712
+[; ;fatfs/ff.c: 712: static int dbc_2nd (BYTE c)
+[v _c `uc ~T0 @X0 1 r1 ]
+"713
+[; ;fatfs/ff.c: 713: {
+[f ]
+"721
+[; ;fatfs/ff.c: 721:  if (c >= DbcTbl[4]) {
+[e $ ! >= -> _c `i -> *U + &U _DbcTbl * -> -> -> 4 `i `ui `ux -> -> # *U &U _DbcTbl `ui `ux `i 17  ]
+{
+"722
+[; ;fatfs/ff.c: 722:   if (c <= DbcTbl[5]) return 1;
+[e $ ! <= -> _c `i -> *U + &U _DbcTbl * -> -> -> 5 `i `ui `ux -> -> # *U &U _DbcTbl `ui `ux `i 18  ]
+[e ) -> 1 `i ]
+[e $UE 16  ]
+[e :U 18 ]
+"723
+[; ;fatfs/ff.c: 723:   if (c >= DbcTbl[6] && c <= DbcTbl[7]) return 1;
+[e $ ! && >= -> _c `i -> *U + &U _DbcTbl * -> -> -> 6 `i `ui `ux -> -> # *U &U _DbcTbl `ui `ux `i <= -> _c `i -> *U + &U _DbcTbl * -> -> -> 7 `i `ui `ux -> -> # *U &U _DbcTbl `ui `ux `i 19  ]
+[e ) -> 1 `i ]
+[e $UE 16  ]
+[e :U 19 ]
+"724
+[; ;fatfs/ff.c: 724:   if (c >= DbcTbl[8] && c <= DbcTbl[9]) return 1;
+[e $ ! && >= -> _c `i -> *U + &U _DbcTbl * -> -> -> 8 `i `ui `ux -> -> # *U &U _DbcTbl `ui `ux `i <= -> _c `i -> *U + &U _DbcTbl * -> -> -> 9 `i `ui `ux -> -> # *U &U _DbcTbl `ui `ux `i 20  ]
+[e ) -> 1 `i ]
+[e $UE 16  ]
+[e :U 20 ]
+"725
+[; ;fatfs/ff.c: 725:  }
+}
+[e :U 17 ]
+"729
+[; ;fatfs/ff.c: 729:  return 0;
+[e ) -> 0 `i ]
+[e $UE 16  ]
+"730
+[; ;fatfs/ff.c: 730: }
+[e :UE 16 ]
+}
+"1055
+[; ;fatfs/ff.c: 1055: static FRESULT sync_window (
+[v _sync_window `(E275 ~T0 @X0 1 sf1`*S2 ]
+"1058
+[; ;fatfs/ff.c: 1058: {
+{
+[e :U _sync_window ]
+"1056
+[; ;fatfs/ff.c: 1056:  FATFS* fs
+[v _fs `*S2 ~T0 @X0 1 r1 ]
+"1058
+[; ;fatfs/ff.c: 1058: {
+[f ]
+"1059
+[; ;fatfs/ff.c: 1059:  FRESULT res = FR_OK;
+[v _res `E275 ~T0 @X0 1 a ]
+[e = _res . `E275 0 ]
+"1062
+[; ;fatfs/ff.c: 1062:  if (fs->wflag) {
+[e $ ! != -> . *U _fs 4 `i -> 0 `i 22  ]
+{
+"1063
+[; ;fatfs/ff.c: 1063:   if (disk_write(fs->pdrv, fs->win, fs->winsect, 1) == RES_OK) {
+[e $ ! == -> ( _disk_write (4 , , , . *U _fs 1 -> &U . *U _fs 18 `*Cuc . *U _fs 17 -> -> 1 `i `ui `ui -> . `E415 0 `ui 23  ]
+{
+"1064
+[; ;fatfs/ff.c: 1064:    fs->wflag = 0;
+[e = . *U _fs 4 -> -> 0 `i `uc ]
+"1065
+[; ;fatfs/ff.c: 1065:    if (fs->winsect - fs->fatbase < fs->fsize) {
+[e $ ! < - . *U _fs 17 . *U _fs 14 . *U _fs 12 24  ]
+{
+"1066
+[; ;fatfs/ff.c: 1066:     if (fs->n_fats == 2) disk_write(fs->pdrv, fs->win, fs->winsect + fs->fsize, 1);
+[e $ ! == -> . *U _fs 3 `i -> 2 `i 25  ]
+[e ( _disk_write (4 , , , . *U _fs 1 -> &U . *U _fs 18 `*Cuc + . *U _fs 17 . *U _fs 12 -> -> 1 `i `ui ]
+[e :U 25 ]
+"1067
+[; ;fatfs/ff.c: 1067:    }
+}
+[e :U 24 ]
+"1068
+[; ;fatfs/ff.c: 1068:   } else {
+}
+[e $U 26  ]
+[e :U 23 ]
+{
+"1069
+[; ;fatfs/ff.c: 1069:    res = FR_DISK_ERR;
+[e = _res . `E275 1 ]
+"1070
+[; ;fatfs/ff.c: 1070:   }
+}
+[e :U 26 ]
+"1071
+[; ;fatfs/ff.c: 1071:  }
+}
+[e :U 22 ]
+"1072
+[; ;fatfs/ff.c: 1072:  return res;
+[e ) _res ]
+[e $UE 21  ]
+"1073
+[; ;fatfs/ff.c: 1073: }
+[e :UE 21 ]
+}
+"1077
+[; ;fatfs/ff.c: 1077: static FRESULT move_window (
+[v _move_window `(E275 ~T0 @X0 1 sf2`*S2`ul ]
+"1081
+[; ;fatfs/ff.c: 1081: {
+{
+[e :U _move_window ]
+"1078
+[; ;fatfs/ff.c: 1078:  FATFS* fs,
+[v _fs `*S2 ~T0 @X0 1 r1 ]
+"1079
+[; ;fatfs/ff.c: 1079:  LBA_t sect
+[v _sect `ul ~T0 @X0 1 r2 ]
+"1081
+[; ;fatfs/ff.c: 1081: {
+[f ]
+"1082
+[; ;fatfs/ff.c: 1082:  FRESULT res = FR_OK;
+[v _res `E275 ~T0 @X0 1 a ]
+[e = _res . `E275 0 ]
+"1085
+[; ;fatfs/ff.c: 1085:  if (sect != fs->winsect) {
+[e $ ! != _sect . *U _fs 17 28  ]
+{
+"1087
+[; ;fatfs/ff.c: 1087:   res = sync_window(fs);
+[e = _res ( _sync_window (1 _fs ]
+"1089
+[; ;fatfs/ff.c: 1089:   if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 29  ]
+{
+"1090
+[; ;fatfs/ff.c: 1090:    if (disk_read(fs->pdrv, fs->win, sect, 1) != RES_OK) {
+[e $ ! != -> ( _disk_read (4 , , , . *U _fs 1 &U . *U _fs 18 _sect -> -> 1 `i `ui `ui -> . `E415 0 `ui 30  ]
+{
+"1091
+[; ;fatfs/ff.c: 1091:     sect = (LBA_t)0 - 1;
+[e = _sect - -> -> 0 `i `ul -> -> -> 1 `i `l `ul ]
+"1092
+[; ;fatfs/ff.c: 1092:     res = FR_DISK_ERR;
+[e = _res . `E275 1 ]
+"1093
+[; ;fatfs/ff.c: 1093:    }
+}
+[e :U 30 ]
+"1094
+[; ;fatfs/ff.c: 1094:    fs->winsect = sect;
+[e = . *U _fs 17 _sect ]
+"1095
+[; ;fatfs/ff.c: 1095:   }
+}
+[e :U 29 ]
+"1096
+[; ;fatfs/ff.c: 1096:  }
+}
+[e :U 28 ]
+"1097
+[; ;fatfs/ff.c: 1097:  return res;
+[e ) _res ]
+[e $UE 27  ]
+"1098
+[; ;fatfs/ff.c: 1098: }
+[e :UE 27 ]
+}
+"1108
+[; ;fatfs/ff.c: 1108: static FRESULT sync_fs (
+[v _sync_fs `(E275 ~T0 @X0 1 sf1`*S2 ]
+"1111
+[; ;fatfs/ff.c: 1111: {
+{
+[e :U _sync_fs ]
+"1109
+[; ;fatfs/ff.c: 1109:  FATFS* fs
+[v _fs `*S2 ~T0 @X0 1 r1 ]
+"1111
+[; ;fatfs/ff.c: 1111: {
+[f ]
+"1112
+[; ;fatfs/ff.c: 1112:  FRESULT res;
+[v _res `E275 ~T0 @X0 1 a ]
+"1115
+[; ;fatfs/ff.c: 1115:  res = sync_window(fs);
+[e = _res ( _sync_window (1 _fs ]
+"1116
+[; ;fatfs/ff.c: 1116:  if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 32  ]
+{
+"1117
+[; ;fatfs/ff.c: 1117:   if (fs->fs_type == 3 && fs->fsi_flag == 1) {
+[e $ ! && == -> . *U _fs 0 `i -> 3 `i == -> . *U _fs 5 `i -> 1 `i 33  ]
+{
+"1119
+[; ;fatfs/ff.c: 1119:    memset(fs->win, 0, sizeof fs->win);
+[e ( _memset (3 , , -> &U . *U _fs 18 `*v -> 0 `i * -> # *U &U . *U _fs 18 `ui -> -> 512 `i `ui ]
+"1120
+[; ;fatfs/ff.c: 1120:    st_word(fs->win + 510, 0xAA55);
+[e ( _st_word (2 , + &U . *U _fs 18 * -> -> 510 `i `x -> -> # *U &U . *U _fs 18 `i `x -> -> 43605 `ui `us ]
+"1121
+[; ;fatfs/ff.c: 1121:    st_dword(fs->win + 0, 0x41615252);
+[e ( _st_dword (2 , + &U . *U _fs 18 * -> -> 0 `i `x -> -> # *U &U . *U _fs 18 `i `x -> -> 1096897106 `l `ul ]
+"1122
+[; ;fatfs/ff.c: 1122:    st_dword(fs->win + 484, 0x61417272);
+[e ( _st_dword (2 , + &U . *U _fs 18 * -> -> 484 `i `x -> -> # *U &U . *U _fs 18 `i `x -> -> 1631679090 `l `ul ]
+"1123
+[; ;fatfs/ff.c: 1123:    st_dword(fs->win + 488, fs->free_clst);
+[e ( _st_dword (2 , + &U . *U _fs 18 * -> -> 488 `i `x -> -> # *U &U . *U _fs 18 `i `x . *U _fs 10 ]
+"1124
+[; ;fatfs/ff.c: 1124:    st_dword(fs->win + 492, fs->last_clst);
+[e ( _st_dword (2 , + &U . *U _fs 18 * -> -> 492 `i `x -> -> # *U &U . *U _fs 18 `i `x . *U _fs 9 ]
+"1125
+[; ;fatfs/ff.c: 1125:    fs->winsect = fs->volbase + 1;
+[e = . *U _fs 17 + . *U _fs 13 -> -> -> 1 `i `l `ul ]
+"1126
+[; ;fatfs/ff.c: 1126:    disk_write(fs->pdrv, fs->win, fs->winsect, 1);
+[e ( _disk_write (4 , , , . *U _fs 1 -> &U . *U _fs 18 `*Cuc . *U _fs 17 -> -> 1 `i `ui ]
+"1127
+[; ;fatfs/ff.c: 1127:    fs->fsi_flag = 0;
+[e = . *U _fs 5 -> -> 0 `i `uc ]
+"1128
+[; ;fatfs/ff.c: 1128:   }
+}
+[e :U 33 ]
+"1130
+[; ;fatfs/ff.c: 1130:   if (disk_ioctl(fs->pdrv, 0, 0) != RES_OK) res = FR_DISK_ERR;
+[e $ ! != -> ( _disk_ioctl (3 , , . *U _fs 1 -> -> 0 `i `uc -> -> 0 `i `*v `ui -> . `E415 0 `ui 34  ]
+[e = _res . `E275 1 ]
+[e :U 34 ]
+"1131
+[; ;fatfs/ff.c: 1131:  }
+}
+[e :U 32 ]
+"1133
+[; ;fatfs/ff.c: 1133:  return res;
+[e ) _res ]
+[e $UE 31  ]
+"1134
+[; ;fatfs/ff.c: 1134: }
+[e :UE 31 ]
+}
+"1144
+[; ;fatfs/ff.c: 1144: static LBA_t clst2sect (
+[v _clst2sect `(ul ~T0 @X0 1 sf2`*S2`ul ]
+"1148
+[; ;fatfs/ff.c: 1148: {
+{
+[e :U _clst2sect ]
+"1145
+[; ;fatfs/ff.c: 1145:  FATFS* fs,
+[v _fs `*S2 ~T0 @X0 1 r1 ]
+"1146
+[; ;fatfs/ff.c: 1146:  DWORD clst
+[v _clst `ul ~T0 @X0 1 r2 ]
+"1148
+[; ;fatfs/ff.c: 1148: {
+[f ]
+"1149
+[; ;fatfs/ff.c: 1149:  clst -= 2;
+[e =- _clst -> -> -> 2 `i `l `ul ]
+"1150
+[; ;fatfs/ff.c: 1150:  if (clst >= fs->n_fatent - 2) return 0;
+[e $ ! >= _clst - . *U _fs 11 -> -> -> 2 `i `l `ul 36  ]
+[e ) -> -> -> 0 `i `l `ul ]
+[e $UE 35  ]
+[e :U 36 ]
+"1151
+[; ;fatfs/ff.c: 1151:  return fs->database + (LBA_t)fs->csize * clst;
+[e ) + . *U _fs 16 * -> . *U _fs 8 `ul _clst ]
+[e $UE 35  ]
+"1152
+[; ;fatfs/ff.c: 1152: }
+[e :UE 35 ]
+}
+"1161
+[; ;fatfs/ff.c: 1161: static DWORD get_fat (
+[v _get_fat `(ul ~T0 @X0 1 sf2`*S3`ul ]
+"1165
+[; ;fatfs/ff.c: 1165: {
+{
+[e :U _get_fat ]
+"1162
+[; ;fatfs/ff.c: 1162:  FFOBJID* obj,
+[v _obj `*S3 ~T0 @X0 1 r1 ]
+"1163
+[; ;fatfs/ff.c: 1163:  DWORD clst
+[v _clst `ul ~T0 @X0 1 r2 ]
+"1165
+[; ;fatfs/ff.c: 1165: {
+[f ]
+"1166
+[; ;fatfs/ff.c: 1166:  UINT wc, bc;
+[v _wc `ui ~T0 @X0 1 a ]
+[v _bc `ui ~T0 @X0 1 a ]
+"1167
+[; ;fatfs/ff.c: 1167:  DWORD val;
+[v _val `ul ~T0 @X0 1 a ]
+"1168
+[; ;fatfs/ff.c: 1168:  FATFS *fs = obj->fs;
+[v _fs `*S2 ~T0 @X0 1 a ]
+[e = _fs . *U _obj 0 ]
+"1171
+[; ;fatfs/ff.c: 1171:  if (clst < 2 || clst >= fs->n_fatent) {
+[e $ ! || < _clst -> -> -> 2 `i `l `ul >= _clst . *U _fs 11 38  ]
+{
+"1172
+[; ;fatfs/ff.c: 1172:   val = 1;
+[e = _val -> -> -> 1 `i `l `ul ]
+"1174
+[; ;fatfs/ff.c: 1174:  } else {
+}
+[e $U 39  ]
+[e :U 38 ]
+{
+"1175
+[; ;fatfs/ff.c: 1175:   val = 0xFFFFFFFF;
+[e = _val -> 4294967295 `ul ]
+"1177
+[; ;fatfs/ff.c: 1177:   switch (fs->fs_type) {
+[e $U 41  ]
+{
+"1178
+[; ;fatfs/ff.c: 1178:   case 1 :
+[e :U 42 ]
+"1179
+[; ;fatfs/ff.c: 1179:    bc = (UINT)clst; bc += bc / 2;
+[e = _bc -> _clst `ui ]
+[e =+ _bc / _bc -> -> 2 `i `ui ]
+"1180
+[; ;fatfs/ff.c: 1180:    if (move_window(fs, fs->fatbase + (bc / ((UINT)512))) != FR_OK) break;
+[e $ ! != -> ( _move_window (2 , _fs + . *U _fs 14 -> / _bc -> -> 512 `i `ui `ul `ui -> . `E275 0 `ui 43  ]
+[e $U 40  ]
+[e :U 43 ]
+"1181
+[; ;fatfs/ff.c: 1181:    wc = fs->win[bc++ % ((UINT)512)];
+[e = _wc -> *U + &U . *U _fs 18 * -> % ++ _bc -> -> 1 `i `ui -> -> 512 `i `ui `ux -> -> # *U &U . *U _fs 18 `ui `ux `ui ]
+"1182
+[; ;fatfs/ff.c: 1182:    if (move_window(fs, fs->fatbase + (bc / ((UINT)512))) != FR_OK) break;
+[e $ ! != -> ( _move_window (2 , _fs + . *U _fs 14 -> / _bc -> -> 512 `i `ui `ul `ui -> . `E275 0 `ui 44  ]
+[e $U 40  ]
+[e :U 44 ]
+"1183
+[; ;fatfs/ff.c: 1183:    wc |= (UINT)fs->win[bc % ((UINT)512)] << 8;
+[e =| _wc << -> *U + &U . *U _fs 18 * -> % _bc -> -> 512 `i `ui `ux -> -> # *U &U . *U _fs 18 `ui `ux `ui -> 8 `i ]
+"1184
+[; ;fatfs/ff.c: 1184:    val = (clst & 1) ? (wc >> 4) : (wc & 0xFFF);
+[e = _val -> ? != & _clst -> -> -> 1 `i `l `ul -> -> -> 0 `i `l `ul : >> _wc -> 4 `i & _wc -> -> 4095 `i `ui `ul ]
+"1185
+[; ;fatfs/ff.c: 1185:    break;
+[e $U 40  ]
+"1187
+[; ;fatfs/ff.c: 1187:   case 2 :
+[e :U 45 ]
+"1188
+[; ;fatfs/ff.c: 1188:    if (move_window(fs, fs->fatbase + (clst / (((UINT)512) / 2))) != FR_OK) break;
+[e $ ! != -> ( _move_window (2 , _fs + . *U _fs 14 / _clst -> / -> -> 512 `i `ui -> -> 2 `i `ui `ul `ui -> . `E275 0 `ui 46  ]
+[e $U 40  ]
+[e :U 46 ]
+"1189
+[; ;fatfs/ff.c: 1189:    val = ld_word(fs->win + clst * 2 % ((UINT)512));
+[e = _val -> ( _ld_word (1 -> + &U . *U _fs 18 * -> % * _clst -> -> -> 2 `i `l `ul -> -> -> 512 `i `ui `ul `ux -> -> # *U &U . *U _fs 18 `ui `ux `*Cuc `ul ]
+"1190
+[; ;fatfs/ff.c: 1190:    break;
+[e $U 40  ]
+"1192
+[; ;fatfs/ff.c: 1192:   case 3 :
+[e :U 47 ]
+"1193
+[; ;fatfs/ff.c: 1193:    if (move_window(fs, fs->fatbase + (clst / (((UINT)512) / 4))) != FR_OK) break;
+[e $ ! != -> ( _move_window (2 , _fs + . *U _fs 14 / _clst -> / -> -> 512 `i `ui -> -> 4 `i `ui `ul `ui -> . `E275 0 `ui 48  ]
+[e $U 40  ]
+[e :U 48 ]
+"1194
+[; ;fatfs/ff.c: 1194:    val = ld_dword(fs->win + clst * 4 % ((UINT)512)) & 0x0FFFFFFF;
+[e = _val & ( _ld_dword (1 -> + &U . *U _fs 18 * -> % * _clst -> -> -> 4 `i `l `ul -> -> -> 512 `i `ui `ul `ux -> -> # *U &U . *U _fs 18 `ui `ux `*Cuc -> -> 268435455 `l `ul ]
+"1195
+[; ;fatfs/ff.c: 1195:    break;
+[e $U 40  ]
+"1223
+[; ;fatfs/ff.c: 1223:   default:
+[e :U 49 ]
+"1224
+[; ;fatfs/ff.c: 1224:    val = 1;
+[e = _val -> -> -> 1 `i `l `ul ]
+"1225
+[; ;fatfs/ff.c: 1225:   }
+}
+[e $U 40  ]
+[e :U 41 ]
+[e [\ . *U _fs 0 , $ -> 1 `i 42
+ , $ -> 2 `i 45
+ , $ -> 3 `i 47
+ 49 ]
+[e :U 40 ]
+"1226
+[; ;fatfs/ff.c: 1226:  }
+}
+[e :U 39 ]
+"1228
+[; ;fatfs/ff.c: 1228:  return val;
+[e ) _val ]
+[e $UE 37  ]
+"1229
+[; ;fatfs/ff.c: 1229: }
+[e :UE 37 ]
+}
+"1239
+[; ;fatfs/ff.c: 1239: static FRESULT put_fat (
+[v _put_fat `(E275 ~T0 @X0 1 sf3`*S2`ul`ul ]
+"1244
+[; ;fatfs/ff.c: 1244: {
+{
+[e :U _put_fat ]
+"1240
+[; ;fatfs/ff.c: 1240:  FATFS* fs,
+[v _fs `*S2 ~T0 @X0 1 r1 ]
+"1241
+[; ;fatfs/ff.c: 1241:  DWORD clst,
+[v _clst `ul ~T0 @X0 1 r2 ]
+"1242
+[; ;fatfs/ff.c: 1242:  DWORD val
+[v _val `ul ~T0 @X0 1 r3 ]
+"1244
+[; ;fatfs/ff.c: 1244: {
+[f ]
+"1245
+[; ;fatfs/ff.c: 1245:  UINT bc;
+[v _bc `ui ~T0 @X0 1 a ]
+"1246
+[; ;fatfs/ff.c: 1246:  BYTE *p;
+[v _p `*uc ~T0 @X0 1 a ]
+"1247
+[; ;fatfs/ff.c: 1247:  FRESULT res = FR_INT_ERR;
+[v _res `E275 ~T0 @X0 1 a ]
+[e = _res . `E275 2 ]
+"1250
+[; ;fatfs/ff.c: 1250:  if (clst >= 2 && clst < fs->n_fatent) {
+[e $ ! && >= _clst -> -> -> 2 `i `l `ul < _clst . *U _fs 11 51  ]
+{
+"1251
+[; ;fatfs/ff.c: 1251:   switch (fs->fs_type) {
+[e $U 53  ]
+{
+"1252
+[; ;fatfs/ff.c: 1252:   case 1:
+[e :U 54 ]
+"1253
+[; ;fatfs/ff.c: 1253:    bc = (UINT)clst; bc += bc / 2;
+[e = _bc -> _clst `ui ]
+[e =+ _bc / _bc -> -> 2 `i `ui ]
+"1254
+[; ;fatfs/ff.c: 1254:    res = move_window(fs, fs->fatbase + (bc / ((UINT)512)));
+[e = _res ( _move_window (2 , _fs + . *U _fs 14 -> / _bc -> -> 512 `i `ui `ul ]
+"1255
+[; ;fatfs/ff.c: 1255:    if (res != FR_OK) break;
+[e $ ! != -> _res `ui -> . `E275 0 `ui 55  ]
+[e $U 52  ]
+[e :U 55 ]
+"1256
+[; ;fatfs/ff.c: 1256:    p = fs->win + bc++ % ((UINT)512);
+[e = _p + &U . *U _fs 18 * -> % ++ _bc -> -> 1 `i `ui -> -> 512 `i `ui `ux -> -> # *U &U . *U _fs 18 `ui `ux ]
+"1257
+[; ;fatfs/ff.c: 1257:    *p = (clst & 1) ? ((*p & 0x0F) | (BYTE)((BYTE)val << 4)) : (BYTE)val;
+[e = *U _p -> ? != & _clst -> -> -> 1 `i `l `ul -> -> -> 0 `i `l `ul : | & -> *U _p `i -> 15 `i -> -> << -> -> _val `uc `i -> 4 `i `uc `i -> -> _val `uc `i `uc ]
+"1258
+[; ;fatfs/ff.c: 1258:    fs->wflag = 1;
+[e = . *U _fs 4 -> -> 1 `i `uc ]
+"1259
+[; ;fatfs/ff.c: 1259:    res = move_window(fs, fs->fatbase + (bc / ((UINT)512)));
+[e = _res ( _move_window (2 , _fs + . *U _fs 14 -> / _bc -> -> 512 `i `ui `ul ]
+"1260
+[; ;fatfs/ff.c: 1260:    if (res != FR_OK) break;
+[e $ ! != -> _res `ui -> . `E275 0 `ui 56  ]
+[e $U 52  ]
+[e :U 56 ]
+"1261
+[; ;fatfs/ff.c: 1261:    p = fs->win + bc % ((UINT)512);
+[e = _p + &U . *U _fs 18 * -> % _bc -> -> 512 `i `ui `ux -> -> # *U &U . *U _fs 18 `ui `ux ]
+"1262
+[; ;fatfs/ff.c: 1262:    *p = (clst & 1) ? (BYTE)(val >> 4) : ((*p & 0xF0) | ((BYTE)(val >> 8) & 0x0F));
+[e = *U _p -> ? != & _clst -> -> -> 1 `i `l `ul -> -> -> 0 `i `l `ul : -> -> >> _val -> 4 `i `uc `i | & -> *U _p `i -> 240 `i & -> -> >> _val -> 8 `i `uc `i -> 15 `i `uc ]
+"1263
+[; ;fatfs/ff.c: 1263:    fs->wflag = 1;
+[e = . *U _fs 4 -> -> 1 `i `uc ]
+"1264
+[; ;fatfs/ff.c: 1264:    break;
+[e $U 52  ]
+"1266
+[; ;fatfs/ff.c: 1266:   case 2:
+[e :U 57 ]
+"1267
+[; ;fatfs/ff.c: 1267:    res = move_window(fs, fs->fatbase + (clst / (((UINT)512) / 2)));
+[e = _res ( _move_window (2 , _fs + . *U _fs 14 / _clst -> / -> -> 512 `i `ui -> -> 2 `i `ui `ul ]
+"1268
+[; ;fatfs/ff.c: 1268:    if (res != FR_OK) break;
+[e $ ! != -> _res `ui -> . `E275 0 `ui 58  ]
+[e $U 52  ]
+[e :U 58 ]
+"1269
+[; ;fatfs/ff.c: 1269:    st_word(fs->win + clst * 2 % ((UINT)512), (WORD)val);
+[e ( _st_word (2 , + &U . *U _fs 18 * -> % * _clst -> -> -> 2 `i `l `ul -> -> -> 512 `i `ui `ul `ux -> -> # *U &U . *U _fs 18 `ui `ux -> _val `us ]
+"1270
+[; ;fatfs/ff.c: 1270:    fs->wflag = 1;
+[e = . *U _fs 4 -> -> 1 `i `uc ]
+"1271
+[; ;fatfs/ff.c: 1271:    break;
+[e $U 52  ]
+"1273
+[; ;fatfs/ff.c: 1273:   case 3:
+[e :U 59 ]
+"1277
+[; ;fatfs/ff.c: 1277:    res = move_window(fs, fs->fatbase + (clst / (((UINT)512) / 4)));
+[e = _res ( _move_window (2 , _fs + . *U _fs 14 / _clst -> / -> -> 512 `i `ui -> -> 4 `i `ui `ul ]
+"1278
+[; ;fatfs/ff.c: 1278:    if (res != FR_OK) break;
+[e $ ! != -> _res `ui -> . `E275 0 `ui 60  ]
+[e $U 52  ]
+[e :U 60 ]
+"1279
+[; ;fatfs/ff.c: 1279:    if (!0 || fs->fs_type != 4) {
+[e $ ! || ! != -> 0 `i -> 0 `i != -> . *U _fs 0 `i -> 4 `i 61  ]
+{
+"1280
+[; ;fatfs/ff.c: 1280:     val = (val & 0x0FFFFFFF) | (ld_dword(fs->win + clst * 4 % ((UINT)512)) & 0xF0000000);
+[e = _val | & _val -> -> 268435455 `l `ul & ( _ld_dword (1 -> + &U . *U _fs 18 * -> % * _clst -> -> -> 4 `i `l `ul -> -> -> 512 `i `ui `ul `ux -> -> # *U &U . *U _fs 18 `ui `ux `*Cuc -> 4026531840 `ul ]
+"1281
+[; ;fatfs/ff.c: 1281:    }
+}
+[e :U 61 ]
+"1282
+[; ;fatfs/ff.c: 1282:    st_dword(fs->win + clst * 4 % ((UINT)512), val);
+[e ( _st_dword (2 , + &U . *U _fs 18 * -> % * _clst -> -> -> 4 `i `l `ul -> -> -> 512 `i `ui `ul `ux -> -> # *U &U . *U _fs 18 `ui `ux _val ]
+"1283
+[; ;fatfs/ff.c: 1283:    fs->wflag = 1;
+[e = . *U _fs 4 -> -> 1 `i `uc ]
+"1284
+[; ;fatfs/ff.c: 1284:    break;
+[e $U 52  ]
+"1285
+[; ;fatfs/ff.c: 1285:   }
+}
+[e $U 52  ]
+[e :U 53 ]
+[e [\ . *U _fs 0 , $ -> 1 `i 54
+ , $ -> 2 `i 57
+ , $ -> 3 `i 59
+ 52 ]
+[e :U 52 ]
+"1286
+[; ;fatfs/ff.c: 1286:  }
+}
+[e :U 51 ]
+"1287
+[; ;fatfs/ff.c: 1287:  return res;
+[e ) _res ]
+[e $UE 50  ]
+"1288
+[; ;fatfs/ff.c: 1288: }
+[e :UE 50 ]
+}
+"1429
+[; ;fatfs/ff.c: 1429: static FRESULT remove_chain (
+[v _remove_chain `(E275 ~T0 @X0 1 sf3`*S3`ul`ul ]
+"1434
+[; ;fatfs/ff.c: 1434: {
+{
+[e :U _remove_chain ]
+"1430
+[; ;fatfs/ff.c: 1430:  FFOBJID* obj,
+[v _obj `*S3 ~T0 @X0 1 r1 ]
+"1431
+[; ;fatfs/ff.c: 1431:  DWORD clst,
+[v _clst `ul ~T0 @X0 1 r2 ]
+"1432
+[; ;fatfs/ff.c: 1432:  DWORD pclst
+[v _pclst `ul ~T0 @X0 1 r3 ]
+"1434
+[; ;fatfs/ff.c: 1434: {
+[f ]
+"1435
+[; ;fatfs/ff.c: 1435:  FRESULT res = FR_OK;
+[v _res `E275 ~T0 @X0 1 a ]
+[e = _res . `E275 0 ]
+"1436
+[; ;fatfs/ff.c: 1436:  DWORD nxt;
+[v _nxt `ul ~T0 @X0 1 a ]
+"1437
+[; ;fatfs/ff.c: 1437:  FATFS *fs = obj->fs;
+[v _fs `*S2 ~T0 @X0 1 a ]
+[e = _fs . *U _obj 0 ]
+"1445
+[; ;fatfs/ff.c: 1445:  if (clst < 2 || clst >= fs->n_fatent) return FR_INT_ERR;
+[e $ ! || < _clst -> -> -> 2 `i `l `ul >= _clst . *U _fs 11 63  ]
+[e ) . `E275 2 ]
+[e $UE 62  ]
+[e :U 63 ]
+"1448
+[; ;fatfs/ff.c: 1448:  if (pclst != 0 && (!0 || fs->fs_type != 4 || obj->stat != 2)) {
+[e $ ! && != _pclst -> -> -> 0 `i `l `ul || || ! != -> 0 `i -> 0 `i != -> . *U _fs 0 `i -> 4 `i != -> . *U _obj 3 `i -> 2 `i 64  ]
+{
+"1449
+[; ;fatfs/ff.c: 1449:   res = put_fat(fs, pclst, 0xFFFFFFFF);
+[e = _res ( _put_fat (3 , , _fs _pclst -> 4294967295 `ul ]
+"1450
+[; ;fatfs/ff.c: 1450:   if (res != FR_OK) return res;
+[e $ ! != -> _res `ui -> . `E275 0 `ui 65  ]
+[e ) _res ]
+[e $UE 62  ]
+[e :U 65 ]
+"1451
+[; ;fatfs/ff.c: 1451:  }
+}
+[e :U 64 ]
+"1454
+[; ;fatfs/ff.c: 1454:  do {
+[e :U 68 ]
+{
+"1455
+[; ;fatfs/ff.c: 1455:   nxt = get_fat(obj, clst);
+[e = _nxt ( _get_fat (2 , _obj _clst ]
+"1456
+[; ;fatfs/ff.c: 1456:   if (nxt == 0) break;
+[e $ ! == _nxt -> -> -> 0 `i `l `ul 69  ]
+[e $U 67  ]
+[e :U 69 ]
+"1457
+[; ;fatfs/ff.c: 1457:   if (nxt == 1) return FR_INT_ERR;
+[e $ ! == _nxt -> -> -> 1 `i `l `ul 70  ]
+[e ) . `E275 2 ]
+[e $UE 62  ]
+[e :U 70 ]
+"1458
+[; ;fatfs/ff.c: 1458:   if (nxt == 0xFFFFFFFF) return FR_DISK_ERR;
+[e $ ! == _nxt -> 4294967295 `ul 71  ]
+[e ) . `E275 1 ]
+[e $UE 62  ]
+[e :U 71 ]
+"1459
+[; ;fatfs/ff.c: 1459:   if (!0 || fs->fs_type != 4) {
+[e $ ! || ! != -> 0 `i -> 0 `i != -> . *U _fs 0 `i -> 4 `i 72  ]
+{
+"1460
+[; ;fatfs/ff.c: 1460:    res = put_fat(fs, clst, 0);
+[e = _res ( _put_fat (3 , , _fs _clst -> -> -> 0 `i `l `ul ]
+"1461
+[; ;fatfs/ff.c: 1461:    if (res != FR_OK) return res;
+[e $ ! != -> _res `ui -> . `E275 0 `ui 73  ]
+[e ) _res ]
+[e $UE 62  ]
+[e :U 73 ]
+"1462
+[; ;fatfs/ff.c: 1462:   }
+}
+[e :U 72 ]
+"1463
+[; ;fatfs/ff.c: 1463:   if (fs->free_clst < fs->n_fatent - 2) {
+[e $ ! < . *U _fs 10 - . *U _fs 11 -> -> -> 2 `i `l `ul 74  ]
+{
+"1464
+[; ;fatfs/ff.c: 1464:    fs->free_clst++;
+[e ++ . *U _fs 10 -> -> -> 1 `i `l `ul ]
+"1465
+[; ;fatfs/ff.c: 1465:    fs->fsi_flag |= 1;
+[e =| . *U _fs 5 -> -> 1 `i `uc ]
+"1466
+[; ;fatfs/ff.c: 1466:   }
+}
+[e :U 74 ]
+"1485
+[; ;fatfs/ff.c: 1485:   clst = nxt;
+[e = _clst _nxt ]
+"1486
+[; ;fatfs/ff.c: 1486:  } while (clst < fs->n_fatent);
+}
+[e $ < _clst . *U _fs 11 68  ]
+[e :U 67 ]
+"1514
+[; ;fatfs/ff.c: 1514:  return FR_OK;
+[e ) . `E275 0 ]
+[e $UE 62  ]
+"1515
+[; ;fatfs/ff.c: 1515: }
+[e :UE 62 ]
+}
+"1524
+[; ;fatfs/ff.c: 1524: static DWORD create_chain (
+[v _create_chain `(ul ~T0 @X0 1 sf2`*S3`ul ]
+"1528
+[; ;fatfs/ff.c: 1528: {
+{
+[e :U _create_chain ]
+"1525
+[; ;fatfs/ff.c: 1525:  FFOBJID* obj,
+[v _obj `*S3 ~T0 @X0 1 r1 ]
+"1526
+[; ;fatfs/ff.c: 1526:  DWORD clst
+[v _clst `ul ~T0 @X0 1 r2 ]
+"1528
+[; ;fatfs/ff.c: 1528: {
+[f ]
+"1529
+[; ;fatfs/ff.c: 1529:  DWORD cs, ncl, scl;
+[v _cs `ul ~T0 @X0 1 a ]
+[v _ncl `ul ~T0 @X0 1 a ]
+[v _scl `ul ~T0 @X0 1 a ]
+"1530
+[; ;fatfs/ff.c: 1530:  FRESULT res;
+[v _res `E275 ~T0 @X0 1 a ]
+"1531
+[; ;fatfs/ff.c: 1531:  FATFS *fs = obj->fs;
+[v _fs `*S2 ~T0 @X0 1 a ]
+[e = _fs . *U _obj 0 ]
+"1534
+[; ;fatfs/ff.c: 1534:  if (clst == 0) {
+[e $ ! == _clst -> -> -> 0 `i `l `ul 76  ]
+{
+"1535
+[; ;fatfs/ff.c: 1535:   scl = fs->last_clst;
+[e = _scl . *U _fs 9 ]
+"1536
+[; ;fatfs/ff.c: 1536:   if (scl == 0 || scl >= fs->n_fatent) scl = 1;
+[e $ ! || == _scl -> -> -> 0 `i `l `ul >= _scl . *U _fs 11 77  ]
+[e = _scl -> -> -> 1 `i `l `ul ]
+[e :U 77 ]
+"1537
+[; ;fatfs/ff.c: 1537:  }
+}
+[e $U 78  ]
+"1538
+[; ;fatfs/ff.c: 1538:  else {
+[e :U 76 ]
+{
+"1539
+[; ;fatfs/ff.c: 1539:   cs = get_fat(obj, clst);
+[e = _cs ( _get_fat (2 , _obj _clst ]
+"1540
+[; ;fatfs/ff.c: 1540:   if (cs < 2) return 1;
+[e $ ! < _cs -> -> -> 2 `i `l `ul 79  ]
+[e ) -> -> -> 1 `i `l `ul ]
+[e $UE 75  ]
+[e :U 79 ]
+"1541
+[; ;fatfs/ff.c: 1541:   if (cs == 0xFFFFFFFF) return cs;
+[e $ ! == _cs -> 4294967295 `ul 80  ]
+[e ) _cs ]
+[e $UE 75  ]
+[e :U 80 ]
+"1542
+[; ;fatfs/ff.c: 1542:   if (cs < fs->n_fatent) return cs;
+[e $ ! < _cs . *U _fs 11 81  ]
+[e ) _cs ]
+[e $UE 75  ]
+[e :U 81 ]
+"1543
+[; ;fatfs/ff.c: 1543:   scl = clst;
+[e = _scl _clst ]
+"1544
+[; ;fatfs/ff.c: 1544:  }
+}
+[e :U 78 ]
+"1545
+[; ;fatfs/ff.c: 1545:  if (fs->free_clst == 0) return 0;
+[e $ ! == . *U _fs 10 -> -> -> 0 `i `l `ul 82  ]
+[e ) -> -> -> 0 `i `l `ul ]
+[e $UE 75  ]
+[e :U 82 ]
+"1573
+[; ;fatfs/ff.c: 1573:  {
+{
+"1574
+[; ;fatfs/ff.c: 1574:   ncl = 0;
+[e = _ncl -> -> -> 0 `i `l `ul ]
+"1575
+[; ;fatfs/ff.c: 1575:   if (scl == clst) {
+[e $ ! == _scl _clst 83  ]
+{
+"1576
+[; ;fatfs/ff.c: 1576:    ncl = scl + 1;
+[e = _ncl + _scl -> -> -> 1 `i `l `ul ]
+"1577
+[; ;fatfs/ff.c: 1577:    if (ncl >= fs->n_fatent) ncl = 2;
+[e $ ! >= _ncl . *U _fs 11 84  ]
+[e = _ncl -> -> -> 2 `i `l `ul ]
+[e :U 84 ]
+"1578
+[; ;fatfs/ff.c: 1578:    cs = get_fat(obj, ncl);
+[e = _cs ( _get_fat (2 , _obj _ncl ]
+"1579
+[; ;fatfs/ff.c: 1579:    if (cs == 1 || cs == 0xFFFFFFFF) return cs;
+[e $ ! || == _cs -> -> -> 1 `i `l `ul == _cs -> 4294967295 `ul 85  ]
+[e ) _cs ]
+[e $UE 75  ]
+[e :U 85 ]
+"1580
+[; ;fatfs/ff.c: 1580:    if (cs != 0) {
+[e $ ! != _cs -> -> -> 0 `i `l `ul 86  ]
+{
+"1581
+[; ;fatfs/ff.c: 1581:     cs = fs->last_clst;
+[e = _cs . *U _fs 9 ]
+"1582
+[; ;fatfs/ff.c: 1582:     if (cs >= 2 && cs < fs->n_fatent) scl = cs;
+[e $ ! && >= _cs -> -> -> 2 `i `l `ul < _cs . *U _fs 11 87  ]
+[e = _scl _cs ]
+[e :U 87 ]
+"1583
+[; ;fatfs/ff.c: 1583:     ncl = 0;
+[e = _ncl -> -> -> 0 `i `l `ul ]
+"1584
+[; ;fatfs/ff.c: 1584:    }
+}
+[e :U 86 ]
+"1585
+[; ;fatfs/ff.c: 1585:   }
+}
+[e :U 83 ]
+"1586
+[; ;fatfs/ff.c: 1586:   if (ncl == 0) {
+[e $ ! == _ncl -> -> -> 0 `i `l `ul 88  ]
+{
+"1587
+[; ;fatfs/ff.c: 1587:    ncl = scl;
+[e = _ncl _scl ]
+"1588
+[; ;fatfs/ff.c: 1588:    for (;;) {
+{
+[e :U 89 ]
+{
+"1589
+[; ;fatfs/ff.c: 1589:     ncl++;
+[e ++ _ncl -> -> -> 1 `i `l `ul ]
+"1590
+[; ;fatfs/ff.c: 1590:     if (ncl >= fs->n_fatent) {
+[e $ ! >= _ncl . *U _fs 11 92  ]
+{
+"1591
+[; ;fatfs/ff.c: 1591:      ncl = 2;
+[e = _ncl -> -> -> 2 `i `l `ul ]
+"1592
+[; ;fatfs/ff.c: 1592:      if (ncl > scl) return 0;
+[e $ ! > _ncl _scl 93  ]
+[e ) -> -> -> 0 `i `l `ul ]
+[e $UE 75  ]
+[e :U 93 ]
+"1593
+[; ;fatfs/ff.c: 1593:     }
+}
+[e :U 92 ]
+"1594
+[; ;fatfs/ff.c: 1594:     cs = get_fat(obj, ncl);
+[e = _cs ( _get_fat (2 , _obj _ncl ]
+"1595
+[; ;fatfs/ff.c: 1595:     if (cs == 0) break;
+[e $ ! == _cs -> -> -> 0 `i `l `ul 94  ]
+[e $U 90  ]
+[e :U 94 ]
+"1596
+[; ;fatfs/ff.c: 1596:     if (cs == 1 || cs == 0xFFFFFFFF) return cs;
+[e $ ! || == _cs -> -> -> 1 `i `l `ul == _cs -> 4294967295 `ul 95  ]
+[e ) _cs ]
+[e $UE 75  ]
+[e :U 95 ]
+"1597
+[; ;fatfs/ff.c: 1597:     if (ncl == scl) return 0;
+[e $ ! == _ncl _scl 96  ]
+[e ) -> -> -> 0 `i `l `ul ]
+[e $UE 75  ]
+[e :U 96 ]
+"1598
+[; ;fatfs/ff.c: 1598:    }
+}
+[e $U 89  ]
+[e :U 90 ]
+}
+"1599
+[; ;fatfs/ff.c: 1599:   }
+}
+[e :U 88 ]
+"1600
+[; ;fatfs/ff.c: 1600:   res = put_fat(fs, ncl, 0xFFFFFFFF);
+[e = _res ( _put_fat (3 , , _fs _ncl -> 4294967295 `ul ]
+"1601
+[; ;fatfs/ff.c: 1601:   if (res == FR_OK && clst != 0) {
+[e $ ! && == -> _res `ui -> . `E275 0 `ui != _clst -> -> -> 0 `i `l `ul 97  ]
+{
+"1602
+[; ;fatfs/ff.c: 1602:    res = put_fat(fs, clst, ncl);
+[e = _res ( _put_fat (3 , , _fs _clst _ncl ]
+"1603
+[; ;fatfs/ff.c: 1603:   }
+}
+[e :U 97 ]
+"1604
+[; ;fatfs/ff.c: 1604:  }
+}
+"1606
+[; ;fatfs/ff.c: 1606:  if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 98  ]
+{
+"1607
+[; ;fatfs/ff.c: 1607:   fs->last_clst = ncl;
+[e = . *U _fs 9 _ncl ]
+"1608
+[; ;fatfs/ff.c: 1608:   if (fs->free_clst <= fs->n_fatent - 2) fs->free_clst--;
+[e $ ! <= . *U _fs 10 - . *U _fs 11 -> -> -> 2 `i `l `ul 99  ]
+[e -- . *U _fs 10 -> -> -> 1 `i `l `ul ]
+[e :U 99 ]
+"1609
+[; ;fatfs/ff.c: 1609:   fs->fsi_flag |= 1;
+[e =| . *U _fs 5 -> -> 1 `i `uc ]
+"1610
+[; ;fatfs/ff.c: 1610:  } else {
+}
+[e $U 100  ]
+[e :U 98 ]
+{
+"1611
+[; ;fatfs/ff.c: 1611:   ncl = (res == FR_DISK_ERR) ? 0xFFFFFFFF : 1;
+[e = _ncl ? == -> _res `ui -> . `E275 1 `ui : -> 4294967295 `ul -> -> -> 1 `i `l `ul ]
+"1612
+[; ;fatfs/ff.c: 1612:  }
+}
+[e :U 100 ]
+"1614
+[; ;fatfs/ff.c: 1614:  return ncl;
+[e ) _ncl ]
+[e $UE 75  ]
+"1615
+[; ;fatfs/ff.c: 1615: }
+[e :UE 75 ]
+}
+"1658
+[; ;fatfs/ff.c: 1658: static FRESULT dir_clear (
+[v _dir_clear `(E275 ~T0 @X0 1 sf2`*S2`ul ]
+"1662
+[; ;fatfs/ff.c: 1662: {
+{
+[e :U _dir_clear ]
+"1659
+[; ;fatfs/ff.c: 1659:  FATFS *fs,
+[v _fs `*S2 ~T0 @X0 1 r1 ]
+"1660
+[; ;fatfs/ff.c: 1660:  DWORD clst
+[v _clst `ul ~T0 @X0 1 r2 ]
+"1662
+[; ;fatfs/ff.c: 1662: {
+[f ]
+"1663
+[; ;fatfs/ff.c: 1663:  LBA_t sect;
+[v _sect `ul ~T0 @X0 1 a ]
+"1664
+[; ;fatfs/ff.c: 1664:  UINT n, szb;
+[v _n `ui ~T0 @X0 1 a ]
+[v _szb `ui ~T0 @X0 1 a ]
+"1665
+[; ;fatfs/ff.c: 1665:  BYTE *ibuf;
+[v _ibuf `*uc ~T0 @X0 1 a ]
+"1668
+[; ;fatfs/ff.c: 1668:  if (sync_window(fs) != FR_OK) return FR_DISK_ERR;
+[e $ ! != -> ( _sync_window (1 _fs `ui -> . `E275 0 `ui 102  ]
+[e ) . `E275 1 ]
+[e $UE 101  ]
+[e :U 102 ]
+"1669
+[; ;fatfs/ff.c: 1669:  sect = clst2sect(fs, clst);
+[e = _sect ( _clst2sect (2 , _fs _clst ]
+"1670
+[; ;fatfs/ff.c: 1670:  fs->winsect = sect;
+[e = . *U _fs 17 _sect ]
+"1671
+[; ;fatfs/ff.c: 1671:  memset(fs->win, 0, sizeof fs->win);
+[e ( _memset (3 , , -> &U . *U _fs 18 `*v -> 0 `i * -> # *U &U . *U _fs 18 `ui -> -> 512 `i `ui ]
+"1682
+[; ;fatfs/ff.c: 1682:  {
+{
+"1683
+[; ;fatfs/ff.c: 1683:   ibuf = fs->win; szb = 1;
+[e = _ibuf &U . *U _fs 18 ]
+[e = _szb -> -> 1 `i `ui ]
+"1684
+[; ;fatfs/ff.c: 1684:   for (n = 0; n < fs->csize && disk_write(fs->pdrv, ibuf, sect + n, szb) == RES_OK; n += szb) ;
+{
+[e = _n -> -> 0 `i `ui ]
+[e $U 106  ]
+[e :U 103 ]
+[e =+ _n _szb ]
+[e :U 106 ]
+[e $ && < _n -> . *U _fs 8 `ui == -> ( _disk_write (4 , , , . *U _fs 1 -> _ibuf `*Cuc + _sect -> _n `ul _szb `ui -> . `E415 0 `ui 103  ]
+[e :U 104 ]
+}
+"1685
+[; ;fatfs/ff.c: 1685:  }
+}
+"1686
+[; ;fatfs/ff.c: 1686:  return (n == fs->csize) ? FR_OK : FR_DISK_ERR;
+[e ) -> ? == _n -> . *U _fs 8 `ui : . `E275 0 . `E275 1 `E275 ]
+[e $UE 101  ]
+"1687
+[; ;fatfs/ff.c: 1687: }
+[e :UE 101 ]
+}
+"1697
+[; ;fatfs/ff.c: 1697: static FRESULT dir_sdi (
+[v _dir_sdi `(E275 ~T0 @X0 1 sf2`*S5`ul ]
+"1701
+[; ;fatfs/ff.c: 1701: {
+{
+[e :U _dir_sdi ]
+"1698
+[; ;fatfs/ff.c: 1698:  DIR* dp,
+[v _dp `*S5 ~T0 @X0 1 r1 ]
+"1699
+[; ;fatfs/ff.c: 1699:  DWORD ofs
+[v _ofs `ul ~T0 @X0 1 r2 ]
+"1701
+[; ;fatfs/ff.c: 1701: {
+[f ]
+"1702
+[; ;fatfs/ff.c: 1702:  DWORD csz, clst;
+[v _csz `ul ~T0 @X0 1 a ]
+[v _clst `ul ~T0 @X0 1 a ]
+"1703
+[; ;fatfs/ff.c: 1703:  FATFS *fs = dp->obj.fs;
+[v _fs `*S2 ~T0 @X0 1 a ]
+[e = _fs . . *U _dp 0 0 ]
+"1706
+[; ;fatfs/ff.c: 1706:  if (ofs >= (DWORD)((0 && fs->fs_type == 4) ? 0x10000000 : 0x200000) || ofs % 32) {
+[e $ ! || >= _ofs -> ? && != -> 0 `i -> 0 `i == -> . *U _fs 0 `i -> 4 `i : -> 268435456 `l -> 2097152 `l `ul != % _ofs -> -> -> 32 `i `l `ul -> -> -> 0 `i `l `ul 108  ]
+{
+"1707
+[; ;fatfs/ff.c: 1707:   return FR_INT_ERR;
+[e ) . `E275 2 ]
+[e $UE 107  ]
+"1708
+[; ;fatfs/ff.c: 1708:  }
+}
+[e :U 108 ]
+"1709
+[; ;fatfs/ff.c: 1709:  dp->dptr = ofs;
+[e = . *U _dp 1 _ofs ]
+"1710
+[; ;fatfs/ff.c: 1710:  clst = dp->obj.sclust;
+[e = _clst . . *U _dp 0 4 ]
+"1711
+[; ;fatfs/ff.c: 1711:  if (clst == 0 && fs->fs_type >= 3) {
+[e $ ! && == _clst -> -> -> 0 `i `l `ul >= -> . *U _fs 0 `i -> 3 `i 109  ]
+{
+"1712
+[; ;fatfs/ff.c: 1712:   clst = (DWORD)fs->dirbase;
+[e = _clst . *U _fs 15 ]
+"1713
+[; ;fatfs/ff.c: 1713:   if (0) dp->obj.stat = 0;
+[e $ ! != -> 0 `i -> 0 `i 110  ]
+[e = . . *U _dp 0 3 -> -> 0 `i `uc ]
+[e :U 110 ]
+"1714
+[; ;fatfs/ff.c: 1714:  }
+}
+[e :U 109 ]
+"1716
+[; ;fatfs/ff.c: 1716:  if (clst == 0) {
+[e $ ! == _clst -> -> -> 0 `i `l `ul 111  ]
+{
+"1717
+[; ;fatfs/ff.c: 1717:   if (ofs / 32 >= fs->n_rootdir) return FR_INT_ERR;
+[e $ ! >= / _ofs -> -> -> 32 `i `l `ul -> . *U _fs 7 `ul 112  ]
+[e ) . `E275 2 ]
+[e $UE 107  ]
+[e :U 112 ]
+"1718
+[; ;fatfs/ff.c: 1718:   dp->sect = fs->dirbase;
+[e = . *U _dp 3 . *U _fs 15 ]
+"1720
+[; ;fatfs/ff.c: 1720:  } else {
+}
+[e $U 113  ]
+[e :U 111 ]
+{
+"1721
+[; ;fatfs/ff.c: 1721:   csz = (DWORD)fs->csize * ((UINT)512);
+[e = _csz * -> . *U _fs 8 `ul -> -> -> 512 `i `ui `ul ]
+"1722
+[; ;fatfs/ff.c: 1722:   while (ofs >= csz) {
+[e $U 114  ]
+[e :U 115 ]
+{
+"1723
+[; ;fatfs/ff.c: 1723:    clst = get_fat(&dp->obj, clst);
+[e = _clst ( _get_fat (2 , &U . *U _dp 0 _clst ]
+"1724
+[; ;fatfs/ff.c: 1724:    if (clst == 0xFFFFFFFF) return FR_DISK_ERR;
+[e $ ! == _clst -> 4294967295 `ul 117  ]
+[e ) . `E275 1 ]
+[e $UE 107  ]
+[e :U 117 ]
+"1725
+[; ;fatfs/ff.c: 1725:    if (clst < 2 || clst >= fs->n_fatent) return FR_INT_ERR;
+[e $ ! || < _clst -> -> -> 2 `i `l `ul >= _clst . *U _fs 11 118  ]
+[e ) . `E275 2 ]
+[e $UE 107  ]
+[e :U 118 ]
+"1726
+[; ;fatfs/ff.c: 1726:    ofs -= csz;
+[e =- _ofs _csz ]
+"1727
+[; ;fatfs/ff.c: 1727:   }
+}
+[e :U 114 ]
+"1722
+[; ;fatfs/ff.c: 1722:   while (ofs >= csz) {
+[e $ >= _ofs _csz 115  ]
+[e :U 116 ]
+"1728
+[; ;fatfs/ff.c: 1728:   dp->sect = clst2sect(fs, clst);
+[e = . *U _dp 3 ( _clst2sect (2 , _fs _clst ]
+"1729
+[; ;fatfs/ff.c: 1729:  }
+}
+[e :U 113 ]
+"1730
+[; ;fatfs/ff.c: 1730:  dp->clust = clst;
+[e = . *U _dp 2 _clst ]
+"1731
+[; ;fatfs/ff.c: 1731:  if (dp->sect == 0) return FR_INT_ERR;
+[e $ ! == . *U _dp 3 -> -> -> 0 `i `l `ul 119  ]
+[e ) . `E275 2 ]
+[e $UE 107  ]
+[e :U 119 ]
+"1732
+[; ;fatfs/ff.c: 1732:  dp->sect += ofs / ((UINT)512);
+[e =+ . *U _dp 3 / _ofs -> -> -> 512 `i `ui `ul ]
+"1733
+[; ;fatfs/ff.c: 1733:  dp->dir = fs->win + (ofs % ((UINT)512));
+[e = . *U _dp 4 + &U . *U _fs 18 * -> % _ofs -> -> -> 512 `i `ui `ul `ux -> -> # *U &U . *U _fs 18 `ui `ux ]
+"1735
+[; ;fatfs/ff.c: 1735:  return FR_OK;
+[e ) . `E275 0 ]
+[e $UE 107  ]
+"1736
+[; ;fatfs/ff.c: 1736: }
+[e :UE 107 ]
+}
+"1745
+[; ;fatfs/ff.c: 1745: static FRESULT dir_next (
+[v _dir_next `(E275 ~T0 @X0 1 sf2`*S5`i ]
+"1749
+[; ;fatfs/ff.c: 1749: {
+{
+[e :U _dir_next ]
+"1746
+[; ;fatfs/ff.c: 1746:  DIR* dp,
+[v _dp `*S5 ~T0 @X0 1 r1 ]
+"1747
+[; ;fatfs/ff.c: 1747:  int stretch
+[v _stretch `i ~T0 @X0 1 r2 ]
+"1749
+[; ;fatfs/ff.c: 1749: {
+[f ]
+"1750
+[; ;fatfs/ff.c: 1750:  DWORD ofs, clst;
+[v _ofs `ul ~T0 @X0 1 a ]
+[v _clst `ul ~T0 @X0 1 a ]
+"1751
+[; ;fatfs/ff.c: 1751:  FATFS *fs = dp->obj.fs;
+[v _fs `*S2 ~T0 @X0 1 a ]
+[e = _fs . . *U _dp 0 0 ]
+"1754
+[; ;fatfs/ff.c: 1754:  ofs = dp->dptr + 32;
+[e = _ofs + . *U _dp 1 -> -> -> 32 `i `l `ul ]
+"1755
+[; ;fatfs/ff.c: 1755:  if (ofs >= (DWORD)((0 && fs->fs_type == 4) ? 0x10000000 : 0x200000)) dp->sect = 0;
+[e $ ! >= _ofs -> ? && != -> 0 `i -> 0 `i == -> . *U _fs 0 `i -> 4 `i : -> 268435456 `l -> 2097152 `l `ul 121  ]
+[e = . *U _dp 3 -> -> -> 0 `i `l `ul ]
+[e :U 121 ]
+"1756
+[; ;fatfs/ff.c: 1756:  if (dp->sect == 0) return FR_NO_FILE;
+[e $ ! == . *U _dp 3 -> -> -> 0 `i `l `ul 122  ]
+[e ) . `E275 4 ]
+[e $UE 120  ]
+[e :U 122 ]
+"1758
+[; ;fatfs/ff.c: 1758:  if (ofs % ((UINT)512) == 0) {
+[e $ ! == % _ofs -> -> -> 512 `i `ui `ul -> -> -> 0 `i `l `ul 123  ]
+{
+"1759
+[; ;fatfs/ff.c: 1759:   dp->sect++;
+[e ++ . *U _dp 3 -> -> -> 1 `i `l `ul ]
+"1761
+[; ;fatfs/ff.c: 1761:   if (dp->clust == 0) {
+[e $ ! == . *U _dp 2 -> -> -> 0 `i `l `ul 124  ]
+{
+"1762
+[; ;fatfs/ff.c: 1762:    if (ofs / 32 >= fs->n_rootdir) {
+[e $ ! >= / _ofs -> -> -> 32 `i `l `ul -> . *U _fs 7 `ul 125  ]
+{
+"1763
+[; ;fatfs/ff.c: 1763:     dp->sect = 0; return FR_NO_FILE;
+[e = . *U _dp 3 -> -> -> 0 `i `l `ul ]
+[e ) . `E275 4 ]
+[e $UE 120  ]
+"1764
+[; ;fatfs/ff.c: 1764:    }
+}
+[e :U 125 ]
+"1765
+[; ;fatfs/ff.c: 1765:   }
+}
+[e $U 126  ]
+"1766
+[; ;fatfs/ff.c: 1766:   else {
+[e :U 124 ]
+{
+"1767
+[; ;fatfs/ff.c: 1767:    if ((ofs / ((UINT)512) & (fs->csize - 1)) == 0) {
+[e $ ! == & / _ofs -> -> -> 512 `i `ui `ul -> - -> . *U _fs 8 `ui -> -> 1 `i `ui `ul -> -> -> 0 `i `l `ul 127  ]
+{
+"1768
+[; ;fatfs/ff.c: 1768:     clst = get_fat(&dp->obj, dp->clust);
+[e = _clst ( _get_fat (2 , &U . *U _dp 0 . *U _dp 2 ]
+"1769
+[; ;fatfs/ff.c: 1769:     if (clst <= 1) return FR_INT_ERR;
+[e $ ! <= _clst -> -> -> 1 `i `l `ul 128  ]
+[e ) . `E275 2 ]
+[e $UE 120  ]
+[e :U 128 ]
+"1770
+[; ;fatfs/ff.c: 1770:     if (clst == 0xFFFFFFFF) return FR_DISK_ERR;
+[e $ ! == _clst -> 4294967295 `ul 129  ]
+[e ) . `E275 1 ]
+[e $UE 120  ]
+[e :U 129 ]
+"1771
+[; ;fatfs/ff.c: 1771:     if (clst >= fs->n_fatent) {
+[e $ ! >= _clst . *U _fs 11 130  ]
+{
+"1773
+[; ;fatfs/ff.c: 1773:      if (!stretch) {
+[e $ ! ! != _stretch -> 0 `i 131  ]
+{
+"1774
+[; ;fatfs/ff.c: 1774:       dp->sect = 0; return FR_NO_FILE;
+[e = . *U _dp 3 -> -> -> 0 `i `l `ul ]
+[e ) . `E275 4 ]
+[e $UE 120  ]
+"1775
+[; ;fatfs/ff.c: 1775:      }
+}
+[e :U 131 ]
+"1776
+[; ;fatfs/ff.c: 1776:      clst = create_chain(&dp->obj, dp->clust);
+[e = _clst ( _create_chain (2 , &U . *U _dp 0 . *U _dp 2 ]
+"1777
+[; ;fatfs/ff.c: 1777:      if (clst == 0) return FR_DENIED;
+[e $ ! == _clst -> -> -> 0 `i `l `ul 132  ]
+[e ) . `E275 7 ]
+[e $UE 120  ]
+[e :U 132 ]
+"1778
+[; ;fatfs/ff.c: 1778:      if (clst == 1) return FR_INT_ERR;
+[e $ ! == _clst -> -> -> 1 `i `l `ul 133  ]
+[e ) . `E275 2 ]
+[e $UE 120  ]
+[e :U 133 ]
+"1779
+[; ;fatfs/ff.c: 1779:      if (clst == 0xFFFFFFFF) return FR_DISK_ERR;
+[e $ ! == _clst -> 4294967295 `ul 134  ]
+[e ) . `E275 1 ]
+[e $UE 120  ]
+[e :U 134 ]
+"1780
+[; ;fatfs/ff.c: 1780:      if (dir_clear(fs, clst) != FR_OK) return FR_DISK_ERR;
+[e $ ! != -> ( _dir_clear (2 , _fs _clst `ui -> . `E275 0 `ui 135  ]
+[e ) . `E275 1 ]
+[e $UE 120  ]
+[e :U 135 ]
+"1781
+[; ;fatfs/ff.c: 1781:      if (0) dp->obj.stat |= 4;
+[e $ ! != -> 0 `i -> 0 `i 136  ]
+[e =| . . *U _dp 0 3 -> -> 4 `i `uc ]
+[e :U 136 ]
+"1786
+[; ;fatfs/ff.c: 1786:     }
+}
+[e :U 130 ]
+"1787
+[; ;fatfs/ff.c: 1787:     dp->clust = clst;
+[e = . *U _dp 2 _clst ]
+"1788
+[; ;fatfs/ff.c: 1788:     dp->sect = clst2sect(fs, clst);
+[e = . *U _dp 3 ( _clst2sect (2 , _fs _clst ]
+"1789
+[; ;fatfs/ff.c: 1789:    }
+}
+[e :U 127 ]
+"1790
+[; ;fatfs/ff.c: 1790:   }
+}
+[e :U 126 ]
+"1791
+[; ;fatfs/ff.c: 1791:  }
+}
+[e :U 123 ]
+"1792
+[; ;fatfs/ff.c: 1792:  dp->dptr = ofs;
+[e = . *U _dp 1 _ofs ]
+"1793
+[; ;fatfs/ff.c: 1793:  dp->dir = fs->win + ofs % ((UINT)512);
+[e = . *U _dp 4 + &U . *U _fs 18 * -> % _ofs -> -> -> 512 `i `ui `ul `ux -> -> # *U &U . *U _fs 18 `ui `ux ]
+"1795
+[; ;fatfs/ff.c: 1795:  return FR_OK;
+[e ) . `E275 0 ]
+[e $UE 120  ]
+"1796
+[; ;fatfs/ff.c: 1796: }
+[e :UE 120 ]
+}
+"1806
+[; ;fatfs/ff.c: 1806: static FRESULT dir_alloc (
+[v _dir_alloc `(E275 ~T0 @X0 1 sf2`*S5`ui ]
+"1810
+[; ;fatfs/ff.c: 1810: {
+{
+[e :U _dir_alloc ]
+"1807
+[; ;fatfs/ff.c: 1807:  DIR* dp,
+[v _dp `*S5 ~T0 @X0 1 r1 ]
+"1808
+[; ;fatfs/ff.c: 1808:  UINT n_ent
+[v _n_ent `ui ~T0 @X0 1 r2 ]
+"1810
+[; ;fatfs/ff.c: 1810: {
+[f ]
+"1811
+[; ;fatfs/ff.c: 1811:  FRESULT res;
+[v _res `E275 ~T0 @X0 1 a ]
+"1812
+[; ;fatfs/ff.c: 1812:  UINT n;
+[v _n `ui ~T0 @X0 1 a ]
+"1813
+[; ;fatfs/ff.c: 1813:  FATFS *fs = dp->obj.fs;
+[v _fs `*S2 ~T0 @X0 1 a ]
+[e = _fs . . *U _dp 0 0 ]
+"1816
+[; ;fatfs/ff.c: 1816:  res = dir_sdi(dp, 0);
+[e = _res ( _dir_sdi (2 , _dp -> -> -> 0 `i `l `ul ]
+"1817
+[; ;fatfs/ff.c: 1817:  if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 138  ]
+{
+"1818
+[; ;fatfs/ff.c: 1818:   n = 0;
+[e = _n -> -> 0 `i `ui ]
+"1819
+[; ;fatfs/ff.c: 1819:   do {
+[e :U 141 ]
+{
+"1820
+[; ;fatfs/ff.c: 1820:    res = move_window(fs, dp->sect);
+[e = _res ( _move_window (2 , _fs . *U _dp 3 ]
+"1821
+[; ;fatfs/ff.c: 1821:    if (res != FR_OK) break;
+[e $ ! != -> _res `ui -> . `E275 0 `ui 142  ]
+[e $U 140  ]
+[e :U 142 ]
+"1825
+[; ;fatfs/ff.c: 1825:    if (dp->dir[0] == 0xE5 || dp->dir[0] == 0) {
+[e $ ! || == -> *U + . *U _dp 4 * -> -> 0 `i `x -> -> # *U . *U _dp 4 `i `x `i -> 229 `i == -> *U + . *U _dp 4 * -> -> 0 `i `x -> -> # *U . *U _dp 4 `i `x `i -> 0 `i 143  ]
+{
+"1827
+[; ;fatfs/ff.c: 1827:     if (++n == n_ent) break;
+[e $ ! == =+ _n -> -> 1 `i `ui _n_ent 144  ]
+[e $U 140  ]
+[e :U 144 ]
+"1828
+[; ;fatfs/ff.c: 1828:    } else {
+}
+[e $U 145  ]
+[e :U 143 ]
+{
+"1829
+[; ;fatfs/ff.c: 1829:     n = 0;
+[e = _n -> -> 0 `i `ui ]
+"1830
+[; ;fatfs/ff.c: 1830:    }
+}
+[e :U 145 ]
+"1831
+[; ;fatfs/ff.c: 1831:    res = dir_next(dp, 1);
+[e = _res ( _dir_next (2 , _dp -> 1 `i ]
+"1832
+[; ;fatfs/ff.c: 1832:   } while (res == FR_OK);
+}
+[e $ == -> _res `ui -> . `E275 0 `ui 141  ]
+[e :U 140 ]
+"1833
+[; ;fatfs/ff.c: 1833:  }
+}
+[e :U 138 ]
+"1835
+[; ;fatfs/ff.c: 1835:  if (res == FR_NO_FILE) res = FR_DENIED;
+[e $ ! == -> _res `ui -> . `E275 4 `ui 146  ]
+[e = _res . `E275 7 ]
+[e :U 146 ]
+"1836
+[; ;fatfs/ff.c: 1836:  return res;
+[e ) _res ]
+[e $UE 137  ]
+"1837
+[; ;fatfs/ff.c: 1837: }
+[e :UE 137 ]
+}
+"1848
+[; ;fatfs/ff.c: 1848: static DWORD ld_clust (
+[v _ld_clust `(ul ~T0 @X0 1 sf2`*S2`*Cuc ]
+"1852
+[; ;fatfs/ff.c: 1852: {
+{
+[e :U _ld_clust ]
+"1849
+[; ;fatfs/ff.c: 1849:  FATFS* fs,
+[v _fs `*S2 ~T0 @X0 1 r1 ]
+"1850
+[; ;fatfs/ff.c: 1850:  const BYTE* dir
+[v _dir `*Cuc ~T0 @X0 1 r2 ]
+"1852
+[; ;fatfs/ff.c: 1852: {
+[f ]
+"1853
+[; ;fatfs/ff.c: 1853:  DWORD cl;
+[v _cl `ul ~T0 @X0 1 a ]
+"1855
+[; ;fatfs/ff.c: 1855:  cl = ld_word(dir + 26);
+[e = _cl -> ( _ld_word (1 + _dir * -> -> 26 `i `x -> -> # *U _dir `i `x `ul ]
+"1856
+[; ;fatfs/ff.c: 1856:  if (fs->fs_type == 3) {
+[e $ ! == -> . *U _fs 0 `i -> 3 `i 148  ]
+{
+"1857
+[; ;fatfs/ff.c: 1857:   cl |= (DWORD)ld_word(dir + 20) << 16;
+[e =| _cl << -> ( _ld_word (1 + _dir * -> -> 20 `i `x -> -> # *U _dir `i `x `ul -> 16 `i ]
+"1858
+[; ;fatfs/ff.c: 1858:  }
+}
+[e :U 148 ]
+"1860
+[; ;fatfs/ff.c: 1860:  return cl;
+[e ) _cl ]
+[e $UE 147  ]
+"1861
+[; ;fatfs/ff.c: 1861: }
+[e :UE 147 ]
+}
+"1865
+[; ;fatfs/ff.c: 1865: static void st_clust (
+[v _st_clust `(v ~T0 @X0 1 sf3`*S2`*uc`ul ]
+"1870
+[; ;fatfs/ff.c: 1870: {
+{
+[e :U _st_clust ]
+"1866
+[; ;fatfs/ff.c: 1866:  FATFS* fs,
+[v _fs `*S2 ~T0 @X0 1 r1 ]
+"1867
+[; ;fatfs/ff.c: 1867:  BYTE* dir,
+[v _dir `*uc ~T0 @X0 1 r2 ]
+"1868
+[; ;fatfs/ff.c: 1868:  DWORD cl
+[v _cl `ul ~T0 @X0 1 r3 ]
+"1870
+[; ;fatfs/ff.c: 1870: {
+[f ]
+"1871
+[; ;fatfs/ff.c: 1871:  st_word(dir + 26, (WORD)cl);
+[e ( _st_word (2 , + _dir * -> -> 26 `i `x -> -> # *U _dir `i `x -> _cl `us ]
+"1872
+[; ;fatfs/ff.c: 1872:  if (fs->fs_type == 3) {
+[e $ ! == -> . *U _fs 0 `i -> 3 `i 150  ]
+{
+"1873
+[; ;fatfs/ff.c: 1873:   st_word(dir + 20, (WORD)(cl >> 16));
+[e ( _st_word (2 , + _dir * -> -> 20 `i `x -> -> # *U _dir `i `x -> >> _cl -> 16 `i `us ]
+"1874
+[; ;fatfs/ff.c: 1874:  }
+}
+[e :U 150 ]
+"1875
+[; ;fatfs/ff.c: 1875: }
+[e :UE 149 ]
+}
+"2306
+[; ;fatfs/ff.c: 2306: static FRESULT dir_read (
+[v _dir_read `(E275 ~T0 @X0 1 sf2`*S5`i ]
+"2310
+[; ;fatfs/ff.c: 2310: {
+{
+[e :U _dir_read ]
+"2307
+[; ;fatfs/ff.c: 2307:  DIR* dp,
+[v _dp `*S5 ~T0 @X0 1 r1 ]
+"2308
+[; ;fatfs/ff.c: 2308:  int vol
+[v _vol `i ~T0 @X0 1 r2 ]
+"2310
+[; ;fatfs/ff.c: 2310: {
+[f ]
+"2311
+[; ;fatfs/ff.c: 2311:  FRESULT res = FR_NO_FILE;
+[v _res `E275 ~T0 @X0 1 a ]
+[e = _res . `E275 4 ]
+"2312
+[; ;fatfs/ff.c: 2312:  FATFS *fs = dp->obj.fs;
+[v _fs `*S2 ~T0 @X0 1 a ]
+[e = _fs . . *U _dp 0 0 ]
+"2313
+[; ;fatfs/ff.c: 2313:  BYTE attr, b;
+[v _attr `uc ~T0 @X0 1 a ]
+[v _b `uc ~T0 @X0 1 a ]
+"2318
+[; ;fatfs/ff.c: 2318:  while (dp->sect) {
+[e $U 152  ]
+[e :U 153 ]
+{
+"2319
+[; ;fatfs/ff.c: 2319:   res = move_window(fs, dp->sect);
+[e = _res ( _move_window (2 , _fs . *U _dp 3 ]
+"2320
+[; ;fatfs/ff.c: 2320:   if (res != FR_OK) break;
+[e $ ! != -> _res `ui -> . `E275 0 `ui 155  ]
+[e $U 154  ]
+[e :U 155 ]
+"2321
+[; ;fatfs/ff.c: 2321:   b = dp->dir[0];
+[e = _b *U + . *U _dp 4 * -> -> 0 `i `x -> -> # *U . *U _dp 4 `i `x ]
+"2322
+[; ;fatfs/ff.c: 2322:   if (b == 0) {
+[e $ ! == -> _b `i -> 0 `i 156  ]
+{
+"2323
+[; ;fatfs/ff.c: 2323:    res = FR_NO_FILE; break;
+[e = _res . `E275 4 ]
+[e $U 154  ]
+"2324
+[; ;fatfs/ff.c: 2324:   }
+}
+[e :U 156 ]
+"2341
+[; ;fatfs/ff.c: 2341:   {
+{
+"2342
+[; ;fatfs/ff.c: 2342:    dp->obj.attr = attr = dp->dir[11] & 0x3F;
+[e = . . *U _dp 0 2 = _attr -> & -> *U + . *U _dp 4 * -> -> 11 `i `x -> -> # *U . *U _dp 4 `i `x `i -> 63 `i `uc ]
+"2363
+[; ;fatfs/ff.c: 2363:    if (b != 0xE5 && b != '.' && attr != 0x0F && (int)((attr & ~0x20) == 0x08) == vol) {
+[e $ ! && && && != -> _b `i -> 229 `i != -> _b `ui -> 46 `ui != -> _attr `i -> 15 `i == -> == & -> _attr `i ~ -> 32 `i -> 8 `i `i _vol 157  ]
+{
+"2364
+[; ;fatfs/ff.c: 2364:     break;
+[e $U 154  ]
+"2365
+[; ;fatfs/ff.c: 2365:    }
+}
+[e :U 157 ]
+"2367
+[; ;fatfs/ff.c: 2367:   }
+}
+"2368
+[; ;fatfs/ff.c: 2368:   res = dir_next(dp, 0);
+[e = _res ( _dir_next (2 , _dp -> 0 `i ]
+"2369
+[; ;fatfs/ff.c: 2369:   if (res != FR_OK) break;
+[e $ ! != -> _res `ui -> . `E275 0 `ui 158  ]
+[e $U 154  ]
+[e :U 158 ]
+"2370
+[; ;fatfs/ff.c: 2370:  }
+}
+[e :U 152 ]
+"2318
+[; ;fatfs/ff.c: 2318:  while (dp->sect) {
+[e $ != . *U _dp 3 -> -> -> 0 `i `l `ul 153  ]
+[e :U 154 ]
+"2372
+[; ;fatfs/ff.c: 2372:  if (res != FR_OK) dp->sect = 0;
+[e $ ! != -> _res `ui -> . `E275 0 `ui 159  ]
+[e = . *U _dp 3 -> -> -> 0 `i `l `ul ]
+[e :U 159 ]
+"2373
+[; ;fatfs/ff.c: 2373:  return res;
+[e ) _res ]
+[e $UE 151  ]
+"2374
+[; ;fatfs/ff.c: 2374: }
+[e :UE 151 ]
+}
+"2384
+[; ;fatfs/ff.c: 2384: static FRESULT dir_find (
+[v _dir_find `(E275 ~T0 @X0 1 sf1`*S5 ]
+"2387
+[; ;fatfs/ff.c: 2387: {
+{
+[e :U _dir_find ]
+"2385
+[; ;fatfs/ff.c: 2385:  DIR* dp
+[v _dp `*S5 ~T0 @X0 1 r1 ]
+"2387
+[; ;fatfs/ff.c: 2387: {
+[f ]
+"2388
+[; ;fatfs/ff.c: 2388:  FRESULT res;
+[v _res `E275 ~T0 @X0 1 a ]
+"2389
+[; ;fatfs/ff.c: 2389:  FATFS *fs = dp->obj.fs;
+[v _fs `*S2 ~T0 @X0 1 a ]
+[e = _fs . . *U _dp 0 0 ]
+"2390
+[; ;fatfs/ff.c: 2390:  BYTE c;
+[v _c `uc ~T0 @X0 1 a ]
+"2395
+[; ;fatfs/ff.c: 2395:  res = dir_sdi(dp, 0);
+[e = _res ( _dir_sdi (2 , _dp -> -> -> 0 `i `l `ul ]
+"2396
+[; ;fatfs/ff.c: 2396:  if (res != FR_OK) return res;
+[e $ ! != -> _res `ui -> . `E275 0 `ui 161  ]
+[e ) _res ]
+[e $UE 160  ]
+[e :U 161 ]
+"2421
+[; ;fatfs/ff.c: 2421:  do {
+[e :U 164 ]
+{
+"2422
+[; ;fatfs/ff.c: 2422:   res = move_window(fs, dp->sect);
+[e = _res ( _move_window (2 , _fs . *U _dp 3 ]
+"2423
+[; ;fatfs/ff.c: 2423:   if (res != FR_OK) break;
+[e $ ! != -> _res `ui -> . `E275 0 `ui 165  ]
+[e $U 163  ]
+[e :U 165 ]
+"2424
+[; ;fatfs/ff.c: 2424:   c = dp->dir[0];
+[e = _c *U + . *U _dp 4 * -> -> 0 `i `x -> -> # *U . *U _dp 4 `i `x ]
+"2425
+[; ;fatfs/ff.c: 2425:   if (c == 0) { res = FR_NO_FILE; break; }
+[e $ ! == -> _c `i -> 0 `i 166  ]
+{
+[e = _res . `E275 4 ]
+[e $U 163  ]
+}
+[e :U 166 ]
+"2448
+[; ;fatfs/ff.c: 2448:   dp->obj.attr = dp->dir[11] & 0x3F;
+[e = . . *U _dp 0 2 -> & -> *U + . *U _dp 4 * -> -> 11 `i `x -> -> # *U . *U _dp 4 `i `x `i -> 63 `i `uc ]
+"2449
+[; ;fatfs/ff.c: 2449:   if (!(dp->dir[11] & 0x08) && !memcmp(dp->dir, dp->fn, 11)) break;
+[e $ ! && ! != & -> *U + . *U _dp 4 * -> -> 11 `i `x -> -> # *U . *U _dp 4 `i `x `i -> 8 `i -> 0 `i ! != ( _memcmp (3 , , -> . *U _dp 4 `*Cv -> &U . *U _dp 5 `*Cv -> -> 11 `i `ui -> 0 `i 167  ]
+[e $U 163  ]
+[e :U 167 ]
+"2451
+[; ;fatfs/ff.c: 2451:   res = dir_next(dp, 0);
+[e = _res ( _dir_next (2 , _dp -> 0 `i ]
+"2452
+[; ;fatfs/ff.c: 2452:  } while (res == FR_OK);
+}
+[e $ == -> _res `ui -> . `E275 0 `ui 164  ]
+[e :U 163 ]
+"2454
+[; ;fatfs/ff.c: 2454:  return res;
+[e ) _res ]
+[e $UE 160  ]
+"2455
+[; ;fatfs/ff.c: 2455: }
+[e :UE 160 ]
+}
+"2465
+[; ;fatfs/ff.c: 2465: static FRESULT dir_register (
+[v _dir_register `(E275 ~T0 @X0 1 sf1`*S5 ]
+"2468
+[; ;fatfs/ff.c: 2468: {
+{
+[e :U _dir_register ]
+"2466
+[; ;fatfs/ff.c: 2466:  DIR* dp
+[v _dp `*S5 ~T0 @X0 1 r1 ]
+"2468
+[; ;fatfs/ff.c: 2468: {
+[f ]
+"2469
+[; ;fatfs/ff.c: 2469:  FRESULT res;
+[v _res `E275 ~T0 @X0 1 a ]
+"2470
+[; ;fatfs/ff.c: 2470:  FATFS *fs = dp->obj.fs;
+[v _fs `*S2 ~T0 @X0 1 a ]
+[e = _fs . . *U _dp 0 0 ]
+"2542
+[; ;fatfs/ff.c: 2542:  res = dir_alloc(dp, 1);
+[e = _res ( _dir_alloc (2 , _dp -> -> 1 `i `ui ]
+"2547
+[; ;fatfs/ff.c: 2547:  if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 169  ]
+{
+"2548
+[; ;fatfs/ff.c: 2548:   res = move_window(fs, dp->sect);
+[e = _res ( _move_window (2 , _fs . *U _dp 3 ]
+"2549
+[; ;fatfs/ff.c: 2549:   if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 170  ]
+{
+"2550
+[; ;fatfs/ff.c: 2550:    memset(dp->dir, 0, 32);
+[e ( _memset (3 , , -> . *U _dp 4 `*v -> 0 `i -> -> 32 `i `ui ]
+"2551
+[; ;fatfs/ff.c: 2551:    memcpy(dp->dir + 0, dp->fn, 11);
+[e ( _memcpy (3 , , -> + . *U _dp 4 * -> -> 0 `i `x -> -> # *U . *U _dp 4 `i `x `*v -> &U . *U _dp 5 `*Cv -> -> 11 `i `ui ]
+"2555
+[; ;fatfs/ff.c: 2555:    fs->wflag = 1;
+[e = . *U _fs 4 -> -> 1 `i `uc ]
+"2556
+[; ;fatfs/ff.c: 2556:   }
+}
+[e :U 170 ]
+"2557
+[; ;fatfs/ff.c: 2557:  }
+}
+[e :U 169 ]
+"2559
+[; ;fatfs/ff.c: 2559:  return res;
+[e ) _res ]
+[e $UE 168  ]
+"2560
+[; ;fatfs/ff.c: 2560: }
+[e :UE 168 ]
+}
+"2571
+[; ;fatfs/ff.c: 2571: static FRESULT dir_remove (
+[v _dir_remove `(E275 ~T0 @X0 1 sf1`*S5 ]
+"2574
+[; ;fatfs/ff.c: 2574: {
+{
+[e :U _dir_remove ]
+"2572
+[; ;fatfs/ff.c: 2572:  DIR* dp
+[v _dp `*S5 ~T0 @X0 1 r1 ]
+"2574
+[; ;fatfs/ff.c: 2574: {
+[f ]
+"2575
+[; ;fatfs/ff.c: 2575:  FRESULT res;
+[v _res `E275 ~T0 @X0 1 a ]
+"2576
+[; ;fatfs/ff.c: 2576:  FATFS *fs = dp->obj.fs;
+[v _fs `*S2 ~T0 @X0 1 a ]
+[e = _fs . . *U _dp 0 0 ]
+"2598
+[; ;fatfs/ff.c: 2598:  res = move_window(fs, dp->sect);
+[e = _res ( _move_window (2 , _fs . *U _dp 3 ]
+"2599
+[; ;fatfs/ff.c: 2599:  if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 172  ]
+{
+"2600
+[; ;fatfs/ff.c: 2600:   dp->dir[0] = 0xE5;
+[e = *U + . *U _dp 4 * -> -> 0 `i `x -> -> # *U . *U _dp 4 `i `x -> -> 229 `i `uc ]
+"2601
+[; ;fatfs/ff.c: 2601:   fs->wflag = 1;
+[e = . *U _fs 4 -> -> 1 `i `uc ]
+"2602
+[; ;fatfs/ff.c: 2602:  }
+}
+[e :U 172 ]
+"2605
+[; ;fatfs/ff.c: 2605:  return res;
+[e ) _res ]
+[e $UE 171  ]
+"2606
+[; ;fatfs/ff.c: 2606: }
+[e :UE 171 ]
+}
+"2617
+[; ;fatfs/ff.c: 2617: static void get_fileinfo (
+[v _get_fileinfo `(v ~T0 @X0 1 sf2`*S5`*S6 ]
+"2621
+[; ;fatfs/ff.c: 2621: {
+{
+[e :U _get_fileinfo ]
+"2618
+[; ;fatfs/ff.c: 2618:  DIR* dp,
+[v _dp `*S5 ~T0 @X0 1 r1 ]
+"2619
+[; ;fatfs/ff.c: 2619:  FILINFO* fno
+[v _fno `*S6 ~T0 @X0 1 r2 ]
+"2621
+[; ;fatfs/ff.c: 2621: {
+[f ]
+"2622
+[; ;fatfs/ff.c: 2622:  UINT si, di;
+[v _si `ui ~T0 @X0 1 a ]
+[v _di `ui ~T0 @X0 1 a ]
+"2629
+[; ;fatfs/ff.c: 2629:  TCHAR c;
+[v _c `uc ~T0 @X0 1 a ]
+"2633
+[; ;fatfs/ff.c: 2633:  fno->fname[0] = 0;
+[e = *U + &U . *U _fno 4 * -> -> -> 0 `i `ui `ux -> -> # *U &U . *U _fno 4 `ui `ux -> -> 0 `i `uc ]
+"2634
+[; ;fatfs/ff.c: 2634:  if (dp->sect == 0) return;
+[e $ ! == . *U _dp 3 -> -> -> 0 `i `l `ul 174  ]
+[e $UE 173  ]
+[e :U 174 ]
+"2733
+[; ;fatfs/ff.c: 2733:  si = di = 0;
+[e = _si = _di -> -> 0 `i `ui ]
+"2734
+[; ;fatfs/ff.c: 2734:  while (si < 11) {
+[e $U 175  ]
+[e :U 176 ]
+{
+"2735
+[; ;fatfs/ff.c: 2735:   c = (TCHAR)dp->dir[si++];
+[e = _c -> *U + . *U _dp 4 * -> ++ _si -> -> 1 `i `ui `ux -> -> # *U . *U _dp 4 `ui `ux `uc ]
+"2736
+[; ;fatfs/ff.c: 2736:   if (c == ' ') continue;
+[e $ ! == -> _c `ui -> 32 `ui 178  ]
+[e $U 175  ]
+[e :U 178 ]
+"2737
+[; ;fatfs/ff.c: 2737:   if (c == 0x05) c = 0xE5;
+[e $ ! == -> _c `i -> 5 `i 179  ]
+[e = _c -> -> 229 `i `uc ]
+[e :U 179 ]
+"2738
+[; ;fatfs/ff.c: 2738:   if (si == 9) fno->fname[di++] = '.';
+[e $ ! == _si -> -> 9 `i `ui 180  ]
+[e = *U + &U . *U _fno 4 * -> ++ _di -> -> 1 `i `ui `ux -> -> # *U &U . *U _fno 4 `ui `ux -> -> 46 `ui `uc ]
+[e :U 180 ]
+"2739
+[; ;fatfs/ff.c: 2739:   fno->fname[di++] = c;
+[e = *U + &U . *U _fno 4 * -> ++ _di -> -> 1 `i `ui `ux -> -> # *U &U . *U _fno 4 `ui `ux _c ]
+"2740
+[; ;fatfs/ff.c: 2740:  }
+}
+[e :U 175 ]
+"2734
+[; ;fatfs/ff.c: 2734:  while (si < 11) {
+[e $ < _si -> -> 11 `i `ui 176  ]
+[e :U 177 ]
+"2741
+[; ;fatfs/ff.c: 2741:  fno->fname[di] = 0;
+[e = *U + &U . *U _fno 4 * -> _di `ux -> -> # *U &U . *U _fno 4 `ui `ux -> -> 0 `i `uc ]
+"2744
+[; ;fatfs/ff.c: 2744:  fno->fattrib = dp->dir[11] & 0x3F;
+[e = . *U _fno 3 -> & -> *U + . *U _dp 4 * -> -> 11 `i `x -> -> # *U . *U _dp 4 `i `x `i -> 63 `i `uc ]
+"2745
+[; ;fatfs/ff.c: 2745:  fno->fsize = ld_dword(dp->dir + 28);
+[e = . *U _fno 0 ( _ld_dword (1 -> + . *U _dp 4 * -> -> 28 `i `x -> -> # *U . *U _dp 4 `i `x `*Cuc ]
+"2746
+[; ;fatfs/ff.c: 2746:  fno->ftime = ld_word(dp->dir + 22 + 0);
+[e = . *U _fno 2 ( _ld_word (1 -> + + . *U _dp 4 * -> -> 22 `i `x -> -> # *U . *U _dp 4 `i `x * -> -> 0 `i `x -> -> # *U + . *U _dp 4 * -> -> 22 `i `x -> -> # *U . *U _dp 4 `i `x `i `x `*Cuc ]
+"2747
+[; ;fatfs/ff.c: 2747:  fno->fdate = ld_word(dp->dir + 22 + 2);
+[e = . *U _fno 1 ( _ld_word (1 -> + + . *U _dp 4 * -> -> 22 `i `x -> -> # *U . *U _dp 4 `i `x * -> -> 2 `i `x -> -> # *U + . *U _dp 4 * -> -> 22 `i `x -> -> # *U . *U _dp 4 `i `x `i `x `*Cuc ]
+"2748
+[; ;fatfs/ff.c: 2748: }
+[e :UE 173 ]
+}
+"2847
+[; ;fatfs/ff.c: 2847: static FRESULT create_name (
+[v _create_name `(E275 ~T0 @X0 1 sf2`*S5`**Cuc ]
+"2851
+[; ;fatfs/ff.c: 2851: {
+{
+[e :U _create_name ]
+"2848
+[; ;fatfs/ff.c: 2848:  DIR* dp,
+[v _dp `*S5 ~T0 @X0 1 r1 ]
+"2849
+[; ;fatfs/ff.c: 2849:  const TCHAR** path
+[v _path `**Cuc ~T0 @X0 1 r2 ]
+"2851
+[; ;fatfs/ff.c: 2851: {
+[f ]
+"2980
+[; ;fatfs/ff.c: 2980:  BYTE c, d;
+[v _c `uc ~T0 @X0 1 a ]
+[v _d `uc ~T0 @X0 1 a ]
+"2981
+[; ;fatfs/ff.c: 2981:  BYTE *sfn;
+[v _sfn `*uc ~T0 @X0 1 a ]
+"2982
+[; ;fatfs/ff.c: 2982:  UINT ni, si, i;
+[v _ni `ui ~T0 @X0 1 a ]
+[v _si `ui ~T0 @X0 1 a ]
+[v _i `ui ~T0 @X0 1 a ]
+"2983
+[; ;fatfs/ff.c: 2983:  const char *p;
+[v _p `*Cuc ~T0 @X0 1 a ]
+"2986
+[; ;fatfs/ff.c: 2986:  p = *path; sfn = dp->fn;
+[e = _p *U _path ]
+[e = _sfn &U . *U _dp 5 ]
+"2987
+[; ;fatfs/ff.c: 2987:  memset(sfn, ' ', 11);
+[e ( _memset (3 , , -> _sfn `*v -> -> 32 `ui `i -> -> 11 `i `ui ]
+"2988
+[; ;fatfs/ff.c: 2988:  si = i = 0; ni = 8;
+[e = _si = _i -> -> 0 `i `ui ]
+[e = _ni -> -> 8 `i `ui ]
+"3002
+[; ;fatfs/ff.c: 3002:  for (;;) {
+{
+[e :U 182 ]
+{
+"3003
+[; ;fatfs/ff.c: 3003:   c = (BYTE)p[si++];
+[e = _c -> *U + _p * -> ++ _si -> -> 1 `i `ui `ux -> -> # *U _p `ui `ux `uc ]
+"3004
+[; ;fatfs/ff.c: 3004:   if (c <= ' ') break;
+[e $ ! <= -> _c `ui -> 32 `ui 185  ]
+[e $U 183  ]
+[e :U 185 ]
+"3005
+[; ;fatfs/ff.c: 3005:   if (((c) == '/' || (c) == '\\')) {
+[e $ ! || == -> _c `ui -> 47 `ui == -> _c `ui -> 92 `ui 186  ]
+{
+"3006
+[; ;fatfs/ff.c: 3006:    while (((p[si]) == '/' || (p[si]) == '\\')) si++;
+[e $U 187  ]
+[e :U 188 ]
+[e ++ _si -> -> 1 `i `ui ]
+[e :U 187 ]
+[e $ || == -> *U + _p * -> _si `ux -> -> # *U _p `ui `ux `ui -> 47 `ui == -> *U + _p * -> _si `ux -> -> # *U _p `ui `ux `ui -> 92 `ui 188  ]
+[e :U 189 ]
+"3007
+[; ;fatfs/ff.c: 3007:    break;
+[e $U 183  ]
+"3008
+[; ;fatfs/ff.c: 3008:   }
+}
+[e :U 186 ]
+"3009
+[; ;fatfs/ff.c: 3009:   if (c == '.' || i >= ni) {
+[e $ ! || == -> _c `ui -> 46 `ui >= _i _ni 190  ]
+{
+"3010
+[; ;fatfs/ff.c: 3010:    if (ni == 11 || c != '.') return FR_INVALID_NAME;
+[e $ ! || == _ni -> -> 11 `i `ui != -> _c `ui -> 46 `ui 191  ]
+[e ) . `E275 6 ]
+[e $UE 181  ]
+[e :U 191 ]
+"3011
+[; ;fatfs/ff.c: 3011:    i = 8; ni = 11;
+[e = _i -> -> 8 `i `ui ]
+[e = _ni -> -> 11 `i `ui ]
+"3012
+[; ;fatfs/ff.c: 3012:    continue;
+[e $U 184  ]
+"3013
+[; ;fatfs/ff.c: 3013:   }
+}
+[e :U 190 ]
+"3023
+[; ;fatfs/ff.c: 3023:   if (dbc_1st(c)) {
+[e $ ! != ( _dbc_1st (1 _c -> 0 `i 192  ]
+{
+"3024
+[; ;fatfs/ff.c: 3024:    d = (BYTE)p[si++];
+[e = _d -> *U + _p * -> ++ _si -> -> 1 `i `ui `ux -> -> # *U _p `ui `ux `uc ]
+"3025
+[; ;fatfs/ff.c: 3025:    if (!dbc_2nd(d) || i >= ni - 1) return FR_INVALID_NAME;
+[e $ ! || ! != ( _dbc_2nd (1 _d -> 0 `i >= _i - _ni -> -> 1 `i `ui 193  ]
+[e ) . `E275 6 ]
+[e $UE 181  ]
+[e :U 193 ]
+"3026
+[; ;fatfs/ff.c: 3026:    sfn[i++] = c;
+[e = *U + _sfn * -> ++ _i -> -> 1 `i `ui `ux -> -> # *U _sfn `ui `ux _c ]
+"3027
+[; ;fatfs/ff.c: 3027:    sfn[i++] = d;
+[e = *U + _sfn * -> ++ _i -> -> 1 `i `ui `ux -> -> # *U _sfn `ui `ux _d ]
+"3028
+[; ;fatfs/ff.c: 3028:   } else {
+}
+[e $U 194  ]
+[e :U 192 ]
+{
+"3029
+[; ;fatfs/ff.c: 3029:    if (strchr("*+,:;<=>[]|\"\?\x7F", (int)c)) return FR_INVALID_NAME;
+[e $ ! != ( _strchr (2 , :s 2C -> _c `i -> -> 0 `i `*uc 195  ]
+[e ) . `E275 6 ]
+[e $UE 181  ]
+[e :U 195 ]
+"3030
+[; ;fatfs/ff.c: 3030:    if (((c) >= 'a' && (c) <= 'z')) c -= 0x20;
+[e $ ! && >= -> _c `ui -> 97 `ui <= -> _c `ui -> 122 `ui 196  ]
+[e =- _c -> -> 32 `i `uc ]
+[e :U 196 ]
+"3031
+[; ;fatfs/ff.c: 3031:    sfn[i++] = c;
+[e = *U + _sfn * -> ++ _i -> -> 1 `i `ui `ux -> -> # *U _sfn `ui `ux _c ]
+"3032
+[; ;fatfs/ff.c: 3032:   }
+}
+[e :U 194 ]
+"3033
+[; ;fatfs/ff.c: 3033:  }
+}
+[e :U 184 ]
+[e $U 182  ]
+[e :U 183 ]
+}
+"3034
+[; ;fatfs/ff.c: 3034:  *path = &p[si];
+[e = *U _path &U *U + _p * -> _si `ux -> -> # *U _p `ui `ux ]
+"3035
+[; ;fatfs/ff.c: 3035:  if (i == 0) return FR_INVALID_NAME;
+[e $ ! == _i -> -> 0 `i `ui 197  ]
+[e ) . `E275 6 ]
+[e $UE 181  ]
+[e :U 197 ]
+"3037
+[; ;fatfs/ff.c: 3037:  if (sfn[0] == 0xE5) sfn[0] = 0x05;
+[e $ ! == -> *U + _sfn * -> -> 0 `i `x -> -> # *U _sfn `i `x `i -> 229 `i 198  ]
+[e = *U + _sfn * -> -> 0 `i `x -> -> # *U _sfn `i `x -> -> 5 `i `uc ]
+[e :U 198 ]
+"3038
+[; ;fatfs/ff.c: 3038:  sfn[11] = (c <= ' ' || p[si] <= ' ') ? 0x04 : 0;
+[e = *U + _sfn * -> -> 11 `i `x -> -> # *U _sfn `i `x -> ? || <= -> _c `ui -> 32 `ui <= -> *U + _p * -> _si `ux -> -> # *U _p `ui `ux `ui -> 32 `ui : -> 4 `i -> 0 `i `uc ]
+"3040
+[; ;fatfs/ff.c: 3040:  return FR_OK;
+[e ) . `E275 0 ]
+[e $UE 181  ]
+"3042
+[; ;fatfs/ff.c: 3042: }
+[e :UE 181 ]
+}
+"3051
+[; ;fatfs/ff.c: 3051: static FRESULT follow_path (
+[v _follow_path `(E275 ~T0 @X0 1 sf2`*S5`*Cuc ]
+"3055
+[; ;fatfs/ff.c: 3055: {
+{
+[e :U _follow_path ]
+"3052
+[; ;fatfs/ff.c: 3052:  DIR* dp,
+[v _dp `*S5 ~T0 @X0 1 r1 ]
+"3053
+[; ;fatfs/ff.c: 3053:  const TCHAR* path
+[v _path `*Cuc ~T0 @X0 1 r2 ]
+"3055
+[; ;fatfs/ff.c: 3055: {
+[f ]
+"3056
+[; ;fatfs/ff.c: 3056:  FRESULT res;
+[v _res `E275 ~T0 @X0 1 a ]
+"3057
+[; ;fatfs/ff.c: 3057:  BYTE ns;
+[v _ns `uc ~T0 @X0 1 a ]
+"3058
+[; ;fatfs/ff.c: 3058:  FATFS *fs = dp->obj.fs;
+[v _fs `*S2 ~T0 @X0 1 a ]
+[e = _fs . . *U _dp 0 0 ]
+"3066
+[; ;fatfs/ff.c: 3066:  {
+{
+"3067
+[; ;fatfs/ff.c: 3067:   while (((*path) == '/' || (*path) == '\\')) path++;
+[e $U 200  ]
+[e :U 201 ]
+[e ++ _path * -> -> 1 `i `x -> -> # *U _path `i `x ]
+[e :U 200 ]
+[e $ || == -> *U _path `ui -> 47 `ui == -> *U _path `ui -> 92 `ui 201  ]
+[e :U 202 ]
+"3068
+[; ;fatfs/ff.c: 3068:   dp->obj.sclust = 0;
+[e = . . *U _dp 0 4 -> -> -> 0 `i `l `ul ]
+"3069
+[; ;fatfs/ff.c: 3069:  }
+}
+"3087
+[; ;fatfs/ff.c: 3087:  if ((UINT)*path < ' ') {
+[e $ ! < -> *U _path `ui -> 32 `ui 203  ]
+{
+"3088
+[; ;fatfs/ff.c: 3088:   dp->fn[11] = 0x80;
+[e = *U + &U . *U _dp 5 * -> -> -> 11 `i `ui `ux -> -> # *U &U . *U _dp 5 `ui `ux -> -> 128 `i `uc ]
+"3089
+[; ;fatfs/ff.c: 3089:   res = dir_sdi(dp, 0);
+[e = _res ( _dir_sdi (2 , _dp -> -> -> 0 `i `l `ul ]
+"3091
+[; ;fatfs/ff.c: 3091:  } else {
+}
+[e $U 204  ]
+[e :U 203 ]
+{
+"3092
+[; ;fatfs/ff.c: 3092:   for (;;) {
+{
+[e :U 205 ]
+{
+"3093
+[; ;fatfs/ff.c: 3093:    res = create_name(dp, &path);
+[e = _res ( _create_name (2 , _dp &U _path ]
+"3094
+[; ;fatfs/ff.c: 3094:    if (res != FR_OK) break;
+[e $ ! != -> _res `ui -> . `E275 0 `ui 208  ]
+[e $U 206  ]
+[e :U 208 ]
+"3095
+[; ;fatfs/ff.c: 3095:    res = dir_find(dp);
+[e = _res ( _dir_find (1 _dp ]
+"3096
+[; ;fatfs/ff.c: 3096:    ns = dp->fn[11];
+[e = _ns *U + &U . *U _dp 5 * -> -> -> 11 `i `ui `ux -> -> # *U &U . *U _dp 5 `ui `ux ]
+"3097
+[; ;fatfs/ff.c: 3097:    if (res != FR_OK) {
+[e $ ! != -> _res `ui -> . `E275 0 `ui 209  ]
+{
+"3098
+[; ;fatfs/ff.c: 3098:     if (res == FR_NO_FILE) {
+[e $ ! == -> _res `ui -> . `E275 4 `ui 210  ]
+{
+"3099
+[; ;fatfs/ff.c: 3099:      if (0 && (ns & 0x20)) {
+[e $ ! && != -> 0 `i -> 0 `i != & -> _ns `i -> 32 `i -> 0 `i 211  ]
+{
+"3100
+[; ;fatfs/ff.c: 3100:       if (!(ns & 0x04)) continue;
+[e $ ! ! != & -> _ns `i -> 4 `i -> 0 `i 212  ]
+[e $U 207  ]
+[e :U 212 ]
+"3101
+[; ;fatfs/ff.c: 3101:       dp->fn[11] = 0x80;
+[e = *U + &U . *U _dp 5 * -> -> -> 11 `i `ui `ux -> -> # *U &U . *U _dp 5 `ui `ux -> -> 128 `i `uc ]
+"3102
+[; ;fatfs/ff.c: 3102:       res = FR_OK;
+[e = _res . `E275 0 ]
+"3103
+[; ;fatfs/ff.c: 3103:      } else {
+}
+[e $U 213  ]
+[e :U 211 ]
+{
+"3104
+[; ;fatfs/ff.c: 3104:       if (!(ns & 0x04)) res = FR_NO_PATH;
+[e $ ! ! != & -> _ns `i -> 4 `i -> 0 `i 214  ]
+[e = _res . `E275 5 ]
+[e :U 214 ]
+"3105
+[; ;fatfs/ff.c: 3105:      }
+}
+[e :U 213 ]
+"3106
+[; ;fatfs/ff.c: 3106:     }
+}
+[e :U 210 ]
+"3107
+[; ;fatfs/ff.c: 3107:     break;
+[e $U 206  ]
+"3108
+[; ;fatfs/ff.c: 3108:    }
+}
+[e :U 209 ]
+"3109
+[; ;fatfs/ff.c: 3109:    if (ns & 0x04) break;
+[e $ ! != & -> _ns `i -> 4 `i -> 0 `i 215  ]
+[e $U 206  ]
+[e :U 215 ]
+"3111
+[; ;fatfs/ff.c: 3111:    if (!(dp->obj.attr & 0x10)) {
+[e $ ! ! != & -> . . *U _dp 0 2 `i -> 16 `i -> 0 `i 216  ]
+{
+"3112
+[; ;fatfs/ff.c: 3112:     res = FR_NO_PATH; break;
+[e = _res . `E275 5 ]
+[e $U 206  ]
+"3113
+[; ;fatfs/ff.c: 3113:    }
+}
+[e :U 216 ]
+"3122
+[; ;fatfs/ff.c: 3122:    {
+{
+"3123
+[; ;fatfs/ff.c: 3123:     dp->obj.sclust = ld_clust(fs, fs->win + dp->dptr % ((UINT)512));
+[e = . . *U _dp 0 4 ( _ld_clust (2 , _fs -> + &U . *U _fs 18 * -> % . *U _dp 1 -> -> -> 512 `i `ui `ul `ux -> -> # *U &U . *U _fs 18 `ui `ux `*Cuc ]
+"3124
+[; ;fatfs/ff.c: 3124:    }
+}
+"3125
+[; ;fatfs/ff.c: 3125:   }
+}
+[e :U 207 ]
+[e $U 205  ]
+[e :U 206 ]
+}
+"3126
+[; ;fatfs/ff.c: 3126:  }
+}
+[e :U 204 ]
+"3128
+[; ;fatfs/ff.c: 3128:  return res;
+[e ) _res ]
+[e $UE 199  ]
+"3129
+[; ;fatfs/ff.c: 3129: }
+[e :UE 199 ]
+}
+"3138
+[; ;fatfs/ff.c: 3138: static int get_ldnumber (
+[v _get_ldnumber `(i ~T0 @X0 1 sf1`**Cuc ]
+"3141
+[; ;fatfs/ff.c: 3141: {
+{
+[e :U _get_ldnumber ]
+"3139
+[; ;fatfs/ff.c: 3139:  const TCHAR** path
+[v _path `**Cuc ~T0 @X0 1 r1 ]
+"3141
+[; ;fatfs/ff.c: 3141: {
+[f ]
+"3142
+[; ;fatfs/ff.c: 3142:  const TCHAR *tp;
+[v _tp `*Cuc ~T0 @X0 1 a ]
+"3143
+[; ;fatfs/ff.c: 3143:  const TCHAR *tt;
+[v _tt `*Cuc ~T0 @X0 1 a ]
+"3144
+[; ;fatfs/ff.c: 3144:  TCHAR tc;
+[v _tc `uc ~T0 @X0 1 a ]
+"3145
+[; ;fatfs/ff.c: 3145:  int i;
+[v _i `i ~T0 @X0 1 a ]
+"3146
+[; ;fatfs/ff.c: 3146:  int vol = -1;
+[v _vol `i ~T0 @X0 1 a ]
+[e = _vol -U -> 1 `i ]
+"3152
+[; ;fatfs/ff.c: 3152:  tt = tp = *path;
+[e = _tt = _tp *U _path ]
+"3153
+[; ;fatfs/ff.c: 3153:  if (!tp) return vol;
+[e $ ! ! != _tp -> -> 0 `i `*Cuc 218  ]
+[e ) _vol ]
+[e $UE 217  ]
+[e :U 218 ]
+"3154
+[; ;fatfs/ff.c: 3154:  do {
+[e :U 221 ]
+{
+"3155
+[; ;fatfs/ff.c: 3155:   tc = *tt++;
+[e = _tc *U ++ _tt * -> -> 1 `i `x -> -> # *U _tt `i `x ]
+"3156
+[; ;fatfs/ff.c: 3156:  } while (!((UINT)(tc) < (0 ? ' ' : '!')) && tc != ':');
+}
+[e $ && ! < -> _tc `ui ? != -> 0 `i -> 0 `i : -> 32 `ui -> 33 `ui != -> _tc `ui -> 58 `ui 221  ]
+[e :U 220 ]
+"3158
+[; ;fatfs/ff.c: 3158:  if (tc == ':') {
+[e $ ! == -> _tc `ui -> 58 `ui 222  ]
+{
+"3159
+[; ;fatfs/ff.c: 3159:   i = 1;
+[e = _i -> 1 `i ]
+"3160
+[; ;fatfs/ff.c: 3160:   if (((*tp) >= '0' && (*tp) <= '9') && tp + 2 == tt) {
+[e $ ! && && >= -> *U _tp `ui -> 48 `ui <= -> *U _tp `ui -> 57 `ui == + _tp * -> -> 2 `i `x -> -> # *U _tp `i `x _tt 223  ]
+{
+"3161
+[; ;fatfs/ff.c: 3161:    i = (int)*tp - (int)'0';
+[e = _i - -> *U _tp `i -> -> 48 `ui `i ]
+"3162
+[; ;fatfs/ff.c: 3162:   }
+}
+[e :U 223 ]
+"3176
+[; ;fatfs/ff.c: 3176:   if (i < 1) {
+[e $ ! < _i -> 1 `i 224  ]
+{
+"3177
+[; ;fatfs/ff.c: 3177:    vol = i;
+[e = _vol _i ]
+"3178
+[; ;fatfs/ff.c: 3178:    *path = tt;
+[e = *U _path _tt ]
+"3179
+[; ;fatfs/ff.c: 3179:   }
+}
+[e :U 224 ]
+"3180
+[; ;fatfs/ff.c: 3180:   return vol;
+[e ) _vol ]
+[e $UE 217  ]
+"3181
+[; ;fatfs/ff.c: 3181:  }
+}
+[e :U 222 ]
+"3205
+[; ;fatfs/ff.c: 3205:  vol = 0;
+[e = _vol -> 0 `i ]
+"3207
+[; ;fatfs/ff.c: 3207:  return vol;
+[e ) _vol ]
+[e $UE 217  ]
+"3208
+[; ;fatfs/ff.c: 3208: }
+[e :UE 217 ]
+}
+"3291
+[; ;fatfs/ff.c: 3291: static UINT check_fs (
+[v _check_fs `(ui ~T0 @X0 1 sf2`*S2`ul ]
+"3295
+[; ;fatfs/ff.c: 3295: {
+{
+[e :U _check_fs ]
+"3292
+[; ;fatfs/ff.c: 3292:  FATFS* fs,
+[v _fs `*S2 ~T0 @X0 1 r1 ]
+"3293
+[; ;fatfs/ff.c: 3293:  LBA_t sect
+[v _sect `ul ~T0 @X0 1 r2 ]
+"3295
+[; ;fatfs/ff.c: 3295: {
+[f ]
+"3296
+[; ;fatfs/ff.c: 3296:  WORD w, sign;
+[v _w `us ~T0 @X0 1 a ]
+[v _sign `us ~T0 @X0 1 a ]
+"3297
+[; ;fatfs/ff.c: 3297:  BYTE b;
+[v _b `uc ~T0 @X0 1 a ]
+"3300
+[; ;fatfs/ff.c: 3300:  fs->wflag = 0; fs->winsect = (LBA_t)0 - 1;
+[e = . *U _fs 4 -> -> 0 `i `uc ]
+[e = . *U _fs 17 - -> -> 0 `i `ul -> -> -> 1 `i `l `ul ]
+"3301
+[; ;fatfs/ff.c: 3301:  if (move_window(fs, sect) != FR_OK) return 4;
+[e $ ! != -> ( _move_window (2 , _fs _sect `ui -> . `E275 0 `ui 226  ]
+[e ) -> -> 4 `i `ui ]
+[e $UE 225  ]
+[e :U 226 ]
+"3302
+[; ;fatfs/ff.c: 3302:  sign = ld_word(fs->win + 510);
+[e = _sign ( _ld_word (1 -> + &U . *U _fs 18 * -> -> 510 `i `x -> -> # *U &U . *U _fs 18 `i `x `*Cuc ]
+"3306
+[; ;fatfs/ff.c: 3306:  b = fs->win[0];
+[e = _b *U + &U . *U _fs 18 * -> -> -> 0 `i `ui `ux -> -> # *U &U . *U _fs 18 `ui `ux ]
+"3307
+[; ;fatfs/ff.c: 3307:  if (b == 0xEB || b == 0xE9 || b == 0xE8) {
+[e $ ! || || == -> _b `i -> 235 `i == -> _b `i -> 233 `i == -> _b `i -> 232 `i 227  ]
+{
+"3308
+[; ;fatfs/ff.c: 3308:   if (sign == 0xAA55 && !memcmp(fs->win + 82, "FAT32   ", 8)) {
+[e $ ! && == -> _sign `ui -> 43605 `ui ! != ( _memcmp (3 , , -> + &U . *U _fs 18 * -> -> 82 `i `x -> -> # *U &U . *U _fs 18 `i `x `*Cv :s 4C -> -> 8 `i `ui -> 0 `i 228  ]
+{
+"3309
+[; ;fatfs/ff.c: 3309:    return 0;
+[e ) -> -> 0 `i `ui ]
+[e $UE 225  ]
+"3310
+[; ;fatfs/ff.c: 3310:   }
+}
+[e :U 228 ]
+"3312
+[; ;fatfs/ff.c: 3312:   w = ld_word(fs->win + 11);
+[e = _w ( _ld_word (1 -> + &U . *U _fs 18 * -> -> 11 `i `x -> -> # *U &U . *U _fs 18 `i `x `*Cuc ]
+"3313
+[; ;fatfs/ff.c: 3313:   b = fs->win[13];
+[e = _b *U + &U . *U _fs 18 * -> -> -> 13 `i `ui `ux -> -> # *U &U . *U _fs 18 `ui `ux ]
+"3314
+[; ;fatfs/ff.c: 3314:   if ((w & (w - 1)) == 0 && w >= 512 && w <= 512
+[e $ ! && && && && && && && && && == & -> _w `ui - -> _w `ui -> -> 1 `i `ui -> -> 0 `i `ui >= -> _w `ui -> -> 512 `i `ui <= -> _w `ui -> -> 512 `i `ui != -> _b `i -> 0 `i == & -> _b `i - -> _b `i -> 1 `i -> 0 `i != -> ( _ld_word (1 -> + &U . *U _fs 18 * -> -> 14 `i `x -> -> # *U &U . *U _fs 18 `i `x `*Cuc `ui -> -> 0 `i `ui <= - -> *U + &U . *U _fs 18 * -> -> -> 16 `i `ui `ux -> -> # *U &U . *U _fs 18 `ui `ux `ui -> -> 1 `i `ui -> -> 1 `i `ui != -> ( _ld_word (1 -> + &U . *U _fs 18 * -> -> 17 `i `x -> -> # *U &U . *U _fs 18 `i `x `*Cuc `ui -> -> 0 `i `ui || >= -> ( _ld_word (1 -> + &U . *U _fs 18 * -> -> 19 `i `x -> -> # *U &U . *U _fs 18 `i `x `*Cuc `ui -> -> 128 `i `ui >= ( _ld_dword (1 -> + &U . *U _fs 18 * -> -> 32 `i `x -> -> # *U &U . *U _fs 18 `i `x `*Cuc -> -> 65536 `l `ul != -> ( _ld_word (1 -> + &U . *U _fs 18 * -> -> 22 `i `x -> -> # *U &U . *U _fs 18 `i `x `*Cuc `ui -> -> 0 `i `ui 229  ]
+"3320
+[; ;fatfs/ff.c: 3320:    && ld_word(fs->win + 22) != 0) {
+{
+"3321
+[; ;fatfs/ff.c: 3321:     return 0;
+[e ) -> -> 0 `i `ui ]
+[e $UE 225  ]
+"3322
+[; ;fatfs/ff.c: 3322:   }
+}
+[e :U 229 ]
+"3323
+[; ;fatfs/ff.c: 3323:  }
+}
+[e :U 227 ]
+"3324
+[; ;fatfs/ff.c: 3324:  return sign == 0xAA55 ? 2 : 3;
+[e ) -> ? == -> _sign `ui -> 43605 `ui : -> 2 `i -> 3 `i `ui ]
+[e $UE 225  ]
+"3325
+[; ;fatfs/ff.c: 3325: }
+[e :UE 225 ]
+}
+"3331
+[; ;fatfs/ff.c: 3331: static UINT find_volume (
+[v _find_volume `(ui ~T0 @X0 1 sf2`*S2`ui ]
+"3335
+[; ;fatfs/ff.c: 3335: {
+{
+[e :U _find_volume ]
+"3332
+[; ;fatfs/ff.c: 3332:  FATFS* fs,
+[v _fs `*S2 ~T0 @X0 1 r1 ]
+"3333
+[; ;fatfs/ff.c: 3333:  UINT part
+[v _part `ui ~T0 @X0 1 r2 ]
+"3335
+[; ;fatfs/ff.c: 3335: {
+[f ]
+"3336
+[; ;fatfs/ff.c: 3336:  UINT fmt, i;
+[v _fmt `ui ~T0 @X0 1 a ]
+[v _i `ui ~T0 @X0 1 a ]
+"3337
+[; ;fatfs/ff.c: 3337:  DWORD mbr_pt[4];
+[v _mbr_pt `ul ~T0 @X0 -> 4 `i a ]
+"3340
+[; ;fatfs/ff.c: 3340:  fmt = check_fs(fs, 0);
+[e = _fmt ( _check_fs (2 , _fs -> -> -> 0 `i `l `ul ]
+"3341
+[; ;fatfs/ff.c: 3341:  if (fmt != 2 && (fmt >= 3 || part == 0)) return fmt;
+[e $ ! && != _fmt -> -> 2 `i `ui || >= _fmt -> -> 3 `i `ui == _part -> -> 0 `i `ui 231  ]
+[e ) _fmt ]
+[e $UE 230  ]
+[e :U 231 ]
+"3367
+[; ;fatfs/ff.c: 3367:  if (0 && part > 4) return 3;
+[e $ ! && != -> 0 `i -> 0 `i > _part -> -> 4 `i `ui 232  ]
+[e ) -> -> 3 `i `ui ]
+[e $UE 230  ]
+[e :U 232 ]
+"3368
+[; ;fatfs/ff.c: 3368:  for (i = 0; i < 4; i++) {
+{
+[e = _i -> -> 0 `i `ui ]
+[e $ < _i -> -> 4 `i `ui 233  ]
+[e $U 234  ]
+[e :U 233 ]
+{
+"3369
+[; ;fatfs/ff.c: 3369:   mbr_pt[i] = ld_dword(fs->win + 446 + i * 16 + 8);
+[e = *U + &U _mbr_pt * -> _i `ux -> -> # *U &U _mbr_pt `ui `ux ( _ld_dword (1 -> + + + &U . *U _fs 18 * -> -> 446 `i `x -> -> # *U &U . *U _fs 18 `i `x * -> * _i -> -> 16 `i `ui `ux -> -> # *U + &U . *U _fs 18 * -> -> 446 `i `x -> -> # *U &U . *U _fs 18 `i `x `ui `ux * -> -> 8 `i `x -> -> # *U + + &U . *U _fs 18 * -> -> 446 `i `x -> -> # *U &U . *U _fs 18 `i `x * -> * _i -> -> 16 `i `ui `ux -> -> # *U + &U . *U _fs 18 * -> -> 446 `i `x -> -> # *U &U . *U _fs 18 `i `x `ui `ux `i `x `*Cuc ]
+"3370
+[; ;fatfs/ff.c: 3370:  }
+}
+[e ++ _i -> -> 1 `i `ui ]
+[e $ < _i -> -> 4 `i `ui 233  ]
+[e :U 234 ]
+}
+"3371
+[; ;fatfs/ff.c: 3371:  i = part ? part - 1 : 0;
+[e = _i ? != _part -> -> 0 `i `ui : - _part -> -> 1 `i `ui -> -> 0 `i `ui ]
+"3372
+[; ;fatfs/ff.c: 3372:  do {
+[e :U 238 ]
+{
+"3373
+[; ;fatfs/ff.c: 3373:   fmt = mbr_pt[i] ? check_fs(fs, mbr_pt[i]) : 3;
+[e = _fmt ? != *U + &U _mbr_pt * -> _i `ux -> -> # *U &U _mbr_pt `ui `ux -> -> -> 0 `i `l `ul : ( _check_fs (2 , _fs *U + &U _mbr_pt * -> _i `ux -> -> # *U &U _mbr_pt `ui `ux -> -> 3 `i `ui ]
+"3374
+[; ;fatfs/ff.c: 3374:  } while (part == 0 && fmt >= 2 && ++i < 4);
+}
+[e $ && && == _part -> -> 0 `i `ui >= _fmt -> -> 2 `i `ui < =+ _i -> -> 1 `i `ui -> -> 4 `i `ui 238  ]
+[e :U 237 ]
+"3375
+[; ;fatfs/ff.c: 3375:  return fmt;
+[e ) _fmt ]
+[e $UE 230  ]
+"3376
+[; ;fatfs/ff.c: 3376: }
+[e :UE 230 ]
+}
+"3385
+[; ;fatfs/ff.c: 3385: static FRESULT mount_volume (
+[v _mount_volume `(E275 ~T0 @X0 1 sf3`**Cuc`**S2`uc ]
+"3390
+[; ;fatfs/ff.c: 3390: {
+{
+[e :U _mount_volume ]
+"3386
+[; ;fatfs/ff.c: 3386:  const TCHAR** path,
+[v _path `**Cuc ~T0 @X0 1 r1 ]
+"3387
+[; ;fatfs/ff.c: 3387:  FATFS** rfs,
+[v _rfs `**S2 ~T0 @X0 1 r2 ]
+"3388
+[; ;fatfs/ff.c: 3388:  BYTE mode
+[v _mode `uc ~T0 @X0 1 r3 ]
+"3390
+[; ;fatfs/ff.c: 3390: {
+[f ]
+"3391
+[; ;fatfs/ff.c: 3391:  int vol;
+[v _vol `i ~T0 @X0 1 a ]
+"3392
+[; ;fatfs/ff.c: 3392:  FATFS *fs;
+[v _fs `*S2 ~T0 @X0 1 a ]
+"3393
+[; ;fatfs/ff.c: 3393:  DSTATUS stat;
+[v _stat `uc ~T0 @X0 1 a ]
+"3394
+[; ;fatfs/ff.c: 3394:  LBA_t bsect;
+[v _bsect `ul ~T0 @X0 1 a ]
+"3395
+[; ;fatfs/ff.c: 3395:  DWORD tsect, sysect, fasize, nclst, szbfat;
+[v _tsect `ul ~T0 @X0 1 a ]
+[v _sysect `ul ~T0 @X0 1 a ]
+[v _fasize `ul ~T0 @X0 1 a ]
+[v _nclst `ul ~T0 @X0 1 a ]
+[v _szbfat `ul ~T0 @X0 1 a ]
+"3396
+[; ;fatfs/ff.c: 3396:  WORD nrsv;
+[v _nrsv `us ~T0 @X0 1 a ]
+"3397
+[; ;fatfs/ff.c: 3397:  UINT fmt;
+[v _fmt `ui ~T0 @X0 1 a ]
+"3401
+[; ;fatfs/ff.c: 3401:  *rfs = 0;
+[e = *U _rfs -> -> 0 `i `*S2 ]
+"3402
+[; ;fatfs/ff.c: 3402:  vol = get_ldnumber(path);
+[e = _vol ( _get_ldnumber (1 _path ]
+"3403
+[; ;fatfs/ff.c: 3403:  if (vol < 0) return FR_INVALID_DRIVE;
+[e $ ! < _vol -> 0 `i 240  ]
+[e ) . `E275 11 ]
+[e $UE 239  ]
+[e :U 240 ]
+"3406
+[; ;fatfs/ff.c: 3406:  fs = FatFs[vol];
+[e = _fs *U + &U _FatFs * -> -> _vol `ui `ux -> -> # *U &U _FatFs `ui `ux ]
+"3407
+[; ;fatfs/ff.c: 3407:  if (!fs) return FR_NOT_ENABLED;
+[e $ ! ! != _fs -> -> 0 `i `*S2 241  ]
+[e ) . `E275 12 ]
+[e $UE 239  ]
+[e :U 241 ]
+"3411
+[; ;fatfs/ff.c: 3411:  *rfs = fs;
+[e = *U _rfs _fs ]
+"3413
+[; ;fatfs/ff.c: 3413:  mode &= (BYTE)~0x01;
+[e =& _mode -> -> ~ -> 1 `i `uc `uc ]
+"3414
+[; ;fatfs/ff.c: 3414:  if (fs->fs_type != 0) {
+[e $ ! != -> . *U _fs 0 `i -> 0 `i 242  ]
+{
+"3415
+[; ;fatfs/ff.c: 3415:   stat = disk_status(fs->pdrv);
+[e = _stat ( _disk_status (1 . *U _fs 1 ]
+"3416
+[; ;fatfs/ff.c: 3416:   if (!(stat & 0x01)) {
+[e $ ! ! != & -> _stat `i -> 1 `i -> 0 `i 243  ]
+{
+"3417
+[; ;fatfs/ff.c: 3417:    if (!0 && mode && (stat & 0x04)) {
+[e $ ! && && ! != -> 0 `i -> 0 `i != -> _mode `i -> 0 `i != & -> _stat `i -> 4 `i -> 0 `i 244  ]
+{
+"3418
+[; ;fatfs/ff.c: 3418:     return FR_WRITE_PROTECTED;
+[e ) . `E275 10 ]
+[e $UE 239  ]
+"3419
+[; ;fatfs/ff.c: 3419:    }
+}
+[e :U 244 ]
+"3420
+[; ;fatfs/ff.c: 3420:    return FR_OK;
+[e ) . `E275 0 ]
+[e $UE 239  ]
+"3421
+[; ;fatfs/ff.c: 3421:   }
+}
+[e :U 243 ]
+"3422
+[; ;fatfs/ff.c: 3422:  }
+}
+[e :U 242 ]
+"3427
+[; ;fatfs/ff.c: 3427:  fs->fs_type = 0;
+[e = . *U _fs 0 -> -> 0 `i `uc ]
+"3428
+[; ;fatfs/ff.c: 3428:  stat = disk_initialize(fs->pdrv);
+[e = _stat ( _disk_initialize (1 . *U _fs 1 ]
+"3429
+[; ;fatfs/ff.c: 3429:  if (stat & 0x01) {
+[e $ ! != & -> _stat `i -> 1 `i -> 0 `i 245  ]
+{
+"3430
+[; ;fatfs/ff.c: 3430:   return FR_NOT_READY;
+[e ) . `E275 3 ]
+[e $UE 239  ]
+"3431
+[; ;fatfs/ff.c: 3431:  }
+}
+[e :U 245 ]
+"3432
+[; ;fatfs/ff.c: 3432:  if (!0 && mode && (stat & 0x04)) {
+[e $ ! && && ! != -> 0 `i -> 0 `i != -> _mode `i -> 0 `i != & -> _stat `i -> 4 `i -> 0 `i 246  ]
+{
+"3433
+[; ;fatfs/ff.c: 3433:   return FR_WRITE_PROTECTED;
+[e ) . `E275 10 ]
+[e $UE 239  ]
+"3434
+[; ;fatfs/ff.c: 3434:  }
+}
+[e :U 246 ]
+"3441
+[; ;fatfs/ff.c: 3441:  fmt = find_volume(fs, 0);
+[e = _fmt ( _find_volume (2 , _fs -> -> 0 `i `ui ]
+"3442
+[; ;fatfs/ff.c: 3442:  if (fmt == 4) return FR_DISK_ERR;
+[e $ ! == _fmt -> -> 4 `i `ui 247  ]
+[e ) . `E275 1 ]
+[e $UE 239  ]
+[e :U 247 ]
+"3443
+[; ;fatfs/ff.c: 3443:  if (fmt >= 2) return FR_NO_FILESYSTEM;
+[e $ ! >= _fmt -> -> 2 `i `ui 248  ]
+[e ) . `E275 13 ]
+[e $UE 239  ]
+[e :U 248 ]
+"3444
+[; ;fatfs/ff.c: 3444:  bsect = fs->winsect;
+[e = _bsect . *U _fs 17 ]
+"3511
+[; ;fatfs/ff.c: 3511:  {
+{
+"3512
+[; ;fatfs/ff.c: 3512:   if (ld_word(fs->win + 11) != ((UINT)512)) return FR_NO_FILESYSTEM;
+[e $ ! != -> ( _ld_word (1 -> + &U . *U _fs 18 * -> -> 11 `i `x -> -> # *U &U . *U _fs 18 `i `x `*Cuc `ui -> -> 512 `i `ui 249  ]
+[e ) . `E275 13 ]
+[e $UE 239  ]
+[e :U 249 ]
+"3514
+[; ;fatfs/ff.c: 3514:   fasize = ld_word(fs->win + 22);
+[e = _fasize -> ( _ld_word (1 -> + &U . *U _fs 18 * -> -> 22 `i `x -> -> # *U &U . *U _fs 18 `i `x `*Cuc `ul ]
+"3515
+[; ;fatfs/ff.c: 3515:   if (fasize == 0) fasize = ld_dword(fs->win + 36);
+[e $ ! == _fasize -> -> -> 0 `i `l `ul 250  ]
+[e = _fasize ( _ld_dword (1 -> + &U . *U _fs 18 * -> -> 36 `i `x -> -> # *U &U . *U _fs 18 `i `x `*Cuc ]
+[e :U 250 ]
+"3516
+[; ;fatfs/ff.c: 3516:   fs->fsize = fasize;
+[e = . *U _fs 12 _fasize ]
+"3518
+[; ;fatfs/ff.c: 3518:   fs->n_fats = fs->win[16];
+[e = . *U _fs 3 *U + &U . *U _fs 18 * -> -> -> 16 `i `ui `ux -> -> # *U &U . *U _fs 18 `ui `ux ]
+"3519
+[; ;fatfs/ff.c: 3519:   if (fs->n_fats != 1 && fs->n_fats != 2) return FR_NO_FILESYSTEM;
+[e $ ! && != -> . *U _fs 3 `i -> 1 `i != -> . *U _fs 3 `i -> 2 `i 251  ]
+[e ) . `E275 13 ]
+[e $UE 239  ]
+[e :U 251 ]
+"3520
+[; ;fatfs/ff.c: 3520:   fasize *= fs->n_fats;
+[e =* _fasize -> . *U _fs 3 `ul ]
+"3522
+[; ;fatfs/ff.c: 3522:   fs->csize = fs->win[13];
+[e = . *U _fs 8 -> *U + &U . *U _fs 18 * -> -> -> 13 `i `ui `ux -> -> # *U &U . *U _fs 18 `ui `ux `us ]
+"3523
+[; ;fatfs/ff.c: 3523:   if (fs->csize == 0 || (fs->csize & (fs->csize - 1))) return FR_NO_FILESYSTEM;
+[e $ ! || == -> . *U _fs 8 `ui -> -> 0 `i `ui != & -> . *U _fs 8 `ui - -> . *U _fs 8 `ui -> -> 1 `i `ui -> -> 0 `i `ui 252  ]
+[e ) . `E275 13 ]
+[e $UE 239  ]
+[e :U 252 ]
+"3525
+[; ;fatfs/ff.c: 3525:   fs->n_rootdir = ld_word(fs->win + 17);
+[e = . *U _fs 7 ( _ld_word (1 -> + &U . *U _fs 18 * -> -> 17 `i `x -> -> # *U &U . *U _fs 18 `i `x `*Cuc ]
+"3526
+[; ;fatfs/ff.c: 3526:   if (fs->n_rootdir % (((UINT)512) / 32)) return FR_NO_FILESYSTEM;
+[e $ ! != % -> . *U _fs 7 `ui / -> -> 512 `i `ui -> -> 32 `i `ui -> -> 0 `i `ui 253  ]
+[e ) . `E275 13 ]
+[e $UE 239  ]
+[e :U 253 ]
+"3528
+[; ;fatfs/ff.c: 3528:   tsect = ld_word(fs->win + 19);
+[e = _tsect -> ( _ld_word (1 -> + &U . *U _fs 18 * -> -> 19 `i `x -> -> # *U &U . *U _fs 18 `i `x `*Cuc `ul ]
+"3529
+[; ;fatfs/ff.c: 3529:   if (tsect == 0) tsect = ld_dword(fs->win + 32);
+[e $ ! == _tsect -> -> -> 0 `i `l `ul 254  ]
+[e = _tsect ( _ld_dword (1 -> + &U . *U _fs 18 * -> -> 32 `i `x -> -> # *U &U . *U _fs 18 `i `x `*Cuc ]
+[e :U 254 ]
+"3531
+[; ;fatfs/ff.c: 3531:   nrsv = ld_word(fs->win + 14);
+[e = _nrsv ( _ld_word (1 -> + &U . *U _fs 18 * -> -> 14 `i `x -> -> # *U &U . *U _fs 18 `i `x `*Cuc ]
+"3532
+[; ;fatfs/ff.c: 3532:   if (nrsv == 0) return FR_NO_FILESYSTEM;
+[e $ ! == -> _nrsv `ui -> -> 0 `i `ui 255  ]
+[e ) . `E275 13 ]
+[e $UE 239  ]
+[e :U 255 ]
+"3535
+[; ;fatfs/ff.c: 3535:   sysect = nrsv + fasize + fs->n_rootdir / (((UINT)512) / 32);
+[e = _sysect + + -> _nrsv `ul _fasize -> / -> . *U _fs 7 `ui / -> -> 512 `i `ui -> -> 32 `i `ui `ul ]
+"3536
+[; ;fatfs/ff.c: 3536:   if (tsect < sysect) return FR_NO_FILESYSTEM;
+[e $ ! < _tsect _sysect 256  ]
+[e ) . `E275 13 ]
+[e $UE 239  ]
+[e :U 256 ]
+"3537
+[; ;fatfs/ff.c: 3537:   nclst = (tsect - sysect) / fs->csize;
+[e = _nclst / - _tsect _sysect -> . *U _fs 8 `ul ]
+"3538
+[; ;fatfs/ff.c: 3538:   if (nclst == 0) return FR_NO_FILESYSTEM;
+[e $ ! == _nclst -> -> -> 0 `i `l `ul 257  ]
+[e ) . `E275 13 ]
+[e $UE 239  ]
+[e :U 257 ]
+"3539
+[; ;fatfs/ff.c: 3539:   fmt = 0;
+[e = _fmt -> -> 0 `i `ui ]
+"3540
+[; ;fatfs/ff.c: 3540:   if (nclst <= 0x0FFFFFF5) fmt = 3;
+[e $ ! <= _nclst -> -> 268435445 `l `ul 258  ]
+[e = _fmt -> -> 3 `i `ui ]
+[e :U 258 ]
+"3541
+[; ;fatfs/ff.c: 3541:   if (nclst <= 0xFFF5) fmt = 2;
+[e $ ! <= _nclst -> -> 65525 `ui `ul 259  ]
+[e = _fmt -> -> 2 `i `ui ]
+[e :U 259 ]
+"3542
+[; ;fatfs/ff.c: 3542:   if (nclst <= 0xFF5) fmt = 1;
+[e $ ! <= _nclst -> -> -> 4085 `i `l `ul 260  ]
+[e = _fmt -> -> 1 `i `ui ]
+[e :U 260 ]
+"3543
+[; ;fatfs/ff.c: 3543:   if (fmt == 0) return FR_NO_FILESYSTEM;
+[e $ ! == _fmt -> -> 0 `i `ui 261  ]
+[e ) . `E275 13 ]
+[e $UE 239  ]
+[e :U 261 ]
+"3546
+[; ;fatfs/ff.c: 3546:   fs->n_fatent = nclst + 2;
+[e = . *U _fs 11 + _nclst -> -> -> 2 `i `l `ul ]
+"3547
+[; ;fatfs/ff.c: 3547:   fs->volbase = bsect;
+[e = . *U _fs 13 _bsect ]
+"3548
+[; ;fatfs/ff.c: 3548:   fs->fatbase = bsect + nrsv;
+[e = . *U _fs 14 + _bsect -> _nrsv `ul ]
+"3549
+[; ;fatfs/ff.c: 3549:   fs->database = bsect + sysect;
+[e = . *U _fs 16 + _bsect _sysect ]
+"3550
+[; ;fatfs/ff.c: 3550:   if (fmt == 3) {
+[e $ ! == _fmt -> -> 3 `i `ui 262  ]
+{
+"3551
+[; ;fatfs/ff.c: 3551:    if (ld_word(fs->win + 42) != 0) return FR_NO_FILESYSTEM;
+[e $ ! != -> ( _ld_word (1 -> + &U . *U _fs 18 * -> -> 42 `i `x -> -> # *U &U . *U _fs 18 `i `x `*Cuc `ui -> -> 0 `i `ui 263  ]
+[e ) . `E275 13 ]
+[e $UE 239  ]
+[e :U 263 ]
+"3552
+[; ;fatfs/ff.c: 3552:    if (fs->n_rootdir != 0) return FR_NO_FILESYSTEM;
+[e $ ! != -> . *U _fs 7 `ui -> -> 0 `i `ui 264  ]
+[e ) . `E275 13 ]
+[e $UE 239  ]
+[e :U 264 ]
+"3553
+[; ;fatfs/ff.c: 3553:    fs->dirbase = ld_dword(fs->win + 44);
+[e = . *U _fs 15 ( _ld_dword (1 -> + &U . *U _fs 18 * -> -> 44 `i `x -> -> # *U &U . *U _fs 18 `i `x `*Cuc ]
+"3554
+[; ;fatfs/ff.c: 3554:    szbfat = fs->n_fatent * 4;
+[e = _szbfat * . *U _fs 11 -> -> -> 4 `i `l `ul ]
+"3555
+[; ;fatfs/ff.c: 3555:   } else {
+}
+[e $U 265  ]
+[e :U 262 ]
+{
+"3556
+[; ;fatfs/ff.c: 3556:    if (fs->n_rootdir == 0) return FR_NO_FILESYSTEM;
+[e $ ! == -> . *U _fs 7 `ui -> -> 0 `i `ui 266  ]
+[e ) . `E275 13 ]
+[e $UE 239  ]
+[e :U 266 ]
+"3557
+[; ;fatfs/ff.c: 3557:    fs->dirbase = fs->fatbase + fasize;
+[e = . *U _fs 15 + . *U _fs 14 _fasize ]
+"3558
+[; ;fatfs/ff.c: 3558:    szbfat = (fmt == 2) ?
+[e = _szbfat ? == _fmt -> -> 2 `i `ui : * . *U _fs 11 -> -> -> 2 `i `l `ul + / * . *U _fs 11 -> -> -> 3 `i `l `ul -> -> -> 2 `i `l `ul & . *U _fs 11 -> -> -> 1 `i `l `ul ]
+"3560
+[; ;fatfs/ff.c: 3560:   }
+}
+[e :U 265 ]
+"3561
+[; ;fatfs/ff.c: 3561:   if (fs->fsize < (szbfat + (((UINT)512) - 1)) / ((UINT)512)) return FR_NO_FILESYSTEM;
+[e $ ! < . *U _fs 12 / + _szbfat -> - -> -> 512 `i `ui -> -> 1 `i `ui `ul -> -> -> 512 `i `ui `ul 267  ]
+[e ) . `E275 13 ]
+[e $UE 239  ]
+[e :U 267 ]
+"3565
+[; ;fatfs/ff.c: 3565:   fs->last_clst = fs->free_clst = 0xFFFFFFFF;
+[e = . *U _fs 9 = . *U _fs 10 -> 4294967295 `ul ]
+"3566
+[; ;fatfs/ff.c: 3566:   fs->fsi_flag = 0x80;
+[e = . *U _fs 5 -> -> 128 `i `uc ]
+"3568
+[; ;fatfs/ff.c: 3568:   if (fmt == 3
+[e $ ! && && == _fmt -> -> 3 `i `ui == -> ( _ld_word (1 -> + &U . *U _fs 18 * -> -> 48 `i `x -> -> # *U &U . *U _fs 18 `i `x `*Cuc `ui -> -> 1 `i `ui == -> ( _move_window (2 , _fs + _bsect -> -> -> 1 `i `l `ul `ui -> . `E275 0 `ui 268  ]
+"3571
+[; ;fatfs/ff.c: 3571:   {
+{
+"3572
+[; ;fatfs/ff.c: 3572:    fs->fsi_flag = 0;
+[e = . *U _fs 5 -> -> 0 `i `uc ]
+"3573
+[; ;fatfs/ff.c: 3573:    if (ld_word(fs->win + 510) == 0xAA55
+[e $ ! && && == -> ( _ld_word (1 -> + &U . *U _fs 18 * -> -> 510 `i `x -> -> # *U &U . *U _fs 18 `i `x `*Cuc `ui -> 43605 `ui == ( _ld_dword (1 -> + &U . *U _fs 18 * -> -> 0 `i `x -> -> # *U &U . *U _fs 18 `i `x `*Cuc -> -> 1096897106 `l `ul == ( _ld_dword (1 -> + &U . *U _fs 18 * -> -> 484 `i `x -> -> # *U &U . *U _fs 18 `i `x `*Cuc -> -> 1631679090 `l `ul 269  ]
+"3576
+[; ;fatfs/ff.c: 3576:    {
+{
+"3578
+[; ;fatfs/ff.c: 3578:     fs->free_clst = ld_dword(fs->win + 488);
+[e = . *U _fs 10 ( _ld_dword (1 -> + &U . *U _fs 18 * -> -> 488 `i `x -> -> # *U &U . *U _fs 18 `i `x `*Cuc ]
+"3581
+[; ;fatfs/ff.c: 3581:     fs->last_clst = ld_dword(fs->win + 492);
+[e = . *U _fs 9 ( _ld_dword (1 -> + &U . *U _fs 18 * -> -> 492 `i `x -> -> # *U &U . *U _fs 18 `i `x `*Cuc ]
+"3583
+[; ;fatfs/ff.c: 3583:    }
+}
+[e :U 269 ]
+"3584
+[; ;fatfs/ff.c: 3584:   }
+}
+[e :U 268 ]
+"3587
+[; ;fatfs/ff.c: 3587:  }
+}
+"3589
+[; ;fatfs/ff.c: 3589:  fs->fs_type = (BYTE)fmt;
+[e = . *U _fs 0 -> _fmt `uc ]
+"3590
+[; ;fatfs/ff.c: 3590:  fs->id = ++Fsid;
+[e = . *U _fs 6 =+ _Fsid -> -> 1 `i `us ]
+"3603
+[; ;fatfs/ff.c: 3603:  return FR_OK;
+[e ) . `E275 0 ]
+[e $UE 239  ]
+"3604
+[; ;fatfs/ff.c: 3604: }
+[e :UE 239 ]
+}
+"3613
+[; ;fatfs/ff.c: 3613: static FRESULT validate (
+[v _validate `(E275 ~T0 @X0 1 sf2`*S3`**S2 ]
+"3617
+[; ;fatfs/ff.c: 3617: {
+{
+[e :U _validate ]
+"3614
+[; ;fatfs/ff.c: 3614:  FFOBJID* obj,
+[v _obj `*S3 ~T0 @X0 1 r1 ]
+"3615
+[; ;fatfs/ff.c: 3615:  FATFS** rfs
+[v _rfs `**S2 ~T0 @X0 1 r2 ]
+"3617
+[; ;fatfs/ff.c: 3617: {
+[f ]
+"3618
+[; ;fatfs/ff.c: 3618:  FRESULT res = FR_INVALID_OBJECT;
+[v _res `E275 ~T0 @X0 1 a ]
+[e = _res . `E275 9 ]
+"3621
+[; ;fatfs/ff.c: 3621:  if (obj && obj->fs && obj->fs->fs_type && obj->id == obj->fs->id) {
+[e $ ! && && && != _obj -> -> 0 `i `*S3 != . *U _obj 0 -> -> 0 `i `*S2 != -> . *U . *U _obj 0 0 `i -> 0 `i == -> . *U _obj 1 `ui -> . *U . *U _obj 0 6 `ui 271  ]
+{
+"3633
+[; ;fatfs/ff.c: 3633:   if (!(disk_status(obj->fs->pdrv) & 0x01)) {
+[e $ ! ! != & -> ( _disk_status (1 . *U . *U _obj 0 1 `i -> 1 `i -> 0 `i 272  ]
+{
+"3634
+[; ;fatfs/ff.c: 3634:    res = FR_OK;
+[e = _res . `E275 0 ]
+"3635
+[; ;fatfs/ff.c: 3635:   }
+}
+[e :U 272 ]
+"3637
+[; ;fatfs/ff.c: 3637:  }
+}
+[e :U 271 ]
+"3638
+[; ;fatfs/ff.c: 3638:  *rfs = (res == FR_OK) ? obj->fs : 0;
+[e = *U _rfs ? == -> _res `ui -> . `E275 0 `ui : . *U _obj 0 -> -> 0 `i `*S2 ]
+"3639
+[; ;fatfs/ff.c: 3639:  return res;
+[e ) _res ]
+[e $UE 270  ]
+"3640
+[; ;fatfs/ff.c: 3640: }
+[e :UE 270 ]
+}
+"3657
+[; ;fatfs/ff.c: 3657: FRESULT f_mount (
+[v _f_mount `(E275 ~T0 @X0 1 ef3`*S2`*Cuc`uc ]
+"3662
+[; ;fatfs/ff.c: 3662: {
+{
+[e :U _f_mount ]
+"3658
+[; ;fatfs/ff.c: 3658:  FATFS* fs,
+[v _fs `*S2 ~T0 @X0 1 r1 ]
+"3659
+[; ;fatfs/ff.c: 3659:  const TCHAR* path,
+[v _path `*Cuc ~T0 @X0 1 r2 ]
+"3660
+[; ;fatfs/ff.c: 3660:  BYTE opt
+[v _opt `uc ~T0 @X0 1 r3 ]
+"3662
+[; ;fatfs/ff.c: 3662: {
+[f ]
+"3663
+[; ;fatfs/ff.c: 3663:  FATFS *cfs;
+[v _cfs `*S2 ~T0 @X0 1 a ]
+"3664
+[; ;fatfs/ff.c: 3664:  int vol;
+[v _vol `i ~T0 @X0 1 a ]
+"3665
+[; ;fatfs/ff.c: 3665:  FRESULT res;
+[v _res `E275 ~T0 @X0 1 a ]
+"3666
+[; ;fatfs/ff.c: 3666:  const TCHAR *rp = path;
+[v _rp `*Cuc ~T0 @X0 1 a ]
+[e = _rp _path ]
+"3670
+[; ;fatfs/ff.c: 3670:  vol = get_ldnumber(&rp);
+[e = _vol ( _get_ldnumber (1 &U _rp ]
+"3671
+[; ;fatfs/ff.c: 3671:  if (vol < 0) return FR_INVALID_DRIVE;
+[e $ ! < _vol -> 0 `i 274  ]
+[e ) . `E275 11 ]
+[e $UE 273  ]
+[e :U 274 ]
+"3672
+[; ;fatfs/ff.c: 3672:  cfs = FatFs[vol];
+[e = _cfs *U + &U _FatFs * -> -> _vol `ui `ux -> -> # *U &U _FatFs `ui `ux ]
+"3674
+[; ;fatfs/ff.c: 3674:  if (cfs) {
+[e $ ! != _cfs -> -> 0 `i `*S2 275  ]
+{
+"3675
+[; ;fatfs/ff.c: 3675:   FatFs[vol] = 0;
+[e = *U + &U _FatFs * -> -> _vol `ui `ux -> -> # *U &U _FatFs `ui `ux -> -> 0 `i `*S2 ]
+"3682
+[; ;fatfs/ff.c: 3682:   cfs->fs_type = 0;
+[e = . *U _cfs 0 -> -> 0 `i `uc ]
+"3683
+[; ;fatfs/ff.c: 3683:  }
+}
+[e :U 275 ]
+"3685
+[; ;fatfs/ff.c: 3685:  if (fs) {
+[e $ ! != _fs -> -> 0 `i `*S2 276  ]
+{
+"3686
+[; ;fatfs/ff.c: 3686:   fs->pdrv = (BYTE)(vol);
+[e = . *U _fs 1 -> _vol `uc ]
+"3700
+[; ;fatfs/ff.c: 3700:   fs->fs_type = 0;
+[e = . *U _fs 0 -> -> 0 `i `uc ]
+"3701
+[; ;fatfs/ff.c: 3701:   FatFs[vol] = fs;
+[e = *U + &U _FatFs * -> -> _vol `ui `ux -> -> # *U &U _FatFs `ui `ux _fs ]
+"3702
+[; ;fatfs/ff.c: 3702:  }
+}
+[e :U 276 ]
+"3704
+[; ;fatfs/ff.c: 3704:  if (opt == 0) return FR_OK;
+[e $ ! == -> _opt `i -> 0 `i 277  ]
+[e ) . `E275 0 ]
+[e $UE 273  ]
+[e :U 277 ]
+"3706
+[; ;fatfs/ff.c: 3706:  res = mount_volume(&path, &fs, 0);
+[e = _res ( _mount_volume (3 , , &U _path &U _fs -> -> 0 `i `uc ]
+"3707
+[; ;fatfs/ff.c: 3707:  return res;
+[e ) _res ]
+[e $UE 273  ]
+"3708
+[; ;fatfs/ff.c: 3708: }
+[e :UE 273 ]
+}
+"3717
+[; ;fatfs/ff.c: 3717: FRESULT f_open (
+[v _f_open `(E275 ~T0 @X0 1 ef3`*S4`*Cuc`uc ]
+"3722
+[; ;fatfs/ff.c: 3722: {
+{
+[e :U _f_open ]
+"3718
+[; ;fatfs/ff.c: 3718:  FIL* fp,
+[v _fp `*S4 ~T0 @X0 1 r1 ]
+"3719
+[; ;fatfs/ff.c: 3719:  const TCHAR* path,
+[v _path `*Cuc ~T0 @X0 1 r2 ]
+"3720
+[; ;fatfs/ff.c: 3720:  BYTE mode
+[v _mode `uc ~T0 @X0 1 r3 ]
+"3722
+[; ;fatfs/ff.c: 3722: {
+[f ]
+"3723
+[; ;fatfs/ff.c: 3723:  FRESULT res;
+[v _res `E275 ~T0 @X0 1 a ]
+"3724
+[; ;fatfs/ff.c: 3724:  DIR dj;
+[v _dj `S5 ~T0 @X0 1 a ]
+"3725
+[; ;fatfs/ff.c: 3725:  FATFS *fs;
+[v _fs `*S2 ~T0 @X0 1 a ]
+"3727
+[; ;fatfs/ff.c: 3727:  DWORD cl, bcs, clst, tm;
+[v _cl `ul ~T0 @X0 1 a ]
+[v _bcs `ul ~T0 @X0 1 a ]
+[v _clst `ul ~T0 @X0 1 a ]
+[v _tm `ul ~T0 @X0 1 a ]
+"3728
+[; ;fatfs/ff.c: 3728:  LBA_t sc;
+[v _sc `ul ~T0 @X0 1 a ]
+"3729
+[; ;fatfs/ff.c: 3729:  FSIZE_t ofs;
+[v _ofs `ul ~T0 @X0 1 a ]
+"3734
+[; ;fatfs/ff.c: 3734:  if (!fp) return FR_INVALID_OBJECT;
+[e $ ! ! != _fp -> -> 0 `i `*S4 279  ]
+[e ) . `E275 9 ]
+[e $UE 278  ]
+[e :U 279 ]
+"3737
+[; ;fatfs/ff.c: 3737:  mode &= 0 ? 0x01 : 0x01 | 0x02 | 0x08 | 0x04 | 0x10 | 0x30;
+[e =& _mode -> ? != -> 0 `i -> 0 `i : -> 1 `i | | | | | -> 1 `i -> 2 `i -> 8 `i -> 4 `i -> 16 `i -> 48 `i `uc ]
+"3738
+[; ;fatfs/ff.c: 3738:  res = mount_volume(&path, &fs, mode);
+[e = _res ( _mount_volume (3 , , &U _path &U _fs _mode ]
+"3739
+[; ;fatfs/ff.c: 3739:  if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 280  ]
+{
+"3740
+[; ;fatfs/ff.c: 3740:   dj.obj.fs = fs;
+[e = . . _dj 0 0 _fs ]
+"3742
+[; ;fatfs/ff.c: 3742:   res = follow_path(&dj, path);
+[e = _res ( _follow_path (2 , &U _dj _path ]
+"3744
+[; ;fatfs/ff.c: 3744:   if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 281  ]
+{
+"3745
+[; ;fatfs/ff.c: 3745:    if (dj.fn[11] & 0x80) {
+[e $ ! != & -> *U + &U . _dj 5 * -> -> -> 11 `i `ui `ux -> -> # *U &U . _dj 5 `ui `ux `i -> 128 `i -> 0 `i 282  ]
+{
+"3746
+[; ;fatfs/ff.c: 3746:     res = FR_INVALID_NAME;
+[e = _res . `E275 6 ]
+"3747
+[; ;fatfs/ff.c: 3747:    }
+}
+[e :U 282 ]
+"3753
+[; ;fatfs/ff.c: 3753:   }
+}
+[e :U 281 ]
+"3755
+[; ;fatfs/ff.c: 3755:   if (mode & (0x08 | 0x10 | 0x04)) {
+[e $ ! != & -> _mode `i | | -> 8 `i -> 16 `i -> 4 `i -> 0 `i 283  ]
+{
+"3756
+[; ;fatfs/ff.c: 3756:    if (res != FR_OK) {
+[e $ ! != -> _res `ui -> . `E275 0 `ui 284  ]
+{
+"3757
+[; ;fatfs/ff.c: 3757:     if (res == FR_NO_FILE) {
+[e $ ! == -> _res `ui -> . `E275 4 `ui 285  ]
+{
+"3761
+[; ;fatfs/ff.c: 3761:      res = dir_register(&dj);
+[e = _res ( _dir_register (1 &U _dj ]
+"3763
+[; ;fatfs/ff.c: 3763:     }
+}
+[e :U 285 ]
+"3764
+[; ;fatfs/ff.c: 3764:     mode |= 0x08;
+[e =| _mode -> -> 8 `i `uc ]
+"3765
+[; ;fatfs/ff.c: 3765:    }
+}
+[e $U 286  ]
+"3766
+[; ;fatfs/ff.c: 3766:    else {
+[e :U 284 ]
+{
+"3767
+[; ;fatfs/ff.c: 3767:     if (dj.obj.attr & (0x01 | 0x10)) {
+[e $ ! != & -> . . _dj 0 2 `i | -> 1 `i -> 16 `i -> 0 `i 287  ]
+{
+"3768
+[; ;fatfs/ff.c: 3768:      res = FR_DENIED;
+[e = _res . `E275 7 ]
+"3769
+[; ;fatfs/ff.c: 3769:     } else {
+}
+[e $U 288  ]
+[e :U 287 ]
+{
+"3770
+[; ;fatfs/ff.c: 3770:      if (mode & 0x04) res = FR_EXIST;
+[e $ ! != & -> _mode `i -> 4 `i -> 0 `i 289  ]
+[e = _res . `E275 8 ]
+[e :U 289 ]
+"3771
+[; ;fatfs/ff.c: 3771:     }
+}
+[e :U 288 ]
+"3772
+[; ;fatfs/ff.c: 3772:    }
+}
+[e :U 286 ]
+"3773
+[; ;fatfs/ff.c: 3773:    if (res == FR_OK && (mode & 0x08)) {
+[e $ ! && == -> _res `ui -> . `E275 0 `ui != & -> _mode `i -> 8 `i -> 0 `i 290  ]
+{
+"3792
+[; ;fatfs/ff.c: 3792:     {
+{
+"3794
+[; ;fatfs/ff.c: 3794:      tm = get_fattime();
+[e = _tm ( _get_fattime ..  ]
+"3795
+[; ;fatfs/ff.c: 3795:      st_dword(dj.dir + 14, tm);
+[e ( _st_dword (2 , + . _dj 4 * -> -> 14 `i `x -> -> # *U . _dj 4 `i `x _tm ]
+"3796
+[; ;fatfs/ff.c: 3796:      st_dword(dj.dir + 22, tm);
+[e ( _st_dword (2 , + . _dj 4 * -> -> 22 `i `x -> -> # *U . _dj 4 `i `x _tm ]
+"3797
+[; ;fatfs/ff.c: 3797:      cl = ld_clust(fs, dj.dir);
+[e = _cl ( _ld_clust (2 , _fs -> . _dj 4 `*Cuc ]
+"3798
+[; ;fatfs/ff.c: 3798:      dj.dir[11] = 0x20;
+[e = *U + . _dj 4 * -> -> 11 `i `x -> -> # *U . _dj 4 `i `x -> -> 32 `i `uc ]
+"3799
+[; ;fatfs/ff.c: 3799:      st_clust(fs, dj.dir, 0);
+[e ( _st_clust (3 , , _fs . _dj 4 -> -> -> 0 `i `l `ul ]
+"3800
+[; ;fatfs/ff.c: 3800:      st_dword(dj.dir + 28, 0);
+[e ( _st_dword (2 , + . _dj 4 * -> -> 28 `i `x -> -> # *U . _dj 4 `i `x -> -> -> 0 `i `l `ul ]
+"3801
+[; ;fatfs/ff.c: 3801:      fs->wflag = 1;
+[e = . *U _fs 4 -> -> 1 `i `uc ]
+"3802
+[; ;fatfs/ff.c: 3802:      if (cl != 0) {
+[e $ ! != _cl -> -> -> 0 `i `l `ul 291  ]
+{
+"3803
+[; ;fatfs/ff.c: 3803:       sc = fs->winsect;
+[e = _sc . *U _fs 17 ]
+"3804
+[; ;fatfs/ff.c: 3804:       res = remove_chain(&dj.obj, cl, 0);
+[e = _res ( _remove_chain (3 , , &U . _dj 0 _cl -> -> -> 0 `i `l `ul ]
+"3805
+[; ;fatfs/ff.c: 3805:       if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 292  ]
+{
+"3806
+[; ;fatfs/ff.c: 3806:        res = move_window(fs, sc);
+[e = _res ( _move_window (2 , _fs _sc ]
+"3807
+[; ;fatfs/ff.c: 3807:        fs->last_clst = cl - 1;
+[e = . *U _fs 9 - _cl -> -> -> 1 `i `l `ul ]
+"3808
+[; ;fatfs/ff.c: 3808:       }
+}
+[e :U 292 ]
+"3809
+[; ;fatfs/ff.c: 3809:      }
+}
+[e :U 291 ]
+"3810
+[; ;fatfs/ff.c: 3810:     }
+}
+"3811
+[; ;fatfs/ff.c: 3811:    }
+}
+[e :U 290 ]
+"3812
+[; ;fatfs/ff.c: 3812:   }
+}
+[e $U 293  ]
+"3813
+[; ;fatfs/ff.c: 3813:   else {
+[e :U 283 ]
+{
+"3814
+[; ;fatfs/ff.c: 3814:    if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 294  ]
+{
+"3815
+[; ;fatfs/ff.c: 3815:     if (dj.obj.attr & 0x10) {
+[e $ ! != & -> . . _dj 0 2 `i -> 16 `i -> 0 `i 295  ]
+{
+"3816
+[; ;fatfs/ff.c: 3816:      res = FR_NO_FILE;
+[e = _res . `E275 4 ]
+"3817
+[; ;fatfs/ff.c: 3817:     } else {
+}
+[e $U 296  ]
+[e :U 295 ]
+{
+"3818
+[; ;fatfs/ff.c: 3818:      if ((mode & 0x02) && (dj.obj.attr & 0x01)) {
+[e $ ! && != & -> _mode `i -> 2 `i -> 0 `i != & -> . . _dj 0 2 `i -> 1 `i -> 0 `i 297  ]
+{
+"3819
+[; ;fatfs/ff.c: 3819:       res = FR_DENIED;
+[e = _res . `E275 7 ]
+"3820
+[; ;fatfs/ff.c: 3820:      }
+}
+[e :U 297 ]
+"3821
+[; ;fatfs/ff.c: 3821:     }
+}
+[e :U 296 ]
+"3822
+[; ;fatfs/ff.c: 3822:    }
+}
+[e :U 294 ]
+"3823
+[; ;fatfs/ff.c: 3823:   }
+}
+[e :U 293 ]
+"3824
+[; ;fatfs/ff.c: 3824:   if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 298  ]
+{
+"3825
+[; ;fatfs/ff.c: 3825:    if (mode & 0x08) mode |= 0x40;
+[e $ ! != & -> _mode `i -> 8 `i -> 0 `i 299  ]
+[e =| _mode -> -> 64 `i `uc ]
+[e :U 299 ]
+"3826
+[; ;fatfs/ff.c: 3826:    fp->dir_sect = fs->winsect;
+[e = . *U _fp 6 . *U _fs 17 ]
+"3827
+[; ;fatfs/ff.c: 3827:    fp->dir_ptr = dj.dir;
+[e = . *U _fp 7 . _dj 4 ]
+"3832
+[; ;fatfs/ff.c: 3832:   }
+}
+[e :U 298 ]
+"3845
+[; ;fatfs/ff.c: 3845:   if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 300  ]
+{
+"3854
+[; ;fatfs/ff.c: 3854:    {
+{
+"3855
+[; ;fatfs/ff.c: 3855:     fp->obj.sclust = ld_clust(fs, dj.dir);
+[e = . . *U _fp 0 4 ( _ld_clust (2 , _fs -> . _dj 4 `*Cuc ]
+"3856
+[; ;fatfs/ff.c: 3856:     fp->obj.objsize = ld_dword(dj.dir + 28);
+[e = . . *U _fp 0 5 ( _ld_dword (1 -> + . _dj 4 * -> -> 28 `i `x -> -> # *U . _dj 4 `i `x `*Cuc ]
+"3857
+[; ;fatfs/ff.c: 3857:    }
+}
+"3861
+[; ;fatfs/ff.c: 3861:    fp->obj.fs = fs;
+[e = . . *U _fp 0 0 _fs ]
+"3862
+[; ;fatfs/ff.c: 3862:    fp->obj.id = fs->id;
+[e = . . *U _fp 0 1 . *U _fs 6 ]
+"3863
+[; ;fatfs/ff.c: 3863:    fp->flag = mode;
+[e = . *U _fp 1 _mode ]
+"3864
+[; ;fatfs/ff.c: 3864:    fp->err = 0;
+[e = . *U _fp 2 -> -> 0 `i `uc ]
+"3865
+[; ;fatfs/ff.c: 3865:    fp->sect = 0;
+[e = . *U _fp 5 -> -> -> 0 `i `l `ul ]
+"3866
+[; ;fatfs/ff.c: 3866:    fp->fptr = 0;
+[e = . *U _fp 3 -> -> -> 0 `i `l `ul ]
+"3869
+[; ;fatfs/ff.c: 3869:    memset(fp->buf, 0, sizeof fp->buf);
+[e ( _memset (3 , , -> &U . *U _fp 8 `*v -> 0 `i * -> # *U &U . *U _fp 8 `ui -> -> 512 `i `ui ]
+"3871
+[; ;fatfs/ff.c: 3871:    if ((mode & 0x20) && fp->obj.objsize > 0) {
+[e $ ! && != & -> _mode `i -> 32 `i -> 0 `i > . . *U _fp 0 5 -> -> -> 0 `i `l `ul 301  ]
+{
+"3872
+[; ;fatfs/ff.c: 3872:     fp->fptr = fp->obj.objsize;
+[e = . *U _fp 3 . . *U _fp 0 5 ]
+"3873
+[; ;fatfs/ff.c: 3873:     bcs = (DWORD)fs->csize * ((UINT)512);
+[e = _bcs * -> . *U _fs 8 `ul -> -> -> 512 `i `ui `ul ]
+"3874
+[; ;fatfs/ff.c: 3874:     clst = fp->obj.sclust;
+[e = _clst . . *U _fp 0 4 ]
+"3875
+[; ;fatfs/ff.c: 3875:     for (ofs = fp->obj.objsize; res == FR_OK && ofs > bcs; ofs -= bcs) {
+{
+[e = _ofs . . *U _fp 0 5 ]
+[e $U 305  ]
+[e :U 302 ]
+{
+"3876
+[; ;fatfs/ff.c: 3876:      clst = get_fat(&fp->obj, clst);
+[e = _clst ( _get_fat (2 , &U . *U _fp 0 _clst ]
+"3877
+[; ;fatfs/ff.c: 3877:      if (clst <= 1) res = FR_INT_ERR;
+[e $ ! <= _clst -> -> -> 1 `i `l `ul 306  ]
+[e = _res . `E275 2 ]
+[e :U 306 ]
+"3878
+[; ;fatfs/ff.c: 3878:      if (clst == 0xFFFFFFFF) res = FR_DISK_ERR;
+[e $ ! == _clst -> 4294967295 `ul 307  ]
+[e = _res . `E275 1 ]
+[e :U 307 ]
+"3879
+[; ;fatfs/ff.c: 3879:     }
+}
+[e =- _ofs _bcs ]
+[e :U 305 ]
+[e $ && == -> _res `ui -> . `E275 0 `ui > _ofs _bcs 302  ]
+[e :U 303 ]
+}
+"3880
+[; ;fatfs/ff.c: 3880:     fp->clust = clst;
+[e = . *U _fp 4 _clst ]
+"3881
+[; ;fatfs/ff.c: 3881:     if (res == FR_OK && ofs % ((UINT)512)) {
+[e $ ! && == -> _res `ui -> . `E275 0 `ui != % _ofs -> -> -> 512 `i `ui `ul -> -> -> 0 `i `l `ul 308  ]
+{
+"3882
+[; ;fatfs/ff.c: 3882:      sc = clst2sect(fs, clst);
+[e = _sc ( _clst2sect (2 , _fs _clst ]
+"3883
+[; ;fatfs/ff.c: 3883:      if (sc == 0) {
+[e $ ! == _sc -> -> -> 0 `i `l `ul 309  ]
+{
+"3884
+[; ;fatfs/ff.c: 3884:       res = FR_INT_ERR;
+[e = _res . `E275 2 ]
+"3885
+[; ;fatfs/ff.c: 3885:      } else {
+}
+[e $U 310  ]
+[e :U 309 ]
+{
+"3886
+[; ;fatfs/ff.c: 3886:       fp->sect = sc + (DWORD)(ofs / ((UINT)512));
+[e = . *U _fp 5 + _sc / _ofs -> -> -> 512 `i `ui `ul ]
+"3888
+[; ;fatfs/ff.c: 3888:       if (disk_read(fs->pdrv, fp->buf, fp->sect, 1) != RES_OK) res = FR_DISK_ERR;
+[e $ ! != -> ( _disk_read (4 , , , . *U _fs 1 &U . *U _fp 8 . *U _fp 5 -> -> 1 `i `ui `ui -> . `E415 0 `ui 311  ]
+[e = _res . `E275 1 ]
+[e :U 311 ]
+"3890
+[; ;fatfs/ff.c: 3890:      }
+}
+[e :U 310 ]
+"3891
+[; ;fatfs/ff.c: 3891:     }
+}
+[e :U 308 ]
+"3895
+[; ;fatfs/ff.c: 3895:    }
+}
+[e :U 301 ]
+"3897
+[; ;fatfs/ff.c: 3897:   }
+}
+[e :U 300 ]
+"3900
+[; ;fatfs/ff.c: 3900:  }
+}
+[e :U 280 ]
+"3902
+[; ;fatfs/ff.c: 3902:  if (res != FR_OK) fp->obj.fs = 0;
+[e $ ! != -> _res `ui -> . `E275 0 `ui 312  ]
+[e = . . *U _fp 0 0 -> -> 0 `i `*S2 ]
+[e :U 312 ]
+"3904
+[; ;fatfs/ff.c: 3904:  return res;
+[e ) _res ]
+[e $UE 278  ]
+"3905
+[; ;fatfs/ff.c: 3905: }
+[e :UE 278 ]
+}
+"3914
+[; ;fatfs/ff.c: 3914: FRESULT f_read (
+[v _f_read `(E275 ~T0 @X0 1 ef4`*S4`*v`ui`*ui ]
+"3920
+[; ;fatfs/ff.c: 3920: {
+{
+[e :U _f_read ]
+"3915
+[; ;fatfs/ff.c: 3915:  FIL* fp,
+[v _fp `*S4 ~T0 @X0 1 r1 ]
+"3916
+[; ;fatfs/ff.c: 3916:  void* buff,
+[v _buff `*v ~T0 @X0 1 r2 ]
+"3917
+[; ;fatfs/ff.c: 3917:  UINT btr,
+[v _btr `ui ~T0 @X0 1 r3 ]
+"3918
+[; ;fatfs/ff.c: 3918:  UINT* br
+[v _br `*ui ~T0 @X0 1 r4 ]
+"3920
+[; ;fatfs/ff.c: 3920: {
+[f ]
+"3921
+[; ;fatfs/ff.c: 3921:  FRESULT res;
+[v _res `E275 ~T0 @X0 1 a ]
+"3922
+[; ;fatfs/ff.c: 3922:  FATFS *fs;
+[v _fs `*S2 ~T0 @X0 1 a ]
+"3923
+[; ;fatfs/ff.c: 3923:  DWORD clst;
+[v _clst `ul ~T0 @X0 1 a ]
+"3924
+[; ;fatfs/ff.c: 3924:  LBA_t sect;
+[v _sect `ul ~T0 @X0 1 a ]
+"3925
+[; ;fatfs/ff.c: 3925:  FSIZE_t remain;
+[v _remain `ul ~T0 @X0 1 a ]
+"3926
+[; ;fatfs/ff.c: 3926:  UINT rcnt, cc, csect;
+[v _rcnt `ui ~T0 @X0 1 a ]
+[v _cc `ui ~T0 @X0 1 a ]
+[v _csect `ui ~T0 @X0 1 a ]
+"3927
+[; ;fatfs/ff.c: 3927:  BYTE *rbuff = (BYTE*)buff;
+[v _rbuff `*uc ~T0 @X0 1 a ]
+[e = _rbuff -> _buff `*uc ]
+"3930
+[; ;fatfs/ff.c: 3930:  *br = 0;
+[e = *U _br -> -> 0 `i `ui ]
+"3931
+[; ;fatfs/ff.c: 3931:  res = validate(&fp->obj, &fs);
+[e = _res ( _validate (2 , &U . *U _fp 0 &U _fs ]
+"3932
+[; ;fatfs/ff.c: 3932:  if (res != FR_OK || (res = (FRESULT)fp->err) != FR_OK) return res;
+[e $ ! || != -> _res `ui -> . `E275 0 `ui != -> = _res -> . *U _fp 2 `E275 `ui -> . `E275 0 `ui 314  ]
+[e ) _res ]
+[e $UE 313  ]
+[e :U 314 ]
+"3933
+[; ;fatfs/ff.c: 3933:  if (!(fp->flag & 0x01)) return FR_DENIED;
+[e $ ! ! != & -> . *U _fp 1 `i -> 1 `i -> 0 `i 315  ]
+[e ) . `E275 7 ]
+[e $UE 313  ]
+[e :U 315 ]
+"3934
+[; ;fatfs/ff.c: 3934:  remain = fp->obj.objsize - fp->fptr;
+[e = _remain - . . *U _fp 0 5 . *U _fp 3 ]
+"3935
+[; ;fatfs/ff.c: 3935:  if (btr > remain) btr = (UINT)remain;
+[e $ ! > -> _btr `ul _remain 316  ]
+[e = _btr -> _remain `ui ]
+[e :U 316 ]
+"3937
+[; ;fatfs/ff.c: 3937:  for ( ; btr > 0; btr -= rcnt, *br += rcnt, rbuff += rcnt, fp->fptr += rcnt) {
+{
+[e $ > _btr -> -> 0 `i `ui 317  ]
+[e $U 318  ]
+[e :U 317 ]
+{
+"3938
+[; ;fatfs/ff.c: 3938:   if (fp->fptr % ((UINT)512) == 0) {
+[e $ ! == % . *U _fp 3 -> -> -> 512 `i `ui `ul -> -> -> 0 `i `l `ul 320  ]
+{
+"3939
+[; ;fatfs/ff.c: 3939:    csect = (UINT)(fp->fptr / ((UINT)512) & (fs->csize - 1));
+[e = _csect -> & / . *U _fp 3 -> -> -> 512 `i `ui `ul -> - -> . *U _fs 8 `ui -> -> 1 `i `ui `ul `ui ]
+"3940
+[; ;fatfs/ff.c: 3940:    if (csect == 0) {
+[e $ ! == _csect -> -> 0 `i `ui 321  ]
+{
+"3941
+[; ;fatfs/ff.c: 3941:     if (fp->fptr == 0) {
+[e $ ! == . *U _fp 3 -> -> -> 0 `i `l `ul 322  ]
+{
+"3942
+[; ;fatfs/ff.c: 3942:      clst = fp->obj.sclust;
+[e = _clst . . *U _fp 0 4 ]
+"3943
+[; ;fatfs/ff.c: 3943:     } else {
+}
+[e $U 323  ]
+[e :U 322 ]
+{
+"3949
+[; ;fatfs/ff.c: 3949:      {
+{
+"3950
+[; ;fatfs/ff.c: 3950:       clst = get_fat(&fp->obj, fp->clust);
+[e = _clst ( _get_fat (2 , &U . *U _fp 0 . *U _fp 4 ]
+"3951
+[; ;fatfs/ff.c: 3951:      }
+}
+"3952
+[; ;fatfs/ff.c: 3952:     }
+}
+[e :U 323 ]
+"3953
+[; ;fatfs/ff.c: 3953:     if (clst < 2) { fp->err = (BYTE)(FR_INT_ERR); return FR_INT_ERR; };
+[e $ ! < _clst -> -> -> 2 `i `l `ul 324  ]
+{
+[e = . *U _fp 2 -> . `E275 2 `uc ]
+[e ) . `E275 2 ]
+[e $UE 313  ]
+}
+[e :U 324 ]
+"3954
+[; ;fatfs/ff.c: 3954:     if (clst == 0xFFFFFFFF) { fp->err = (BYTE)(FR_DISK_ERR); return FR_DISK_ERR; };
+[e $ ! == _clst -> 4294967295 `ul 325  ]
+{
+[e = . *U _fp 2 -> . `E275 1 `uc ]
+[e ) . `E275 1 ]
+[e $UE 313  ]
+}
+[e :U 325 ]
+"3955
+[; ;fatfs/ff.c: 3955:     fp->clust = clst;
+[e = . *U _fp 4 _clst ]
+"3956
+[; ;fatfs/ff.c: 3956:    }
+}
+[e :U 321 ]
+"3957
+[; ;fatfs/ff.c: 3957:    sect = clst2sect(fs, fp->clust);
+[e = _sect ( _clst2sect (2 , _fs . *U _fp 4 ]
+"3958
+[; ;fatfs/ff.c: 3958:    if (sect == 0) { fp->err = (BYTE)(FR_INT_ERR); return FR_INT_ERR; };
+[e $ ! == _sect -> -> -> 0 `i `l `ul 326  ]
+{
+[e = . *U _fp 2 -> . `E275 2 `uc ]
+[e ) . `E275 2 ]
+[e $UE 313  ]
+}
+[e :U 326 ]
+"3959
+[; ;fatfs/ff.c: 3959:    sect += csect;
+[e =+ _sect -> _csect `ul ]
+"3960
+[; ;fatfs/ff.c: 3960:    cc = btr / ((UINT)512);
+[e = _cc / _btr -> -> 512 `i `ui ]
+"3961
+[; ;fatfs/ff.c: 3961:    if (cc > 0) {
+[e $ ! > _cc -> -> 0 `i `ui 327  ]
+{
+"3962
+[; ;fatfs/ff.c: 3962:     if (csect + cc > fs->csize) {
+[e $ ! > + _csect _cc -> . *U _fs 8 `ui 328  ]
+{
+"3963
+[; ;fatfs/ff.c: 3963:      cc = fs->csize - csect;
+[e = _cc - -> . *U _fs 8 `ui _csect ]
+"3964
+[; ;fatfs/ff.c: 3964:     }
+}
+[e :U 328 ]
+"3965
+[; ;fatfs/ff.c: 3965:     if (disk_read(fs->pdrv, rbuff, sect, cc) != RES_OK) { fp->err = (BYTE)(FR_DISK_ERR); return FR_DISK_ERR; };
+[e $ ! != -> ( _disk_read (4 , , , . *U _fs 1 _rbuff _sect _cc `ui -> . `E415 0 `ui 329  ]
+{
+[e = . *U _fp 2 -> . `E275 1 `uc ]
+[e ) . `E275 1 ]
+[e $UE 313  ]
+}
+[e :U 329 ]
+"3972
+[; ;fatfs/ff.c: 3972:     if ((fp->flag & 0x80) && fp->sect - sect < cc) {
+[e $ ! && != & -> . *U _fp 1 `i -> 128 `i -> 0 `i < - . *U _fp 5 _sect -> _cc `ul 330  ]
+{
+"3973
+[; ;fatfs/ff.c: 3973:      memcpy(rbuff + ((fp->sect - sect) * ((UINT)512)), fp->buf, ((UINT)512));
+[e ( _memcpy (3 , , -> + _rbuff * -> * - . *U _fp 5 _sect -> -> -> 512 `i `ui `ul `ux -> -> # *U _rbuff `ui `ux `*v -> &U . *U _fp 8 `*Cv -> -> 512 `i `ui ]
+"3974
+[; ;fatfs/ff.c: 3974:     }
+}
+[e :U 330 ]
+"3977
+[; ;fatfs/ff.c: 3977:     rcnt = ((UINT)512) * cc;
+[e = _rcnt * -> -> 512 `i `ui _cc ]
+"3978
+[; ;fatfs/ff.c: 3978:     continue;
+[e $U 319  ]
+"3979
+[; ;fatfs/ff.c: 3979:    }
+}
+[e :U 327 ]
+"3981
+[; ;fatfs/ff.c: 3981:    if (fp->sect != sect) {
+[e $ ! != . *U _fp 5 _sect 331  ]
+{
+"3983
+[; ;fatfs/ff.c: 3983:     if (fp->flag & 0x80) {
+[e $ ! != & -> . *U _fp 1 `i -> 128 `i -> 0 `i 332  ]
+{
+"3984
+[; ;fatfs/ff.c: 3984:      if (disk_write(fs->pdrv, fp->buf, fp->sect, 1) != RES_OK) { fp->err = (BYTE)(FR_DISK_ERR); return FR_DISK_ERR; };
+[e $ ! != -> ( _disk_write (4 , , , . *U _fs 1 -> &U . *U _fp 8 `*Cuc . *U _fp 5 -> -> 1 `i `ui `ui -> . `E415 0 `ui 333  ]
+{
+[e = . *U _fp 2 -> . `E275 1 `uc ]
+[e ) . `E275 1 ]
+[e $UE 313  ]
+}
+[e :U 333 ]
+"3985
+[; ;fatfs/ff.c: 3985:      fp->flag &= (BYTE)~0x80;
+[e =& . *U _fp 1 -> -> ~ -> 128 `i `uc `uc ]
+"3986
+[; ;fatfs/ff.c: 3986:     }
+}
+[e :U 332 ]
+"3988
+[; ;fatfs/ff.c: 3988:     if (disk_read(fs->pdrv, fp->buf, sect, 1) != RES_OK) { fp->err = (BYTE)(FR_DISK_ERR); return FR_DISK_ERR; };
+[e $ ! != -> ( _disk_read (4 , , , . *U _fs 1 &U . *U _fp 8 _sect -> -> 1 `i `ui `ui -> . `E415 0 `ui 334  ]
+{
+[e = . *U _fp 2 -> . `E275 1 `uc ]
+[e ) . `E275 1 ]
+[e $UE 313  ]
+}
+[e :U 334 ]
+"3989
+[; ;fatfs/ff.c: 3989:    }
+}
+[e :U 331 ]
+"3991
+[; ;fatfs/ff.c: 3991:    fp->sect = sect;
+[e = . *U _fp 5 _sect ]
+"3992
+[; ;fatfs/ff.c: 3992:   }
+}
+[e :U 320 ]
+"3993
+[; ;fatfs/ff.c: 3993:   rcnt = ((UINT)512) - (UINT)fp->fptr % ((UINT)512);
+[e = _rcnt - -> -> 512 `i `ui % -> . *U _fp 3 `ui -> -> 512 `i `ui ]
+"3994
+[; ;fatfs/ff.c: 3994:   if (rcnt > btr) rcnt = btr;
+[e $ ! > _rcnt _btr 335  ]
+[e = _rcnt _btr ]
+[e :U 335 ]
+"3999
+[; ;fatfs/ff.c: 3999:   memcpy(rbuff, fp->buf + fp->fptr % ((UINT)512), rcnt);
+[e ( _memcpy (3 , , -> _rbuff `*v -> + &U . *U _fp 8 * -> % . *U _fp 3 -> -> -> 512 `i `ui `ul `ux -> -> # *U &U . *U _fp 8 `ui `ux `*Cv _rcnt ]
+"4001
+[; ;fatfs/ff.c: 4001:  }
+}
+[e :U 319 ]
+[e ; ; ; =- _btr _rcnt =+ *U _br _rcnt =+ _rbuff * -> _rcnt `ux -> -> # *U _rbuff `ui `ux =+ . *U _fp 3 -> _rcnt `ul ]
+[e $ > _btr -> -> 0 `i `ui 317  ]
+[e :U 318 ]
+}
+"4003
+[; ;fatfs/ff.c: 4003:  return FR_OK;
+[e ) . `E275 0 ]
+[e $UE 313  ]
+"4004
+[; ;fatfs/ff.c: 4004: }
+[e :UE 313 ]
+}
+"4014
+[; ;fatfs/ff.c: 4014: FRESULT f_write (
+[v _f_write `(E275 ~T0 @X0 1 ef4`*S4`*Cv`ui`*ui ]
+"4020
+[; ;fatfs/ff.c: 4020: {
+{
+[e :U _f_write ]
+"4015
+[; ;fatfs/ff.c: 4015:  FIL* fp,
+[v _fp `*S4 ~T0 @X0 1 r1 ]
+"4016
+[; ;fatfs/ff.c: 4016:  const void* buff,
+[v _buff `*Cv ~T0 @X0 1 r2 ]
+"4017
+[; ;fatfs/ff.c: 4017:  UINT btw,
+[v _btw `ui ~T0 @X0 1 r3 ]
+"4018
+[; ;fatfs/ff.c: 4018:  UINT* bw
+[v _bw `*ui ~T0 @X0 1 r4 ]
+"4020
+[; ;fatfs/ff.c: 4020: {
+[f ]
+"4021
+[; ;fatfs/ff.c: 4021:  FRESULT res;
+[v _res `E275 ~T0 @X0 1 a ]
+"4022
+[; ;fatfs/ff.c: 4022:  FATFS *fs;
+[v _fs `*S2 ~T0 @X0 1 a ]
+"4023
+[; ;fatfs/ff.c: 4023:  DWORD clst;
+[v _clst `ul ~T0 @X0 1 a ]
+"4024
+[; ;fatfs/ff.c: 4024:  LBA_t sect;
+[v _sect `ul ~T0 @X0 1 a ]
+"4025
+[; ;fatfs/ff.c: 4025:  UINT wcnt, cc, csect;
+[v _wcnt `ui ~T0 @X0 1 a ]
+[v _cc `ui ~T0 @X0 1 a ]
+[v _csect `ui ~T0 @X0 1 a ]
+"4026
+[; ;fatfs/ff.c: 4026:  const BYTE *wbuff = (const BYTE*)buff;
+[v _wbuff `*Cuc ~T0 @X0 1 a ]
+[e = _wbuff -> _buff `*Cuc ]
+"4029
+[; ;fatfs/ff.c: 4029:  *bw = 0;
+[e = *U _bw -> -> 0 `i `ui ]
+"4030
+[; ;fatfs/ff.c: 4030:  res = validate(&fp->obj, &fs);
+[e = _res ( _validate (2 , &U . *U _fp 0 &U _fs ]
+"4031
+[; ;fatfs/ff.c: 4031:  if (res != FR_OK || (res = (FRESULT)fp->err) != FR_OK) return res;
+[e $ ! || != -> _res `ui -> . `E275 0 `ui != -> = _res -> . *U _fp 2 `E275 `ui -> . `E275 0 `ui 337  ]
+[e ) _res ]
+[e $UE 336  ]
+[e :U 337 ]
+"4032
+[; ;fatfs/ff.c: 4032:  if (!(fp->flag & 0x02)) return FR_DENIED;
+[e $ ! ! != & -> . *U _fp 1 `i -> 2 `i -> 0 `i 338  ]
+[e ) . `E275 7 ]
+[e $UE 336  ]
+[e :U 338 ]
+"4035
+[; ;fatfs/ff.c: 4035:  if ((!0 || fs->fs_type != 4) && (DWORD)(fp->fptr + btw) < (DWORD)fp->fptr) {
+[e $ ! && || ! != -> 0 `i -> 0 `i != -> . *U _fs 0 `i -> 4 `i < + . *U _fp 3 -> _btw `ul . *U _fp 3 339  ]
+{
+"4036
+[; ;fatfs/ff.c: 4036:   btw = (UINT)(0xFFFFFFFF - (DWORD)fp->fptr);
+[e = _btw -> - -> 4294967295 `ul . *U _fp 3 `ui ]
+"4037
+[; ;fatfs/ff.c: 4037:  }
+}
+[e :U 339 ]
+"4039
+[; ;fatfs/ff.c: 4039:  for ( ; btw > 0; btw -= wcnt, *bw += wcnt, wbuff += wcnt, fp->fptr += wcnt, fp->obj.objsize = (fp->fptr > fp->obj.objsize) ? fp->fptr : fp->obj.objsize) {
+{
+[e $ > _btw -> -> 0 `i `ui 340  ]
+[e $U 341  ]
+[e :U 340 ]
+{
+"4040
+[; ;fatfs/ff.c: 4040:   if (fp->fptr % ((UINT)512) == 0) {
+[e $ ! == % . *U _fp 3 -> -> -> 512 `i `ui `ul -> -> -> 0 `i `l `ul 343  ]
+{
+"4041
+[; ;fatfs/ff.c: 4041:    csect = (UINT)(fp->fptr / ((UINT)512)) & (fs->csize - 1);
+[e = _csect & -> / . *U _fp 3 -> -> -> 512 `i `ui `ul `ui - -> . *U _fs 8 `ui -> -> 1 `i `ui ]
+"4042
+[; ;fatfs/ff.c: 4042:    if (csect == 0) {
+[e $ ! == _csect -> -> 0 `i `ui 344  ]
+{
+"4043
+[; ;fatfs/ff.c: 4043:     if (fp->fptr == 0) {
+[e $ ! == . *U _fp 3 -> -> -> 0 `i `l `ul 345  ]
+{
+"4044
+[; ;fatfs/ff.c: 4044:      clst = fp->obj.sclust;
+[e = _clst . . *U _fp 0 4 ]
+"4045
+[; ;fatfs/ff.c: 4045:      if (clst == 0) {
+[e $ ! == _clst -> -> -> 0 `i `l `ul 346  ]
+{
+"4046
+[; ;fatfs/ff.c: 4046:       clst = create_chain(&fp->obj, 0);
+[e = _clst ( _create_chain (2 , &U . *U _fp 0 -> -> -> 0 `i `l `ul ]
+"4047
+[; ;fatfs/ff.c: 4047:      }
+}
+[e :U 346 ]
+"4048
+[; ;fatfs/ff.c: 4048:     } else {
+}
+[e $U 347  ]
+[e :U 345 ]
+{
+"4054
+[; ;fatfs/ff.c: 4054:      {
+{
+"4055
+[; ;fatfs/ff.c: 4055:       clst = create_chain(&fp->obj, fp->clust);
+[e = _clst ( _create_chain (2 , &U . *U _fp 0 . *U _fp 4 ]
+"4056
+[; ;fatfs/ff.c: 4056:      }
+}
+"4057
+[; ;fatfs/ff.c: 4057:     }
+}
+[e :U 347 ]
+"4058
+[; ;fatfs/ff.c: 4058:     if (clst == 0) break;
+[e $ ! == _clst -> -> -> 0 `i `l `ul 348  ]
+[e $U 341  ]
+[e :U 348 ]
+"4059
+[; ;fatfs/ff.c: 4059:     if (clst == 1) { fp->err = (BYTE)(FR_INT_ERR); return FR_INT_ERR; };
+[e $ ! == _clst -> -> -> 1 `i `l `ul 349  ]
+{
+[e = . *U _fp 2 -> . `E275 2 `uc ]
+[e ) . `E275 2 ]
+[e $UE 336  ]
+}
+[e :U 349 ]
+"4060
+[; ;fatfs/ff.c: 4060:     if (clst == 0xFFFFFFFF) { fp->err = (BYTE)(FR_DISK_ERR); return FR_DISK_ERR; };
+[e $ ! == _clst -> 4294967295 `ul 350  ]
+{
+[e = . *U _fp 2 -> . `E275 1 `uc ]
+[e ) . `E275 1 ]
+[e $UE 336  ]
+}
+[e :U 350 ]
+"4061
+[; ;fatfs/ff.c: 4061:     fp->clust = clst;
+[e = . *U _fp 4 _clst ]
+"4062
+[; ;fatfs/ff.c: 4062:     if (fp->obj.sclust == 0) fp->obj.sclust = clst;
+[e $ ! == . . *U _fp 0 4 -> -> -> 0 `i `l `ul 351  ]
+[e = . . *U _fp 0 4 _clst ]
+[e :U 351 ]
+"4063
+[; ;fatfs/ff.c: 4063:    }
+}
+[e :U 344 ]
+"4067
+[; ;fatfs/ff.c: 4067:    if (fp->flag & 0x80) {
+[e $ ! != & -> . *U _fp 1 `i -> 128 `i -> 0 `i 352  ]
+{
+"4068
+[; ;fatfs/ff.c: 4068:     if (disk_write(fs->pdrv, fp->buf, fp->sect, 1) != RES_OK) { fp->err = (BYTE)(FR_DISK_ERR); return FR_DISK_ERR; };
+[e $ ! != -> ( _disk_write (4 , , , . *U _fs 1 -> &U . *U _fp 8 `*Cuc . *U _fp 5 -> -> 1 `i `ui `ui -> . `E415 0 `ui 353  ]
+{
+[e = . *U _fp 2 -> . `E275 1 `uc ]
+[e ) . `E275 1 ]
+[e $UE 336  ]
+}
+[e :U 353 ]
+"4069
+[; ;fatfs/ff.c: 4069:     fp->flag &= (BYTE)~0x80;
+[e =& . *U _fp 1 -> -> ~ -> 128 `i `uc `uc ]
+"4070
+[; ;fatfs/ff.c: 4070:    }
+}
+[e :U 352 ]
+"4072
+[; ;fatfs/ff.c: 4072:    sect = clst2sect(fs, fp->clust);
+[e = _sect ( _clst2sect (2 , _fs . *U _fp 4 ]
+"4073
+[; ;fatfs/ff.c: 4073:    if (sect == 0) { fp->err = (BYTE)(FR_INT_ERR); return FR_INT_ERR; };
+[e $ ! == _sect -> -> -> 0 `i `l `ul 354  ]
+{
+[e = . *U _fp 2 -> . `E275 2 `uc ]
+[e ) . `E275 2 ]
+[e $UE 336  ]
+}
+[e :U 354 ]
+"4074
+[; ;fatfs/ff.c: 4074:    sect += csect;
+[e =+ _sect -> _csect `ul ]
+"4075
+[; ;fatfs/ff.c: 4075:    cc = btw / ((UINT)512);
+[e = _cc / _btw -> -> 512 `i `ui ]
+"4076
+[; ;fatfs/ff.c: 4076:    if (cc > 0) {
+[e $ ! > _cc -> -> 0 `i `ui 355  ]
+{
+"4077
+[; ;fatfs/ff.c: 4077:     if (csect + cc > fs->csize) {
+[e $ ! > + _csect _cc -> . *U _fs 8 `ui 356  ]
+{
+"4078
+[; ;fatfs/ff.c: 4078:      cc = fs->csize - csect;
+[e = _cc - -> . *U _fs 8 `ui _csect ]
+"4079
+[; ;fatfs/ff.c: 4079:     }
+}
+[e :U 356 ]
+"4080
+[; ;fatfs/ff.c: 4080:     if (disk_write(fs->pdrv, wbuff, sect, cc) != RES_OK) { fp->err = (BYTE)(FR_DISK_ERR); return FR_DISK_ERR; };
+[e $ ! != -> ( _disk_write (4 , , , . *U _fs 1 _wbuff _sect _cc `ui -> . `E415 0 `ui 357  ]
+{
+[e = . *U _fp 2 -> . `E275 1 `uc ]
+[e ) . `E275 1 ]
+[e $UE 336  ]
+}
+[e :U 357 ]
+"4088
+[; ;fatfs/ff.c: 4088:     if (fp->sect - sect < cc) {
+[e $ ! < - . *U _fp 5 _sect -> _cc `ul 358  ]
+{
+"4089
+[; ;fatfs/ff.c: 4089:      memcpy(fp->buf, wbuff + ((fp->sect - sect) * ((UINT)512)), ((UINT)512));
+[e ( _memcpy (3 , , -> &U . *U _fp 8 `*v -> + _wbuff * -> * - . *U _fp 5 _sect -> -> -> 512 `i `ui `ul `ux -> -> # *U _wbuff `ui `ux `*Cv -> -> 512 `i `ui ]
+"4090
+[; ;fatfs/ff.c: 4090:      fp->flag &= (BYTE)~0x80;
+[e =& . *U _fp 1 -> -> ~ -> 128 `i `uc `uc ]
+"4091
+[; ;fatfs/ff.c: 4091:     }
+}
+[e :U 358 ]
+"4094
+[; ;fatfs/ff.c: 4094:     wcnt = ((UINT)512) * cc;
+[e = _wcnt * -> -> 512 `i `ui _cc ]
+"4095
+[; ;fatfs/ff.c: 4095:     continue;
+[e $U 342  ]
+"4096
+[; ;fatfs/ff.c: 4096:    }
+}
+[e :U 355 ]
+"4103
+[; ;fatfs/ff.c: 4103:    if (fp->sect != sect &&
+[e $ ! && && != . *U _fp 5 _sect < . *U _fp 3 . . *U _fp 0 5 != -> ( _disk_read (4 , , , . *U _fs 1 &U . *U _fp 8 _sect -> -> 1 `i `ui `ui -> . `E415 0 `ui 359  ]
+"4105
+[; ;fatfs/ff.c: 4105:     disk_read(fs->pdrv, fp->buf, sect, 1) != RES_OK) {
+{
+"4106
+[; ;fatfs/ff.c: 4106:      { fp->err = (BYTE)(FR_DISK_ERR); return FR_DISK_ERR; };
+{
+[e = . *U _fp 2 -> . `E275 1 `uc ]
+[e ) . `E275 1 ]
+[e $UE 336  ]
+}
+"4107
+[; ;fatfs/ff.c: 4107:    }
+}
+[e :U 359 ]
+"4109
+[; ;fatfs/ff.c: 4109:    fp->sect = sect;
+[e = . *U _fp 5 _sect ]
+"4110
+[; ;fatfs/ff.c: 4110:   }
+}
+[e :U 343 ]
+"4111
+[; ;fatfs/ff.c: 4111:   wcnt = ((UINT)512) - (UINT)fp->fptr % ((UINT)512);
+[e = _wcnt - -> -> 512 `i `ui % -> . *U _fp 3 `ui -> -> 512 `i `ui ]
+"4112
+[; ;fatfs/ff.c: 4112:   if (wcnt > btw) wcnt = btw;
+[e $ ! > _wcnt _btw 360  ]
+[e = _wcnt _btw ]
+[e :U 360 ]
+"4118
+[; ;fatfs/ff.c: 4118:   memcpy(fp->buf + fp->fptr % ((UINT)512), wbuff, wcnt);
+[e ( _memcpy (3 , , -> + &U . *U _fp 8 * -> % . *U _fp 3 -> -> -> 512 `i `ui `ul `ux -> -> # *U &U . *U _fp 8 `ui `ux `*v -> _wbuff `*Cv _wcnt ]
+"4119
+[; ;fatfs/ff.c: 4119:   fp->flag |= 0x80;
+[e =| . *U _fp 1 -> -> 128 `i `uc ]
+"4121
+[; ;fatfs/ff.c: 4121:  }
+}
+[e :U 342 ]
+[e ; ; ; ; =- _btw _wcnt =+ *U _bw _wcnt =+ _wbuff * -> _wcnt `ux -> -> # *U _wbuff `ui `ux =+ . *U _fp 3 -> _wcnt `ul = . . *U _fp 0 5 ? > . *U _fp 3 . . *U _fp 0 5 : . *U _fp 3 . . *U _fp 0 5 ]
+[e $ > _btw -> -> 0 `i `ui 340  ]
+[e :U 341 ]
+}
+"4123
+[; ;fatfs/ff.c: 4123:  fp->flag |= 0x40;
+[e =| . *U _fp 1 -> -> 64 `i `uc ]
+"4125
+[; ;fatfs/ff.c: 4125:  return FR_OK;
+[e ) . `E275 0 ]
+[e $UE 336  ]
+"4126
+[; ;fatfs/ff.c: 4126: }
+[e :UE 336 ]
+}
+"4135
+[; ;fatfs/ff.c: 4135: FRESULT f_sync (
+[v _f_sync `(E275 ~T0 @X0 1 ef1`*S4 ]
+"4138
+[; ;fatfs/ff.c: 4138: {
+{
+[e :U _f_sync ]
+"4136
+[; ;fatfs/ff.c: 4136:  FIL* fp
+[v _fp `*S4 ~T0 @X0 1 r1 ]
+"4138
+[; ;fatfs/ff.c: 4138: {
+[f ]
+"4139
+[; ;fatfs/ff.c: 4139:  FRESULT res;
+[v _res `E275 ~T0 @X0 1 a ]
+"4140
+[; ;fatfs/ff.c: 4140:  FATFS *fs;
+[v _fs `*S2 ~T0 @X0 1 a ]
+"4141
+[; ;fatfs/ff.c: 4141:  DWORD tm;
+[v _tm `ul ~T0 @X0 1 a ]
+"4142
+[; ;fatfs/ff.c: 4142:  BYTE *dir;
+[v _dir `*uc ~T0 @X0 1 a ]
+"4145
+[; ;fatfs/ff.c: 4145:  res = validate(&fp->obj, &fs);
+[e = _res ( _validate (2 , &U . *U _fp 0 &U _fs ]
+"4146
+[; ;fatfs/ff.c: 4146:  if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 362  ]
+{
+"4147
+[; ;fatfs/ff.c: 4147:   if (fp->flag & 0x40) {
+[e $ ! != & -> . *U _fp 1 `i -> 64 `i -> 0 `i 363  ]
+{
+"4149
+[; ;fatfs/ff.c: 4149:    if (fp->flag & 0x80) {
+[e $ ! != & -> . *U _fp 1 `i -> 128 `i -> 0 `i 364  ]
+{
+"4150
+[; ;fatfs/ff.c: 4150:     if (disk_write(fs->pdrv, fp->buf, fp->sect, 1) != RES_OK) return FR_DISK_ERR;
+[e $ ! != -> ( _disk_write (4 , , , . *U _fs 1 -> &U . *U _fp 8 `*Cuc . *U _fp 5 -> -> 1 `i `ui `ui -> . `E415 0 `ui 365  ]
+[e ) . `E275 1 ]
+[e $UE 361  ]
+[e :U 365 ]
+"4151
+[; ;fatfs/ff.c: 4151:     fp->flag &= (BYTE)~0x80;
+[e =& . *U _fp 1 -> -> ~ -> 128 `i `uc `uc ]
+"4152
+[; ;fatfs/ff.c: 4152:    }
+}
+[e :U 364 ]
+"4155
+[; ;fatfs/ff.c: 4155:    tm = get_fattime();
+[e = _tm ( _get_fattime ..  ]
+"4187
+[; ;fatfs/ff.c: 4187:    {
+{
+"4188
+[; ;fatfs/ff.c: 4188:     res = move_window(fs, fp->dir_sect);
+[e = _res ( _move_window (2 , _fs . *U _fp 6 ]
+"4189
+[; ;fatfs/ff.c: 4189:     if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 366  ]
+{
+"4190
+[; ;fatfs/ff.c: 4190:      dir = fp->dir_ptr;
+[e = _dir . *U _fp 7 ]
+"4191
+[; ;fatfs/ff.c: 4191:      dir[11] |= 0x20;
+[e =| *U + _dir * -> -> 11 `i `x -> -> # *U _dir `i `x -> -> 32 `i `uc ]
+"4192
+[; ;fatfs/ff.c: 4192:      st_clust(fp->obj.fs, dir, fp->obj.sclust);
+[e ( _st_clust (3 , , . . *U _fp 0 0 _dir . . *U _fp 0 4 ]
+"4193
+[; ;fatfs/ff.c: 4193:      st_dword(dir + 28, (DWORD)fp->obj.objsize);
+[e ( _st_dword (2 , + _dir * -> -> 28 `i `x -> -> # *U _dir `i `x . . *U _fp 0 5 ]
+"4194
+[; ;fatfs/ff.c: 4194:      st_dword(dir + 22, tm);
+[e ( _st_dword (2 , + _dir * -> -> 22 `i `x -> -> # *U _dir `i `x _tm ]
+"4195
+[; ;fatfs/ff.c: 4195:      st_word(dir + 18, 0);
+[e ( _st_word (2 , + _dir * -> -> 18 `i `x -> -> # *U _dir `i `x -> -> 0 `i `us ]
+"4196
+[; ;fatfs/ff.c: 4196:      fs->wflag = 1;
+[e = . *U _fs 4 -> -> 1 `i `uc ]
+"4197
+[; ;fatfs/ff.c: 4197:      res = sync_fs(fs);
+[e = _res ( _sync_fs (1 _fs ]
+"4198
+[; ;fatfs/ff.c: 4198:      fp->flag &= (BYTE)~0x40;
+[e =& . *U _fp 1 -> -> ~ -> 64 `i `uc `uc ]
+"4199
+[; ;fatfs/ff.c: 4199:     }
+}
+[e :U 366 ]
+"4200
+[; ;fatfs/ff.c: 4200:    }
+}
+"4201
+[; ;fatfs/ff.c: 4201:   }
+}
+[e :U 363 ]
+"4202
+[; ;fatfs/ff.c: 4202:  }
+}
+[e :U 362 ]
+"4204
+[; ;fatfs/ff.c: 4204:  return res;
+[e ) _res ]
+[e $UE 361  ]
+"4205
+[; ;fatfs/ff.c: 4205: }
+[e :UE 361 ]
+}
+"4216
+[; ;fatfs/ff.c: 4216: FRESULT f_close (
+[v _f_close `(E275 ~T0 @X0 1 ef1`*S4 ]
+"4219
+[; ;fatfs/ff.c: 4219: {
+{
+[e :U _f_close ]
+"4217
+[; ;fatfs/ff.c: 4217:  FIL* fp
+[v _fp `*S4 ~T0 @X0 1 r1 ]
+"4219
+[; ;fatfs/ff.c: 4219: {
+[f ]
+"4220
+[; ;fatfs/ff.c: 4220:  FRESULT res;
+[v _res `E275 ~T0 @X0 1 a ]
+"4221
+[; ;fatfs/ff.c: 4221:  FATFS *fs;
+[v _fs `*S2 ~T0 @X0 1 a ]
+"4224
+[; ;fatfs/ff.c: 4224:  res = f_sync(fp);
+[e = _res ( _f_sync (1 _fp ]
+"4225
+[; ;fatfs/ff.c: 4225:  if (res == FR_OK)
+[e $ ! == -> _res `ui -> . `E275 0 `ui 368  ]
+"4227
+[; ;fatfs/ff.c: 4227:  {
+{
+"4228
+[; ;fatfs/ff.c: 4228:   res = validate(&fp->obj, &fs);
+[e = _res ( _validate (2 , &U . *U _fp 0 &U _fs ]
+"4229
+[; ;fatfs/ff.c: 4229:   if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 369  ]
+{
+"4234
+[; ;fatfs/ff.c: 4234:    fp->obj.fs = 0;
+[e = . . *U _fp 0 0 -> -> 0 `i `*S2 ]
+"4239
+[; ;fatfs/ff.c: 4239:   }
+}
+[e :U 369 ]
+"4240
+[; ;fatfs/ff.c: 4240:  }
+}
+[e :U 368 ]
+"4241
+[; ;fatfs/ff.c: 4241:  return res;
+[e ) _res ]
+[e $UE 367  ]
+"4242
+[; ;fatfs/ff.c: 4242: }
+[e :UE 367 ]
+}
+"4433
+[; ;fatfs/ff.c: 4433: FRESULT f_lseek (
+[v _f_lseek `(E275 ~T0 @X0 1 ef2`*S4`ul ]
+"4437
+[; ;fatfs/ff.c: 4437: {
+{
+[e :U _f_lseek ]
+"4434
+[; ;fatfs/ff.c: 4434:  FIL* fp,
+[v _fp `*S4 ~T0 @X0 1 r1 ]
+"4435
+[; ;fatfs/ff.c: 4435:  FSIZE_t ofs
+[v _ofs `ul ~T0 @X0 1 r2 ]
+"4437
+[; ;fatfs/ff.c: 4437: {
+[f ]
+"4438
+[; ;fatfs/ff.c: 4438:  FRESULT res;
+[v _res `E275 ~T0 @X0 1 a ]
+"4439
+[; ;fatfs/ff.c: 4439:  FATFS *fs;
+[v _fs `*S2 ~T0 @X0 1 a ]
+"4440
+[; ;fatfs/ff.c: 4440:  DWORD clst, bcs;
+[v _clst `ul ~T0 @X0 1 a ]
+[v _bcs `ul ~T0 @X0 1 a ]
+"4441
+[; ;fatfs/ff.c: 4441:  LBA_t nsect;
+[v _nsect `ul ~T0 @X0 1 a ]
+"4442
+[; ;fatfs/ff.c: 4442:  FSIZE_t ifptr;
+[v _ifptr `ul ~T0 @X0 1 a ]
+"4449
+[; ;fatfs/ff.c: 4449:  res = validate(&fp->obj, &fs);
+[e = _res ( _validate (2 , &U . *U _fp 0 &U _fs ]
+"4450
+[; ;fatfs/ff.c: 4450:  if (res == FR_OK) res = (FRESULT)fp->err;
+[e $ ! == -> _res `ui -> . `E275 0 `ui 371  ]
+[e = _res -> . *U _fp 2 `E275 ]
+[e :U 371 ]
+"4456
+[; ;fatfs/ff.c: 4456:  if (res != FR_OK) return res;
+[e $ ! != -> _res `ui -> . `E275 0 `ui 372  ]
+[e ) _res ]
+[e $UE 370  ]
+[e :U 372 ]
+"4511
+[; ;fatfs/ff.c: 4511:  {
+{
+"4515
+[; ;fatfs/ff.c: 4515:   if (ofs > fp->obj.objsize && (0 || !(fp->flag & 0x02))) {
+[e $ ! && > _ofs . . *U _fp 0 5 || != -> 0 `i -> 0 `i ! != & -> . *U _fp 1 `i -> 2 `i -> 0 `i 373  ]
+{
+"4516
+[; ;fatfs/ff.c: 4516:    ofs = fp->obj.objsize;
+[e = _ofs . . *U _fp 0 5 ]
+"4517
+[; ;fatfs/ff.c: 4517:   }
+}
+[e :U 373 ]
+"4518
+[; ;fatfs/ff.c: 4518:   ifptr = fp->fptr;
+[e = _ifptr . *U _fp 3 ]
+"4519
+[; ;fatfs/ff.c: 4519:   fp->fptr = nsect = 0;
+[e = . *U _fp 3 = _nsect -> -> -> 0 `i `l `ul ]
+"4520
+[; ;fatfs/ff.c: 4520:   if (ofs > 0) {
+[e $ ! > _ofs -> -> -> 0 `i `l `ul 374  ]
+{
+"4521
+[; ;fatfs/ff.c: 4521:    bcs = (DWORD)fs->csize * ((UINT)512);
+[e = _bcs * -> . *U _fs 8 `ul -> -> -> 512 `i `ui `ul ]
+"4522
+[; ;fatfs/ff.c: 4522:    if (ifptr > 0 &&
+[e $ ! && > _ifptr -> -> -> 0 `i `l `ul >= / - _ofs -> -> -> 1 `i `l `ul _bcs / - _ifptr -> -> -> 1 `i `l `ul _bcs 375  ]
+"4523
+[; ;fatfs/ff.c: 4523:     (ofs - 1) / bcs >= (ifptr - 1) / bcs) {
+{
+"4524
+[; ;fatfs/ff.c: 4524:     fp->fptr = (ifptr - 1) & ~(FSIZE_t)(bcs - 1);
+[e = . *U _fp 3 & - _ifptr -> -> -> 1 `i `l `ul ~ - _bcs -> -> -> 1 `i `l `ul ]
+"4525
+[; ;fatfs/ff.c: 4525:     ofs -= fp->fptr;
+[e =- _ofs . *U _fp 3 ]
+"4526
+[; ;fatfs/ff.c: 4526:     clst = fp->clust;
+[e = _clst . *U _fp 4 ]
+"4527
+[; ;fatfs/ff.c: 4527:    } else {
+}
+[e $U 376  ]
+[e :U 375 ]
+{
+"4528
+[; ;fatfs/ff.c: 4528:     clst = fp->obj.sclust;
+[e = _clst . . *U _fp 0 4 ]
+"4530
+[; ;fatfs/ff.c: 4530:     if (clst == 0) {
+[e $ ! == _clst -> -> -> 0 `i `l `ul 377  ]
+{
+"4531
+[; ;fatfs/ff.c: 4531:      clst = create_chain(&fp->obj, 0);
+[e = _clst ( _create_chain (2 , &U . *U _fp 0 -> -> -> 0 `i `l `ul ]
+"4532
+[; ;fatfs/ff.c: 4532:      if (clst == 1) { fp->err = (BYTE)(FR_INT_ERR); return FR_INT_ERR; };
+[e $ ! == _clst -> -> -> 1 `i `l `ul 378  ]
+{
+[e = . *U _fp 2 -> . `E275 2 `uc ]
+[e ) . `E275 2 ]
+[e $UE 370  ]
+}
+[e :U 378 ]
+"4533
+[; ;fatfs/ff.c: 4533:      if (clst == 0xFFFFFFFF) { fp->err = (BYTE)(FR_DISK_ERR); return FR_DISK_ERR; };
+[e $ ! == _clst -> 4294967295 `ul 379  ]
+{
+[e = . *U _fp 2 -> . `E275 1 `uc ]
+[e ) . `E275 1 ]
+[e $UE 370  ]
+}
+[e :U 379 ]
+"4534
+[; ;fatfs/ff.c: 4534:      fp->obj.sclust = clst;
+[e = . . *U _fp 0 4 _clst ]
+"4535
+[; ;fatfs/ff.c: 4535:     }
+}
+[e :U 377 ]
+"4537
+[; ;fatfs/ff.c: 4537:     fp->clust = clst;
+[e = . *U _fp 4 _clst ]
+"4538
+[; ;fatfs/ff.c: 4538:    }
+}
+[e :U 376 ]
+"4539
+[; ;fatfs/ff.c: 4539:    if (clst != 0) {
+[e $ ! != _clst -> -> -> 0 `i `l `ul 380  ]
+{
+"4540
+[; ;fatfs/ff.c: 4540:     while (ofs > bcs) {
+[e $U 381  ]
+[e :U 382 ]
+{
+"4541
+[; ;fatfs/ff.c: 4541:      ofs -= bcs; fp->fptr += bcs;
+[e =- _ofs _bcs ]
+[e =+ . *U _fp 3 _bcs ]
+"4543
+[; ;fatfs/ff.c: 4543:      if (fp->flag & 0x02) {
+[e $ ! != & -> . *U _fp 1 `i -> 2 `i -> 0 `i 384  ]
+{
+"4544
+[; ;fatfs/ff.c: 4544:       if (0 && fp->fptr > fp->obj.objsize) {
+[e $ ! && != -> 0 `i -> 0 `i > . *U _fp 3 . . *U _fp 0 5 385  ]
+{
+"4545
+[; ;fatfs/ff.c: 4545:        fp->obj.objsize = fp->fptr;
+[e = . . *U _fp 0 5 . *U _fp 3 ]
+"4546
+[; ;fatfs/ff.c: 4546:        fp->flag |= 0x40;
+[e =| . *U _fp 1 -> -> 64 `i `uc ]
+"4547
+[; ;fatfs/ff.c: 4547:       }
+}
+[e :U 385 ]
+"4548
+[; ;fatfs/ff.c: 4548:       clst = create_chain(&fp->obj, clst);
+[e = _clst ( _create_chain (2 , &U . *U _fp 0 _clst ]
+"4549
+[; ;fatfs/ff.c: 4549:       if (clst == 0) {
+[e $ ! == _clst -> -> -> 0 `i `l `ul 386  ]
+{
+"4550
+[; ;fatfs/ff.c: 4550:        ofs = 0; break;
+[e = _ofs -> -> -> 0 `i `l `ul ]
+[e $U 383  ]
+"4551
+[; ;fatfs/ff.c: 4551:       }
+}
+[e :U 386 ]
+"4552
+[; ;fatfs/ff.c: 4552:      } else
+}
+[e $U 387  ]
+[e :U 384 ]
+"4554
+[; ;fatfs/ff.c: 4554:      {
+{
+"4555
+[; ;fatfs/ff.c: 4555:       clst = get_fat(&fp->obj, clst);
+[e = _clst ( _get_fat (2 , &U . *U _fp 0 _clst ]
+"4556
+[; ;fatfs/ff.c: 4556:      }
+}
+[e :U 387 ]
+"4557
+[; ;fatfs/ff.c: 4557:      if (clst == 0xFFFFFFFF) { fp->err = (BYTE)(FR_DISK_ERR); return FR_DISK_ERR; };
+[e $ ! == _clst -> 4294967295 `ul 388  ]
+{
+[e = . *U _fp 2 -> . `E275 1 `uc ]
+[e ) . `E275 1 ]
+[e $UE 370  ]
+}
+[e :U 388 ]
+"4558
+[; ;fatfs/ff.c: 4558:      if (clst <= 1 || clst >= fs->n_fatent) { fp->err = (BYTE)(FR_INT_ERR); return FR_INT_ERR; };
+[e $ ! || <= _clst -> -> -> 1 `i `l `ul >= _clst . *U _fs 11 389  ]
+{
+[e = . *U _fp 2 -> . `E275 2 `uc ]
+[e ) . `E275 2 ]
+[e $UE 370  ]
+}
+[e :U 389 ]
+"4559
+[; ;fatfs/ff.c: 4559:      fp->clust = clst;
+[e = . *U _fp 4 _clst ]
+"4560
+[; ;fatfs/ff.c: 4560:     }
+}
+[e :U 381 ]
+"4540
+[; ;fatfs/ff.c: 4540:     while (ofs > bcs) {
+[e $ > _ofs _bcs 382  ]
+[e :U 383 ]
+"4561
+[; ;fatfs/ff.c: 4561:     fp->fptr += ofs;
+[e =+ . *U _fp 3 _ofs ]
+"4562
+[; ;fatfs/ff.c: 4562:     if (ofs % ((UINT)512)) {
+[e $ ! != % _ofs -> -> -> 512 `i `ui `ul -> -> -> 0 `i `l `ul 390  ]
+{
+"4563
+[; ;fatfs/ff.c: 4563:      nsect = clst2sect(fs, clst);
+[e = _nsect ( _clst2sect (2 , _fs _clst ]
+"4564
+[; ;fatfs/ff.c: 4564:      if (nsect == 0) { fp->err = (BYTE)(FR_INT_ERR); return FR_INT_ERR; };
+[e $ ! == _nsect -> -> -> 0 `i `l `ul 391  ]
+{
+[e = . *U _fp 2 -> . `E275 2 `uc ]
+[e ) . `E275 2 ]
+[e $UE 370  ]
+}
+[e :U 391 ]
+"4565
+[; ;fatfs/ff.c: 4565:      nsect += (DWORD)(ofs / ((UINT)512));
+[e =+ _nsect / _ofs -> -> -> 512 `i `ui `ul ]
+"4566
+[; ;fatfs/ff.c: 4566:     }
+}
+[e :U 390 ]
+"4567
+[; ;fatfs/ff.c: 4567:    }
+}
+[e :U 380 ]
+"4568
+[; ;fatfs/ff.c: 4568:   }
+}
+[e :U 374 ]
+"4569
+[; ;fatfs/ff.c: 4569:   if (!0 && fp->fptr > fp->obj.objsize) {
+[e $ ! && ! != -> 0 `i -> 0 `i > . *U _fp 3 . . *U _fp 0 5 392  ]
+{
+"4570
+[; ;fatfs/ff.c: 4570:    fp->obj.objsize = fp->fptr;
+[e = . . *U _fp 0 5 . *U _fp 3 ]
+"4571
+[; ;fatfs/ff.c: 4571:    fp->flag |= 0x40;
+[e =| . *U _fp 1 -> -> 64 `i `uc ]
+"4572
+[; ;fatfs/ff.c: 4572:   }
+}
+[e :U 392 ]
+"4573
+[; ;fatfs/ff.c: 4573:   if (fp->fptr % ((UINT)512) && nsect != fp->sect) {
+[e $ ! && != % . *U _fp 3 -> -> -> 512 `i `ui `ul -> -> -> 0 `i `l `ul != _nsect . *U _fp 5 393  ]
+{
+"4576
+[; ;fatfs/ff.c: 4576:    if (fp->flag & 0x80) {
+[e $ ! != & -> . *U _fp 1 `i -> 128 `i -> 0 `i 394  ]
+{
+"4577
+[; ;fatfs/ff.c: 4577:     if (disk_write(fs->pdrv, fp->buf, fp->sect, 1) != RES_OK) { fp->err = (BYTE)(FR_DISK_ERR); return FR_DISK_ERR; };
+[e $ ! != -> ( _disk_write (4 , , , . *U _fs 1 -> &U . *U _fp 8 `*Cuc . *U _fp 5 -> -> 1 `i `ui `ui -> . `E415 0 `ui 395  ]
+{
+[e = . *U _fp 2 -> . `E275 1 `uc ]
+[e ) . `E275 1 ]
+[e $UE 370  ]
+}
+[e :U 395 ]
+"4578
+[; ;fatfs/ff.c: 4578:     fp->flag &= (BYTE)~0x80;
+[e =& . *U _fp 1 -> -> ~ -> 128 `i `uc `uc ]
+"4579
+[; ;fatfs/ff.c: 4579:    }
+}
+[e :U 394 ]
+"4581
+[; ;fatfs/ff.c: 4581:    if (disk_read(fs->pdrv, fp->buf, nsect, 1) != RES_OK) { fp->err = (BYTE)(FR_DISK_ERR); return FR_DISK_ERR; };
+[e $ ! != -> ( _disk_read (4 , , , . *U _fs 1 &U . *U _fp 8 _nsect -> -> 1 `i `ui `ui -> . `E415 0 `ui 396  ]
+{
+[e = . *U _fp 2 -> . `E275 1 `uc ]
+[e ) . `E275 1 ]
+[e $UE 370  ]
+}
+[e :U 396 ]
+"4583
+[; ;fatfs/ff.c: 4583:    fp->sect = nsect;
+[e = . *U _fp 5 _nsect ]
+"4584
+[; ;fatfs/ff.c: 4584:   }
+}
+[e :U 393 ]
+"4585
+[; ;fatfs/ff.c: 4585:  }
+}
+"4587
+[; ;fatfs/ff.c: 4587:  return res;
+[e ) _res ]
+[e $UE 370  ]
+"4588
+[; ;fatfs/ff.c: 4588: }
+[e :UE 370 ]
+}
+"4597
+[; ;fatfs/ff.c: 4597: FRESULT f_opendir (
+[v _f_opendir `(E275 ~T0 @X0 1 ef2`*S5`*Cuc ]
+"4601
+[; ;fatfs/ff.c: 4601: {
+{
+[e :U _f_opendir ]
+"4598
+[; ;fatfs/ff.c: 4598:  DIR* dp,
+[v _dp `*S5 ~T0 @X0 1 r1 ]
+"4599
+[; ;fatfs/ff.c: 4599:  const TCHAR* path
+[v _path `*Cuc ~T0 @X0 1 r2 ]
+"4601
+[; ;fatfs/ff.c: 4601: {
+[f ]
+"4602
+[; ;fatfs/ff.c: 4602:  FRESULT res;
+[v _res `E275 ~T0 @X0 1 a ]
+"4603
+[; ;fatfs/ff.c: 4603:  FATFS *fs;
+[v _fs `*S2 ~T0 @X0 1 a ]
+"4607
+[; ;fatfs/ff.c: 4607:  if (!dp) return FR_INVALID_OBJECT;
+[e $ ! ! != _dp -> -> 0 `i `*S5 398  ]
+[e ) . `E275 9 ]
+[e $UE 397  ]
+[e :U 398 ]
+"4610
+[; ;fatfs/ff.c: 4610:  res = mount_volume(&path, &fs, 0);
+[e = _res ( _mount_volume (3 , , &U _path &U _fs -> -> 0 `i `uc ]
+"4611
+[; ;fatfs/ff.c: 4611:  if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 399  ]
+{
+"4612
+[; ;fatfs/ff.c: 4612:   dp->obj.fs = fs;
+[e = . . *U _dp 0 0 _fs ]
+"4614
+[; ;fatfs/ff.c: 4614:   res = follow_path(dp, path);
+[e = _res ( _follow_path (2 , _dp _path ]
+"4615
+[; ;fatfs/ff.c: 4615:   if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 400  ]
+{
+"4616
+[; ;fatfs/ff.c: 4616:    if (!(dp->fn[11] & 0x80)) {
+[e $ ! ! != & -> *U + &U . *U _dp 5 * -> -> -> 11 `i `ui `ux -> -> # *U &U . *U _dp 5 `ui `ux `i -> 128 `i -> 0 `i 401  ]
+{
+"4617
+[; ;fatfs/ff.c: 4617:     if (dp->obj.attr & 0x10) {
+[e $ ! != & -> . . *U _dp 0 2 `i -> 16 `i -> 0 `i 402  ]
+{
+"4626
+[; ;fatfs/ff.c: 4626:      {
+{
+"4627
+[; ;fatfs/ff.c: 4627:       dp->obj.sclust = ld_clust(fs, dp->dir);
+[e = . . *U _dp 0 4 ( _ld_clust (2 , _fs -> . *U _dp 4 `*Cuc ]
+"4628
+[; ;fatfs/ff.c: 4628:      }
+}
+"4629
+[; ;fatfs/ff.c: 4629:     } else {
+}
+[e $U 403  ]
+[e :U 402 ]
+{
+"4630
+[; ;fatfs/ff.c: 4630:      res = FR_NO_PATH;
+[e = _res . `E275 5 ]
+"4631
+[; ;fatfs/ff.c: 4631:     }
+}
+[e :U 403 ]
+"4632
+[; ;fatfs/ff.c: 4632:    }
+}
+[e :U 401 ]
+"4633
+[; ;fatfs/ff.c: 4633:    if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 404  ]
+{
+"4634
+[; ;fatfs/ff.c: 4634:     dp->obj.id = fs->id;
+[e = . . *U _dp 0 1 . *U _fs 6 ]
+"4635
+[; ;fatfs/ff.c: 4635:     res = dir_sdi(dp, 0);
+[e = _res ( _dir_sdi (2 , _dp -> -> -> 0 `i `l `ul ]
+"4646
+[; ;fatfs/ff.c: 4646:    }
+}
+[e :U 404 ]
+"4647
+[; ;fatfs/ff.c: 4647:   }
+}
+[e :U 400 ]
+"4649
+[; ;fatfs/ff.c: 4649:   if (res == FR_NO_FILE) res = FR_NO_PATH;
+[e $ ! == -> _res `ui -> . `E275 4 `ui 405  ]
+[e = _res . `E275 5 ]
+[e :U 405 ]
+"4650
+[; ;fatfs/ff.c: 4650:  }
+}
+[e :U 399 ]
+"4651
+[; ;fatfs/ff.c: 4651:  if (res != FR_OK) dp->obj.fs = 0;
+[e $ ! != -> _res `ui -> . `E275 0 `ui 406  ]
+[e = . . *U _dp 0 0 -> -> 0 `i `*S2 ]
+[e :U 406 ]
+"4653
+[; ;fatfs/ff.c: 4653:  return res;
+[e ) _res ]
+[e $UE 397  ]
+"4654
+[; ;fatfs/ff.c: 4654: }
+[e :UE 397 ]
+}
+"4663
+[; ;fatfs/ff.c: 4663: FRESULT f_closedir (
+[v _f_closedir `(E275 ~T0 @X0 1 ef1`*S5 ]
+"4666
+[; ;fatfs/ff.c: 4666: {
+{
+[e :U _f_closedir ]
+"4664
+[; ;fatfs/ff.c: 4664:  DIR *dp
+[v _dp `*S5 ~T0 @X0 1 r1 ]
+"4666
+[; ;fatfs/ff.c: 4666: {
+[f ]
+"4667
+[; ;fatfs/ff.c: 4667:  FRESULT res;
+[v _res `E275 ~T0 @X0 1 a ]
+"4668
+[; ;fatfs/ff.c: 4668:  FATFS *fs;
+[v _fs `*S2 ~T0 @X0 1 a ]
+"4671
+[; ;fatfs/ff.c: 4671:  res = validate(&dp->obj, &fs);
+[e = _res ( _validate (2 , &U . *U _dp 0 &U _fs ]
+"4672
+[; ;fatfs/ff.c: 4672:  if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 408  ]
+{
+"4677
+[; ;fatfs/ff.c: 4677:   dp->obj.fs = 0;
+[e = . . *U _dp 0 0 -> -> 0 `i `*S2 ]
+"4682
+[; ;fatfs/ff.c: 4682:  }
+}
+[e :U 408 ]
+"4683
+[; ;fatfs/ff.c: 4683:  return res;
+[e ) _res ]
+[e $UE 407  ]
+"4684
+[; ;fatfs/ff.c: 4684: }
+[e :UE 407 ]
+}
+"4693
+[; ;fatfs/ff.c: 4693: FRESULT f_readdir (
+[v _f_readdir `(E275 ~T0 @X0 1 ef2`*S5`*S6 ]
+"4697
+[; ;fatfs/ff.c: 4697: {
+{
+[e :U _f_readdir ]
+"4694
+[; ;fatfs/ff.c: 4694:  DIR* dp,
+[v _dp `*S5 ~T0 @X0 1 r1 ]
+"4695
+[; ;fatfs/ff.c: 4695:  FILINFO* fno
+[v _fno `*S6 ~T0 @X0 1 r2 ]
+"4697
+[; ;fatfs/ff.c: 4697: {
+[f ]
+"4698
+[; ;fatfs/ff.c: 4698:  FRESULT res;
+[v _res `E275 ~T0 @X0 1 a ]
+"4699
+[; ;fatfs/ff.c: 4699:  FATFS *fs;
+[v _fs `*S2 ~T0 @X0 1 a ]
+"4703
+[; ;fatfs/ff.c: 4703:  res = validate(&dp->obj, &fs);
+[e = _res ( _validate (2 , &U . *U _dp 0 &U _fs ]
+"4704
+[; ;fatfs/ff.c: 4704:  if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 410  ]
+{
+"4705
+[; ;fatfs/ff.c: 4705:   if (!fno) {
+[e $ ! ! != _fno -> -> 0 `i `*S6 411  ]
+{
+"4706
+[; ;fatfs/ff.c: 4706:    res = dir_sdi(dp, 0);
+[e = _res ( _dir_sdi (2 , _dp -> -> -> 0 `i `l `ul ]
+"4707
+[; ;fatfs/ff.c: 4707:   } else {
+}
+[e $U 412  ]
+[e :U 411 ]
+{
+"4709
+[; ;fatfs/ff.c: 4709:    res = dir_read(dp, 0);
+[e = _res ( _dir_read (2 , _dp -> 0 `i ]
+"4710
+[; ;fatfs/ff.c: 4710:    if (res == FR_NO_FILE) res = FR_OK;
+[e $ ! == -> _res `ui -> . `E275 4 `ui 413  ]
+[e = _res . `E275 0 ]
+[e :U 413 ]
+"4711
+[; ;fatfs/ff.c: 4711:    if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 414  ]
+{
+"4712
+[; ;fatfs/ff.c: 4712:     get_fileinfo(dp, fno);
+[e ( _get_fileinfo (2 , _dp _fno ]
+"4713
+[; ;fatfs/ff.c: 4713:     res = dir_next(dp, 0);
+[e = _res ( _dir_next (2 , _dp -> 0 `i ]
+"4714
+[; ;fatfs/ff.c: 4714:     if (res == FR_NO_FILE) res = FR_OK;
+[e $ ! == -> _res `ui -> . `E275 4 `ui 415  ]
+[e = _res . `E275 0 ]
+[e :U 415 ]
+"4715
+[; ;fatfs/ff.c: 4715:    }
+}
+[e :U 414 ]
+"4717
+[; ;fatfs/ff.c: 4717:   }
+}
+[e :U 412 ]
+"4718
+[; ;fatfs/ff.c: 4718:  }
+}
+[e :U 410 ]
+"4719
+[; ;fatfs/ff.c: 4719:  return res;
+[e ) _res ]
+[e $UE 409  ]
+"4720
+[; ;fatfs/ff.c: 4720: }
+[e :UE 409 ]
+}
+"4781
+[; ;fatfs/ff.c: 4781: FRESULT f_stat (
+[v _f_stat `(E275 ~T0 @X0 1 ef2`*Cuc`*S6 ]
+"4785
+[; ;fatfs/ff.c: 4785: {
+{
+[e :U _f_stat ]
+"4782
+[; ;fatfs/ff.c: 4782:  const TCHAR* path,
+[v _path `*Cuc ~T0 @X0 1 r1 ]
+"4783
+[; ;fatfs/ff.c: 4783:  FILINFO* fno
+[v _fno `*S6 ~T0 @X0 1 r2 ]
+"4785
+[; ;fatfs/ff.c: 4785: {
+[f ]
+"4786
+[; ;fatfs/ff.c: 4786:  FRESULT res;
+[v _res `E275 ~T0 @X0 1 a ]
+"4787
+[; ;fatfs/ff.c: 4787:  DIR dj;
+[v _dj `S5 ~T0 @X0 1 a ]
+"4792
+[; ;fatfs/ff.c: 4792:  res = mount_volume(&path, &dj.obj.fs, 0);
+[e = _res ( _mount_volume (3 , , &U _path &U . . _dj 0 0 -> -> 0 `i `uc ]
+"4793
+[; ;fatfs/ff.c: 4793:  if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 417  ]
+{
+"4795
+[; ;fatfs/ff.c: 4795:   res = follow_path(&dj, path);
+[e = _res ( _follow_path (2 , &U _dj _path ]
+"4796
+[; ;fatfs/ff.c: 4796:   if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 418  ]
+{
+"4797
+[; ;fatfs/ff.c: 4797:    if (dj.fn[11] & 0x80) {
+[e $ ! != & -> *U + &U . _dj 5 * -> -> -> 11 `i `ui `ux -> -> # *U &U . _dj 5 `ui `ux `i -> 128 `i -> 0 `i 419  ]
+{
+"4798
+[; ;fatfs/ff.c: 4798:     res = FR_INVALID_NAME;
+[e = _res . `E275 6 ]
+"4799
+[; ;fatfs/ff.c: 4799:    } else {
+}
+[e $U 420  ]
+[e :U 419 ]
+{
+"4800
+[; ;fatfs/ff.c: 4800:     if (fno) get_fileinfo(&dj, fno);
+[e $ ! != _fno -> -> 0 `i `*S6 421  ]
+[e ( _get_fileinfo (2 , &U _dj _fno ]
+[e :U 421 ]
+"4801
+[; ;fatfs/ff.c: 4801:    }
+}
+[e :U 420 ]
+"4802
+[; ;fatfs/ff.c: 4802:   }
+}
+[e :U 418 ]
+"4804
+[; ;fatfs/ff.c: 4804:  }
+}
+[e :U 417 ]
+"4806
+[; ;fatfs/ff.c: 4806:  return res;
+[e ) _res ]
+[e $UE 416  ]
+"4807
+[; ;fatfs/ff.c: 4807: }
+[e :UE 416 ]
+}
+"4816
+[; ;fatfs/ff.c: 4816: FRESULT f_getfree (
+[v _f_getfree `(E275 ~T0 @X0 1 ef3`*Cuc`*ul`**S2 ]
+"4821
+[; ;fatfs/ff.c: 4821: {
+{
+[e :U _f_getfree ]
+"4817
+[; ;fatfs/ff.c: 4817:  const TCHAR* path,
+[v _path `*Cuc ~T0 @X0 1 r1 ]
+"4818
+[; ;fatfs/ff.c: 4818:  DWORD* nclst,
+[v _nclst `*ul ~T0 @X0 1 r2 ]
+"4819
+[; ;fatfs/ff.c: 4819:  FATFS** fatfs
+[v _fatfs `**S2 ~T0 @X0 1 r3 ]
+"4821
+[; ;fatfs/ff.c: 4821: {
+[f ]
+"4822
+[; ;fatfs/ff.c: 4822:  FRESULT res;
+[v _res `E275 ~T0 @X0 1 a ]
+"4823
+[; ;fatfs/ff.c: 4823:  FATFS *fs;
+[v _fs `*S2 ~T0 @X0 1 a ]
+"4824
+[; ;fatfs/ff.c: 4824:  DWORD nfree, clst, stat;
+[v _nfree `ul ~T0 @X0 1 a ]
+[v _clst `ul ~T0 @X0 1 a ]
+[v _stat `ul ~T0 @X0 1 a ]
+"4825
+[; ;fatfs/ff.c: 4825:  LBA_t sect;
+[v _sect `ul ~T0 @X0 1 a ]
+"4826
+[; ;fatfs/ff.c: 4826:  UINT i;
+[v _i `ui ~T0 @X0 1 a ]
+"4827
+[; ;fatfs/ff.c: 4827:  FFOBJID obj;
+[v _obj `S3 ~T0 @X0 1 a ]
+"4831
+[; ;fatfs/ff.c: 4831:  res = mount_volume(&path, &fs, 0);
+[e = _res ( _mount_volume (3 , , &U _path &U _fs -> -> 0 `i `uc ]
+"4832
+[; ;fatfs/ff.c: 4832:  if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 423  ]
+{
+"4833
+[; ;fatfs/ff.c: 4833:   *fatfs = fs;
+[e = *U _fatfs _fs ]
+"4835
+[; ;fatfs/ff.c: 4835:   if (fs->free_clst <= fs->n_fatent - 2) {
+[e $ ! <= . *U _fs 10 - . *U _fs 11 -> -> -> 2 `i `l `ul 424  ]
+{
+"4836
+[; ;fatfs/ff.c: 4836:    *nclst = fs->free_clst;
+[e = *U _nclst . *U _fs 10 ]
+"4837
+[; ;fatfs/ff.c: 4837:   } else {
+}
+[e $U 425  ]
+[e :U 424 ]
+{
+"4839
+[; ;fatfs/ff.c: 4839:    nfree = 0;
+[e = _nfree -> -> -> 0 `i `l `ul ]
+"4840
+[; ;fatfs/ff.c: 4840:    if (fs->fs_type == 1) {
+[e $ ! == -> . *U _fs 0 `i -> 1 `i 426  ]
+{
+"4841
+[; ;fatfs/ff.c: 4841:     clst = 2; obj.fs = fs;
+[e = _clst -> -> -> 2 `i `l `ul ]
+[e = . _obj 0 _fs ]
+"4842
+[; ;fatfs/ff.c: 4842:     do {
+[e :U 429 ]
+{
+"4843
+[; ;fatfs/ff.c: 4843:      stat = get_fat(&obj, clst);
+[e = _stat ( _get_fat (2 , &U _obj _clst ]
+"4844
+[; ;fatfs/ff.c: 4844:      if (stat == 0xFFFFFFFF) {
+[e $ ! == _stat -> 4294967295 `ul 430  ]
+{
+"4845
+[; ;fatfs/ff.c: 4845:       res = FR_DISK_ERR; break;
+[e = _res . `E275 1 ]
+[e $U 428  ]
+"4846
+[; ;fatfs/ff.c: 4846:      }
+}
+[e :U 430 ]
+"4847
+[; ;fatfs/ff.c: 4847:      if (stat == 1) {
+[e $ ! == _stat -> -> -> 1 `i `l `ul 431  ]
+{
+"4848
+[; ;fatfs/ff.c: 4848:       res = FR_INT_ERR; break;
+[e = _res . `E275 2 ]
+[e $U 428  ]
+"4849
+[; ;fatfs/ff.c: 4849:      }
+}
+[e :U 431 ]
+"4850
+[; ;fatfs/ff.c: 4850:      if (stat == 0) nfree++;
+[e $ ! == _stat -> -> -> 0 `i `l `ul 432  ]
+[e ++ _nfree -> -> -> 1 `i `l `ul ]
+[e :U 432 ]
+"4851
+[; ;fatfs/ff.c: 4851:     } while (++clst < fs->n_fatent);
+}
+[e $ < =+ _clst -> -> -> 1 `i `l `ul . *U _fs 11 429  ]
+[e :U 428 ]
+"4852
+[; ;fatfs/ff.c: 4852:    } else {
+}
+[e $U 433  ]
+[e :U 426 ]
+{
+"4874
+[; ;fatfs/ff.c: 4874:     {
+{
+"4875
+[; ;fatfs/ff.c: 4875:      clst = fs->n_fatent;
+[e = _clst . *U _fs 11 ]
+"4876
+[; ;fatfs/ff.c: 4876:      sect = fs->fatbase;
+[e = _sect . *U _fs 14 ]
+"4877
+[; ;fatfs/ff.c: 4877:      i = 0;
+[e = _i -> -> 0 `i `ui ]
+"4878
+[; ;fatfs/ff.c: 4878:      do {
+[e :U 436 ]
+{
+"4879
+[; ;fatfs/ff.c: 4879:       if (i == 0) {
+[e $ ! == _i -> -> 0 `i `ui 437  ]
+{
+"4880
+[; ;fatfs/ff.c: 4880:        res = move_window(fs, sect++);
+[e = _res ( _move_window (2 , _fs ++ _sect -> -> -> 1 `i `l `ul ]
+"4881
+[; ;fatfs/ff.c: 4881:        if (res != FR_OK) break;
+[e $ ! != -> _res `ui -> . `E275 0 `ui 438  ]
+[e $U 435  ]
+[e :U 438 ]
+"4882
+[; ;fatfs/ff.c: 4882:       }
+}
+[e :U 437 ]
+"4883
+[; ;fatfs/ff.c: 4883:       if (fs->fs_type == 2) {
+[e $ ! == -> . *U _fs 0 `i -> 2 `i 439  ]
+{
+"4884
+[; ;fatfs/ff.c: 4884:        if (ld_word(fs->win + i) == 0) nfree++;
+[e $ ! == -> ( _ld_word (1 -> + &U . *U _fs 18 * -> _i `ux -> -> # *U &U . *U _fs 18 `ui `ux `*Cuc `ui -> -> 0 `i `ui 440  ]
+[e ++ _nfree -> -> -> 1 `i `l `ul ]
+[e :U 440 ]
+"4885
+[; ;fatfs/ff.c: 4885:        i += 2;
+[e =+ _i -> -> 2 `i `ui ]
+"4886
+[; ;fatfs/ff.c: 4886:       } else {
+}
+[e $U 441  ]
+[e :U 439 ]
+{
+"4887
+[; ;fatfs/ff.c: 4887:        if ((ld_dword(fs->win + i) & 0x0FFFFFFF) == 0) nfree++;
+[e $ ! == & ( _ld_dword (1 -> + &U . *U _fs 18 * -> _i `ux -> -> # *U &U . *U _fs 18 `ui `ux `*Cuc -> -> 268435455 `l `ul -> -> -> 0 `i `l `ul 442  ]
+[e ++ _nfree -> -> -> 1 `i `l `ul ]
+[e :U 442 ]
+"4888
+[; ;fatfs/ff.c: 4888:        i += 4;
+[e =+ _i -> -> 4 `i `ui ]
+"4889
+[; ;fatfs/ff.c: 4889:       }
+}
+[e :U 441 ]
+"4890
+[; ;fatfs/ff.c: 4890:       i %= ((UINT)512);
+[e =% _i -> -> 512 `i `ui ]
+"4891
+[; ;fatfs/ff.c: 4891:      } while (--clst);
+}
+[e $ != =- _clst -> -> -> 1 `i `l `ul -> -> -> 0 `i `l `ul 436  ]
+[e :U 435 ]
+"4892
+[; ;fatfs/ff.c: 4892:     }
+}
+"4893
+[; ;fatfs/ff.c: 4893:    }
+}
+[e :U 433 ]
+"4894
+[; ;fatfs/ff.c: 4894:    if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 443  ]
+{
+"4895
+[; ;fatfs/ff.c: 4895:     *nclst = nfree;
+[e = *U _nclst _nfree ]
+"4896
+[; ;fatfs/ff.c: 4896:     fs->free_clst = nfree;
+[e = . *U _fs 10 _nfree ]
+"4897
+[; ;fatfs/ff.c: 4897:     fs->fsi_flag |= 1;
+[e =| . *U _fs 5 -> -> 1 `i `uc ]
+"4898
+[; ;fatfs/ff.c: 4898:    }
+}
+[e :U 443 ]
+"4899
+[; ;fatfs/ff.c: 4899:   }
+}
+[e :U 425 ]
+"4900
+[; ;fatfs/ff.c: 4900:  }
+}
+[e :U 423 ]
+"4902
+[; ;fatfs/ff.c: 4902:  return res;
+[e ) _res ]
+[e $UE 422  ]
+"4903
+[; ;fatfs/ff.c: 4903: }
+[e :UE 422 ]
+}
+"4912
+[; ;fatfs/ff.c: 4912: FRESULT f_truncate (
+[v _f_truncate `(E275 ~T0 @X0 1 ef1`*S4 ]
+"4915
+[; ;fatfs/ff.c: 4915: {
+{
+[e :U _f_truncate ]
+"4913
+[; ;fatfs/ff.c: 4913:  FIL* fp
+[v _fp `*S4 ~T0 @X0 1 r1 ]
+"4915
+[; ;fatfs/ff.c: 4915: {
+[f ]
+"4916
+[; ;fatfs/ff.c: 4916:  FRESULT res;
+[v _res `E275 ~T0 @X0 1 a ]
+"4917
+[; ;fatfs/ff.c: 4917:  FATFS *fs;
+[v _fs `*S2 ~T0 @X0 1 a ]
+"4918
+[; ;fatfs/ff.c: 4918:  DWORD ncl;
+[v _ncl `ul ~T0 @X0 1 a ]
+"4921
+[; ;fatfs/ff.c: 4921:  res = validate(&fp->obj, &fs);
+[e = _res ( _validate (2 , &U . *U _fp 0 &U _fs ]
+"4922
+[; ;fatfs/ff.c: 4922:  if (res != FR_OK || (res = (FRESULT)fp->err) != FR_OK) return res;
+[e $ ! || != -> _res `ui -> . `E275 0 `ui != -> = _res -> . *U _fp 2 `E275 `ui -> . `E275 0 `ui 445  ]
+[e ) _res ]
+[e $UE 444  ]
+[e :U 445 ]
+"4923
+[; ;fatfs/ff.c: 4923:  if (!(fp->flag & 0x02)) return FR_DENIED;
+[e $ ! ! != & -> . *U _fp 1 `i -> 2 `i -> 0 `i 446  ]
+[e ) . `E275 7 ]
+[e $UE 444  ]
+[e :U 446 ]
+"4925
+[; ;fatfs/ff.c: 4925:  if (fp->fptr < fp->obj.objsize) {
+[e $ ! < . *U _fp 3 . . *U _fp 0 5 447  ]
+{
+"4926
+[; ;fatfs/ff.c: 4926:   if (fp->fptr == 0) {
+[e $ ! == . *U _fp 3 -> -> -> 0 `i `l `ul 448  ]
+{
+"4927
+[; ;fatfs/ff.c: 4927:    res = remove_chain(&fp->obj, fp->obj.sclust, 0);
+[e = _res ( _remove_chain (3 , , &U . *U _fp 0 . . *U _fp 0 4 -> -> -> 0 `i `l `ul ]
+"4928
+[; ;fatfs/ff.c: 4928:    fp->obj.sclust = 0;
+[e = . . *U _fp 0 4 -> -> -> 0 `i `l `ul ]
+"4929
+[; ;fatfs/ff.c: 4929:   } else {
+}
+[e $U 449  ]
+[e :U 448 ]
+{
+"4930
+[; ;fatfs/ff.c: 4930:    ncl = get_fat(&fp->obj, fp->clust);
+[e = _ncl ( _get_fat (2 , &U . *U _fp 0 . *U _fp 4 ]
+"4931
+[; ;fatfs/ff.c: 4931:    res = FR_OK;
+[e = _res . `E275 0 ]
+"4932
+[; ;fatfs/ff.c: 4932:    if (ncl == 0xFFFFFFFF) res = FR_DISK_ERR;
+[e $ ! == _ncl -> 4294967295 `ul 450  ]
+[e = _res . `E275 1 ]
+[e :U 450 ]
+"4933
+[; ;fatfs/ff.c: 4933:    if (ncl == 1) res = FR_INT_ERR;
+[e $ ! == _ncl -> -> -> 1 `i `l `ul 451  ]
+[e = _res . `E275 2 ]
+[e :U 451 ]
+"4934
+[; ;fatfs/ff.c: 4934:    if (res == FR_OK && ncl < fs->n_fatent) {
+[e $ ! && == -> _res `ui -> . `E275 0 `ui < _ncl . *U _fs 11 452  ]
+{
+"4935
+[; ;fatfs/ff.c: 4935:     res = remove_chain(&fp->obj, ncl, fp->clust);
+[e = _res ( _remove_chain (3 , , &U . *U _fp 0 _ncl . *U _fp 4 ]
+"4936
+[; ;fatfs/ff.c: 4936:    }
+}
+[e :U 452 ]
+"4937
+[; ;fatfs/ff.c: 4937:   }
+}
+[e :U 449 ]
+"4938
+[; ;fatfs/ff.c: 4938:   fp->obj.objsize = fp->fptr;
+[e = . . *U _fp 0 5 . *U _fp 3 ]
+"4939
+[; ;fatfs/ff.c: 4939:   fp->flag |= 0x40;
+[e =| . *U _fp 1 -> -> 64 `i `uc ]
+"4941
+[; ;fatfs/ff.c: 4941:   if (res == FR_OK && (fp->flag & 0x80)) {
+[e $ ! && == -> _res `ui -> . `E275 0 `ui != & -> . *U _fp 1 `i -> 128 `i -> 0 `i 453  ]
+{
+"4942
+[; ;fatfs/ff.c: 4942:    if (disk_write(fs->pdrv, fp->buf, fp->sect, 1) != RES_OK) {
+[e $ ! != -> ( _disk_write (4 , , , . *U _fs 1 -> &U . *U _fp 8 `*Cuc . *U _fp 5 -> -> 1 `i `ui `ui -> . `E415 0 `ui 454  ]
+{
+"4943
+[; ;fatfs/ff.c: 4943:     res = FR_DISK_ERR;
+[e = _res . `E275 1 ]
+"4944
+[; ;fatfs/ff.c: 4944:    } else {
+}
+[e $U 455  ]
+[e :U 454 ]
+{
+"4945
+[; ;fatfs/ff.c: 4945:     fp->flag &= (BYTE)~0x80;
+[e =& . *U _fp 1 -> -> ~ -> 128 `i `uc `uc ]
+"4946
+[; ;fatfs/ff.c: 4946:    }
+}
+[e :U 455 ]
+"4947
+[; ;fatfs/ff.c: 4947:   }
+}
+[e :U 453 ]
+"4949
+[; ;fatfs/ff.c: 4949:   if (res != FR_OK) { fp->err = (BYTE)(res); return res; };
+[e $ ! != -> _res `ui -> . `E275 0 `ui 456  ]
+{
+[e = . *U _fp 2 -> _res `uc ]
+[e ) _res ]
+[e $UE 444  ]
+}
+[e :U 456 ]
+"4950
+[; ;fatfs/ff.c: 4950:  }
+}
+[e :U 447 ]
+"4952
+[; ;fatfs/ff.c: 4952:  return res;
+[e ) _res ]
+[e $UE 444  ]
+"4953
+[; ;fatfs/ff.c: 4953: }
+[e :UE 444 ]
+}
+"4962
+[; ;fatfs/ff.c: 4962: FRESULT f_unlink (
+[v _f_unlink `(E275 ~T0 @X0 1 ef1`*Cuc ]
+"4965
+[; ;fatfs/ff.c: 4965: {
+{
+[e :U _f_unlink ]
+"4963
+[; ;fatfs/ff.c: 4963:  const TCHAR* path
+[v _path `*Cuc ~T0 @X0 1 r1 ]
+"4965
+[; ;fatfs/ff.c: 4965: {
+[f ]
+"4966
+[; ;fatfs/ff.c: 4966:  FRESULT res;
+[v _res `E275 ~T0 @X0 1 a ]
+"4967
+[; ;fatfs/ff.c: 4967:  FATFS *fs;
+[v _fs `*S2 ~T0 @X0 1 a ]
+"4968
+[; ;fatfs/ff.c: 4968:  DIR dj, sdj;
+[v _dj `S5 ~T0 @X0 1 a ]
+[v _sdj `S5 ~T0 @X0 1 a ]
+"4969
+[; ;fatfs/ff.c: 4969:  DWORD dclst = 0;
+[v _dclst `ul ~T0 @X0 1 a ]
+[e = _dclst -> -> -> 0 `i `l `ul ]
+"4977
+[; ;fatfs/ff.c: 4977:  res = mount_volume(&path, &fs, 0x02);
+[e = _res ( _mount_volume (3 , , &U _path &U _fs -> -> 2 `i `uc ]
+"4978
+[; ;fatfs/ff.c: 4978:  if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 458  ]
+{
+"4979
+[; ;fatfs/ff.c: 4979:   dj.obj.fs = fs;
+[e = . . _dj 0 0 _fs ]
+"4981
+[; ;fatfs/ff.c: 4981:   res = follow_path(&dj, path);
+[e = _res ( _follow_path (2 , &U _dj _path ]
+"4982
+[; ;fatfs/ff.c: 4982:   if (0 && res == FR_OK && (dj.fn[11] & 0x20)) {
+[e $ ! && && != -> 0 `i -> 0 `i == -> _res `ui -> . `E275 0 `ui != & -> *U + &U . _dj 5 * -> -> -> 11 `i `ui `ux -> -> # *U &U . _dj 5 `ui `ux `i -> 32 `i -> 0 `i 459  ]
+{
+"4983
+[; ;fatfs/ff.c: 4983:    res = FR_INVALID_NAME;
+[e = _res . `E275 6 ]
+"4984
+[; ;fatfs/ff.c: 4984:   }
+}
+[e :U 459 ]
+"4988
+[; ;fatfs/ff.c: 4988:   if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 460  ]
+{
+"4989
+[; ;fatfs/ff.c: 4989:    if (dj.fn[11] & 0x80) {
+[e $ ! != & -> *U + &U . _dj 5 * -> -> -> 11 `i `ui `ux -> -> # *U &U . _dj 5 `ui `ux `i -> 128 `i -> 0 `i 461  ]
+{
+"4990
+[; ;fatfs/ff.c: 4990:     res = FR_INVALID_NAME;
+[e = _res . `E275 6 ]
+"4991
+[; ;fatfs/ff.c: 4991:    } else {
+}
+[e $U 462  ]
+[e :U 461 ]
+{
+"4992
+[; ;fatfs/ff.c: 4992:     if (dj.obj.attr & 0x01) {
+[e $ ! != & -> . . _dj 0 2 `i -> 1 `i -> 0 `i 463  ]
+{
+"4993
+[; ;fatfs/ff.c: 4993:      res = FR_DENIED;
+[e = _res . `E275 7 ]
+"4994
+[; ;fatfs/ff.c: 4994:     }
+}
+[e :U 463 ]
+"4995
+[; ;fatfs/ff.c: 4995:    }
+}
+[e :U 462 ]
+"4996
+[; ;fatfs/ff.c: 4996:    if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 464  ]
+{
+"5004
+[; ;fatfs/ff.c: 5004:     {
+{
+"5005
+[; ;fatfs/ff.c: 5005:      dclst = ld_clust(fs, dj.dir);
+[e = _dclst ( _ld_clust (2 , _fs -> . _dj 4 `*Cuc ]
+"5006
+[; ;fatfs/ff.c: 5006:     }
+}
+"5007
+[; ;fatfs/ff.c: 5007:     if (dj.obj.attr & 0x10) {
+[e $ ! != & -> . . _dj 0 2 `i -> 16 `i -> 0 `i 465  ]
+{
+"5013
+[; ;fatfs/ff.c: 5013:      {
+{
+"5014
+[; ;fatfs/ff.c: 5014:       sdj.obj.fs = fs;
+[e = . . _sdj 0 0 _fs ]
+"5015
+[; ;fatfs/ff.c: 5015:       sdj.obj.sclust = dclst;
+[e = . . _sdj 0 4 _dclst ]
+"5022
+[; ;fatfs/ff.c: 5022:       res = dir_sdi(&sdj, 0);
+[e = _res ( _dir_sdi (2 , &U _sdj -> -> -> 0 `i `l `ul ]
+"5023
+[; ;fatfs/ff.c: 5023:       if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 466  ]
+{
+"5024
+[; ;fatfs/ff.c: 5024:        res = dir_read(&sdj, 0);
+[e = _res ( _dir_read (2 , &U _sdj -> 0 `i ]
+"5025
+[; ;fatfs/ff.c: 5025:        if (res == FR_OK) res = FR_DENIED;
+[e $ ! == -> _res `ui -> . `E275 0 `ui 467  ]
+[e = _res . `E275 7 ]
+[e :U 467 ]
+"5026
+[; ;fatfs/ff.c: 5026:        if (res == FR_NO_FILE) res = FR_OK;
+[e $ ! == -> _res `ui -> . `E275 4 `ui 468  ]
+[e = _res . `E275 0 ]
+[e :U 468 ]
+"5027
+[; ;fatfs/ff.c: 5027:       }
+}
+[e :U 466 ]
+"5028
+[; ;fatfs/ff.c: 5028:      }
+}
+"5029
+[; ;fatfs/ff.c: 5029:     }
+}
+[e :U 465 ]
+"5030
+[; ;fatfs/ff.c: 5030:    }
+}
+[e :U 464 ]
+"5031
+[; ;fatfs/ff.c: 5031:    if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 469  ]
+{
+"5032
+[; ;fatfs/ff.c: 5032:     res = dir_remove(&dj);
+[e = _res ( _dir_remove (1 &U _dj ]
+"5033
+[; ;fatfs/ff.c: 5033:     if (res == FR_OK && dclst != 0) {
+[e $ ! && == -> _res `ui -> . `E275 0 `ui != _dclst -> -> -> 0 `i `l `ul 470  ]
+{
+"5037
+[; ;fatfs/ff.c: 5037:      res = remove_chain(&dj.obj, dclst, 0);
+[e = _res ( _remove_chain (3 , , &U . _dj 0 _dclst -> -> -> 0 `i `l `ul ]
+"5039
+[; ;fatfs/ff.c: 5039:     }
+}
+[e :U 470 ]
+"5040
+[; ;fatfs/ff.c: 5040:     if (res == FR_OK) res = sync_fs(fs);
+[e $ ! == -> _res `ui -> . `E275 0 `ui 471  ]
+[e = _res ( _sync_fs (1 _fs ]
+[e :U 471 ]
+"5041
+[; ;fatfs/ff.c: 5041:    }
+}
+[e :U 469 ]
+"5042
+[; ;fatfs/ff.c: 5042:   }
+}
+[e :U 460 ]
+"5044
+[; ;fatfs/ff.c: 5044:  }
+}
+[e :U 458 ]
+"5046
+[; ;fatfs/ff.c: 5046:  return res;
+[e ) _res ]
+[e $UE 457  ]
+"5047
+[; ;fatfs/ff.c: 5047: }
+[e :UE 457 ]
+}
+"5056
+[; ;fatfs/ff.c: 5056: FRESULT f_mkdir (
+[v _f_mkdir `(E275 ~T0 @X0 1 ef1`*Cuc ]
+"5059
+[; ;fatfs/ff.c: 5059: {
+{
+[e :U _f_mkdir ]
+"5057
+[; ;fatfs/ff.c: 5057:  const TCHAR* path
+[v _path `*Cuc ~T0 @X0 1 r1 ]
+"5059
+[; ;fatfs/ff.c: 5059: {
+[f ]
+"5060
+[; ;fatfs/ff.c: 5060:  FRESULT res;
+[v _res `E275 ~T0 @X0 1 a ]
+"5061
+[; ;fatfs/ff.c: 5061:  FATFS *fs;
+[v _fs `*S2 ~T0 @X0 1 a ]
+"5062
+[; ;fatfs/ff.c: 5062:  DIR dj;
+[v _dj `S5 ~T0 @X0 1 a ]
+"5063
+[; ;fatfs/ff.c: 5063:  FFOBJID sobj;
+[v _sobj `S3 ~T0 @X0 1 a ]
+"5064
+[; ;fatfs/ff.c: 5064:  DWORD dcl, pcl, tm;
+[v _dcl `ul ~T0 @X0 1 a ]
+[v _pcl `ul ~T0 @X0 1 a ]
+[v _tm `ul ~T0 @X0 1 a ]
+"5068
+[; ;fatfs/ff.c: 5068:  res = mount_volume(&path, &fs, 0x02);
+[e = _res ( _mount_volume (3 , , &U _path &U _fs -> -> 2 `i `uc ]
+"5069
+[; ;fatfs/ff.c: 5069:  if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 473  ]
+{
+"5070
+[; ;fatfs/ff.c: 5070:   dj.obj.fs = fs;
+[e = . . _dj 0 0 _fs ]
+"5072
+[; ;fatfs/ff.c: 5072:   res = follow_path(&dj, path);
+[e = _res ( _follow_path (2 , &U _dj _path ]
+"5073
+[; ;fatfs/ff.c: 5073:   if (res == FR_OK) res = FR_EXIST;
+[e $ ! == -> _res `ui -> . `E275 0 `ui 474  ]
+[e = _res . `E275 8 ]
+[e :U 474 ]
+"5074
+[; ;fatfs/ff.c: 5074:   if (0 && res == FR_NO_FILE && (dj.fn[11] & 0x20)) {
+[e $ ! && && != -> 0 `i -> 0 `i == -> _res `ui -> . `E275 4 `ui != & -> *U + &U . _dj 5 * -> -> -> 11 `i `ui `ux -> -> # *U &U . _dj 5 `ui `ux `i -> 32 `i -> 0 `i 475  ]
+{
+"5075
+[; ;fatfs/ff.c: 5075:    res = FR_INVALID_NAME;
+[e = _res . `E275 6 ]
+"5076
+[; ;fatfs/ff.c: 5076:   }
+}
+[e :U 475 ]
+"5077
+[; ;fatfs/ff.c: 5077:   if (res == FR_NO_FILE) {
+[e $ ! == -> _res `ui -> . `E275 4 `ui 476  ]
+{
+"5078
+[; ;fatfs/ff.c: 5078:    sobj.fs = fs;
+[e = . _sobj 0 _fs ]
+"5079
+[; ;fatfs/ff.c: 5079:    dcl = create_chain(&sobj, 0);
+[e = _dcl ( _create_chain (2 , &U _sobj -> -> -> 0 `i `l `ul ]
+"5080
+[; ;fatfs/ff.c: 5080:    res = FR_OK;
+[e = _res . `E275 0 ]
+"5081
+[; ;fatfs/ff.c: 5081:    if (dcl == 0) res = FR_DENIED;
+[e $ ! == _dcl -> -> -> 0 `i `l `ul 477  ]
+[e = _res . `E275 7 ]
+[e :U 477 ]
+"5082
+[; ;fatfs/ff.c: 5082:    if (dcl == 1) res = FR_INT_ERR;
+[e $ ! == _dcl -> -> -> 1 `i `l `ul 478  ]
+[e = _res . `E275 2 ]
+[e :U 478 ]
+"5083
+[; ;fatfs/ff.c: 5083:    if (dcl == 0xFFFFFFFF) res = FR_DISK_ERR;
+[e $ ! == _dcl -> 4294967295 `ul 479  ]
+[e = _res . `E275 1 ]
+[e :U 479 ]
+"5084
+[; ;fatfs/ff.c: 5084:    tm = get_fattime();
+[e = _tm ( _get_fattime ..  ]
+"5085
+[; ;fatfs/ff.c: 5085:    if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 480  ]
+{
+"5086
+[; ;fatfs/ff.c: 5086:     res = dir_clear(fs, dcl);
+[e = _res ( _dir_clear (2 , _fs _dcl ]
+"5087
+[; ;fatfs/ff.c: 5087:     if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 481  ]
+{
+"5088
+[; ;fatfs/ff.c: 5088:      if (!0 || fs->fs_type != 4) {
+[e $ ! || ! != -> 0 `i -> 0 `i != -> . *U _fs 0 `i -> 4 `i 482  ]
+{
+"5089
+[; ;fatfs/ff.c: 5089:       memset(fs->win + 0, ' ', 11);
+[e ( _memset (3 , , -> + &U . *U _fs 18 * -> -> 0 `i `x -> -> # *U &U . *U _fs 18 `i `x `*v -> -> 32 `ui `i -> -> 11 `i `ui ]
+"5090
+[; ;fatfs/ff.c: 5090:       fs->win[0] = '.';
+[e = *U + &U . *U _fs 18 * -> -> -> 0 `i `ui `ux -> -> # *U &U . *U _fs 18 `ui `ux -> -> 46 `ui `uc ]
+"5091
+[; ;fatfs/ff.c: 5091:       fs->win[11] = 0x10;
+[e = *U + &U . *U _fs 18 * -> -> -> 11 `i `ui `ux -> -> # *U &U . *U _fs 18 `ui `ux -> -> 16 `i `uc ]
+"5092
+[; ;fatfs/ff.c: 5092:       st_dword(fs->win + 22, tm);
+[e ( _st_dword (2 , + &U . *U _fs 18 * -> -> 22 `i `x -> -> # *U &U . *U _fs 18 `i `x _tm ]
+"5093
+[; ;fatfs/ff.c: 5093:       st_clust(fs, fs->win, dcl);
+[e ( _st_clust (3 , , _fs &U . *U _fs 18 _dcl ]
+"5094
+[; ;fatfs/ff.c: 5094:       memcpy(fs->win + 32, fs->win, 32);
+[e ( _memcpy (3 , , -> + &U . *U _fs 18 * -> -> 32 `i `x -> -> # *U &U . *U _fs 18 `i `x `*v -> &U . *U _fs 18 `*Cv -> -> 32 `i `ui ]
+"5095
+[; ;fatfs/ff.c: 5095:       fs->win[32 + 1] = '.'; pcl = dj.obj.sclust;
+[e = *U + &U . *U _fs 18 * -> -> + -> 32 `i -> 1 `i `ui `ux -> -> # *U &U . *U _fs 18 `ui `ux -> -> 46 `ui `uc ]
+[e = _pcl . . _dj 0 4 ]
+"5096
+[; ;fatfs/ff.c: 5096:       st_clust(fs, fs->win + 32, pcl);
+[e ( _st_clust (3 , , _fs + &U . *U _fs 18 * -> -> 32 `i `x -> -> # *U &U . *U _fs 18 `i `x _pcl ]
+"5097
+[; ;fatfs/ff.c: 5097:       fs->wflag = 1;
+[e = . *U _fs 4 -> -> 1 `i `uc ]
+"5098
+[; ;fatfs/ff.c: 5098:      }
+}
+[e :U 482 ]
+"5099
+[; ;fatfs/ff.c: 5099:      res = dir_register(&dj);
+[e = _res ( _dir_register (1 &U _dj ]
+"5100
+[; ;fatfs/ff.c: 5100:     }
+}
+[e :U 481 ]
+"5101
+[; ;fatfs/ff.c: 5101:    }
+}
+[e :U 480 ]
+"5102
+[; ;fatfs/ff.c: 5102:    if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 483  ]
+{
+"5114
+[; ;fatfs/ff.c: 5114:     {
+{
+"5115
+[; ;fatfs/ff.c: 5115:      st_dword(dj.dir + 22, tm);
+[e ( _st_dword (2 , + . _dj 4 * -> -> 22 `i `x -> -> # *U . _dj 4 `i `x _tm ]
+"5116
+[; ;fatfs/ff.c: 5116:      st_clust(fs, dj.dir, dcl);
+[e ( _st_clust (3 , , _fs . _dj 4 _dcl ]
+"5117
+[; ;fatfs/ff.c: 5117:      dj.dir[11] = 0x10;
+[e = *U + . _dj 4 * -> -> 11 `i `x -> -> # *U . _dj 4 `i `x -> -> 16 `i `uc ]
+"5118
+[; ;fatfs/ff.c: 5118:      fs->wflag = 1;
+[e = . *U _fs 4 -> -> 1 `i `uc ]
+"5119
+[; ;fatfs/ff.c: 5119:     }
+}
+"5120
+[; ;fatfs/ff.c: 5120:     if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 484  ]
+{
+"5121
+[; ;fatfs/ff.c: 5121:      res = sync_fs(fs);
+[e = _res ( _sync_fs (1 _fs ]
+"5122
+[; ;fatfs/ff.c: 5122:     }
+}
+[e :U 484 ]
+"5123
+[; ;fatfs/ff.c: 5123:    } else {
+}
+[e $U 485  ]
+[e :U 483 ]
+{
+"5124
+[; ;fatfs/ff.c: 5124:     remove_chain(&sobj, dcl, 0);
+[e ( _remove_chain (3 , , &U _sobj _dcl -> -> -> 0 `i `l `ul ]
+"5125
+[; ;fatfs/ff.c: 5125:    }
+}
+[e :U 485 ]
+"5126
+[; ;fatfs/ff.c: 5126:   }
+}
+[e :U 476 ]
+"5128
+[; ;fatfs/ff.c: 5128:  }
+}
+[e :U 473 ]
+"5130
+[; ;fatfs/ff.c: 5130:  return res;
+[e ) _res ]
+[e $UE 472  ]
+"5131
+[; ;fatfs/ff.c: 5131: }
+[e :UE 472 ]
+}
+"5140
+[; ;fatfs/ff.c: 5140: FRESULT f_rename (
+[v _f_rename `(E275 ~T0 @X0 1 ef2`*Cuc`*Cuc ]
+"5144
+[; ;fatfs/ff.c: 5144: {
+{
+[e :U _f_rename ]
+"5141
+[; ;fatfs/ff.c: 5141:  const TCHAR* path_old,
+[v _path_old `*Cuc ~T0 @X0 1 r1 ]
+"5142
+[; ;fatfs/ff.c: 5142:  const TCHAR* path_new
+[v _path_new `*Cuc ~T0 @X0 1 r2 ]
+"5144
+[; ;fatfs/ff.c: 5144: {
+[f ]
+"5145
+[; ;fatfs/ff.c: 5145:  FRESULT res;
+[v _res `E275 ~T0 @X0 1 a ]
+"5146
+[; ;fatfs/ff.c: 5146:  FATFS *fs;
+[v _fs `*S2 ~T0 @X0 1 a ]
+"5147
+[; ;fatfs/ff.c: 5147:  DIR djo, djn;
+[v _djo `S5 ~T0 @X0 1 a ]
+[v _djn `S5 ~T0 @X0 1 a ]
+"5148
+[; ;fatfs/ff.c: 5148:  BYTE buf[0 ? 32 * 2 : 32], *dir;
+[v _buf `uc ~T0 @X0 -> 32 `i a ]
+[v _dir `*uc ~T0 @X0 1 a ]
+"5149
+[; ;fatfs/ff.c: 5149:  LBA_t sect;
+[v _sect `ul ~T0 @X0 1 a ]
+"5153
+[; ;fatfs/ff.c: 5153:  get_ldnumber(&path_new);
+[e ( _get_ldnumber (1 &U _path_new ]
+"5154
+[; ;fatfs/ff.c: 5154:  res = mount_volume(&path_old, &fs, 0x02);
+[e = _res ( _mount_volume (3 , , &U _path_old &U _fs -> -> 2 `i `uc ]
+"5155
+[; ;fatfs/ff.c: 5155:  if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 487  ]
+{
+"5156
+[; ;fatfs/ff.c: 5156:   djo.obj.fs = fs;
+[e = . . _djo 0 0 _fs ]
+"5158
+[; ;fatfs/ff.c: 5158:   res = follow_path(&djo, path_old);
+[e = _res ( _follow_path (2 , &U _djo _path_old ]
+"5159
+[; ;fatfs/ff.c: 5159:   if (res == FR_OK && (djo.fn[11] & (0x20 | 0x80))) res = FR_INVALID_NAME;
+[e $ ! && == -> _res `ui -> . `E275 0 `ui != & -> *U + &U . _djo 5 * -> -> -> 11 `i `ui `ux -> -> # *U &U . _djo 5 `ui `ux `i | -> 32 `i -> 128 `i -> 0 `i 488  ]
+[e = _res . `E275 6 ]
+[e :U 488 ]
+"5165
+[; ;fatfs/ff.c: 5165:   if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 489  ]
+{
+"5192
+[; ;fatfs/ff.c: 5192:    {
+{
+"5193
+[; ;fatfs/ff.c: 5193:     memcpy(buf, djo.dir, 32);
+[e ( _memcpy (3 , , -> &U _buf `*v -> . _djo 4 `*Cv -> -> 32 `i `ui ]
+"5194
+[; ;fatfs/ff.c: 5194:     memcpy(&djn, &djo, sizeof (DIR));
+[e ( _memcpy (3 , , -> &U _djn `*v -> &U _djo `*Cv -> # `S5 `ui ]
+"5195
+[; ;fatfs/ff.c: 5195:     res = follow_path(&djn, path_new);
+[e = _res ( _follow_path (2 , &U _djn _path_new ]
+"5196
+[; ;fatfs/ff.c: 5196:     if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 490  ]
+{
+"5197
+[; ;fatfs/ff.c: 5197:      res = (djn.obj.sclust == djo.obj.sclust && djn.dptr == djo.dptr) ? FR_NO_FILE : FR_EXIST;
+[e = _res -> ? && == . . _djn 0 4 . . _djo 0 4 == . _djn 1 . _djo 1 : . `E275 4 . `E275 8 `E275 ]
+"5198
+[; ;fatfs/ff.c: 5198:     }
+}
+[e :U 490 ]
+"5199
+[; ;fatfs/ff.c: 5199:     if (res == FR_NO_FILE) {
+[e $ ! == -> _res `ui -> . `E275 4 `ui 491  ]
+{
+"5200
+[; ;fatfs/ff.c: 5200:      res = dir_register(&djn);
+[e = _res ( _dir_register (1 &U _djn ]
+"5201
+[; ;fatfs/ff.c: 5201:      if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 492  ]
+{
+"5202
+[; ;fatfs/ff.c: 5202:       dir = djn.dir;
+[e = _dir . _djn 4 ]
+"5203
+[; ;fatfs/ff.c: 5203:       memcpy(dir + 13, buf + 13, 32 - 13);
+[e ( _memcpy (3 , , -> + _dir * -> -> 13 `i `x -> -> # *U _dir `i `x `*v -> + &U _buf * -> -> 13 `i `x -> -> # *U &U _buf `i `x `*Cv -> - -> 32 `i -> 13 `i `ui ]
+"5204
+[; ;fatfs/ff.c: 5204:       dir[11] = buf[11];
+[e = *U + _dir * -> -> 11 `i `x -> -> # *U _dir `i `x *U + &U _buf * -> -> -> 11 `i `ui `ux -> -> # *U &U _buf `ui `ux ]
+"5205
+[; ;fatfs/ff.c: 5205:       if (!(dir[11] & 0x10)) dir[11] |= 0x20;
+[e $ ! ! != & -> *U + _dir * -> -> 11 `i `x -> -> # *U _dir `i `x `i -> 16 `i -> 0 `i 493  ]
+[e =| *U + _dir * -> -> 11 `i `x -> -> # *U _dir `i `x -> -> 32 `i `uc ]
+[e :U 493 ]
+"5206
+[; ;fatfs/ff.c: 5206:       fs->wflag = 1;
+[e = . *U _fs 4 -> -> 1 `i `uc ]
+"5207
+[; ;fatfs/ff.c: 5207:       if ((dir[11] & 0x10) && djo.obj.sclust != djn.obj.sclust) {
+[e $ ! && != & -> *U + _dir * -> -> 11 `i `x -> -> # *U _dir `i `x `i -> 16 `i -> 0 `i != . . _djo 0 4 . . _djn 0 4 494  ]
+{
+"5208
+[; ;fatfs/ff.c: 5208:        sect = clst2sect(fs, ld_clust(fs, dir));
+[e = _sect ( _clst2sect (2 , _fs ( _ld_clust (2 , _fs -> _dir `*Cuc ]
+"5209
+[; ;fatfs/ff.c: 5209:        if (sect == 0) {
+[e $ ! == _sect -> -> -> 0 `i `l `ul 495  ]
+{
+"5210
+[; ;fatfs/ff.c: 5210:         res = FR_INT_ERR;
+[e = _res . `E275 2 ]
+"5211
+[; ;fatfs/ff.c: 5211:        } else {
+}
+[e $U 496  ]
+[e :U 495 ]
+{
+"5213
+[; ;fatfs/ff.c: 5213:         res = move_window(fs, sect);
+[e = _res ( _move_window (2 , _fs _sect ]
+"5214
+[; ;fatfs/ff.c: 5214:         dir = fs->win + 32 * 1;
+[e = _dir + &U . *U _fs 18 * -> * -> 32 `i -> 1 `i `x -> -> # *U &U . *U _fs 18 `i `x ]
+"5215
+[; ;fatfs/ff.c: 5215:         if (res == FR_OK && dir[1] == '.') {
+[e $ ! && == -> _res `ui -> . `E275 0 `ui == -> *U + _dir * -> -> 1 `i `x -> -> # *U _dir `i `x `ui -> 46 `ui 497  ]
+{
+"5216
+[; ;fatfs/ff.c: 5216:          st_clust(fs, dir, djn.obj.sclust);
+[e ( _st_clust (3 , , _fs _dir . . _djn 0 4 ]
+"5217
+[; ;fatfs/ff.c: 5217:          fs->wflag = 1;
+[e = . *U _fs 4 -> -> 1 `i `uc ]
+"5218
+[; ;fatfs/ff.c: 5218:         }
+}
+[e :U 497 ]
+"5219
+[; ;fatfs/ff.c: 5219:        }
+}
+[e :U 496 ]
+"5220
+[; ;fatfs/ff.c: 5220:       }
+}
+[e :U 494 ]
+"5221
+[; ;fatfs/ff.c: 5221:      }
+}
+[e :U 492 ]
+"5222
+[; ;fatfs/ff.c: 5222:     }
+}
+[e :U 491 ]
+"5223
+[; ;fatfs/ff.c: 5223:    }
+}
+"5224
+[; ;fatfs/ff.c: 5224:    if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 498  ]
+{
+"5225
+[; ;fatfs/ff.c: 5225:     res = dir_remove(&djo);
+[e = _res ( _dir_remove (1 &U _djo ]
+"5226
+[; ;fatfs/ff.c: 5226:     if (res == FR_OK) {
+[e $ ! == -> _res `ui -> . `E275 0 `ui 499  ]
+{
+"5227
+[; ;fatfs/ff.c: 5227:      res = sync_fs(fs);
+[e = _res ( _sync_fs (1 _fs ]
+"5228
+[; ;fatfs/ff.c: 5228:     }
+}
+[e :U 499 ]
+"5229
+[; ;fatfs/ff.c: 5229:    }
+}
+[e :U 498 ]
+"5231
+[; ;fatfs/ff.c: 5231:   }
+}
+[e :U 489 ]
+"5233
+[; ;fatfs/ff.c: 5233:  }
+}
+[e :U 487 ]
+"5235
+[; ;fatfs/ff.c: 5235:  return res;
+[e ) _res ]
+[e $UE 486  ]
+"5236
+[; ;fatfs/ff.c: 5236: }
+[e :UE 486 ]
+}
+[a 1C 42 43 44 58 59 60 61 62 91 93 124 34 63 127 0 ]
+[a 2C 42 43 44 58 59 60 61 62 91 93 124 34 63 127 0 ]
+[a 3C 70 65 84 51 50 32 32 32 0 ]
+[a 4C 70 65 84 51 50 32 32 32 0 ]
