@@ -255,6 +255,15 @@ static void emuz80_57q_sys_init()
 	LAT(CPU_HOLD) = 1;			// HOLD request
 	TRIS(CPU_HOLD) = 0;			// Set as output
 
+	// INT
+	LAT(CPU_INT) = 0;			// deactive INT
+	TRIS(CPU_INT) = 0;			// Set as output
+
+	// READY
+	PPS(CPU_READY) = 0;			// reset PPS
+	LAT(CPU_READY) = 1;			// set ready
+	TRIS(CPU_READY) = 0;		// Set as output
+
 	// HOLDA input pin
 	WPU(CPU_HOLDA) = 1;			// Week pull up
 	TRIS(CPU_HOLDA) = 1;		// Set as input
@@ -265,6 +274,8 @@ static void emuz80_57q_sys_init()
 	// no use GPIO
 	TRISC3 = 1;
 	WPUC3 = 1;
+	TRISA2 = 1;
+	WPUA2 = 1;
 
 	// UART3 initialize
 	U3BRG = 416;        // 9600bps @ 64MHz
@@ -292,10 +303,6 @@ static void emuz80_57q_sys_init()
 	// Data bus
 	LAT(DATA_BUS) = 0x00;
 	TRIS(DATA_BUS) = 0x00;		// Set as output
-
-	// INT
-	LAT(CPU_INT) = 0;			// deactive INT
-	TRIS(CPU_INT) = 0;			// Set as output
 
 	// /WE output pin
 	LAT(SRAM_WE) = 1;	
@@ -400,8 +407,8 @@ static void emuz80_57q_start_cpu(void)
 
 	CLCnPOL = 0x80;		// Q invert
 	CLCnCON = 0x82;		// 4 input AND
-// ========== CLC3 IO decode 000xxxx0  ==========
-	CLCSELECT = 2;      // CLC5 select
+// ========== CLC3 bind CLC1 and CLC2  ==========
+	CLCSELECT = 2;      // CLC3 select
 
 	CLCnSEL0 = 51;		// CLC1
 	CLCnSEL1 = 52;		// CLC2
