@@ -21,7 +21,7 @@ PICファームウエア MPLABX IDE v6.20  XC8 v2.46
 Macro Assembler AS V1.42 を使用しました。  
 http://john.ccac.rwth-aachen.de:8000/as/  
 
-生成したバイナリをCソースに取り込み可能なテキストに  
+生成した8080バイナリをCソースに取り込み可能なテキストに  
 変換するために、pythonを使っています。  
 私はWindows11上でPythonを使うために Anacondaを導入しています。  
 https://www.anaconda.com/download/
