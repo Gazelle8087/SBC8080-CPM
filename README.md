@@ -99,7 +99,7 @@ SBC8080にはバスコントラーラーとして8228または8238が搭載可�
 ## SDカードアダプタ
 通販で安価に手に入ると思います。  
 端子名のシルク印刷があるものが良いと思います。
-
+![bypass](https://github.com/Gazelle8087/SBC8080-CPM/blob/main/photo/SD_CARD.jpg)
 ## USB-シリアル変換アダプタ
 直結できるアダプタはこれです。 8080は消費電力が多いのでバスパワーは使えません。
 https://akizukidenshi.com/catalog/g/g111007/
