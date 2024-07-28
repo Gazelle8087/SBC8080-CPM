@@ -104,6 +104,10 @@ SBC8080にはバスコントラーラーとして8228または8238が搭載可�
 直結できるアダプタはこれです。 8080は消費電力が多いのでバスパワーは使えません。
 https://akizukidenshi.com/catalog/g/g111007/
 
+## 8085対応
+8085に対応したソースも置いておきます。SBC8085-57Q.c参照ください。
+SBC8085互換回路で動作確認済です。
+
 ## 参考情報
 EMUZ80 
 https://vintagechips.wordpress.com/2022/03/05/emuz80_reference/
