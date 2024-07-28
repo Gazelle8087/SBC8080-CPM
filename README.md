@@ -10,7 +10,7 @@ EMUZ80-57QとZ80を組み合わせてCP/Mを走らせるファームウエアは
 Hanyazouさんが公開されています。  
 https://github.com/hanyazou/SuperMEZ80
 
-本ソースは、Hanyazouさんのソースを私自身の学習のために  
+本ソース、Hanyazouさんのソースを私自身の学習のために  
 EMUZ80-57Qに特化させ機能を絞り込んで再構築したものです。  
 ![stacked board photo](https://github.com/Gazelle8087/SBC8080-CPM/blob/main/photo/IMG_5043.JPG)  
 ## ビルド環境
@@ -62,5 +62,14 @@ SBC8080にてCP/M 2.2を動作させるためのベースボードです。
 ![base board photo](https://github.com/Gazelle8087/SBC8080-CPM/blob/main/photo/IMG_5039.JPG)  
 ### 基板上のジャンパ設定  
 SBC8080と組み合わせるにはSRAM周辺に5個所のジャンパが必要です  
-![base board photo](https://github.com/Gazelle8087/SBC8080-CPM/blob/main/photo/emuz80-57q.jpg)
+![base board photo](https://github.com/Gazelle8087/SBC8080-CPM/blob/main/photo/emuz80-57q.jpg)  
+
+## CP/Mディスクイメージ
+
+FAT32でフォーマットされたSDメモリカードのルートフォルダに  
+CPMDISKSフォルダごとコピーしてください。  
+ディスクパラメーターは udo-munkさんのz80Packの cpm22-1.dskと同一です。  
+https://github.com/udo-munk/z80pack/blob/master/cpmsim/disks/library/cpm22-1.dsk  
+
+
 
