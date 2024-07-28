@@ -12,7 +12,7 @@ https://github.com/hanyazou/SuperMEZ80
 
 本ソース、Hanyazouさんのソースを私自身の学習のために  
 EMUZ80-57Qに特化させ機能を絞り込んで再構築したものです。  
-
+![stacked board photo](https://github.com/Gazelle8087/SBC8080-CPM/blob/main/photo/IMG_5039.JPG)  
 ## ビルド環境
 
 PICファームウエア MPLABX IDE v6.20  XC8 v2.46  
