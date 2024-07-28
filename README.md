@@ -43,7 +43,8 @@ ipl.bat IPLとCP/MのBIOSを作成
 cpm.bat CP/MのBDOSとCCPを作成  
 
 生成したインクルードファイルは、PICのFWビルドの際にPICの  
-ROM領域に書き込まれ、8080実行時にIN命令をトリガとし  
+ROM領域に書き込まれ、IPLは8080起動前にSRAMに展開され  
+BDOS,CCP,BIOSは8080実行時にIN命令をトリガとし  
 PICのROMからSRAMにDMAにて8080バイナリが直接展開されます。  
 
 このことにより、8080のコードを変更する度にディスクイメージを  
