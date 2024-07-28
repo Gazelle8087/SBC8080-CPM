@@ -12,7 +12,7 @@ https://github.com/hanyazou/SuperMEZ80
 
 本ソース、Hanyazouさんのソースを私自身の学習のために  
 EMUZ80-57Qに特化させ機能を絞り込んで再構築したものです。  
-![stacked board photo](https://github.com/Gazelle8087/SBC8080-CPM/blob/main/photo/IMG_5043.JPG)  
+![stacked](https://github.com/Gazelle8087/SBC8080-CPM/blob/main/photo/IMG_5043.JPG)  
 ## ビルド環境
 
 PICファームウエア MPLABX IDE v6.20  XC8 v2.46  
@@ -59,10 +59,10 @@ SBC8080にてCP/M 2.2を動作させるためのベースボードです。
 57Q-0416.zipは実際に基板発注に使ったガーバーデータです、  
 2023年4月時点でJLCPCB発注実績ありです。  
 （シルク印刷誤植がありますが未修正のままです）
-![base board photo](https://github.com/Gazelle8087/SBC8080-CPM/blob/main/photo/IMG_5039.JPG)  
+![base board](https://github.com/Gazelle8087/SBC8080-CPM/blob/main/photo/IMG_5039.JPG)  
 ### 基板上のジャンパ設定  
 SBC8080と組み合わせるにはSRAM周辺に5個所のジャンパが必要です  
-![base board photo](https://github.com/Gazelle8087/SBC8080-CPM/blob/main/photo/emuz80-57q.jpg)  
+![jumper](https://github.com/Gazelle8087/SBC8080-CPM/blob/main/photo/emuz80-57q.jpg)  
 
 EMUZ80-57Qを設計した際にGPIO割付を十分吟味するスキルが無く  
 無造作にPORTBをアドレスバス下位に割り当てたため  
@@ -73,9 +73,9 @@ PICにファームウエアが書き込めません。そのため
 (2) SBC8080上のアドレスバスバッファ(74HC541)を外しバイパス配線する  
 いずれかが必要となります。
 写真はSBC8080裏面のバイパス配線の様子です。
-![base board photo](https://github.com/Gazelle8087/SBC8080-CPM/blob/main/photo/IMG_5042.JPG)
-## CP/Mディスクイメージ
+![bypass](https://github.com/Gazelle8087/SBC8080-CPM/blob/main/photo/IMG_5042.JPG)
 
+## CP/Mディスクイメージ
 FAT32でフォーマットされたSDメモリカードのルートフォルダに  
 CPMDISKSフォルダごとコピーしてください。  
 ディスクパラメーターは udo-munkさんのz80Packの cpm22-1.dskと同一です。  
@@ -83,4 +83,17 @@ https://github.com/udo-munk/z80pack/blob/master/cpmsim/disks/library/cpm22-1.dsk
 
 Windows上でのディスクイメージ操作は CpmtoolsGUIが便利です。  
 http://star.gmobb.jp/koji/cgi/wiki.cgi?page=CpmtoolsGUI
+
+## ファームウエア仕様
+シリアルポートは SBC8080サブボードの8251サブセットとし  
+アドレスとステータスビットを同一としています。  
+パラメータは 9600bps 8bit パリティなし 1ストップbit フロー制御なし  
+に固定してあります。変更するにはFWの再ビルドが必要です。  
+
+SBC8080にはバスコントラーラーとして8228または8238が搭載可能ですが  
+両者のIOWRのバスタイミングに大幅な違いがあります。
+・8228はIOWRが遅く、PICのCLCでIOWRを検出して8080にウエイトをかけることができません。  
+・8238はIOWRが早く、Lになるタイミングではバスに出力が出ていません。  
+ここを両立させるためアセンブラをワンポイントで使用しました。  
+
 
