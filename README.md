@@ -103,3 +103,13 @@ SBC8080にはバスコントラーラーとして8228または8238が搭載可�
 ## USB-シリアル変換アダプタ
 直結できるアダプタはこれです。 8080は消費電力が多いのでバスパワーは使えません。
 https://akizukidenshi.com/catalog/g/g111007/
+
+## 参考情報
+EMUZ80 
+https://vintagechips.wordpress.com/2022/03/05/emuz80_reference/
+
+superMEZ80
+https://github.com/satoshiokue/SuperMEZ80
+
+FatFs
+https://irtos.sourceforge.net/FAT32_ChaN/doc/00index_j.html
