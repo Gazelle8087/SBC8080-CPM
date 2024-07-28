@@ -64,6 +64,16 @@ SBC8080にてCP/M 2.2を動作させるためのベースボードです。
 SBC8080と組み合わせるにはSRAM周辺に5個所のジャンパが必要です  
 ![base board photo](https://github.com/Gazelle8087/SBC8080-CPM/blob/main/photo/emuz80-57q.jpg)  
 
+EMUZ80-57Qを設計した際にGPIO割付を十分吟味するスキルが無く  
+無造作にPORTBをアドレスバス下位に割り当てたため  
+PICのICSPに制約が生じています。  
+具体的には、SBCとベースボードが接続されいると  
+PICにファームウエアが書き込めません。そのため  
+(1) 書き込みの度にSBC8080との接続を外す  
+(2) SBC8080上のアドレスバスバッファ(74HC541)を外しバイパス配線する  
+いずれかが必要となります。
+写真はSBC8080裏面のバイパス配線の様子です。
+![base board photo](https://github.com/Gazelle8087/SBC8080-CPM/blob/main/photo/IMG_5042.JPG)
 ## CP/Mディスクイメージ
 
 FAT32でフォーマットされたSDメモリカードのルートフォルダに  
