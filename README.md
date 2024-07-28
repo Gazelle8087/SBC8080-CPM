@@ -71,5 +71,6 @@ CPMDISKSフォルダごとコピーしてください。
 ディスクパラメーターは udo-munkさんのz80Packの cpm22-1.dskと同一です。  
 https://github.com/udo-munk/z80pack/blob/master/cpmsim/disks/library/cpm22-1.dsk  
 
-
+Windows上でのディスクイメージ操作は CpmtoolsGUIが便利です。  
+http://star.gmobb.jp/koji/cgi/wiki.cgi?page=CpmtoolsGUI
 
