@@ -11,4 +11,4 @@ Hanyazouさんが公開されています。
 https://github.com/hanyazou/SuperMEZ80
 
 本ソースはHanyazouさんのソースを私自身の学習のために  
-wmuz80-57qに特化させ機能を絞り込んで再構築したものです。
+emuz80-57qに特化させ機能を絞り込んで再構築したものです。
