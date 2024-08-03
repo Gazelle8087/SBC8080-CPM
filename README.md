@@ -51,6 +51,18 @@ PICのROMからSRAMにDMAにて8080バイナリが直接展開されます。
 SDに書き込む必要がなくなります。  
 (ディスクのシステムトラックのCP/Mコードは使いません)  
 
+## ライセンス
+
+電脳伝説さん、奥江聡さんの書かれたFWを改変したソースはGPL3.0  
+にて公開します。  
+
+HanyaZouさんが新規作成たドライバ部分および  
+ChaNさん作FatFsに関してはMITで公開されているソースを流用しました。  
+CP/MのBIOSはUdo-Munkさんの元ライセンスを聞き継ぎMITとします。  
+IPLはMITとします。  
+CP/MのBDOS,CCPに関してのライセンス条項に関しては  
+The Unofficial CP/M Web site http://www.cpm.z80.de/ をご参照ください。
+
 ## EMUZ80-57Q
 
 SBC8080にてCP/M 2.2を動作させるためのベースボードです。  
