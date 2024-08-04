@@ -42,6 +42,39 @@ RES_WRPRT 2
 RES_NOTRDY 3
 RES_PARERR 4
 ]
+"141 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\src/io.c
+[e E17186 . `uc
+FR_OK 0
+FR_DISK_ERR 1
+FR_INT_ERR 2
+FR_NOT_READY 3
+FR_NO_FILE 4
+FR_NO_PATH 5
+FR_INVALID_NAME 6
+FR_DENIED 7
+FR_EXIST 8
+FR_INVALID_OBJECT 9
+FR_WRITE_PROTECTED 10
+FR_INVALID_DRIVE 11
+FR_NOT_ENABLED 12
+FR_NO_FILESYSTEM 13
+FR_MKFS_ABORTED 14
+FR_TIMEOUT 15
+FR_LOCKED 16
+FR_NOT_ENOUGH_CORE 17
+FR_TOO_MANY_OPEN_FILES 18
+FR_INVALID_PARAMETER 19
+]
+"260
+[e E17907 . `uc
+SPI_CLOCK_100KHZ 0
+SPI_CLOCK_2MHZ 1
+SPI_CLOCK_4MHZ 2
+SPI_CLOCK_5MHZ 3
+SPI_CLOCK_6MHZ 4
+SPI_CLOCK_8MHZ 5
+SPI_CLOCK_10MHZ 6
+]
 "137 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X/drivers/pic18f47q43_spi.c
 [e E17901 . `uc
 SPI_CLOCK_100KHZ 0
@@ -52,7 +85,7 @@ SPI_CLOCK_6MHZ 4
 SPI_CLOCK_8MHZ 5
 SPI_CLOCK_10MHZ 6
 ]
-"446 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\src/boards/SBC8080-57Q.c
+"453 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\src/boards/SBC8080-57Q.c
 [e E17186 . `uc
 FR_OK 0
 FR_DISK_ERR 1
@@ -74,39 +107,6 @@ FR_LOCKED 16
 FR_NOT_ENOUGH_CORE 17
 FR_TOO_MANY_OPEN_FILES 18
 FR_INVALID_PARAMETER 19
-]
-"119 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\src/io.c
-[e E17186 . `uc
-FR_OK 0
-FR_DISK_ERR 1
-FR_INT_ERR 2
-FR_NOT_READY 3
-FR_NO_FILE 4
-FR_NO_PATH 5
-FR_INVALID_NAME 6
-FR_DENIED 7
-FR_EXIST 8
-FR_INVALID_OBJECT 9
-FR_WRITE_PROTECTED 10
-FR_INVALID_DRIVE 11
-FR_NOT_ENABLED 12
-FR_NO_FILESYSTEM 13
-FR_MKFS_ABORTED 14
-FR_TIMEOUT 15
-FR_LOCKED 16
-FR_NOT_ENOUGH_CORE 17
-FR_TOO_MANY_OPEN_FILES 18
-FR_INVALID_PARAMETER 19
-]
-"238
-[e E17907 . `uc
-SPI_CLOCK_100KHZ 0
-SPI_CLOCK_2MHZ 1
-SPI_CLOCK_4MHZ 2
-SPI_CLOCK_5MHZ 3
-SPI_CLOCK_6MHZ 4
-SPI_CLOCK_8MHZ 5
-SPI_CLOCK_10MHZ 6
 ]
 "4 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\__fpclassifyf.c
 [v ___fpclassifyf __fpclassifyf `(i  1 e 2 0 ]
@@ -348,23 +348,23 @@ SPI_CLOCK_10MHZ 6
 [v _emuz80_57q_read_from_sram emuz80_57q_read_from_sram `(v  1 e 1 0 ]
 "207
 [v _emuz80_57q_sys_init emuz80_57q_sys_init `(v  1 s 1 emuz80_57q_sys_init ]
-"316
+"323
 [v _emuz80_57q_start_cpu emuz80_57q_start_cpu `(v  1 s 1 emuz80_57q_start_cpu ]
-"432
+"439
 [v _main main `(v  1 e 1 0 ]
-"101 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\src/io.c
+"123 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\src/io.c
 [v _putch putch `(v  1 e 1 0 ]
-"107
+"129
 [v _getch getch `(i  1 e 2 0 ]
-"112
+"134
 [v _menu_select menu_select `(i  1 e 2 0 ]
-"185
+"207
 [v _mem_init mem_init `(v  1 e 1 0 ]
-"217
+"239
 [v _wait_for_programmer wait_for_programmer `(v  1 e 1 0 ]
-"229
+"251
 [v _SD_init SD_init `(v  1 e 1 0 ]
-"244
+"266
 [v _disk_io_handle disk_io_handle `(v  1 e 1 0 ]
 "3338 C:/Users/hiroy/.mchp_packs/Microchip/PIC18F-Q_DFP/1.25.433/xc8\pic\include\proc\pic18f57q43.h
 [v _SPI1RXB SPI1RXB `VEuc  1 e 1 @128 ]
@@ -376,24 +376,24 @@ SPI_CLOCK_10MHZ 6
 [v _SPI1TCNTH SPI1TCNTH `VEuc  1 e 1 @131 ]
 "3525
 [v _SPI1CON0 SPI1CON0 `VEuc  1 e 1 @132 ]
-[s S2040 . 1 `uc 1 BMODE 1 0 :1:0 
+[s S2338 . 1 `uc 1 BMODE 1 0 :1:0 
 `uc 1 MST 1 0 :1:1 
 `uc 1 LSBF 1 0 :1:2 
 `uc 1 . 1 0 :4:3 
 `uc 1 EN 1 0 :1:7 
 ]
 "3546
-[s S2046 . 1 `uc 1 SPI1BMODE 1 0 :1:0 
+[s S2344 . 1 `uc 1 SPI1BMODE 1 0 :1:0 
 `uc 1 SPI1MST 1 0 :1:1 
 `uc 1 SPI1LSBF 1 0 :1:2 
 `uc 1 . 1 0 :4:3 
 `uc 1 SPI1SPIEN 1 0 :1:7 
 ]
-[u S2052 . 1 `S2040 1 . 1 0 `S2046 1 . 1 0 ]
-[v _SPI1CON0bits SPI1CON0bits `VES2052  1 e 1 @132 ]
+[u S2350 . 1 `S2338 1 . 1 0 `S2344 1 . 1 0 ]
+[v _SPI1CON0bits SPI1CON0bits `VES2350  1 e 1 @132 ]
 "3591
 [v _SPI1CON1 SPI1CON1 `VEuc  1 e 1 @133 ]
-[s S2070 . 1 `uc 1 SDOP 1 0 :1:0 
+[s S2368 . 1 `uc 1 SDOP 1 0 :1:0 
 `uc 1 SDIP 1 0 :1:1 
 `uc 1 SSP 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -403,7 +403,7 @@ SPI_CLOCK_10MHZ 6
 `uc 1 SMP 1 0 :1:7 
 ]
 "3618
-[s S2079 . 1 `uc 1 SPI1SDOP 1 0 :1:0 
+[s S2377 . 1 `uc 1 SPI1SDOP 1 0 :1:0 
 `uc 1 SPI1SDIP 1 0 :1:1 
 `uc 1 SPI1SSP 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -412,9 +412,9 @@ SPI_CLOCK_10MHZ 6
 `uc 1 SPI1CKE 1 0 :1:6 
 `uc 1 SPI1SMP 1 0 :1:7 
 ]
-[u S2088 . 1 `S2070 1 . 1 0 `S2079 1 . 1 0 ]
-[v _SPI1CON1bits SPI1CON1bits `VES2088  1 e 1 @133 ]
-[s S2110 . 1 `uc 1 RXR 1 0 :1:0 
+[u S2386 . 1 `S2368 1 . 1 0 `S2377 1 . 1 0 ]
+[v _SPI1CON1bits SPI1CON1bits `VES2386  1 e 1 @133 ]
+[s S2408 . 1 `uc 1 RXR 1 0 :1:0 
 `uc 1 TXR 1 0 :1:1 
 `uc 1 SSET 1 0 :1:2 
 `uc 1 . 1 0 :3:3 
@@ -422,15 +422,15 @@ SPI_CLOCK_10MHZ 6
 `uc 1 BUSY 1 0 :1:7 
 ]
 "3716
-[s S2117 . 1 `uc 1 SPI1RXR 1 0 :1:0 
+[s S2415 . 1 `uc 1 SPI1RXR 1 0 :1:0 
 `uc 1 SPI1TXR 1 0 :1:1 
 `uc 1 SPI1SSET 1 0 :1:2 
 `uc 1 . 1 0 :3:3 
 `uc 1 SPI1SSFLT 1 0 :1:6 
 `uc 1 SPI1BUSY 1 0 :1:7 
 ]
-[u S2124 . 1 `S2110 1 . 1 0 `S2117 1 . 1 0 ]
-[v _SPI1CON2bits SPI1CON2bits `VES2124  1 e 1 @134 ]
+[u S2422 . 1 `S2408 1 . 1 0 `S2415 1 . 1 0 ]
+[v _SPI1CON2bits SPI1CON2bits `VES2422  1 e 1 @134 ]
 "3853
 [v _SPI1TWIDTH SPI1TWIDTH `VEuc  1 e 1 @136 ]
 "3893
@@ -511,7 +511,7 @@ SPI_CLOCK_10MHZ 6
 [v _WPUB WPUB `VEuc  1 e 1 @1033 ]
 "41007
 [v _ANSELC ANSELC `VEuc  1 e 1 @1040 ]
-[s S1955 . 1 `uc 1 SLRC0 1 0 :1:0 
+[s S2259 . 1 `uc 1 SLRC0 1 0 :1:0 
 `uc 1 SLRC1 1 0 :1:1 
 `uc 1 SLRC2 1 0 :1:2 
 `uc 1 SLRC3 1 0 :1:3 
@@ -521,10 +521,10 @@ SPI_CLOCK_10MHZ 6
 `uc 1 SLRC7 1 0 :1:7 
 ]
 "41210
-[u S1964 . 1 `S1955 1 . 1 0 ]
+[u S2268 . 1 `S2259 1 . 1 0 ]
 "41210
 "41210
-[v _SLRCONCbits SLRCONCbits `VES1964  1 e 1 @1043 ]
+[v _SLRCONCbits SLRCONCbits `VES2268  1 e 1 @1043 ]
 "41503
 [v _ANSELD ANSELD `VEuc  1 e 1 @1048 ]
 "41565
@@ -538,13 +538,13 @@ SPI_CLOCK_10MHZ 6
 [v _NCO1INC NCO1INC `VEum  1 e 3 @1091 ]
 "45052
 [v _IVTLOCK IVTLOCK `VEuc  1 e 1 @1113 ]
-[s S1986 . 1 `uc 1 IVTLOCKED 1 0 :1:0 
+[s S2290 . 1 `uc 1 IVTLOCKED 1 0 :1:0 
 ]
 "45062
-[u S1988 . 1 `S1986 1 . 1 0 ]
+[u S2292 . 1 `S2290 1 . 1 0 ]
 "45062
 "45062
-[v _IVTLOCKbits IVTLOCKbits `VES1988  1 e 1 @1113 ]
+[v _IVTLOCKbits IVTLOCKbits `VES2292  1 e 1 @1113 ]
 "45250
 [v _IVTBASE IVTBASE `VEum  1 e 3 @1117 ]
 "48923
@@ -579,6 +579,8 @@ SPI_CLOCK_10MHZ 6
 [v _G3POL G3POL `VEb  1 e 0 @1722 ]
 "55087
 [v _GIE GIE `VEb  1 e 0 @9911 ]
+"55861
+[v _LATA4 LATA4 `VEb  1 e 0 @9716 ]
 "55864
 [v _LATA5 LATA5 `VEb  1 e 0 @9717 ]
 "55867
@@ -611,6 +613,8 @@ SPI_CLOCK_10MHZ 6
 [v _TRISA0 TRISA0 `VEb  1 e 0 @9776 ]
 "61411
 [v _TRISA1 TRISA1 `VEb  1 e 0 @9777 ]
+"61414
+[v _TRISA2 TRISA2 `VEb  1 e 0 @9778 ]
 "61417
 [v _TRISA3 TRISA3 `VEb  1 e 0 @9779 ]
 "61420
@@ -657,6 +661,8 @@ SPI_CLOCK_10MHZ 6
 [v _WPUA0 WPUA0 `VEb  1 e 0 @8200 ]
 "62794
 [v _WPUA1 WPUA1 `VEb  1 e 0 @8201 ]
+"62797
+[v _WPUA2 WPUA2 `VEb  1 e 0 @8202 ]
 "62800
 [v _WPUA3 WPUA3 `VEb  1 e 0 @8203 ]
 "62806
@@ -685,72 +691,72 @@ SPI_CLOCK_10MHZ 6
 [v _Fsid Fsid `us  1 s 2 Fsid ]
 "600
 [v _DbcTbl DbcTbl `C[10]uc  1 s 10 DbcTbl ]
-[s S2024 SPI 2 `i 1 dummy 2 0 ]
+[s S2322 SPI 2 `i 1 dummy 2 0 ]
 "33 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X/drivers/pic18f47q43_spi.c
-[s S2026 SPI_HW 4 `S2024 1 spi 2 0 `uc 1 bus_acquired 1 2 `uc 1 tris 1 3 ]
-[v _pic18f47q43_spi_ctx pic18f47q43_spi_ctx `S2026  1 s 4 pic18f47q43_spi_ctx ]
+[s S2324 SPI_HW 4 `S2322 1 spi 2 0 `uc 1 bus_acquired 1 2 `uc 1 tris 1 3 ]
+[v _pic18f47q43_spi_ctx pic18f47q43_spi_ctx `S2324  1 s 4 pic18f47q43_spi_ctx ]
 "44 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X/drivers/SDCard.c
-[s S2165 SDCard 5 `*.39S2024 1 spi 2 0 `us 1 timeout 2 2 `uc 1 calc_read_crc 1 4 :1:0 
+[s S2463 SDCard 5 `*.39S2322 1 spi 2 0 `us 1 timeout 2 2 `uc 1 calc_read_crc 1 4 :1:0 
 ]
-[v _ctx_ ctx_ `S2165  1 s 5 ctx_ ]
+[v _ctx_ ctx_ `S2463  1 s 5 ctx_ ]
 "84 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\src/boards/SBC8080-57Q.c
 [v _fs fs `S148  1 s 560 fs ]
 "85
 [v _io_addr io_addr `uc  1 e 1 0 ]
 "87
-[v _rom rom `C[831]uc  1 e 831 0 ]
+[v _rom rom `C[842]uc  1 e 842 0 ]
 "91
 [v _bdosccp bdosccp `C[5683]uc  1 e 5683 0 ]
 "95
-[v _bios bios `C[1332]uc  1 e 1332 0 ]
+[v _bios bios `C[1334]uc  1 e 1334 0 ]
 [s S148 . 560 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 ldrv 1 2 `uc 1 n_fats 1 3 `uc 1 wflag 1 4 `uc 1 fsi_flag 1 5 `us 1 id 2 6 `us 1 n_rootdir 2 8 `us 1 csize 2 10 `ul 1 last_clst 4 12 `ul 1 free_clst 4 16 `ul 1 n_fatent 4 20 `ul 1 fsize 4 24 `ul 1 volbase 4 28 `ul 1 fatbase 4 32 `ul 1 dirbase 4 36 `ul 1 database 4 40 `ul 1 winsect 4 44 `[512]uc 1 win 512 48 ]
-"62 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\src/io.c
+"84 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\src/io.c
 [s S205 . 14 `*.39S148 1 fs 2 0 `us 1 id 2 2 `uc 1 attr 1 4 `uc 1 stat 1 5 `ul 1 sclust 4 6 `ul 1 objsize 4 10 ]
 [s S247 . 546 `S205 1 obj 14 0 `uc 1 flag 1 14 `uc 1 err 1 15 `ul 1 fptr 4 16 `ul 1 clust 4 20 `ul 1 sect 4 24 `ul 1 dir_sect 4 28 `*.39uc 1 dir_ptr 2 32 `[512]uc 1 buf 512 34 ]
-[s S2591 . 4 `ui 1 sectors 2 0 `*.39S247 1 filep 2 2 ]
-[v _drives drives `[16]S2591  1 e 64 0 ]
-"82
+[s S1913 . 4 `ui 1 sectors 2 0 `*.39S247 1 filep 2 2 ]
+[v _drives drives `[16]S1913  1 e 64 0 ]
+"104
 [v _disk_buf disk_buf `[128]uc  1 s 128 disk_buf ]
-"83
+"105
 [v _disk_stat disk_stat `uc  1 e 1 0 ]
-"86
+"108
 [s S212 . 40 `S205 1 obj 14 0 `ul 1 dptr 4 14 `ul 1 clust 4 18 `ul 1 sect 4 22 `*.39uc 1 dir 2 26 `[12]uc 1 fn 12 28 ]
 [v _fsdir fsdir `S212  1 s 40 fsdir ]
 [s S233 . 22 `ul 1 fsize 4 0 `us 1 fdate 2 4 `us 1 ftime 2 6 `uc 1 fattrib 1 8 `[13]uc 1 fname 13 9 ]
-"87
+"109
 [v _fileinfo fileinfo `S233  1 s 22 fileinfo ]
-"88
+"110
 [v _files files `[6]S247  1 s 3276 files ]
-"89
+"111
 [v _num_files num_files `i  1 s 2 num_files ]
-"90
+"112
 [v _tmp_buf tmp_buf `[2][256]uc  1 e 512 0 ]
-"432 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\src/boards/SBC8080-57Q.c
+"439 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\src/boards/SBC8080-57Q.c
 [v _main main `(v  1 e 1 0 ]
 {
-"544
+"551
 } 0
-"217 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\src/io.c
+"239 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\src/io.c
 [v _wait_for_programmer wait_for_programmer `(v  1 e 1 0 ]
 {
-"227
+"249
 } 0
-"112
+"134
 [v _menu_select menu_select `(i  1 e 2 0 ]
 {
-"169
+"191
 [v menu_select@buf buf `C*.39uc  1 a 2 8 ]
-"168
+"190
 [v menu_select@drive_letter drive_letter `uc  1 a 1 12 ]
-"140
+"162
 [v menu_select@c c `uc  1 a 1 17 ]
-"114
+"136
 [v menu_select@i i `i  1 a 2 15 ]
-"125
+"147
 [v menu_select@selection selection `i  1 a 2 13 ]
-"115
+"137
 [v menu_select@drive drive `ui  1 a 2 10 ]
-"183
+"205
 } 0
 "3 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\strncmp.c
 [v _strncmp strncmp `(i  1 e 2 0 ]
@@ -770,10 +776,10 @@ SPI_CLOCK_10MHZ 6
 "9 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\nf_sprintf.c
 [v _sprintf sprintf `(i  1 e 2 0 ]
 {
-[u S3285 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
+[u S3296 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
 "13
-[s S3288 _IO_FILE 12 `S3285 1 . 3 0 `i 1 count 2 3 `[3]uc 1 ungetbuf 3 5 `i 1 ungetcnt 2 8 `i 1 limit 2 10 ]
-[v sprintf@f f `S3288  1 a 12 68 ]
+[s S3299 _IO_FILE 12 `S3296 1 . 3 0 `i 1 count 2 3 `[3]uc 1 ungetbuf 3 5 `i 1 ungetcnt 2 8 `i 1 limit 2 10 ]
+[v sprintf@f f `S3299  1 a 12 68 ]
 "12
 [v sprintf@ap ap `[1]*.39v  1 a 2 66 ]
 "9
@@ -781,10 +787,10 @@ SPI_CLOCK_10MHZ 6
 [v sprintf@fmt fmt `*.32Cuc  1 p 2 60 ]
 "23
 } 0
-"107 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\src/io.c
+"129 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\src/io.c
 [v _getch getch `(i  1 e 2 0 ]
 {
-"110
+"132
 } 0
 "4693 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\fatfs/ff.c
 [v _f_readdir f_readdir `(E275  1 e 1 0 ]
@@ -1099,14 +1105,14 @@ SPI_CLOCK_10MHZ 6
 [v f_closedir@dp dp `*.39S212  1 p 2 81 ]
 "4684
 } 0
-"185 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\src/io.c
+"207 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\src/io.c
 [v _mem_init mem_init `(v  1 e 1 0 ]
 {
-"188
+"210
 [v mem_init@addr addr `ul  1 a 4 76 ]
-"187
+"209
 [v mem_init@i i `ui  1 a 2 74 ]
-"215
+"237
 } 0
 "3657 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\fatfs/ff.c
 [v _f_mount f_mount `(E275  1 e 1 0 ]
@@ -1247,12 +1253,12 @@ SPI_CLOCK_10MHZ 6
 "207 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\src/boards/SBC8080-57Q.c
 [v _emuz80_57q_sys_init emuz80_57q_sys_init `(v  1 s 1 emuz80_57q_sys_init ]
 {
-"314
+"321
 } 0
-"316
+"323
 [v _emuz80_57q_start_cpu emuz80_57q_start_cpu `(v  1 s 1 emuz80_57q_start_cpu ]
 {
-"426
+"433
 } 0
 "137
 [v _emuz80_57q_exit_bus_master emuz80_57q_exit_bus_master `(v  1 e 1 0 ]
@@ -1264,37 +1270,37 @@ SPI_CLOCK_10MHZ 6
 {
 "135
 } 0
-"244 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\src/io.c
+"266 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\src/io.c
 [v _disk_io_handle disk_io_handle `(v  1 e 1 0 ]
 {
-"295
-[v disk_io_handle@addr_2826 addr `us  1 a 2 121 ]
-"287
+"317
+[v disk_io_handle@addr_2171 addr `us  1 a 2 121 ]
+"309
 [v disk_io_handle@addr addr `us  1 a 2 119 ]
-"253
+"275
 [v disk_io_handle@sector sector `ul  1 a 4 123 ]
-"268
+"290
 [v disk_io_handle@n n `ui  1 a 2 130 ]
 [s S148 . 560 `uc 1 fs_type 1 0 `uc 1 pdrv 1 1 `uc 1 ldrv 1 2 `uc 1 n_fats 1 3 `uc 1 wflag 1 4 `uc 1 fsi_flag 1 5 `us 1 id 2 6 `us 1 n_rootdir 2 8 `us 1 csize 2 10 `ul 1 last_clst 4 12 `ul 1 free_clst 4 16 `ul 1 n_fatent 4 20 `ul 1 fsize 4 24 `ul 1 volbase 4 28 `ul 1 fatbase 4 32 `ul 1 dirbase 4 36 `ul 1 database 4 40 `ul 1 winsect 4 44 `[512]uc 1 win 512 48 ]
-"267
+"289
 [s S205 . 14 `*.39S148 1 fs 2 0 `us 1 id 2 2 `uc 1 attr 1 4 `uc 1 stat 1 5 `ul 1 sclust 4 6 `ul 1 objsize 4 10 ]
 [s S247 . 546 `S205 1 obj 14 0 `uc 1 flag 1 14 `uc 1 err 1 15 `ul 1 fptr 4 16 `ul 1 clust 4 20 `ul 1 sect 4 24 `ul 1 dir_sect 4 28 `*.39uc 1 dir_ptr 2 32 `[512]uc 1 buf 512 34 ]
 [v disk_io_handle@filep filep `*.39S247  1 a 2 127 ]
-"269
+"291
 [v disk_io_handle@fres fres `E17186  1 a 1 129 ]
-"245
+"267
 [v disk_io_handle@disk_drive disk_drive `uc  1 s 1 disk_drive ]
-"246
+"268
 [v disk_io_handle@disk_track disk_track `uc  1 s 1 disk_track ]
-"247
+"269
 [v disk_io_handle@disk_sector disk_sector `us  1 s 2 disk_sector ]
-"248
+"270
 [v disk_io_handle@disk_dmal disk_dmal `uc  1 s 1 disk_dmal ]
-"249
+"271
 [v disk_io_handle@disk_dmah disk_dmah `uc  1 s 1 disk_dmah ]
-"250
+"272
 [v disk_io_handle@disk_datap disk_datap `*.39uc  1 s 2 disk_datap ]
-"314
+"336
 } 0
 "4014 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\fatfs/ff.c
 [v _f_write f_write `(E275  1 e 1 0 ]
@@ -1581,14 +1587,14 @@ SPI_CLOCK_10MHZ 6
 [v _SDCard_write512 SDCard_write512 `(i  1 e 2 0 ]
 {
 "256
-[v SDCard_write512@i_2504 i `ui  1 a 2 119 ]
+[v SDCard_write512@i_2787 i `ui  1 a 2 119 ]
 "252
 [v SDCard_write512@i i `i  1 a 2 117 ]
 "242
 [v SDCard_write512@crc crc `us  1 a 2 127 ]
-[s S2024 SPI 2 `i 1 dummy 2 0 ]
+[s S2322 SPI 2 `i 1 dummy 2 0 ]
 "239
-[v SDCard_write512@spi spi `*.39S2024  1 a 2 125 ]
+[v SDCard_write512@spi spi `*.39S2322  1 a 2 125 ]
 "240
 [v SDCard_write512@result result `i  1 a 2 123 ]
 "243
@@ -1619,14 +1625,14 @@ SPI_CLOCK_10MHZ 6
 [v _SDCard_read512 SDCard_read512 `(i  1 e 2 0 ]
 {
 "208
-[v SDCard_read512@i_2487 i `ui  1 a 2 119 ]
+[v SDCard_read512@i_2770 i `ui  1 a 2 119 ]
 "200
 [v SDCard_read512@i i `i  1 a 2 117 ]
 "174
 [v SDCard_read512@crc crc `us  1 a 2 129 ]
-[s S2024 SPI 2 `i 1 dummy 2 0 ]
+[s S2322 SPI 2 `i 1 dummy 2 0 ]
 "171
-[v SDCard_read512@spi spi `*.39S2024  1 a 2 127 ]
+[v SDCard_read512@spi spi `*.39S2322  1 a 2 127 ]
 "172
 [v SDCard_read512@result result `i  1 a 2 125 ]
 "174
@@ -1724,10 +1730,10 @@ SPI_CLOCK_10MHZ 6
 "164 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\src/boards/SBC8080-57Q.c
 [v _emuz80_57q_write_to_sram emuz80_57q_write_to_sram `(v  1 e 1 0 ]
 {
-[s S1904 . 2 `uc 1 l 1 0 `uc 1 h 1 1 ]
+[s S2203 . 2 `uc 1 l 1 0 `uc 1 h 1 1 ]
 "166
-[u S1907 address_bus_u 2 `ui 1 w 2 0 `S1904 1 . 2 0 ]
-[v emuz80_57q_write_to_sram@ab ab `S1907  1 a 2 10 ]
+[u S2206 address_bus_u 2 `ui 1 w 2 0 `S2203 1 . 2 0 ]
+[v emuz80_57q_write_to_sram@ab ab `S2206  1 a 2 10 ]
 "167
 [v emuz80_57q_write_to_sram@i i `ui  1 a 2 8 ]
 "164
@@ -1739,10 +1745,10 @@ SPI_CLOCK_10MHZ 6
 "185
 [v _emuz80_57q_read_from_sram emuz80_57q_read_from_sram `(v  1 e 1 0 ]
 {
-[s S1904 . 2 `uc 1 l 1 0 `uc 1 h 1 1 ]
+[s S2203 . 2 `uc 1 l 1 0 `uc 1 h 1 1 ]
 "187
-[u S1907 address_bus_u 2 `ui 1 w 2 0 `S1904 1 . 2 0 ]
-[v emuz80_57q_read_from_sram@ab ab `S1907  1 a 2 8 ]
+[u S2206 address_bus_u 2 `ui 1 w 2 0 `S2203 1 . 2 0 ]
+[v emuz80_57q_read_from_sram@ab ab `S2206  1 a 2 8 ]
 "188
 [v emuz80_57q_read_from_sram@i i `ui  1 a 2 6 ]
 "185
@@ -1754,10 +1760,10 @@ SPI_CLOCK_10MHZ 6
 "148
 [v _emuz80_57q_get_from_sram emuz80_57q_get_from_sram `(uc  1 e 1 0 ]
 {
-[s S1904 . 2 `uc 1 l 1 0 `uc 1 h 1 1 ]
+[s S2203 . 2 `uc 1 l 1 0 `uc 1 h 1 1 ]
 "150
-[u S1907 address_bus_u 2 `ui 1 w 2 0 `S1904 1 . 2 0 ]
-[v emuz80_57q_get_from_sram@ab ab `S1907  1 a 2 3 ]
+[u S2206 address_bus_u 2 `ui 1 w 2 0 `S2203 1 . 2 0 ]
+[v emuz80_57q_get_from_sram@ab ab `S2206  1 a 2 3 ]
 "151
 [v emuz80_57q_get_from_sram@ret_val ret_val `uc  1 a 1 2 ]
 "148
@@ -1779,12 +1785,12 @@ SPI_CLOCK_10MHZ 6
 [v ___xxtofl@sign sign `uc  1 a 1 20 ]
 "44
 } 0
-"229 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\src/io.c
+"251 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\src/io.c
 [v _SD_init SD_init `(v  1 e 1 0 ]
 {
-"232
+"254
 [v SD_init@retry retry `i  1 s 2 retry ]
-"242
+"264
 } 0
 "53 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X/drivers/SDCard.c
 [v _SDCard_init SDCard_init `(i  1 e 2 0 ]
@@ -1793,9 +1799,9 @@ SPI_CLOCK_10MHZ 6
 [v SDCard_init@i i `i  1 a 2 84 ]
 "61
 [v SDCard_init@buf buf `[5]uc  1 a 5 88 ]
-[s S2024 SPI 2 `i 1 dummy 2 0 ]
+[s S2322 SPI 2 `i 1 dummy 2 0 ]
 "58
-[v SDCard_init@spi spi `*.39S2024  1 a 2 86 ]
+[v SDCard_init@spi spi `*.39S2322  1 a 2 86 ]
 "53
 [v SDCard_init@initial_clock_speed initial_clock_speed `i  1 p 2 78 ]
 [v SDCard_init@clock_speed clock_speed `i  1 p 2 80 ]
@@ -1805,8 +1811,8 @@ SPI_CLOCK_10MHZ 6
 "84 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X/drivers/pic18f47q43_spi.c
 [v _SPI_SD_configure SPI_SD_configure `(v  1 e 1 0 ]
 {
-[s S2024 SPI 2 `i 1 dummy 2 0 ]
-[v SPI_SD_configure@ctx_ ctx_ `*.39S2024  1 p 2 70 ]
+[s S2322 SPI 2 `i 1 dummy 2 0 ]
+[v SPI_SD_configure@ctx_ ctx_ `*.39S2322  1 p 2 70 ]
 [v SPI_SD_configure@clock_speed clock_speed `i  1 p 2 72 ]
 [v SPI_SD_configure@bit_order bit_order `uc  1 p 1 74 ]
 [v SPI_SD_configure@data_mode data_mode `uc  1 p 1 75 ]
@@ -1826,9 +1832,9 @@ SPI_CLOCK_10MHZ 6
 {
 "1820
 [v vfprintf@cfmt cfmt `*.32uc  1 a 2 90 ]
-[s S3320 _IO_FILE 0 ]
+[s S3331 _IO_FILE 0 ]
 "1817
-[v vfprintf@fp fp `*.39S3320  1 p 2 52 ]
+[v vfprintf@fp fp `*.39S3331  1 p 2 52 ]
 [v vfprintf@fmt fmt `*.32Cuc  1 p 2 54 ]
 [v vfprintf@ap ap `*.39*.39v  1 p 2 56 ]
 "1840
@@ -1836,17 +1842,17 @@ SPI_CLOCK_10MHZ 6
 "1177
 [v _vfpfcnvrt vfpfcnvrt `(v  1 s 1 vfpfcnvrt ]
 {
-[u S3364 . 4 `l 1 sint 4 0 `ul 1 uint 4 0 `d 1 f 4 0 ]
+[u S3375 . 4 `l 1 sint 4 0 `ul 1 uint 4 0 `d 1 f 4 0 ]
 "1188
-[v vfpfcnvrt@convarg convarg `S3364  1 a 4 45 ]
+[v vfpfcnvrt@convarg convarg `S3375  1 a 4 45 ]
 "1179
 [v vfpfcnvrt@cp cp `*.32uc  1 a 2 50 ]
 [v vfpfcnvrt@c c `uc  1 a 1 49 ]
 "1180
 [v vfpfcnvrt@done done `a  1 a 1 44 ]
-[s S3320 _IO_FILE 0 ]
+[s S3331 _IO_FILE 0 ]
 "1177
-[v vfpfcnvrt@fp fp `*.39S3320  1 p 2 80 ]
+[v vfpfcnvrt@fp fp `*.39S3331  1 p 2 80 ]
 [v vfpfcnvrt@fmt fmt `*.39*.32uc  1 p 2 82 ]
 [v vfpfcnvrt@ap ap `*.39*.39v  1 p 2 84 ]
 "1814
@@ -1863,9 +1869,9 @@ SPI_CLOCK_10MHZ 6
 [v xtoa@c c `uc  1 a 1 44 ]
 "1061
 [v xtoa@a a `uc  1 a 1 39 ]
-[s S3320 _IO_FILE 0 ]
+[s S3331 _IO_FILE 0 ]
 "1052
-[v xtoa@fp fp `*.39S3320  1 p 2 26 ]
+[v xtoa@fp fp `*.39S3331  1 p 2 26 ]
 [v xtoa@d d `ul  1 p 4 28 ]
 [v xtoa@x x `uc  1 p 1 32 ]
 "1153
@@ -1881,9 +1887,9 @@ SPI_CLOCK_10MHZ 6
 [v stoa@w w `i  1 a 2 18 ]
 "945
 [v stoa@p p `i  1 a 2 16 ]
-[s S3320 _IO_FILE 0 ]
+[s S3331 _IO_FILE 0 ]
 "942
-[v stoa@fp fp `*.39S3320  1 p 2 10 ]
+[v stoa@fp fp `*.39S3331  1 p 2 10 ]
 [v stoa@s s `*.34uc  1 p 2 12 ]
 "997
 } 0
@@ -1912,15 +1918,15 @@ SPI_CLOCK_10MHZ 6
 "587 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\doprnt.c
 [v _efgtoa efgtoa `(v  1 s 1 efgtoa ]
 {
-[u S3338 flui 4 `d 1 f 4 0 `l 1 u 4 0 ]
+[u S3349 flui 4 `d 1 f 4 0 `l 1 u 4 0 ]
 "592
-[v efgtoa@u u `S3338  1 a 4 40 ]
-[v efgtoa@g g `S3338  1 a 4 34 ]
+[v efgtoa@u u `S3349  1 a 4 40 ]
+[v efgtoa@g g `S3349  1 a 4 34 ]
 "591
 [v efgtoa@l l `d  1 a 4 27 ]
 [v efgtoa@h h `d  1 a 4 23 ]
 "592
-[v efgtoa@ou ou `S3338  1 a 4 19 ]
+[v efgtoa@ou ou `S3349  1 a 4 19 ]
 "590
 [v efgtoa@n n `i  1 a 2 38 ]
 [v efgtoa@i i `i  1 a 2 31 ]
@@ -1936,9 +1942,9 @@ SPI_CLOCK_10MHZ 6
 [v efgtoa@nmode nmode `uc  1 a 1 10 ]
 [v efgtoa@mode mode `uc  1 a 1 9 ]
 [v efgtoa@pp pp `uc  1 a 1 8 ]
-[s S3320 _IO_FILE 0 ]
+[s S3331 _IO_FILE 0 ]
 "587
-[v efgtoa@fp fp `*.39S3320  1 p 2 71 ]
+[v efgtoa@fp fp `*.39S3331  1 p 2 71 ]
 [v efgtoa@f f `d  1 p 4 73 ]
 [v efgtoa@c c `uc  1 p 1 77 ]
 "868
@@ -1977,9 +1983,9 @@ SPI_CLOCK_10MHZ 6
 "3 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\floorf.c
 [v _floorf floorf `(f  1 e 4 0 ]
 {
-[u S3476 . 4 `f 1 f 4 0 `ul 1 i 4 0 ]
+[u S3487 . 4 `f 1 f 4 0 `ul 1 i 4 0 ]
 "5
-[v floorf@u u `S3476  1 a 4 67 ]
+[v floorf@u u `S3487  1 a 4 67 ]
 "7
 [v floorf@m m `ul  1 a 4 61 ]
 "6
@@ -1987,21 +1993,21 @@ SPI_CLOCK_10MHZ 6
 "3
 [v floorf@x x `f  1 p 4 51 ]
 "4
-[v floorf@F521 F521 `S3476  1 s 4 F521 ]
+[v floorf@F521 F521 `S3487  1 s 4 F521 ]
 "27
 } 0
 "4 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\__fpclassifyf.c
 [v ___fpclassifyf __fpclassifyf `(i  1 e 2 0 ]
 {
-[u S3476 . 4 `f 1 f 4 0 `ul 1 i 4 0 ]
+[u S3487 . 4 `f 1 f 4 0 `ul 1 i 4 0 ]
 "6
-[v ___fpclassifyf@u u `S3476  1 a 4 10 ]
+[v ___fpclassifyf@u u `S3487  1 a 4 10 ]
 "7
 [v ___fpclassifyf@e e `i  1 a 2 8 ]
 "4
 [v ___fpclassifyf@x x `f  1 p 4 0 ]
 "5
-[v ___fpclassifyf@F465 F465 `S3476  1 s 4 F465 ]
+[v ___fpclassifyf@F465 F465 `S3487  1 s 4 F465 ]
 "11
 } 0
 "43 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\fltol.c
@@ -2046,17 +2052,17 @@ SPI_CLOCK_10MHZ 6
 "8 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\sprcmul.c
 [v ___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S3132 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S3143 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
 "13
-[s S3137 . 4 `s 1 wordA 2 0 `s 1 wordB 2 2 ]
-[u S3140 . 4 `l 1 i 4 0 `d 1 f 4 0 `S3132 1 fAsBytes 4 0 `S3137 1 fAsWords 4 0 ]
-[v ___flmul@prod prod `S3140  1 a 4 19 ]
+[s S3148 . 4 `s 1 wordA 2 0 `s 1 wordB 2 2 ]
+[u S3151 . 4 `l 1 i 4 0 `d 1 f 4 0 `S3143 1 fAsBytes 4 0 `S3148 1 fAsWords 4 0 ]
+[v ___flmul@prod prod `S3151  1 a 4 19 ]
 "12
 [v ___flmul@grs grs `ul  1 a 4 14 ]
-[s S3208 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[s S3219 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
 "14
-[u S3211 . 2 `s 1 i 2 0 `us 1 n 2 0 `S3208 1 nAsBytes 2 0 ]
-[v ___flmul@temp temp `S3211  1 a 2 23 ]
+[u S3222 . 2 `s 1 i 2 0 `us 1 n 2 0 `S3219 1 nAsBytes 2 0 ]
+[v ___flmul@temp temp `S3222  1 a 2 23 ]
 "10
 [v ___flmul@bexp bexp `uc  1 a 1 18 ]
 "11
@@ -2112,9 +2118,9 @@ SPI_CLOCK_10MHZ 6
 [v dtoa@p p `i  1 a 2 34 ]
 "515
 [v dtoa@s s `uc  1 a 1 38 ]
-[s S3320 _IO_FILE 0 ]
+[s S3331 _IO_FILE 0 ]
 "513
-[v dtoa@fp fp `*.39S3320  1 p 2 26 ]
+[v dtoa@fp fp `*.39S3331  1 p 2 26 ]
 [v dtoa@d d `l  1 p 4 28 ]
 "583
 } 0
@@ -2123,9 +2129,9 @@ SPI_CLOCK_10MHZ 6
 {
 "195
 [v pad@i i `i  1 a 2 24 ]
-[s S3320 _IO_FILE 0 ]
+[s S3331 _IO_FILE 0 ]
 "193
-[v pad@fp fp `*.39S3320  1 p 2 17 ]
+[v pad@fp fp `*.39S3331  1 p 2 17 ]
 [v pad@buf buf `*.39uc  1 p 2 19 ]
 [v pad@p p `i  1 p 2 21 ]
 "226
@@ -2139,9 +2145,9 @@ SPI_CLOCK_10MHZ 6
 [v fputs@c c `uc  1 a 1 14 ]
 "8
 [v fputs@s s `*.39Cuc  1 p 2 10 ]
-[u S3285 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
-[s S3288 _IO_FILE 12 `S3285 1 . 3 0 `i 1 count 2 3 `[3]uc 1 ungetbuf 3 5 `i 1 ungetcnt 2 8 `i 1 limit 2 10 ]
-[v fputs@fp fp `*.39S3288  1 p 2 12 ]
+[u S3296 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
+[s S3299 _IO_FILE 12 `S3296 1 . 3 0 `i 1 count 2 3 `[3]uc 1 ungetbuf 3 5 `i 1 ungetcnt 2 8 `i 1 limit 2 10 ]
+[v fputs@fp fp `*.39S3299  1 p 2 12 ]
 "19
 } 0
 "1 C:\Program Files\Microchip\xc8\v2.46\pic\sources\c99\common\abs.c
@@ -2180,9 +2186,9 @@ SPI_CLOCK_10MHZ 6
 "478
 [v ctoa@w w `i  1 a 2 16 ]
 [v ctoa@l l `i  1 a 2 14 ]
-[s S3320 _IO_FILE 0 ]
+[s S3331 _IO_FILE 0 ]
 "476
-[v ctoa@fp fp `*.39S3320  1 p 2 10 ]
+[v ctoa@fp fp `*.39S3331  1 p 2 10 ]
 [v ctoa@c c `uc  1 p 1 12 ]
 "509
 } 0
@@ -2190,28 +2196,28 @@ SPI_CLOCK_10MHZ 6
 [v _fputc fputc `(i  1 e 2 0 ]
 {
 [v fputc@c c `i  1 p 2 1 ]
-[u S3285 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
-[s S3288 _IO_FILE 12 `S3285 1 . 3 0 `i 1 count 2 3 `[3]uc 1 ungetbuf 3 5 `i 1 ungetcnt 2 8 `i 1 limit 2 10 ]
-[v fputc@fp fp `*.39S3288  1 p 2 3 ]
+[u S3296 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
+[s S3299 _IO_FILE 12 `S3296 1 . 3 0 `i 1 count 2 3 `[3]uc 1 ungetbuf 3 5 `i 1 ungetcnt 2 8 `i 1 limit 2 10 ]
+[v fputc@fp fp `*.39S3299  1 p 2 3 ]
 "24
 } 0
-"101 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\src/io.c
+"123 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X\src/io.c
 [v _putch putch `(v  1 e 1 0 ]
 {
 [v putch@c c `uc  1 a 1 wreg ]
 [v putch@c c `uc  1 a 1 wreg ]
 [v putch@c c `uc  1 a 1 0 ]
-"104
+"126
 } 0
 "64 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X/drivers/pic18f47q43_spi.c
 [v _SPI_SD_begin SPI_SD_begin `(v  1 e 1 0 ]
 {
-[s S2024 SPI 2 `i 1 dummy 2 0 ]
+[s S2322 SPI 2 `i 1 dummy 2 0 ]
 "66
-[s S2026 SPI_HW 4 `S2024 1 spi 2 0 `uc 1 bus_acquired 1 2 `uc 1 tris 1 3 ]
-[v SPI_SD_begin@ctx ctx `*.39S2026  1 a 2 2 ]
+[s S2324 SPI_HW 4 `S2322 1 spi 2 0 `uc 1 bus_acquired 1 2 `uc 1 tris 1 3 ]
+[v SPI_SD_begin@ctx ctx `*.39S2324  1 a 2 2 ]
 "64
-[v SPI_SD_begin@ctx_ ctx_ `*.39S2024  1 p 2 0 ]
+[v SPI_SD_begin@ctx_ ctx_ `*.39S2322  1 p 2 0 ]
 "82
 } 0
 "316 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X/drivers/SDCard.c
@@ -2222,9 +2228,9 @@ SPI_CLOCK_10MHZ 6
 [v SDCard_command@responsep responsep `*.39uc  1 a 2 52 ]
 "319
 [v SDCard_command@result result `i  1 a 2 50 ]
-[s S2024 SPI 2 `i 1 dummy 2 0 ]
+[s S2322 SPI 2 `i 1 dummy 2 0 ]
 "318
-[v SDCard_command@spi spi `*.39S2024  1 a 2 47 ]
+[v SDCard_command@spi spi `*.39S2322  1 a 2 47 ]
 "316
 [v SDCard_command@command command `uc  1 a 1 wreg ]
 [v SDCard_command@argument argument `ul  1 p 4 39 ]
@@ -2240,9 +2246,9 @@ SPI_CLOCK_10MHZ 6
 [v ___SDCard_command_r1@command command `uc  1 a 1 wreg ]
 "146
 [v ___SDCard_command_r1@buf buf `[6]uc  1 a 6 30 ]
-[s S2024 SPI 2 `i 1 dummy 2 0 ]
+[s S2322 SPI 2 `i 1 dummy 2 0 ]
 "145
-[v ___SDCard_command_r1@spi spi `*.39S2024  1 a 2 37 ]
+[v ___SDCard_command_r1@spi spi `*.39S2322  1 a 2 37 ]
 "147
 [v ___SDCard_command_r1@response response `uc  1 a 1 36 ]
 "143
@@ -2257,9 +2263,9 @@ SPI_CLOCK_10MHZ 6
 [v ___SDCard_wait_response __SDCard_wait_response `(uc  1 s 1 __SDCard_wait_response ]
 {
 [v ___SDCard_wait_response@no_response no_response `uc  1 a 1 wreg ]
-[s S2024 SPI 2 `i 1 dummy 2 0 ]
+[s S2322 SPI 2 `i 1 dummy 2 0 ]
 "135
-[v ___SDCard_wait_response@spi spi `*.39S2024  1 a 2 19 ]
+[v ___SDCard_wait_response@spi spi `*.39S2322  1 a 2 19 ]
 "136
 [v ___SDCard_wait_response@response response `uc  1 a 1 22 ]
 "133
@@ -2274,25 +2280,25 @@ SPI_CLOCK_10MHZ 6
 {
 "277
 [v SPI_SD_receive_byte@dummy dummy `uc  1 a 1 16 ]
-[s S2024 SPI 2 `i 1 dummy 2 0 ]
+[s S2322 SPI 2 `i 1 dummy 2 0 ]
 "275
-[v SPI_SD_receive_byte@ctx_ ctx_ `*.39S2024  1 p 2 14 ]
+[v SPI_SD_receive_byte@ctx_ ctx_ `*.39S2322  1 p 2 14 ]
 "280
 } 0
 "191
 [v _SPI_SD_receive SPI_SD_receive `(v  1 e 1 0 ]
 {
 "234
-[v SPI_SD_receive@i_2404 i `uc  1 a 1 11 ]
+[v SPI_SD_receive@i_2687 i `uc  1 a 1 11 ]
 "203
 [v SPI_SD_receive@i i `i  1 a 2 8 ]
 "233
 [v SPI_SD_receive@repeat repeat `uc  1 a 1 10 ]
 "193
 [v SPI_SD_receive@p p `*.39uc  1 a 2 12 ]
-[s S2024 SPI 2 `i 1 dummy 2 0 ]
+[s S2322 SPI 2 `i 1 dummy 2 0 ]
 "191
-[v SPI_SD_receive@ctx_ ctx_ `*.39S2024  1 p 2 0 ]
+[v SPI_SD_receive@ctx_ ctx_ `*.39S2322  1 p 2 0 ]
 [v SPI_SD_receive@buf buf `*.39v  1 p 2 2 ]
 [v SPI_SD_receive@count count `ui  1 p 2 4 ]
 "263
@@ -2300,8 +2306,8 @@ SPI_CLOCK_10MHZ 6
 "140
 [v _SPI_SD_begin_transaction SPI_SD_begin_transaction `(v  1 e 1 0 ]
 {
-[s S2024 SPI 2 `i 1 dummy 2 0 ]
-[v SPI_SD_begin_transaction@ctx_ ctx_ `*.39S2024  1 p 2 4 ]
+[s S2322 SPI 2 `i 1 dummy 2 0 ]
+[v SPI_SD_begin_transaction@ctx_ ctx_ `*.39S2322  1 p 2 4 ]
 "144
 } 0
 "334 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X/drivers/SDCard.c
@@ -2323,23 +2329,23 @@ SPI_CLOCK_10MHZ 6
 "46
 [v _SDCard_end_transaction SDCard_end_transaction `(v  1 e 1 0 ]
 {
-[s S2024 SPI 2 `i 1 dummy 2 0 ]
+[s S2322 SPI 2 `i 1 dummy 2 0 ]
 "48
-[v SDCard_end_transaction@spi spi `*.39S2024  1 a 2 17 ]
+[v SDCard_end_transaction@spi spi `*.39S2322  1 a 2 17 ]
 "51
 } 0
 "146 C:\Users\hiroy\MPLABXProjects\SBC8080-CPM.X/drivers/pic18f47q43_spi.c
 [v _SPI_SD_end_transaction SPI_SD_end_transaction `(v  1 e 1 0 ]
 {
-[s S2024 SPI 2 `i 1 dummy 2 0 ]
-[v SPI_SD_end_transaction@ctx_ ctx_ `*.39S2024  1 p 2 4 ]
+[s S2322 SPI 2 `i 1 dummy 2 0 ]
+[v SPI_SD_end_transaction@ctx_ ctx_ `*.39S2322  1 p 2 4 ]
 "150
 } 0
 "282
 [v _SPI_SD_select SPI_SD_select `(v  1 e 1 0 ]
 {
-[s S2024 SPI 2 `i 1 dummy 2 0 ]
-[v SPI_SD_select@ctx_ ctx_ `*.39S2024  1 p 2 0 ]
+[s S2322 SPI 2 `i 1 dummy 2 0 ]
+[v SPI_SD_select@ctx_ ctx_ `*.39S2322  1 p 2 0 ]
 [v SPI_SD_select@select select `i  1 p 2 2 ]
 "285
 } 0
@@ -2350,32 +2356,32 @@ SPI_CLOCK_10MHZ 6
 [v SPI_SD_dummy_clocks@i i `i  1 a 2 14 ]
 "267
 [v SPI_SD_dummy_clocks@dummy dummy `uc  1 a 1 16 ]
-[s S2024 SPI 2 `i 1 dummy 2 0 ]
+[s S2322 SPI 2 `i 1 dummy 2 0 ]
 "265
-[v SPI_SD_dummy_clocks@ctx_ ctx_ `*.39S2024  1 p 2 10 ]
+[v SPI_SD_dummy_clocks@ctx_ ctx_ `*.39S2322  1 p 2 10 ]
 [v SPI_SD_dummy_clocks@clocks clocks `ui  1 p 2 12 ]
 "273
 } 0
 "54
 [v _release_bus release_bus `(v  1 s 1 release_bus ]
 {
-[s S2024 SPI 2 `i 1 dummy 2 0 ]
+[s S2322 SPI 2 `i 1 dummy 2 0 ]
 "56
-[s S2026 SPI_HW 4 `S2024 1 spi 2 0 `uc 1 bus_acquired 1 2 `uc 1 tris 1 3 ]
-[v release_bus@ctx ctx `*.39S2026  1 a 2 2 ]
+[s S2324 SPI_HW 4 `S2322 1 spi 2 0 `uc 1 bus_acquired 1 2 `uc 1 tris 1 3 ]
+[v release_bus@ctx ctx `*.39S2324  1 a 2 2 ]
 "54
-[v release_bus@ctx_ ctx_ `*.39S2024  1 p 2 0 ]
+[v release_bus@ctx_ ctx_ `*.39S2322  1 p 2 0 ]
 "62
 } 0
 "38
 [v _acquire_bus acquire_bus `(v  1 s 1 acquire_bus ]
 {
-[s S2024 SPI 2 `i 1 dummy 2 0 ]
+[s S2322 SPI 2 `i 1 dummy 2 0 ]
 "40
-[s S2026 SPI_HW 4 `S2024 1 spi 2 0 `uc 1 bus_acquired 1 2 `uc 1 tris 1 3 ]
-[v acquire_bus@ctx ctx `*.39S2026  1 a 2 2 ]
+[s S2324 SPI_HW 4 `S2322 1 spi 2 0 `uc 1 bus_acquired 1 2 `uc 1 tris 1 3 ]
+[v acquire_bus@ctx ctx `*.39S2324  1 a 2 2 ]
 "38
-[v acquire_bus@ctx_ ctx_ `*.39S2024  1 p 2 0 ]
+[v acquire_bus@ctx_ ctx_ `*.39S2322  1 p 2 0 ]
 "52
 } 0
 "170
@@ -2385,9 +2391,9 @@ SPI_CLOCK_10MHZ 6
 [v SPI_SD_send@i i `i  1 a 2 6 ]
 "172
 [v SPI_SD_send@p p `*.39uc  1 a 2 8 ]
-[s S2024 SPI 2 `i 1 dummy 2 0 ]
+[s S2322 SPI 2 `i 1 dummy 2 0 ]
 "170
-[v SPI_SD_send@ctx_ ctx_ `*.39S2024  1 p 2 0 ]
+[v SPI_SD_send@ctx_ ctx_ `*.39S2322  1 p 2 0 ]
 [v SPI_SD_send@buf buf `*.39Cv  1 p 2 2 ]
 [v SPI_SD_send@count count `ui  1 p 2 4 ]
 "189

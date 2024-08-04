@@ -1,7 +1,7 @@
 ### HEXMate logfile and output summary ###
 
 ### Command-line arguments ###
- C:\Users\hiroy\AppData\Local\Temp\xcBsdl4.1\driver_tmp_3.o
+ C:\Users\hiroy\AppData\Local\Temp\xcBsc2o.1\driver_tmp_3.o
  -Odist/default/production\SBC8080-CPM.X.production.hex
  -logfile=dist/default/production\SBC8080-CPM.X.production.hxl
  -addressing=1
@@ -9,26 +9,29 @@
 
 ### Memory Usage ###
  Input file ranges:
-  0h - 3h		(C:\Users\hiroy\AppData\Local\Temp\xcBsdl4.1\driver_tmp_3.o)
-  D970h - 19FFEh		(C:\Users\hiroy\AppData\Local\Temp\xcBsdl4.1\driver_tmp_3.o)
-  1FFFCh - 1FFFFh		(C:\Users\hiroy\AppData\Local\Temp\xcBsdl4.1\driver_tmp_3.o)
-  300000h - 300007h		(C:\Users\hiroy\AppData\Local\Temp\xcBsdl4.1\driver_tmp_3.o)
-  300009h - 300009h		(C:\Users\hiroy\AppData\Local\Temp\xcBsdl4.1\driver_tmp_3.o)
+  0h - 3h		(C:\Users\hiroy\AppData\Local\Temp\xcBsc2o.1\driver_tmp_3.o)
+  D962h - FFFEh		(C:\Users\hiroy\AppData\Local\Temp\xcBsc2o.1\driver_tmp_3.o)
+  10000h - 19FF6h		(C:\Users\hiroy\AppData\Local\Temp\xcBsc2o.1\driver_tmp_3.o)
+  1FFFCh - 1FFFFh		(C:\Users\hiroy\AppData\Local\Temp\xcBsc2o.1\driver_tmp_3.o)
+  300000h - 300007h		(C:\Users\hiroy\AppData\Local\Temp\xcBsc2o.1\driver_tmp_3.o)
+  300009h - 300009h		(C:\Users\hiroy\AppData\Local\Temp\xcBsc2o.1\driver_tmp_3.o)
  Unused ranges:
-  4h - D96Fh
-  19FFFh - 1FFFBh
+  4h - D961h
+  FFFFh - FFFFh
+  19FF7h - 1FFFBh
   20000h - 2FFFFFh
   300008h - 300008h
 
 ### Hex Memory Map ###
  Legend:
   -- = Unused memory
-  H1 = Input file             (C:\Users\hiroy\AppData\Local\Temp\xcBsdl4.1\driver_tmp_3.o)
+  H1 = Input file             (C:\Users\hiroy\AppData\Local\Temp\xcBsc2o.1\driver_tmp_3.o)
 ----------------------------------------------------------
          | 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 ----------------------------------------------------------
 00000000 | H1 H1 H1 H1 -- -- -- -- -- -- -- -- -- -- -- --
 ----------------------------------------------------------
+0000D960 | -- -- H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 0000D970 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 0000D980 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 0000D990 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
@@ -645,7 +648,7 @@
 0000FFC0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 0000FFD0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 0000FFE0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-0000FFF0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+0000FFF0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 --
 00010000 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00010010 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00010020 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
@@ -3205,7 +3208,7 @@
 00019FC0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00019FD0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00019FE0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00019FF0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 --
+00019FF0 | H1 H1 H1 H1 H1 H1 H1 -- -- -- -- -- -- -- -- --
 ----------------------------------------------------------
 0001FFF0 | -- -- -- -- -- -- -- -- -- -- -- -- H1 H1 H1 H1
 ----------------------------------------------------------
