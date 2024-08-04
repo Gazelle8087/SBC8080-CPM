@@ -1,4 +1,4 @@
- AS V1.42 Beta [Bld 271] - Source File ipl_8080.asm - Page 1 - 7/27/2024 16:26:39
+ AS V1.42 Beta [Bld 271] - Source File ipl_8080.asm - Page 1 - 8/4/2024 17:43:39
 
 
        1/    0 :                        ;	IPL for emuz80-57q
@@ -30,8 +30,8 @@
       27/    0 :                        	cpu	Z180
       28/    0 :                        	include	"ipl_bios_inc.asm"
 (1)    1/    0 : =40H                   PIC_IOBASE	EQU	40h
-(1)    2/    0 : =0H                    UART_D8251	EQU	0
-(1)    3/    0 : =1H                    UART_C8251	EQU	1
+(1)    2/    0 : =0H                    UART_D8251	EQU	00h
+(1)    3/    0 : =1H                    UART_C8251	EQU	01h
 (1)    4/    0 :                        ;
 (1)    5/    0 :                        ;	SuperMEZ80 I/O ports (PIC)
 (1)    6/    0 :                        
@@ -50,247 +50,253 @@
 (1)   19/    0 : =0H                    D_SUCCESS	EQU	0
 (1)   20/    0 : =1H                    D_ERROR		EQU	1
 (1)   21/    0 :                        
-(1)   22/    0 : =0C0H                  IOBASE_180	EQU	0C0H
-(1)   23/    0 :                        
-(1)   24/    0 :                        
+(1)   22/    0 :                        
       29/    0 :                        
-      30/    0 :                        	ORG	0		;mem base of boot
-      31/    0 : =40H                   MSIZE	EQU	64		;mem size in kbytes
+      30/    0 :                        		ORG	0		;mem base of boot
+      31/    0 : =40H                   MSIZE		EQU	64		;mem size in kbytes
       32/    0 :                        
-      33/    0 : =0B000H                BIAS	EQU	(MSIZE-20)*1024	;offset from 20k system
-      34/    0 : =0E400H                CCP	EQU	3400H+BIAS	;base of the ccp
-      35/    0 : =0FA00H                BIOS	EQU	CCP+1600H	;base of the bios
+      33/    0 : =0B000H                BIAS		EQU	(MSIZE-20)*1024	;offset from 20k system
+      34/    0 : =0E400H                CCP		EQU	3400H+BIAS	;base of the ccp
+      35/    0 : =0FA00H                BIOS		EQU	CCP+1600H	;base of the bios
       36/    0 :                        
-      37/    0 : =0E0H                  OMCR_V	EQU	0E0h
-      38/    0 : =0H                    CLOCK_0	EQU	0
-      39/    0 : =0H                    CLOCK_1	EQU	0
-      40/    0 : =1H                    CLOCK_2	EQU	1
-      41/    0 :                        
-      42/    0 : 00                     	NOP
-      43/    1 : 00                     	NOP
-      44/    2 : 00                     	NOP
-      45/    3 : F3                     	DI
-      46/    4 : C3 87 00               	JP	COLD
-      47/    7 :                        
-      48/   80 :                        	ORG	80h
-      49/   80 : 0D 0A 49 50 4C 3A 00   IPLMSG:	DB	0dh,0ah,"IPL:",0
-      50/   87 :                        
-      51/   87 :                        COLD:
-      52/   87 : F3                     	DI
-      53/   88 : 31 80 00               	LD	SP,IPLMSG
-      54/   8B : 21 80 00               	LD	HL,IPLMSG
-      55/   8E : CD 29 03               	CALL	STROUT
-      56/   91 :                        
-      57/   91 :                        ; check 8080/8085/MYCPU80
-      58/   91 : 3E 7F                  	LD	A,07fh
-      59/   93 : 3C                     	INC	A
-      60/   94 : EA CC 00               	JP	PE,check_z80
-      61/   97 :                        
-      62/   97 : 01 FF FF               	LD	BC,0FFFFH
-      63/   9A : C5                     	PUSH	BC
-      64/   9B : F1                     	POP	AF
-      65/   9C : F5                     	PUSH	AF
-      66/   9D : D1                     	POP	DE
-      67/   9E :                        
-      68/   9E : 7B                     	LD	A,E
-      69/   9F : E6 22                  	AND	A,00100010B	;if bit51 is 00
-      70/   A1 : CA 7C 02               	JP	Z,ID_MYCPU	;then MYCPU80
-      71/   A4 :                        
-      72/   A4 : 7B                     	LD	A,E
-      73/   A5 : E6 2A                  	AND	A,00101010B	;if bit 531 is 001
-      74/   A7 : FE 02                  	CP	A,00000010B	;then intel i8080
-      75/   A9 : CA 89 01               	JP	Z,ID_8080AF
-      76/   AC :                        
-      77/   AC : 7B                     	LD	A,E
-      78/   AD : E6 0A                  	AND	A,00001010B	;if bit 31 is 11
-      79/   AF : FE 0A                  	CP	A,00001010B	;then NEC uPD8080A(not AF)
-      80/   B1 : CA D9 01               	JP	Z,ID_UPD8080A
-      81/   B4 :                        
-      82/   B4 : 7B                     	LD	A,E
-      83/   B5 : E6 2A                  	AND	A,00101010B	
-      84/   B7 : FE 22                  	CP	A,00100010B
-      85/   B9 : C2 22 03               	JP	NZ,LD_CPM
-      86/   BC : 01 00 00               	LD	BC,0
-      87/   BF : C5                     	PUSH	BC
-      88/   C0 : F1                     	POP	AF
-      89/   C1 : F5                     	PUSH	AF
-      90/   C2 : D1                     	POP	DE
-      91/   C3 : 7B                     	LD	A,E
-      92/   C4 : E6 2A                  	AND	A,00101010B	;if bit 51 is writable
-      93/   C6 : CA 2A 02               	JP	Z,ID_8085	;then 8085
-      94/   C9 : C3 22 03               	JP	LD_CPM
-      95/   CC :                        
-      96/   CC :                        ; check Z80 or Z80180
-      97/   CC :                        check_z80:
-      98/   CC : 01 FF 00               	LD	BC,00FFH
-      99/   CF : ED 4C                  	DB	0EDH,4CH	; MLT BC (HD64180)
-     100/   D1 : 78                     	LD	A,B
-     101/   D2 : B1                     	OR	C
-     102/   D3 : C2 D0 02               	JP	NZ,ID_Z80
-     103/   D6 :                        
-     104/   D6 :                        ; HD64180R/Z or Z8S180
-     105/   D6 :                        
-     106/   D6 : 3E C0                  	LD	A,IOBASE_180
-     107/   D8 : ED 39 3F               	OUT0	(3Fh),A
-     108/   DB :                        
-     109/   DB : 3E 00                  	LD	A,00H			; memory 0 wait IO 1 wait
-     110/   DD : ED 39 F2               	OUT0	(IOBASE_180+32H),A	; DMA/WAIT Control Register (DCNTL)
-     111/   E0 : 3E 00                  	LD	A,00H			; no refresh
-     112/   E2 : ED 39 F6               	OUT0	(IOBASE_180+36H),A	; Refresh Control Register (RCR)
-     113/   E5 :                        
-     114/   E5 :                        ;check HD64180R or HD64180Z
-     115/   E5 :                        
-     116/   E5 : 3E 7F                  	LD	A,7FH			; Try to change OMCR bit 7 to 0
-     117/   E7 : ED 39 FE               	OUT0	(IOBASE_180+3EH),A
-     118/   EA : ED 38 FE               	IN0	A,(IOBASE_180+3EH)
-     119/   ED : E6 80                  	AND	80H
-     120/   EF : 20 5A                  	JR	NZ, ID_180R		; HD64180R
-     121/   F1 :                        
-     122/   F1 :                        ;check HD64180Z(Z80180) or Z8S180
-     123/   F1 :                        
-     124/   F1 : 3E E0                  	LD	A,OMCR_V
-     125/   F3 : ED 39 FE               	OUT0	(IOBASE_180+3EH),A	; Restore OMCR
-     126/   F6 :                        
-     127/   F6 : AF                     	XOR	A
-     128/   F7 : ED 39 D2               	OUT0	(IOBASE_180+12H),A
-     129/   FA : ED 38 D2               	IN0	A,(IOBASE_180+12H)
-     130/   FD : E6 40                  	AND	40H
-     131/   FF : 20 4A                  	JR	NZ,ID_180Z
-     132/  101 :                        
-     133/  101 :                        ; Z8S180
-     134/  101 :                        
-     135/  101 :                        ;; CPU clock = 2.0 x external clock
-     136/  101 : =>TRUE                 	IF	CLOCK_2
-     137/  101 : 3E 10                  	LD	A,010H			; memory 0 wait IO 2 wait
-     138/  103 : ED 39 F2               	OUT0	(IOBASE_180+32H),A	; DMA/WAIT Control Register (DCNTL)
-     139/  106 : 3E 80                  	LD	A,80H			; Clock Divide XTAL/1 Bit 7=1
-     140/  108 : ED 39 DF               	OUT0	(IOBASE_180+1FH),A	; CPU Control Register (CCR)
-     141/  10B : 3E FF                  	LD	A,0FFH			; X2 Clock Multiplier Mode : Enable Bit 7=1
-     142/  10D : ED 39 DE               	OUT0	(IOBASE_180+1EH),A	; Clock Multiplier Register (CMR)
-     143/  110 : 21 19 01               	LD	HL,Z8S_2
-     144/  113 : CD 29 03               	CALL	STROUT
-     145/  116 : C3 22 03               	JP	LD_CPM
-     146/  119 : 5A 38 53 31 38 30 20   Z8S_2:	DB	"Z8S180 running memory 0wait I/O 2wait 2x clock",0dh,0ah,0ah,0
-           120 : 72 75 6E 6E 69 6E 67
-           127 : 20 6D 65 6D 6F 72 79
-           12E : 20 30 77 61 69 74 20
-           135 : 49 2F 4F 20 32 77 61
-           13C : 69 74 20 32 78 20 63
-           143 : 6C 6F 63 6B 0D 0A 0A
-           14A : 00                  
-     147/  14B : [136]                  	ENDIF
-     148/  14B :                        
-     149/  14B :                        ;; CPU clock = 1.0 x external clock
-     150/  14B : =>FALSE                	IF	CLOCK_1
-     151/  14B :                        	LD	A,80H			; Clock Divide XTAL/1 Bit 7=1
-     152/  14B :                        	OUT0	(IOBASE_180+1FH),A	; CPU Control Register (CCR)
-     153/  14B :                        	LD	A,07FH			; X2 Clock Multiplier Mode : Enable Bit 7=1
-     154/  14B :                        	OUT0	(IOBASE_180+1EH),A	; Clock Multiplier Register (CMR)
-     155/  14B :                        	OUT0	(IOBASE_180+1EH),A	; Clock Multiplier Register (CMR)
-     156/  14B :                        	LD	HL,Z8S_1
-     157/  14B :                        	CALL	STROUT
-     158/  14B :                        	JP	LD_CPM
-     159/  14B :                        Z8S_1:	DB	"Z8S180 running memory 0wait I/O 1wait 1x clock",0dh,0ah,0ah,0
-     160/  14B : [150]                  	ENDIF
-     161/  14B :                        
-     162/  14B :                        ;; CPU clock = 0.5 x external clock
-     163/  14B : =>FALSE                	IF	CLOCK_0
-     164/  14B :                        	LD	A,00H			; Clock Divide XTAL/1 Bit 7=1
-     165/  14B :                        	OUT0	(IOBASE_180+1FH),A	; CPU Control Register (CCR)
-     166/  14B :                        	LD	A,07FH			; X2 Clock Multiplier Mode : Enable Bit 7=1
-     167/  14B :                        	OUT0	(IOBASE_180+1EH),A	; Clock Multiplier Register (CMR)
-     168/  14B :                        	OUT0	(IOBASE_180+1EH),A	; Clock Multiplier Register (CMR)
-     169/  14B :                        	LD	HL,Z8S_5
-     170/  14B :                        	CALL	STROUT
-     171/  14B :                        	JP	LD_CPM
-     172/  14B :                        Z8S_5:	DB	"Z8S180 running memory 0wait I/O 1wait 0.5x clock",0dh,0ah,0ah,0
-     173/  14B : [163]                  	ENDIF
-     174/  14B :                        
-     175/  14B :                        	;; HD64180Z and HD64180R
-     176/  14B :                        ID_180R:
-     177/  14B :                        ID_180Z:
-     178/  14B : 21 54 01               	LD	HL,HD64180
-     179/  14E : CD 29 03               	CALL	STROUT
-     180/  151 : C3 22 03               	JP	LD_CPM
-     181/  154 : 48 44 36 34 31 38 30   HD64180:DB	"HD64180 running memory 0wait I/O 1wait 0.5x clock",0dh,0ah,0ah,0
-           15B : 20 72 75 6E 6E 69 6E
-           162 : 67 20 6D 65 6D 6F 72
-           169 : 79 20 30 77 61 69 74
-           170 : 20 49 2F 4F 20 31 77
-           177 : 61 69 74 20 30 2E 35
-           17E : 78 20 63 6C 6F 63 6B
-           185 : 0D 0A 0A 00         
-     182/  189 :                        
-     183/  189 :                        ID_8080AF:
-     184/  189 : 21 92 01               	LD	HL,I8080AF
-     185/  18C : CD 29 03               	CALL	STROUT
-     186/  18F : C3 22 03               	JP	LD_CPM
-     187/  192 : 69 38 30 38 30 20 72   I8080AF:DB	"i8080 running (flag bit2 is Parity after arithmatic, bit531 is 001)",0dh,0ah,0ah,0
-           199 : 75 6E 6E 69 6E 67 20
-           1A0 : 28 66 6C 61 67 20 62
-           1A7 : 69 74 32 20 69 73 20
-           1AE : 50 61 72 69 74 79 20
-           1B5 : 61 66 74 65 72 20 61
-           1BC : 72 69 74 68 6D 61 74
-           1C3 : 69 63 2C 20 62 69 74
-           1CA : 35 33 31 20 69 73 20
-           1D1 : 30 30 31 29 0D 0A 0A
-           1D8 : 00                  
-     188/  1D9 :                        
-     189/  1D9 :                        ID_UPD8080A:
-     190/  1D9 : 21 E2 01               	LD	HL,I8080A
-     191/  1DC : CD 29 03               	CALL	STROUT
-     192/  1DF : C3 22 03               	JP	LD_CPM
-     193/  1E2 : 75 50 44 38 30 38 30   I8080A:	DB	"uPD8080A running (flag bit2 is Parity after arithmatic, bit31 is 11)",0dh,0ah,0ah,0
-           1E9 : 41 20 72 75 6E 6E 69
-           1F0 : 6E 67 20 28 66 6C 61
-           1F7 : 67 20 62 69 74 32 20
-           1FE : 69 73 20 50 61 72 69
-           205 : 74 79 20 61 66 74 65
-           20C : 72 20 61 72 69 74 68
-           213 : 6D 61 74 69 63 2C 20
-           21A : 62 69 74 33 31 20 69
-           221 : 73 20 31 31 29 0D 0A
-           228 : 0A 00               
-     194/  22A :                        
-     195/  22A :                        ID_8085:
-     196/  22A : 21 33 02               	LD	HL,I8085
-     197/  22D : CD 29 03               	CALL	STROUT
-     198/  230 : C3 22 03               	JP	LD_CPM
-     199/  233 : 69 38 30 38 35 20 72   I8085:	DB	"i8085 running (flag bit2 is Parity after arithmatic, bit5,1 writable)",0dh,0ah,0ah,0
-           23A : 75 6E 6E 69 6E 67 20
-           241 : 28 66 6C 61 67 20 62
-           248 : 69 74 32 20 69 73 20
-           24F : 50 61 72 69 74 79 20
-           256 : 61 66 74 65 72 20 61
-           25D : 72 69 74 68 6D 61 74
-           264 : 69 63 2C 20 62 69 74
-           26B : 35 2C 31 20 77 72 69
-           272 : 74 61 62 6C 65 29 0D
-           279 : 0A 0A 00            
-     200/  27C :                        
-     201/  27C :                        
-     202/  27C :                        ID_MYCPU:
-     203/  27C : 21 85 02               	LD	HL,MYCPU
-     204/  27F : CD 29 03               	CALL	STROUT
-     205/  282 : C3 22 03               	JP	LD_CPM
-     206/  285 : 4D 59 43 50 55 38 30   MYCPU:	DB	"MYCPU80 running (flag bit2 is Parity after arithmatic, bit1,5 always 0)",0dh,0ah,0ah,0
-           28C : 20 72 75 6E 6E 69 6E
-           293 : 67 20 28 66 6C 61 67
-           29A : 20 62 69 74 32 20 69
-           2A1 : 73 20 50 61 72 69 74
-           2A8 : 79 20 61 66 74 65 72
-           2AF : 20 61 72 69 74 68 6D
-           2B6 : 61 74 69 63 2C 20 62
-           2BD : 69 74 31 2C 35 20 61
-           2C4 : 6C 77 61 79 73 20 30
-           2CB : 29 0D 0A 0A 00      
-     207/  2D0 :                        
-     208/  2D0 :                        ID_Z80:
-     209/  2D0 : 21 D9 02               	LD	HL,Z80
-     210/  2D3 : CD 29 03               	CALL	STROUT
-     211/  2D6 : C3 22 03               	JP	LD_CPM
-     212/  2D9 : 5A 38 30 20 72 75 6E   Z80:	DB	"Z80 running (flag bit2 is Overflow after arithmatic, no MLT function)",0dh,0ah,0ah,0
+      37/    0 : =0C0H                  IOBASE_180	EQU	0C0H
+      38/    0 : =0E0H                  OMCR_V		EQU	0E0h
+      39/    0 : =0H                    CLOCK_0		EQU	0
+      40/    0 : =0H                    CLOCK_1		EQU	0
+      41/    0 : =1H                    CLOCK_2		EQU	1
+      42/    0 : =0H                    MWAIT		EQU	0
+      43/    0 : =1H                    IOWAIT		EQU	1
+      44/    0 :                        
+      45/    0 : 00                     	NOP
+      46/    1 : 00                     	NOP
+      47/    2 : 00                     	NOP
+      48/    3 : F3                     	DI
+      49/    4 : C3 87 00               	JP	COLD
+      50/    7 :                        
+      51/   80 :                        	ORG	80h
+      52/   80 : 0D 0A 49 50 4C 3A 00   IPLMSG:	DB	0dh,0ah,"IPL:",0
+      53/   87 :                        
+      54/   87 :                        COLD:
+      55/   87 : F3                     	DI
+      56/   88 : 31 80 00               	LD	SP,IPLMSG
+      57/   8B :                        
+      58/   8B :                        ; check 8080/8085/MYCPU80
+      59/   8B : 3E 7F                  	LD	A,07fh
+      60/   8D : 3C                     	INC	A
+      61/   8E : EA C3 00               	JP	PE,check_z80
+      62/   91 :                        
+      63/   91 : 01 FF FF               	LD	BC,0FFFFH
+      64/   94 : C5                     	PUSH	BC
+      65/   95 : F1                     	POP	AF
+      66/   96 : F5                     	PUSH	AF
+      67/   97 : D1                     	POP	DE
+      68/   98 :                        
+      69/   98 : 7B                     	LD	A,E
+      70/   99 : E6 22                  	AND	A,00100010B	;if bit51 is 00
+      71/   9B : CA 82 02               	JP	Z,ID_MYCPU	;then MYCPU80
+      72/   9E :                        
+      73/   9E : 7B                     	LD	A,E
+      74/   9F : E6 2A                  	AND	A,00101010B	;if bit 531 is 001
+      75/   A1 : FE 02                  	CP	A,00000010B	;then intel i8080
+      76/   A3 : CA 98 01               	JP	Z,ID_8080AF
+      77/   A6 :                        
+      78/   A6 : 7B                     	LD	A,E
+      79/   A7 : E6 0A                  	AND	A,00001010B	;if bit 31 is 11
+      80/   A9 : FE 0A                  	CP	A,00001010B	;then NEC uPD8080A(not AF)
+      81/   AB : CA E5 01               	JP	Z,ID_UPD8080A
+      82/   AE :                        
+      83/   AE : 7B                     	LD	A,E
+      84/   AF : E6 2A                  	AND	A,00101010B	
+      85/   B1 : FE 22                  	CP	A,00100010B
+      86/   B3 : C2 22 03               	JP	NZ,LD_CPM
+      87/   B6 : 01 00 00               	LD	BC,0
+      88/   B9 : C5                     	PUSH	BC
+      89/   BA : F1                     	POP	AF
+      90/   BB : F5                     	PUSH	AF
+      91/   BC : D1                     	POP	DE
+      92/   BD : 7B                     	LD	A,E
+      93/   BE : E6 2A                  	AND	A,00101010B	;if bit 51 is writable
+      94/   C0 : CA 33 02               	JP	Z,ID_8085	;then 8085
+      95/   C3 :                        
+      96/   C3 :                        ; check Z80 or Z80180
+      97/   C3 :                        check_z80:
+      98/   C3 : 01 FF 00               	LD	BC,00FFH
+      99/   C6 : ED 4C                  	DB	0EDH,4CH	; MLT BC (HD64180)
+     100/   C8 : 78                     	LD	A,B
+     101/   C9 : B1                     	OR	C
+     102/   CA : C2 D3 02               	JP	NZ,ID_Z80
+     103/   CD :                        
+     104/   CD :                        ; HD64180R/Z or Z8S180
+     105/   CD :                        
+     106/   CD : 3E C0                  	LD	A,IOBASE_180
+     107/   CF : ED 39 3F               	OUT0	(3Fh),A
+     108/   D2 : 3E 00                  	LD	A,00H			; memory 0 wait IO 1 wait
+     109/   D4 : ED 39 F2               	OUT0	(IOBASE_180+32H),A	; DMA/WAIT Control Register (DCNTL)
+     110/   D7 : 3E 00                  	LD	A,00H			; no refresh
+     111/   D9 : ED 39 F6               	OUT0	(IOBASE_180+36H),A	; Refresh Control Register (RCR)
+     112/   DC :                        
+     113/   DC :                        ;check HD64180R or HD64180Z
+     114/   DC :                        
+     115/   DC : 3E 7F                  	LD	A,7FH			; Try to change OMCR bit 7 to 0
+     116/   DE : ED 39 FE               	OUT0	(IOBASE_180+3EH),A
+     117/   E1 : ED 38 FE               	IN0	A,(IOBASE_180+3EH)
+     118/   E4 : E6 80                  	AND	80H
+     119/   E6 : 20 75                  	JR	NZ,ID_180R		; HD64180R
+     120/   E8 :                        
+     121/   E8 :                        ;check HD64180Z(Z80180) or Z8S180
+     122/   E8 :                        
+     123/   E8 : 3E E0                  	LD	A,OMCR_V
+     124/   EA : ED 39 FE               	OUT0	(IOBASE_180+3EH),A	; Restore OMCR
+     125/   ED :                        
+     126/   ED : AF                     	XOR	A
+     127/   EE : ED 39 D2               	OUT0	(IOBASE_180+12H),A
+     128/   F1 : ED 38 D2               	IN0	A,(IOBASE_180+12H)
+     129/   F4 : E6 40                  	AND	40H
+     130/   F6 : 20 65                  	JR	NZ,ID_180Z
+     131/   F8 :                        
+     132/   F8 :                        ; Z8S180
+     133/   F8 :                        
+     134/   F8 :                        ;; CPU clock = 2.0 x external clock
+     135/   F8 : =>TRUE                 	IF	CLOCK_2
+     136/   F8 : 26 00                  	LD	H,MWAIT
+     137/   FA : 3A 41 01               	LD	A,(M_WAIT)
+     138/   FD : 84                     	ADD	A,H
+     139/   FE : 32 41 01               	LD	(M_WAIT),A
+     140/  101 : 7C                     	LD	A,H
+     141/  102 : E6 03                  	AND	011b
+     142/  104 : 07                     	RLCA
+     143/  105 : 07                     	RLCA
+     144/  106 : 67                     	LD	H,A
+     145/  107 : 2E 01                  	LD	L,IOWAIT
+     146/  109 : 3A 4B 01               	LD	A,(IO_WAIT)
+     147/  10C : 85                     	ADD	A,L
+     148/  10D : 32 4B 01               	LD	(IO_WAIT),A
+     149/  110 : 7D                     	LD	A,L
+     150/  111 : E6 03                  	AND	011b
+     151/  113 : 84                     	ADD	A,H
+     152/  114 : 07                     	RLCA
+     153/  115 : 07                     	RLCA
+     154/  116 : 07                     	RLCA
+     155/  117 : 07                     	RLCA
+     156/  118 : ED 39 F2               	OUT0	(IOBASE_180+32H),A	; DMA/WAIT Control Register (DCNTL)
+     157/  11B : 3E 80                  	LD	A,80H			; Clock Divide XTAL/1 Bit 7=1
+     158/  11D : ED 39 DF               	OUT0	(IOBASE_180+1FH),A	; CPU Control Register (CCR)
+     159/  120 : 3E FF                  	LD	A,0FFH			; X2 Clock Multiplier Mode : Enable Bit 7=1
+     160/  122 : ED 39 DE               	OUT0	(IOBASE_180+1EH),A	; Clock Multiplier Register (CMR)
+     161/  125 : 21 2B 01               	LD	HL,Z8S_2
+     162/  128 : C3 22 03               	JP	LD_CPM
+     163/  12B : 5A 38 53 31 38 30      Z8S_2:	DB	"Z8S180"
+     164/  131 : 20 72 75 6E 6E 69 6E   	DB	" running memory "
+           138 : 67 20 6D 65 6D 6F 72
+           13F : 79 20               
+     165/  141 : 30 77 61 69 74 20 49   M_WAIT:	DB	"0wait I/O "
+           148 : 2F 4F 20            
+     166/  14B : 31 77 61 69 74 20 32   IO_WAIT:DB	"1wait 2x clock",0dh,0ah,0ah,0
+           152 : 78 20 63 6C 6F 63 6B
+           159 : 0D 0A 0A 00         
+     167/  15D : [135]                  	ENDIF
+     168/  15D :                        
+     169/  15D :                        ;; CPU clock = 1.0 x external clock
+     170/  15D : =>FALSE                	IF	CLOCK_1
+     171/  15D :                        	LD	A,80H			; Clock Divide XTAL/1 Bit 7=1
+     172/  15D :                        	OUT0	(IOBASE_180+1FH),A	; CPU Control Register (CCR)
+     173/  15D :                        	LD	A,07FH			; X2 Clock Multiplier Mode : Enable Bit 7=1
+     174/  15D :                        	OUT0	(IOBASE_180+1EH),A	; Clock Multiplier Register (CMR)
+     175/  15D :                        	OUT0	(IOBASE_180+1EH),A	; Clock Multiplier Register (CMR)
+     176/  15D :                        	LD	HL,Z8S_1
+     177/  15D :                        	JP	LD_CPM
+     178/  15D :                        Z8S_1:	DB	"Z8S180 running memory 0wait I/O 1wait 1x clock",0dh,0ah,0ah,0
+     179/  15D : [170]                  	ENDIF
+     180/  15D :                        
+     181/  15D :                        ;; CPU clock = 0.5 x external clock
+     182/  15D : =>FALSE                	IF	CLOCK_0
+     183/  15D :                        	LD	A,00H			; Clock Divide XTAL/1 Bit 7=1
+     184/  15D :                        	OUT0	(IOBASE_180+1FH),A	; CPU Control Register (CCR)
+     185/  15D :                        	LD	A,07FH			; X2 Clock Multiplier Mode : Enable Bit 7=1
+     186/  15D :                        	OUT0	(IOBASE_180+1EH),A	; Clock Multiplier Register (CMR)
+     187/  15D :                        	OUT0	(IOBASE_180+1EH),A	; Clock Multiplier Register (CMR)
+     188/  15D :                        	LD	HL,Z8S_5
+     189/  15D :                        	JP	LD_CPM
+     190/  15D :                        Z8S_5:	DB	"Z8S180 running memory 0wait I/O 1wait 0.5x clock",0dh,0ah,0ah,0
+     191/  15D : [182]                  	ENDIF
+     192/  15D :                        
+     193/  15D :                        	;; HD64180Z and HD64180R
+     194/  15D :                        ID_180R:
+     195/  15D :                        ID_180Z:
+     196/  15D : 21 63 01               	LD	HL,HD64180
+     197/  160 : C3 22 03               	JP	LD_CPM
+     198/  163 : 48 44 36 34 31 38 30   HD64180:DB	"HD64180 running memory 0wait I/O 1wait 0.5x clock",0dh,0ah,0ah,0
+           16A : 20 72 75 6E 6E 69 6E
+           171 : 67 20 6D 65 6D 6F 72
+           178 : 79 20 30 77 61 69 74
+           17F : 20 49 2F 4F 20 31 77
+           186 : 61 69 74 20 30 2E 35
+           18D : 78 20 63 6C 6F 63 6B
+           194 : 0D 0A 0A 00         
+     199/  198 :                        
+     200/  198 :                        ID_8080AF:
+     201/  198 : 21 9E 01               	LD	HL,I8080AF
+     202/  19B : C3 22 03               	JP	LD_CPM
+     203/  19E : 69 38 30 38 30 20 72   I8080AF:DB	"i8080 running (flag bit2 is Parity after arithmatic, bit531 is 001)",0dh,0ah,0ah,0
+           1A5 : 75 6E 6E 69 6E 67 20
+           1AC : 28 66 6C 61 67 20 62
+           1B3 : 69 74 32 20 69 73 20
+           1BA : 50 61 72 69 74 79 20
+           1C1 : 61 66 74 65 72 20 61
+           1C8 : 72 69 74 68 6D 61 74
+           1CF : 69 63 2C 20 62 69 74
+           1D6 : 35 33 31 20 69 73 20
+           1DD : 30 30 31 29 0D 0A 0A
+           1E4 : 00                  
+     204/  1E5 :                        
+     205/  1E5 :                        ID_UPD8080A:
+     206/  1E5 : 21 EB 01               	LD	HL,I8080A
+     207/  1E8 : C3 22 03               	JP	LD_CPM
+     208/  1EB : 75 50 44 38 30 38 30   I8080A:	DB	"uPD8080A running (flag bit2 is Parity after arithmatic, bit31 is 11)",0dh,0ah,0ah,0
+           1F2 : 41 20 72 75 6E 6E 69
+           1F9 : 6E 67 20 28 66 6C 61
+           200 : 67 20 62 69 74 32 20
+           207 : 69 73 20 50 61 72 69
+           20E : 74 79 20 61 66 74 65
+           215 : 72 20 61 72 69 74 68
+           21C : 6D 61 74 69 63 2C 20
+           223 : 62 69 74 33 31 20 69
+           22A : 73 20 31 31 29 0D 0A
+           231 : 0A 00               
+     209/  233 :                        
+     210/  233 :                        ID_8085:
+     211/  233 : 21 39 02               	LD	HL,I8085
+     212/  236 : C3 22 03               	JP	LD_CPM
+     213/  239 : 69 38 30 38 35 20 72   I8085:	DB	"i8085 running (flag bit2 is Parity after arithmatic, bit5,1 writable)",0dh,0ah,0ah,0
+           240 : 75 6E 6E 69 6E 67 20
+           247 : 28 66 6C 61 67 20 62
+           24E : 69 74 32 20 69 73 20
+           255 : 50 61 72 69 74 79 20
+           25C : 61 66 74 65 72 20 61
+           263 : 72 69 74 68 6D 61 74
+           26A : 69 63 2C 20 62 69 74
+           271 : 35 2C 31 20 77 72 69
+           278 : 74 61 62 6C 65 29 0D
+           27F : 0A 0A 00            
+     214/  282 :                        
+     215/  282 :                        ID_MYCPU:
+     216/  282 : 21 88 02               	LD	HL,MYCPU
+     217/  285 : C3 22 03               	JP	LD_CPM
+     218/  288 : 4D 59 43 50 55 38 30   MYCPU:	DB	"MYCPU80 running (flag bit2 is Parity after arithmatic, bit1,5 always 0)",0dh,0ah,0ah,0
+           28F : 20 72 75 6E 6E 69 6E
+           296 : 67 20 28 66 6C 61 67
+           29D : 20 62 69 74 32 20 69
+           2A4 : 73 20 50 61 72 69 74
+           2AB : 79 20 61 66 74 65 72
+           2B2 : 20 61 72 69 74 68 6D
+           2B9 : 61 74 69 63 2C 20 62
+           2C0 : 69 74 31 2C 35 20 61
+           2C7 : 6C 77 61 79 73 20 30
+           2CE : 29 0D 0A 0A 00      
+     219/  2D3 :                        
+     220/  2D3 : 21 D9 02               ID_Z80:	LD	HL,Z80
+     221/  2D6 : C3 22 03               	JP	LD_CPM
+     222/  2D9 : 5A 38 30 20 72 75 6E   Z80:	DB	"Z80 running (flag bit2 is Overflow after arithmatic, no MLT function)",0dh,0ah,0ah,0
            2E0 : 6E 69 6E 67 20 28 66
            2E7 : 6C 61 67 20 62 69 74
            2EE : 32 20 69 73 20 4F 76
@@ -301,31 +307,35 @@
            311 : 4D 4C 54 20 66 75 6E
            318 : 63 74 69 6F 6E 29 0D
            31F : 0A 0A 00            
-     213/  322 :                        
-     214/  322 :                        LD_CPM:
-     215/  322 : DB 47                  	IN	A,(GET_BIOS)	;LOAD BIOS from pic ROM
-     216/  324 : DB 46                  	IN	A,(GET_BDOSCCP)	;LOAD BDOS & CCP from pic ROM
-     217/  326 : C3 00 FA               	JP	BIOS
-     218/  329 :                        
-     219/  329 :                        STROUT:
-     220/  329 : 7E                     	LD	A,(HL)
-     221/  32A : B7                     	OR	A
-     222/  32B : C8                     	RET	Z
-     223/  32C : 4F                     	LD	C,A
-     224/  32D : CD 34 03               	CALL	CONOUT
-     225/  330 : 23                     	INC	HL
-     226/  331 : C3 29 03               	JP	STROUT
-     227/  334 :                        
-     228/  334 :                        CONOUT:
-     229/  334 : DB 01                  	IN	A,(UART_C8251)
-     230/  336 : E6 01                  	AND	1
-     231/  338 : CA 34 03               	JP	Z,CONOUT
-     232/  33B : 79                     	LD	A,C
-     233/  33C : D3 00                  	OUT	(UART_D8251),A
-     234/  33E : C9                     	RET
-     235/  33F :                        
-     236/  33F :                        	END
- AS V1.42 Beta [Bld 271] - Source File ipl_8080.asm - Page 2 - 7/27/2024 16:26:39
+     223/  322 :                        
+     224/  322 : EB                     LD_CPM:	EX	HL,DE
+     225/  323 : 21 80 00               	LD	HL,IPLMSG
+     226/  326 : CD 34 03               	CALL	STROUT
+     227/  329 : EB                     	EX	HL,DE
+     228/  32A : CD 34 03               	CALL	STROUT
+     229/  32D : DB 47                  	IN	A,(GET_BIOS)	;LOAD BIOS from pic ROM
+     230/  32F : DB 46                  	IN	A,(GET_BDOSCCP)	;LOAD BDOS & CCP from pic ROM
+     231/  331 : C3 00 FA               	JP	BIOS
+     232/  334 :                        
+     233/  334 :                        STROUT:
+     234/  334 : 7E                     	LD	A,(HL)
+     235/  335 : B7                     	OR	A
+     236/  336 : C8                     	RET	Z
+     237/  337 : 4F                     	LD	C,A
+     238/  338 : CD 3F 03               	CALL	CONOUT
+     239/  33B : 23                     	INC	HL
+     240/  33C : C3 34 03               	JP	STROUT
+     241/  33F :                        
+     242/  33F :                        CONOUT:
+     243/  33F : DB 01                  	IN	A,(UART_C8251)
+     244/  341 : E6 01                  	AND	1
+     245/  343 : CA 3F 03               	JP	Z,CONOUT
+     246/  346 : 79                     	LD	A,C
+     247/  347 : D3 00                  	OUT	(UART_D8251),A
+     248/  349 : C9                     	RET
+     249/  34A :                        
+     250/  34A :                        	END
+ AS V1.42 Beta [Bld 271] - Source File ipl_8080.asm - Page 2 - 8/4/2024 17:43:39
 
 
   Symbol Table (* = unused):
@@ -334,39 +344,41 @@
 *ARCHITECTURE :                                        "i386-unknown-win32" - |
  BIAS :                       0B000 - |  BIOS :                       0FA00 - |
 *CASESENSITIVE :                  0 - |  CCP :                        0E400 - |
- CHECK_Z80 :                    0CC C |  CLOCK_0 :                        0 - |
+ CHECK_Z80 :                    0C3 C |  CLOCK_0 :                        0 - |
  CLOCK_1 :                        0 - |  CLOCK_2 :                        1 - |
- COLD :                          87 C |  CONOUT :                       334 C |
-*CONSTPI :        3.141592653589793 - | *DATE :                 "7/27/2024" - |
+ COLD :                          87 C |  CONOUT :                       33F C |
+*CONSTPI :        3.141592653589793 - | *DATE :                  "8/4/2024" - |
 *DISK_READ :                     52 - | *DISK_WRITE :                    53 - |
 *DMA_H :                      0FB24 - | *DMA_L :                      0FB23 - |
 *DRV_NO :                     0FB20 - | *D_ERROR :                        1 - |
 *D_SUCCESS :                      0 - | *FALSE :                          0 - |
 *FDCST :                         4E - |  GET_BDOSCCP :                   46 - |
  GET_BIOS :                      47 - | *HAS64 :                          0 - |
- HD64180 :                      154 C |  I8080A :                       1E2 C |
- I8080AF :                      192 C |  I8085 :                        233 C |
- ID_180R :                      14B C |  ID_180Z :                      14B C |
- ID_8080AF :                    189 C |  ID_8085 :                      22A C |
- ID_MYCPU :                     27C C |  ID_UPD8080A :                  1D9 C |
- ID_Z80 :                       2D0 C |  IOBASE_180 :                   0C0 - |
+ HD64180 :                      163 C |  I8080A :                       1EB C |
+ I8080AF :                      19E C |  I8085 :                        239 C |
+ ID_180R :                      15D C |  ID_180Z :                      15D C |
+ ID_8080AF :                    198 C |  ID_8085 :                      233 C |
+ ID_MYCPU :                     282 C |  ID_UPD8080A :                  1E5 C |
+ ID_Z80 :                       2D3 C |  IOBASE_180 :                   0C0 - |
+ IOWAIT :                         1 - |  IO_WAIT :                      14B C |
  IPLMSG :                        80 C |  LD_CPM :                       322 C |
 *LISTON :                         1 - | *MACEXP :                         7 - |
 *MOMCPU :                       180 - | *MOMCPUNAME :                "Z180" - |
- MSIZE :                         40 - |  MYCPU :                        285 C |
+ MSIZE :                         40 - |  MWAIT :                          0 - |
+ MYCPU :                        288 C |  M_WAIT :                       141 C |
 *NESTMAX :                      100 - |  OMCR_V :                       0E0 - |
  PIC_IOBASE :                    40 - | *RELAXED :                        0 - |
-*SEC_NO :                     0FB22 - |  STROUT :                       329 C |
-*TIME :                  "16:26:39" - | *TRK_NO :                     0FB21 - |
+*SEC_NO :                     0FB22 - |  STROUT :                       334 C |
+*TIME :                  "17:43:39" - | *TRK_NO :                     0FB21 - |
 *TRUE :                           1 - |  UART_C8251 :                     1 - |
  UART_D8251 :                     0 - | *VERSION :                     142F - |
 *WARNRELATIVE :                   0 - |  Z80 :                          2D9 C |
- Z8S_2 :                        119 C |
+ Z8S_2 :                        12B C |
 
-     60 symbols
+     64 symbols
      26 unused symbols
 
- AS V1.42 Beta [Bld 271] - Source File ipl_8080.asm - Page 3 - 7/27/2024 16:26:39
+ AS V1.42 Beta [Bld 271] - Source File ipl_8080.asm - Page 3 - 8/4/2024 17:43:39
 
 
   Code Pages:
@@ -376,9 +388,9 @@ STANDARD (0 changed characters)
 
 1 code page
 
-0.03 seconds assembly time
+0.07 seconds assembly time
 
-    261 lines source file
+    273 lines source file
       2 passes
       0 errors
       0 warnings

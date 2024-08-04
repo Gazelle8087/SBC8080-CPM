@@ -1,4 +1,4 @@
- AS V1.42 Beta [Bld 271] - Source File bios_8080.asm - Page 1 - 7/27/2024 16:26:39
+ AS V1.42 Beta [Bld 271] - Source File bios_8080.asm - Page 1 - 8/4/2024 17:43:41
 
 
        1/   0 :                         ;	CBIOS for CP/M 2.2 running on emuz80-57q + SBC8080
@@ -35,8 +35,8 @@
       32/   0 :                         				;however only use 8080 instruction
       33/   0 :                         	include	"ipl_bios_inc.asm"
 (1)    1/   0 : =40H                    PIC_IOBASE	EQU	40h
-(1)    2/   0 : =0H                     UART_D8251	EQU	0
-(1)    3/   0 : =1H                     UART_C8251	EQU	1
+(1)    2/   0 : =0H                     UART_D8251	EQU	00h
+(1)    3/   0 : =1H                     UART_C8251	EQU	01h
 (1)    4/   0 :                         ;
 (1)    5/   0 :                         ;	SuperMEZ80 I/O ports (PIC)
 (1)    6/   0 :                         
@@ -55,17 +55,15 @@
 (1)   19/   0 : =0H                     D_SUCCESS	EQU	0
 (1)   20/   0 : =1H                     D_ERROR		EQU	1
 (1)   21/   0 :                         
-(1)   22/   0 : =0C0H                   IOBASE_180	EQU	0C0H
-(1)   23/   0 :                         
-(1)   24/   0 :                         
+(1)   22/   0 :                         
       34/   0 :                         
       35/   0 : =40H                    MSIZE	EQU	64		;cp/m version memory size in kilobytes
       36/   0 :                         ;
- AS V1.42 Beta [Bld 271] - Source File bios_8080.asm - Page 2 - 7/27/2024 16:26:39
-
-
       37/   0 :                         ;	"bias" is address offset from 3400H for memory systems
       38/   0 :                         ;	than 16K (referred to as "b" throughout the text).
+ AS V1.42 Beta [Bld 271] - Source File bios_8080.asm - Page 2 - 8/4/2024 17:43:41
+
+
       39/   0 :                         ;
       40/   0 : =0B000H                 BIAS	EQU	(MSIZE-20)*1024
       41/   0 : =0E400H                 CCP	EQU	3400H+BIAS	;base of ccp
@@ -80,22 +78,22 @@
       50/FA00 :                         ;	jump vector for individual subroutines
       51/FA00 :                         ;
       52/FA00 : C3 3B FB                	JP	BOOT		;cold start
-      53/FA03 : C3 4E FB                WBOOTE: JP	WBOOT		;warm start
-      54/FA06 : C3 74 FB                	JP	CONST		;console status
-      55/FA09 : C3 80 FB                	JP	CONIN		;console character in
-      56/FA0C : C3 8A FB                	JP	CONOUT		;console character out
-      57/FA0F : C3 97 FB                	JP	LIST		;list character out
-      58/FA12 : C3 97 FB                	JP	PUNCH		;punch character out
-      59/FA15 : C3 97 FB                	JP	READER		;reader character in
-      60/FA18 : C3 98 FB                	JP	HOME		;move head to home position
-      61/FA1B : C3 9D FB                	JP	SELDSK		;select disk
-      62/FA1E : C3 CB FB                	JP	SETTRK		;set track number
-      63/FA21 : C3 D0 FB                	JP	SETSEC		;set sector number
-      64/FA24 : C3 E6 FB                	JP	SETDMA		;set dma address
-      65/FA27 : C3 EF FB                	JP	READ		;read disk
-      66/FA2A : C3 F5 FB                	JP	WRITE		;write disk
-      67/FA2D : C3 95 FB                	JP	LISTST		;return list status
-      68/FA30 : C3 D5 FB                	JP	SECTRAN		;sector translate
+      53/FA03 : C3 4F FB                WBOOTE: JP	WBOOT		;warm start
+      54/FA06 : C3 76 FB                	JP	CONST		;console status
+      55/FA09 : C3 82 FB                	JP	CONIN		;console character in
+      56/FA0C : C3 8C FB                	JP	CONOUT		;console character out
+      57/FA0F : C3 99 FB                	JP	LIST		;list character out
+      58/FA12 : C3 99 FB                	JP	PUNCH		;punch character out
+      59/FA15 : C3 99 FB                	JP	READER		;reader character in
+      60/FA18 : C3 9A FB                	JP	HOME		;move head to home position
+      61/FA1B : C3 9F FB                	JP	SELDSK		;select disk
+      62/FA1E : C3 CD FB                	JP	SETTRK		;set track number
+      63/FA21 : C3 D2 FB                	JP	SETSEC		;set sector number
+      64/FA24 : C3 E8 FB                	JP	SETDMA		;set dma address
+      65/FA27 : C3 F1 FB                	JP	READ		;read disk
+      66/FA2A : C3 F7 FB                	JP	WRITE		;write disk
+      67/FA2D : C3 97 FB                	JP	LISTST		;return list status
+      68/FA30 : C3 D7 FB                	JP	SECTRAN		;sector translate
       69/FA33 :                         ;
       70/FA33 :                         ;	fixed data tables for four-drive standard
       71/FA33 :                         ;	IBM-compatible 8" SD disks
@@ -103,32 +101,32 @@
       73/FA33 :                         ;	disk parameter header for disk 00
       74/FA33 : 73 FA 00 00             DPBASE:	DEFW	TRANS,0000H
       75/FA37 : 00 00 00 00             	DEFW	0000H,0000H
-      76/FA3B : FA FB 8D FA             	DEFW	DIRBF,DPBLK
-      77/FA3F : F4 FE 7A FC             	DEFW	CHK00,ALL00
+      76/FA3B : FC FB 8D FA             	DEFW	DIRBF,DPBLK
+      77/FA3F : F6 FE 7C FC             	DEFW	CHK00,ALL00
       78/FA43 :                         ;	disk parameter header for disk 01
       79/FA43 : 73 FA 00 00             	DEFW	TRANS,0000H
       80/FA47 : 00 00 00 00             	DEFW	0000H,0000H
-      81/FA4B : FA FB 8D FA             	DEFW	DIRBF,DPBLK
-      82/FA4F : 04 FF 99 FC             	DEFW	CHK01,ALL01
+      81/FA4B : FC FB 8D FA             	DEFW	DIRBF,DPBLK
+      82/FA4F : 06 FF 9B FC             	DEFW	CHK01,ALL01
       83/FA53 :                         ;	disk parameter header for disk 02
       84/FA53 : 73 FA 00 00             	DEFW	TRANS,0000H
       85/FA57 : 00 00 00 00             	DEFW	0000H,0000H
-      86/FA5B : FA FB 8D FA             	DEFW	DIRBF,DPBLK
-      87/FA5F : 14 FF B8 FC             	DEFW	CHK02,ALL02
+      86/FA5B : FC FB 8D FA             	DEFW	DIRBF,DPBLK
+      87/FA5F : 16 FF BA FC             	DEFW	CHK02,ALL02
       88/FA63 :                         ;	disk parameter header for disk 03
       89/FA63 : 73 FA 00 00             	DEFW	TRANS,0000H
       90/FA67 : 00 00 00 00             	DEFW	0000H,0000H
-      91/FA6B : FA FB 8D FA             	DEFW	DIRBF,DPBLK
-      92/FA6F : 24 FF D7 FC             	DEFW	CHK03,ALL03
+      91/FA6B : FC FB 8D FA             	DEFW	DIRBF,DPBLK
+      92/FA6F : 26 FF D9 FC             	DEFW	CHK03,ALL03
       93/FA73 :                         ;
       94/FA73 :                         ;	sector translate vector for the IBM 8" SD disks
       95/FA73 :                         ;
       96/FA73 : 01 07 0D 13             TRANS:	DEFB	1,7,13,19	;sectors 1,2,3,4
- AS V1.42 Beta [Bld 271] - Source File bios_8080.asm - Page 3 - 7/27/2024 16:26:39
-
-
       97/FA77 : 19 05 0B 11             	DEFB	25,5,11,17	;sectors 5,6,7,8
       98/FA7B : 17 03 09 0F             	DEFB	23,3,9,15	;sectors 9,10,11,12
+ AS V1.42 Beta [Bld 271] - Source File bios_8080.asm - Page 3 - 8/4/2024 17:43:41
+
+
       99/FA7F : 15 02 08 0E             	DEFB	21,2,8,14	;sectors 13,14,15,16
      100/FA83 : 14 1A 06 0C             	DEFB	20,26,6,12	;sectors 17,18,19,20
      101/FA87 : 12 18 04 0A             	DEFB	18,24,4,10	;sectors 21,22,23,24
@@ -152,12 +150,12 @@
      119/FA9C :                         ;	disk parameter header
      120/FA9C : 00 00 00 00             HDB1:	DEFW	0000H,0000H
      121/FAA0 : 00 00 00 00             	DEFW	0000H,0000H
-     122/FAA4 : FA FB BC FA             	DEFW	DIRBF,HDBLK
-     123/FAA8 : 34 FF F6 FC             	DEFW	CHKHD1,ALLHD1
+     122/FAA4 : FC FB BC FA             	DEFW	DIRBF,HDBLK
+     123/FAA8 : 36 FF F8 FC             	DEFW	CHKHD1,ALLHD1
      124/FAAC : 00 00 00 00             HDB2:	DEFW	0000H,0000H
      125/FAB0 : 00 00 00 00             	DEFW	0000H,0000H
-     126/FAB4 : FA FB BC FA             	DEFW	DIRBF,HDBLK
-     127/FAB8 : 34 FF F5 FD             	DEFW	CHKHD2,ALLHD2
+     126/FAB4 : FC FB BC FA             	DEFW	DIRBF,HDBLK
+     127/FAB8 : 36 FF F7 FD             	DEFW	CHKHD2,ALLHD2
      128/FABC :                         ;
      129/FABC :                         ;       disk parameter block for harddisk
      130/FABC :                         ;
@@ -187,359 +185,354 @@
      146/FB1A : 0D 0A 00                	DB	13,10,0
      147/FB1D :                         ;
      148/FB1D :                         
- AS V1.42 Beta [Bld 271] - Source File bios_8080.asm - Page 4 - 7/27/2024 16:26:39
-
-
      149/FB30 :                         	ORG	BIOS+130h
      150/FB30 :                         
+ AS V1.42 Beta [Bld 271] - Source File bios_8080.asm - Page 4 - 8/4/2024 17:43:41
+
+
      151/FB30 : 7E                      PRTMSG:	LD	A,(HL)
      152/FB31 : B7                      	OR	A
      153/FB32 : C8                      	RET	Z
      154/FB33 : 4F                      	LD	C,A
-     155/FB34 : CD 8A FB                	CALL	CONOUT
+     155/FB34 : CD 8C FB                	CALL	CONOUT
      156/FB37 : 23                      	INC	HL
      157/FB38 : C3 30 FB                	JP	PRTMSG
      158/FB3B :                         ;
      159/FB3B :                         ;	individual subroutines to perform each function
      160/FB3B :                         ;	simplest case is to just perform parameter initialization
      161/FB3B :                         ;
-     162/FB3B : 31 80 00                BOOT:   LD	SP,80H		;use space below buffer for stack
-     163/FB3E : 21 CB FA                	LD	HL,SIGNON	;print message
-     164/FB41 : CD 30 FB                	CALL	PRTMSG
-     165/FB44 : AF                      	XOR	A		;zero in the accum
-     166/FB45 : 32 03 00                	LD	(IOBYTE),A	;clear the iobyte
-     167/FB48 : 32 04 00                	LD	(CDISK),A	;select disk zero
-     168/FB4B : C3 53 FB                	JP	GOCPM		;initialize and go to cp/m
-     169/FB4E :                         ;
-     170/FB4E :                         ;	simplest case is to read the disk until all sectors loaded
-     171/FB4E :                         ;
-     172/FB4E : 31 80 00                WBOOT:  LD	SP,80H		;use space below buffer for stack
-     173/FB51 : DB 46                   	IN	A,(GET_BDOSCCP)
-     174/FB53 :                         GOCPM:
-     175/FB53 : 3E C3                   	LD	A,0C3H		;c3 is a jmp instruction
-     176/FB55 : 32 00 00                	LD	(0),A		;for jmp to wboot
-     177/FB58 : 21 03 FA                	LD	HL,WBOOTE	;wboot entry point
-     178/FB5B : 22 01 00                	LD	(1),HL		;set address field for jmp at 0
-     179/FB5E :                         ;
-     180/FB5E : 32 05 00                	LD	(5),A		;for jmp to bdos
-     181/FB61 : 21 06 EC                	LD	HL,BDOS		;bdos entry point
-     182/FB64 : 22 06 00                	LD	(6),HL		;address field of jump at 5 to bdos
-     183/FB67 :                         ;
-     184/FB67 : 01 80 00                	LD	BC,80H		;default dma address is 80h
-     185/FB6A : CD E6 FB                	CALL	SETDMA
-     186/FB6D :                         ;
-     187/FB6D : 3A 04 00                	LD	A,(CDISK)	;get current disk number
-     188/FB70 : 4F                      	LD	C,A		;send to the ccp
-     189/FB71 : C3 00 E4                	JP	CCP		;go to cp/m for further processing
-     190/FB74 :                         
-     191/FB74 : DB 01                   CONST:	IN	A,(UART_C8251)	;console status(ready:FF busy:00)
-     192/FB76 : E6 02                   	AND	2
-     193/FB78 : CA 7E FB                	JP	Z,CONSTB
-     194/FB7B : 3E FF                   	LD	A,0FFh
-     195/FB7D : C9                      	RET
-     196/FB7E : AF                      CONSTB:	XOR	A
+     162/FB3B : F3                      BOOT:   DI
+     163/FB3C : 31 80 00                	LD	SP,80H		;use space below buffer for stack
+     164/FB3F : 21 CB FA                	LD	HL,SIGNON	;print message
+     165/FB42 : CD 30 FB                	CALL	PRTMSG
+     166/FB45 : AF                      	XOR	A		;zero in the accum
+     167/FB46 : 32 03 00                	LD	(IOBYTE),A	;clear the iobyte
+     168/FB49 : 32 04 00                	LD	(CDISK),A	;select disk zero
+     169/FB4C : C3 55 FB                	JP	GOCPM		;initialize and go to cp/m
+     170/FB4F :                         ;
+     171/FB4F :                         ;	simplest case is to read the disk until all sectors loaded
+     172/FB4F :                         ;
+     173/FB4F : F3                      WBOOT:  DI
+     174/FB50 : 31 80 00                	LD	SP,80H		;use space below buffer for stack
+     175/FB53 : DB 46                   	IN	A,(GET_BDOSCCP)
+     176/FB55 :                         GOCPM:
+     177/FB55 : 3E C3                   	LD	A,0C3H		;c3 is a jmp instruction
+     178/FB57 : 32 00 00                	LD	(0),A		;for jmp to wboot
+     179/FB5A : 21 03 FA                	LD	HL,WBOOTE	;wboot entry point
+     180/FB5D : 22 01 00                	LD	(1),HL		;set address field for jmp at 0
+     181/FB60 :                         ;
+     182/FB60 : 32 05 00                	LD	(5),A		;for jmp to bdos
+     183/FB63 : 21 06 EC                	LD	HL,BDOS		;bdos entry point
+     184/FB66 : 22 06 00                	LD	(6),HL		;address field of jump at 5 to bdos
+     185/FB69 :                         ;
+     186/FB69 : 01 80 00                	LD	BC,80H		;default dma address is 80h
+     187/FB6C : CD E8 FB                	CALL	SETDMA
+     188/FB6F :                         ;
+     189/FB6F : 3A 04 00                	LD	A,(CDISK)	;get current disk number
+     190/FB72 : 4F                      	LD	C,A		;send to the ccp
+     191/FB73 : C3 00 E4                	JP	CCP		;go to cp/m for further processing
+     192/FB76 :                         
+     193/FB76 : DB 01                   CONST:	IN	A,(UART_C8251)	;console status(ready:FF busy:00)
+     194/FB78 : E6 02                   	AND	2
+     195/FB7A : CA 80 FB                	JP	Z,CONSTB
+     196/FB7D : 3E FF                   	LD	A,0FFh
      197/FB7F : C9                      	RET
-     198/FB80 :                         
-     199/FB80 : DB 01                   CONIN:	IN	A,(UART_C8251)	;get character from console
-     200/FB82 : E6 02                   	AND	2
-     201/FB84 : CA 80 FB                	JP	Z,CONIN
-     202/FB87 : DB 00                   	IN	A,(UART_D8251)
-     203/FB89 : C9                      	RET
-     204/FB8A :                         
-     205/FB8A :                         CONOUT:
-     206/FB8A : DB 01                   	IN	A,(UART_C8251)
-     207/FB8C : E6 01                   	AND	1
-     208/FB8E : CA 8A FB                	JP	Z,CONOUT
- AS V1.42 Beta [Bld 271] - Source File bios_8080.asm - Page 5 - 7/27/2024 16:26:39
+     198/FB80 : AF                      CONSTB:	XOR	A
+     199/FB81 : C9                      	RET
+     200/FB82 :                         
+     201/FB82 : DB 01                   CONIN:	IN	A,(UART_C8251)	;get character from console
+     202/FB84 : E6 02                   	AND	2
+     203/FB86 : CA 82 FB                	JP	Z,CONIN
+     204/FB89 : DB 00                   	IN	A,(UART_D8251)
+     205/FB8B : C9                      	RET
+     206/FB8C :                         
+     207/FB8C : DB 01                   CONOUT:	IN	A,(UART_C8251)
+     208/FB8E : E6 01                   	AND	1
+     209/FB90 : CA 8C FB                	JP	Z,CONOUT
+     210/FB93 : 79                      	LD	A,C
+ AS V1.42 Beta [Bld 271] - Source File bios_8080.asm - Page 5 - 8/4/2024 17:43:41
 
 
-     209/FB91 : 79                      	LD	A,C
-     210/FB92 : D3 00                   	OUT	(UART_D8251),A
-     211/FB94 : C9                      	RET
-     212/FB95 :                         
-     213/FB95 : 3E FF                   LISTST: LD	A,0ffh	;list status (ready:FF not ready:00) always ready (dummy)
-     214/FB97 :                         READER: 		;reader (do nothing)
-     215/FB97 :                         LIST:			;list (do nothing)
-     216/FB97 :                         PUNCH:			;punch (do nothing)
-     217/FB97 : C9                      	RET
-     218/FB98 :                         ;
-     219/FB98 :                         ;	i/o drivers for the disk follow
-     220/FB98 :                         ;
-     221/FB98 :                         ;	move to the track 00 position of current drive
-     222/FB98 :                         ;	translate this call into a settrk call with parameter 00
-     223/FB98 :                         ;
-     224/FB98 : AF                      HOME:	XOR	A		;select track 0
-     225/FB99 : 32 21 FB                	LD	(TRK_NO),A
-     226/FB9C : C9                      	RET			;we will move to 00 on first read/write
-     227/FB9D :                         ;
-     228/FB9D :                         ;	select disk given by register C
-     229/FB9D :                         ;
-     230/FB9D : 21 00 00                SELDSK: LD	HL,0000H	;error return code
-     231/FBA0 : 79                      	LD	A,C
-     232/FBA1 : FE 04                   	CP	4		;FD drive 0-3?
-     233/FBA3 : DA B1 FB                	JP	C,SELFD		;go
-     234/FBA6 : FE 08                   	CP	8		;harddisk 1?
-     235/FBA8 : CA BE FB                	JP	Z,SELHD1	;go
-     236/FBAB : FE 09                   	CP	9		;harddisk 2?
-     237/FBAD : CA C4 FB                	JP	Z,SELHD2	;go
-     238/FBB0 : C9                      	RET			;no, error
-     239/FBB1 :                         ;	disk number is in the proper range
-     240/FBB1 :                         ;	compute proper disk parameter header address
-     241/FBB1 :                         SELFD:
-     242/FBB1 : 32 20 FB                	LD	(DRV_NO),A	;selekt disk drive
-     243/FBB4 : 6F                      	LD	L,A		;L=disk number 0,1,2,3
-     244/FBB5 : 29                      	ADD	HL,HL		;*2
-     245/FBB6 : 29                      	ADD	HL,HL		;*4
-     246/FBB7 : 29                      	ADD	HL,HL		;*8
-     247/FBB8 : 29                      	ADD	HL,HL		;*16 (size of each header)
-     248/FBB9 : 11 33 FA                	LD	DE,DPBASE
-     249/FBBC : 19                      	ADD	HL,DE		;HL=.dpbase(diskno*16)
-     250/FBBD : C9                      	RET
-     251/FBBE : 21 9C FA                SELHD1:	LD	HL,HDB1		;dph harddisk 1
-     252/FBC1 : C3 C7 FB                	JP	SELHD
-     253/FBC4 : 21 AC FA                SELHD2:	LD	HL,HDB2		;dph harddisk 2
-     254/FBC7 :                         SELHD:
-     255/FBC7 : 32 20 FB                	LD	(DRV_NO),A	;select harddisk drive
-     256/FBCA : C9                      	RET
-     257/FBCB :                         ;
-     258/FBCB :                         ;	set track given by register c
-     259/FBCB :                         ;
-     260/FBCB : 79                      SETTRK: LD	A,C
-     261/FBCC : 32 21 FB                	LD	(TRK_NO),A
-     262/FBCF : C9                      	RET
-     263/FBD0 :                         ;
-     264/FBD0 :                         ;	set sector given by register c
-     265/FBD0 :                         ;
-     266/FBD0 : 79                      SETSEC: LD	A,C
-     267/FBD1 : 32 22 FB                	LD	(SEC_NO),A
-     268/FBD4 : C9                      	RET
- AS V1.42 Beta [Bld 271] - Source File bios_8080.asm - Page 6 - 7/27/2024 16:26:39
+     211/FB94 : D3 00                   	OUT	(UART_D8251),A
+     212/FB96 : C9                      	RET
+     213/FB97 :                         
+     214/FB97 : 3E FF                   LISTST: LD	A,0ffh	;list status (ready:FF not ready:00) always ready (dummy)
+     215/FB99 :                         READER: 		;reader (do nothing)
+     216/FB99 :                         LIST:			;list (do nothing)
+     217/FB99 :                         PUNCH:			;punch (do nothing)
+     218/FB99 : C9                      	RET
+     219/FB9A :                         ;
+     220/FB9A :                         ;	i/o drivers for the disk follow
+     221/FB9A :                         ;
+     222/FB9A :                         ;	move to the track 00 position of current drive
+     223/FB9A :                         ;	translate this call into a settrk call with parameter 00
+     224/FB9A :                         ;
+     225/FB9A : AF                      HOME:	XOR	A		;select track 0
+     226/FB9B : 32 21 FB                	LD	(TRK_NO),A
+     227/FB9E : C9                      	RET			;we will move to 00 on first read/write
+     228/FB9F :                         ;
+     229/FB9F :                         ;	select disk given by register C
+     230/FB9F :                         ;
+     231/FB9F : 21 00 00                SELDSK: LD	HL,0000H	;error return code
+     232/FBA2 : 79                      	LD	A,C
+     233/FBA3 : FE 04                   	CP	4		;FD drive 0-3?
+     234/FBA5 : DA B3 FB                	JP	C,SELFD		;go
+     235/FBA8 : FE 08                   	CP	8		;harddisk 1?
+     236/FBAA : CA C0 FB                	JP	Z,SELHD1	;go
+     237/FBAD : FE 09                   	CP	9		;harddisk 2?
+     238/FBAF : CA C6 FB                	JP	Z,SELHD2	;go
+     239/FBB2 : C9                      	RET			;no, error
+     240/FBB3 :                         ;	disk number is in the proper range
+     241/FBB3 :                         ;	compute proper disk parameter header address
+     242/FBB3 :                         SELFD:
+     243/FBB3 : 32 20 FB                	LD	(DRV_NO),A	;selekt disk drive
+     244/FBB6 : 6F                      	LD	L,A		;L=disk number 0,1,2,3
+     245/FBB7 : 29                      	ADD	HL,HL		;*2
+     246/FBB8 : 29                      	ADD	HL,HL		;*4
+     247/FBB9 : 29                      	ADD	HL,HL		;*8
+     248/FBBA : 29                      	ADD	HL,HL		;*16 (size of each header)
+     249/FBBB : 11 33 FA                	LD	DE,DPBASE
+     250/FBBE : 19                      	ADD	HL,DE		;HL=.dpbase(diskno*16)
+     251/FBBF : C9                      	RET
+     252/FBC0 : 21 9C FA                SELHD1:	LD	HL,HDB1		;dph harddisk 1
+     253/FBC3 : C3 C9 FB                	JP	SELHD
+     254/FBC6 : 21 AC FA                SELHD2:	LD	HL,HDB2		;dph harddisk 2
+     255/FBC9 :                         SELHD:
+     256/FBC9 : 32 20 FB                	LD	(DRV_NO),A	;select harddisk drive
+     257/FBCC : C9                      	RET
+     258/FBCD :                         ;
+     259/FBCD :                         ;	set track given by register c
+     260/FBCD :                         ;
+     261/FBCD : 79                      SETTRK: LD	A,C
+     262/FBCE : 32 21 FB                	LD	(TRK_NO),A
+     263/FBD1 : C9                      	RET
+     264/FBD2 :                         ;
+     265/FBD2 :                         ;	set sector given by register c
+     266/FBD2 :                         ;
+     267/FBD2 : 79                      SETSEC: LD	A,C
+     268/FBD3 : 32 22 FB                	LD	(SEC_NO),A
+     269/FBD6 : C9                      	RET
+     270/FBD7 :                         ;
+ AS V1.42 Beta [Bld 271] - Source File bios_8080.asm - Page 6 - 8/4/2024 17:43:41
 
 
-     269/FBD5 :                         ;
-     270/FBD5 :                         ;	translate the sector given by BC using the
-     271/FBD5 :                         ;	translate table given by DE
-     272/FBD5 :                         ;
-     273/FBD5 :                         SECTRAN:
-     274/FBD5 : 7A                      	LD	A,D		;do we have a translation table?
-     275/FBD6 : B3                      	OR	E
-     276/FBD7 : C2 E0 FB                	JP	NZ,SECT1	;yes, translate
-     277/FBDA : 69                      	LD	L,C		;no, return untranslated
-     278/FBDB : 60                      	LD	H,B		;in HL
-     279/FBDC : 2C                      	INC	L		;sector no. start with 1
-     280/FBDD : C0                      	RET	NZ
-     281/FBDE : 24                      	INC	H
-     282/FBDF : C9                      	RET
-     283/FBE0 : EB                      SECT1:	EX	DE,HL		;HL=.trans
-     284/FBE1 : 09                      	ADD	HL,BC		;HL=.trans(sector)
-     285/FBE2 : 6E                      	LD	L,(HL)		;L = trans(sector)
-     286/FBE3 : 26 00                   	LD	H,0		;HL= trans(sector)
-     287/FBE5 : C9                      	RET			;with value in HL
-     288/FBE6 :                         ;
-     289/FBE6 :                         ;	set dma address given by registers b and c
-     290/FBE6 :                         ;
-     291/FBE6 : 79                      SETDMA: LD	A,C		;low order address
-     292/FBE7 : 32 23 FB                	LD	(DMA_L),A
-     293/FBEA : 78                      	LD	A,B		;high order address
-     294/FBEB : 32 24 FB                	LD	(DMA_H),A
-     295/FBEE : C9                      	RET
-     296/FBEF :                         ;
-     297/FBEF :                         ;	perform read operation
-     298/FBEF :                         ;
-     299/FBEF :                         READ:
-     300/FBEF : DB 52                   	IN	A,(DISK_READ)
-     301/FBF1 : DB 4E                   	IN	A,(FDCST)	;status of i/o operation -> A
-     302/FBF3 : B7                      	OR	A
-     303/FBF4 : C9                      	RET
-     304/FBF5 :                         ;
-     305/FBF5 :                         ;	perform a write operation
-     306/FBF5 :                         ;
-     307/FBF5 :                         WRITE:
-     308/FBF5 : DB 53                   	IN	A,(DISK_WRITE)
-     309/FBF7 : DB 4E                   	IN	A,(FDCST)	;status of i/o operation -> A
-     310/FBF9 : C9                      	RET
-     311/FBFA :                         
-     312/FBFA :                         ;	the remainder of the CBIOS is reserved uninitialized
-     313/FBFA :                         ;	data area, and does not need to be a part of the
-     314/FBFA :                         ;	system memory image (the space must be available,
-     315/FBFA :                         ;	however, between "begdat" and "enddat").
-     316/FBFA :                         ;
-     317/FBFA :                         ;	scratch ram area for BDOS use
-     318/FBFA :                         ;
-     319/FBFA : =0FBFAH                 BEGDAT	EQU	$		;beginning of data area
-     320/FBFA : 00 00 00 00 00 00 00 00 DIRBF:	DB	128	dup(0)	;scratch directory area
-         FC02 : 00 00 00 00 00 00 00 00
-         FC0A : 00 00 00 00 00 00 00 00
-         FC12 : 00 00 00 00 00 00 00 00
-         FC1A : 00 00 00 00 00 00 00 00
-         FC22 : 00 00 00 00 00 00 00 00
-         FC2A : 00 00 00 00 00 00 00 00
-         FC32 : 00 00 00 00 00 00 00 00
-         FC3A : 00 00 00 00 00 00 00 00
- AS V1.42 Beta [Bld 271] - Source File bios_8080.asm - Page 7 - 7/27/2024 16:26:39
+     271/FBD7 :                         ;	translate the sector given by BC using the
+     272/FBD7 :                         ;	translate table given by DE
+     273/FBD7 :                         ;
+     274/FBD7 :                         SECTRAN:
+     275/FBD7 : 7A                      	LD	A,D		;do we have a translation table?
+     276/FBD8 : B3                      	OR	E
+     277/FBD9 : C2 E2 FB                	JP	NZ,SECT1	;yes, translate
+     278/FBDC : 69                      	LD	L,C		;no, return untranslated
+     279/FBDD : 60                      	LD	H,B		;in HL
+     280/FBDE : 2C                      	INC	L		;sector no. start with 1
+     281/FBDF : C0                      	RET	NZ
+     282/FBE0 : 24                      	INC	H
+     283/FBE1 : C9                      	RET
+     284/FBE2 : EB                      SECT1:	EX	DE,HL		;HL=.trans
+     285/FBE3 : 09                      	ADD	HL,BC		;HL=.trans(sector)
+     286/FBE4 : 6E                      	LD	L,(HL)		;L = trans(sector)
+     287/FBE5 : 26 00                   	LD	H,0		;HL= trans(sector)
+     288/FBE7 : C9                      	RET			;with value in HL
+     289/FBE8 :                         ;
+     290/FBE8 :                         ;	set dma address given by registers b and c
+     291/FBE8 :                         ;
+     292/FBE8 : 79                      SETDMA: LD	A,C		;low order address
+     293/FBE9 : 32 23 FB                	LD	(DMA_L),A
+     294/FBEC : 78                      	LD	A,B		;high order address
+     295/FBED : 32 24 FB                	LD	(DMA_H),A
+     296/FBF0 : C9                      	RET
+     297/FBF1 :                         ;
+     298/FBF1 :                         ;	perform read operation
+     299/FBF1 :                         ;
+     300/FBF1 : DB 52                   READ:	IN	A,(DISK_READ)
+     301/FBF3 : DB 4E                   	IN	A,(FDCST)	;status of i/o operation -> A
+     302/FBF5 : B7                      	OR	A
+     303/FBF6 : C9                      	RET
+     304/FBF7 :                         ;
+     305/FBF7 :                         ;	perform a write operation
+     306/FBF7 :                         ;
+     307/FBF7 : DB 53                   WRITE:	IN	A,(DISK_WRITE)
+     308/FBF9 : DB 4E                   	IN	A,(FDCST)	;status of i/o operation -> A
+     309/FBFB : C9                      	RET
+     310/FBFC :                         
+     311/FBFC :                         ;	the remainder of the CBIOS is reserved uninitialized
+     312/FBFC :                         ;	data area, and does not need to be a part of the
+     313/FBFC :                         ;	system memory image (the space must be available,
+     314/FBFC :                         ;	however, between "begdat" and "enddat").
+     315/FBFC :                         ;
+     316/FBFC :                         ;	scratch ram area for BDOS use
+     317/FBFC :                         ;
+     318/FBFC : =0FBFCH                 BEGDAT	EQU	$		;beginning of data area
+     319/FBFC : 00 00 00 00 00 00 00 00 DIRBF:	DB	128	dup(0)	;scratch directory area
+         FC04 : 00 00 00 00 00 00 00 00
+         FC0C : 00 00 00 00 00 00 00 00
+         FC14 : 00 00 00 00 00 00 00 00
+         FC1C : 00 00 00 00 00 00 00 00
+         FC24 : 00 00 00 00 00 00 00 00
+         FC2C : 00 00 00 00 00 00 00 00
+         FC34 : 00 00 00 00 00 00 00 00
+         FC3C : 00 00 00 00 00 00 00 00
+         FC44 : 00 00 00 00 00 00 00 00
+         FC4C : 00 00 00 00 00 00 00 00
+         FC54 : 00 00 00 00 00 00 00 00
+ AS V1.42 Beta [Bld 271] - Source File bios_8080.asm - Page 7 - 8/4/2024 17:43:41
 
 
-         FC42 : 00 00 00 00 00 00 00 00
-         FC4A : 00 00 00 00 00 00 00 00
-         FC52 : 00 00 00 00 00 00 00 00
-         FC5A : 00 00 00 00 00 00 00 00
-         FC62 : 00 00 00 00 00 00 00 00
-         FC6A : 00 00 00 00 00 00 00 00
-         FC72 : 00 00 00 00 00 00 00 00
-     321/FC7A : 00 00 00 00 00 00 00 00 ALL00:	DB	31	dup(0)	;allocation vector 0
-         FC82 : 00 00 00 00 00 00 00 00
-         FC8A : 00 00 00 00 00 00 00 00
-         FC92 : 00 00 00 00 00 00 00   
-     322/FC99 : 00 00 00 00 00 00 00 00 ALL01:	DB	31	dup(0)	;allocation vector 1
-         FCA1 : 00 00 00 00 00 00 00 00
-         FCA9 : 00 00 00 00 00 00 00 00
-         FCB1 : 00 00 00 00 00 00 00   
-     323/FCB8 : 00 00 00 00 00 00 00 00 ALL02:	DB	31	dup(0)	;allocation vector 2
-         FCC0 : 00 00 00 00 00 00 00 00
-         FCC8 : 00 00 00 00 00 00 00 00
-         FCD0 : 00 00 00 00 00 00 00   
-     324/FCD7 : 00 00 00 00 00 00 00 00 ALL03:	DB	31	dup(0)	;allocation vector 3
-         FCDF : 00 00 00 00 00 00 00 00
-         FCE7 : 00 00 00 00 00 00 00 00
-         FCEF : 00 00 00 00 00 00 00   
-     325/FCF6 : 00 00 00 00 00 00 00 00 ALLHD1:	DB	255	dup(0)	;allocation vector harddisk 1
-         FCFE : 00 00 00 00 00 00 00 00
-         FD06 : 00 00 00 00 00 00 00 00
-         FD0E : 00 00 00 00 00 00 00 00
-         FD16 : 00 00 00 00 00 00 00 00
-         FD1E : 00 00 00 00 00 00 00 00
-         FD26 : 00 00 00 00 00 00 00 00
-         FD2E : 00 00 00 00 00 00 00 00
-         FD36 : 00 00 00 00 00 00 00 00
-         FD3E : 00 00 00 00 00 00 00 00
-         FD46 : 00 00 00 00 00 00 00 00
-         FD4E : 00 00 00 00 00 00 00 00
-         FD56 : 00 00 00 00 00 00 00 00
-         FD5E : 00 00 00 00 00 00 00 00
-         FD66 : 00 00 00 00 00 00 00 00
-         FD6E : 00 00 00 00 00 00 00 00
-         FD76 : 00 00 00 00 00 00 00 00
-         FD7E : 00 00 00 00 00 00 00 00
-         FD86 : 00 00 00 00 00 00 00 00
-         FD8E : 00 00 00 00 00 00 00 00
-         FD96 : 00 00 00 00 00 00 00 00
-         FD9E : 00 00 00 00 00 00 00 00
-         FDA6 : 00 00 00 00 00 00 00 00
-         FDAE : 00 00 00 00 00 00 00 00
-         FDB6 : 00 00 00 00 00 00 00 00
-         FDBE : 00 00 00 00 00 00 00 00
-         FDC6 : 00 00 00 00 00 00 00 00
-         FDCE : 00 00 00 00 00 00 00 00
-         FDD6 : 00 00 00 00 00 00 00 00
-         FDDE : 00 00 00 00 00 00 00 00
-         FDE6 : 00 00 00 00 00 00 00 00
-         FDEE : 00 00 00 00 00 00 00   
-     326/FDF5 : 00 00 00 00 00 00 00 00 ALLHD2:	DB	255	dup(0)	;allocation vector harddisk 2
-         FDFD : 00 00 00 00 00 00 00 00
-         FE05 : 00 00 00 00 00 00 00 00
-         FE0D : 00 00 00 00 00 00 00 00
-         FE15 : 00 00 00 00 00 00 00 00
- AS V1.42 Beta [Bld 271] - Source File bios_8080.asm - Page 8 - 7/27/2024 16:26:39
+         FC5C : 00 00 00 00 00 00 00 00
+         FC64 : 00 00 00 00 00 00 00 00
+         FC6C : 00 00 00 00 00 00 00 00
+         FC74 : 00 00 00 00 00 00 00 00
+     320/FC7C : 00 00 00 00 00 00 00 00 ALL00:	DB	31	dup(0)	;allocation vector 0
+         FC84 : 00 00 00 00 00 00 00 00
+         FC8C : 00 00 00 00 00 00 00 00
+         FC94 : 00 00 00 00 00 00 00   
+     321/FC9B : 00 00 00 00 00 00 00 00 ALL01:	DB	31	dup(0)	;allocation vector 1
+         FCA3 : 00 00 00 00 00 00 00 00
+         FCAB : 00 00 00 00 00 00 00 00
+         FCB3 : 00 00 00 00 00 00 00   
+     322/FCBA : 00 00 00 00 00 00 00 00 ALL02:	DB	31	dup(0)	;allocation vector 2
+         FCC2 : 00 00 00 00 00 00 00 00
+         FCCA : 00 00 00 00 00 00 00 00
+         FCD2 : 00 00 00 00 00 00 00   
+     323/FCD9 : 00 00 00 00 00 00 00 00 ALL03:	DB	31	dup(0)	;allocation vector 3
+         FCE1 : 00 00 00 00 00 00 00 00
+         FCE9 : 00 00 00 00 00 00 00 00
+         FCF1 : 00 00 00 00 00 00 00   
+     324/FCF8 : 00 00 00 00 00 00 00 00 ALLHD1:	DB	255	dup(0)	;allocation vector harddisk 1
+         FD00 : 00 00 00 00 00 00 00 00
+         FD08 : 00 00 00 00 00 00 00 00
+         FD10 : 00 00 00 00 00 00 00 00
+         FD18 : 00 00 00 00 00 00 00 00
+         FD20 : 00 00 00 00 00 00 00 00
+         FD28 : 00 00 00 00 00 00 00 00
+         FD30 : 00 00 00 00 00 00 00 00
+         FD38 : 00 00 00 00 00 00 00 00
+         FD40 : 00 00 00 00 00 00 00 00
+         FD48 : 00 00 00 00 00 00 00 00
+         FD50 : 00 00 00 00 00 00 00 00
+         FD58 : 00 00 00 00 00 00 00 00
+         FD60 : 00 00 00 00 00 00 00 00
+         FD68 : 00 00 00 00 00 00 00 00
+         FD70 : 00 00 00 00 00 00 00 00
+         FD78 : 00 00 00 00 00 00 00 00
+         FD80 : 00 00 00 00 00 00 00 00
+         FD88 : 00 00 00 00 00 00 00 00
+         FD90 : 00 00 00 00 00 00 00 00
+         FD98 : 00 00 00 00 00 00 00 00
+         FDA0 : 00 00 00 00 00 00 00 00
+         FDA8 : 00 00 00 00 00 00 00 00
+         FDB0 : 00 00 00 00 00 00 00 00
+         FDB8 : 00 00 00 00 00 00 00 00
+         FDC0 : 00 00 00 00 00 00 00 00
+         FDC8 : 00 00 00 00 00 00 00 00
+         FDD0 : 00 00 00 00 00 00 00 00
+         FDD8 : 00 00 00 00 00 00 00 00
+         FDE0 : 00 00 00 00 00 00 00 00
+         FDE8 : 00 00 00 00 00 00 00 00
+         FDF0 : 00 00 00 00 00 00 00   
+     325/FDF7 : 00 00 00 00 00 00 00 00 ALLHD2:	DB	255	dup(0)	;allocation vector harddisk 2
+         FDFF : 00 00 00 00 00 00 00 00
+         FE07 : 00 00 00 00 00 00 00 00
+         FE0F : 00 00 00 00 00 00 00 00
+         FE17 : 00 00 00 00 00 00 00 00
+         FE1F : 00 00 00 00 00 00 00 00
+         FE27 : 00 00 00 00 00 00 00 00
+         FE2F : 00 00 00 00 00 00 00 00
+ AS V1.42 Beta [Bld 271] - Source File bios_8080.asm - Page 8 - 8/4/2024 17:43:41
 
 
-         FE1D : 00 00 00 00 00 00 00 00
-         FE25 : 00 00 00 00 00 00 00 00
-         FE2D : 00 00 00 00 00 00 00 00
-         FE35 : 00 00 00 00 00 00 00 00
-         FE3D : 00 00 00 00 00 00 00 00
-         FE45 : 00 00 00 00 00 00 00 00
-         FE4D : 00 00 00 00 00 00 00 00
-         FE55 : 00 00 00 00 00 00 00 00
-         FE5D : 00 00 00 00 00 00 00 00
-         FE65 : 00 00 00 00 00 00 00 00
-         FE6D : 00 00 00 00 00 00 00 00
-         FE75 : 00 00 00 00 00 00 00 00
-         FE7D : 00 00 00 00 00 00 00 00
-         FE85 : 00 00 00 00 00 00 00 00
-         FE8D : 00 00 00 00 00 00 00 00
-         FE95 : 00 00 00 00 00 00 00 00
-         FE9D : 00 00 00 00 00 00 00 00
-         FEA5 : 00 00 00 00 00 00 00 00
-         FEAD : 00 00 00 00 00 00 00 00
-         FEB5 : 00 00 00 00 00 00 00 00
-         FEBD : 00 00 00 00 00 00 00 00
-         FEC5 : 00 00 00 00 00 00 00 00
-         FECD : 00 00 00 00 00 00 00 00
-         FED5 : 00 00 00 00 00 00 00 00
-         FEDD : 00 00 00 00 00 00 00 00
-         FEE5 : 00 00 00 00 00 00 00 00
-         FEED : 00 00 00 00 00 00 00   
-     327/FEF4 : 00 00 00 00 00 00 00 00 CHK00:	DB	16	dup(0)	;check vector 0
-         FEFC : 00 00 00 00 00 00 00 00
-     328/FF04 : 00 00 00 00 00 00 00 00 CHK01:	DB	16	dup(0)	;check vector 1
-         FF0C : 00 00 00 00 00 00 00 00
-     329/FF14 : 00 00 00 00 00 00 00 00 CHK02:	DB	16	dup(0)	;check vector 2
-         FF1C : 00 00 00 00 00 00 00 00
-     330/FF24 : 00 00 00 00 00 00 00 00 CHK03:	DB	16	dup(0)	;check vector 3
-         FF2C : 00 00 00 00 00 00 00 00
-     331/FF34 :                         CHKHD1:	DB	0	dup(0)	;check vector harddisk 1
-     332/FF34 :                         CHKHD2:	DB	0	dup(0)	;check vector harddisk 2
-     333/FF34 :                         ;
-     334/FF34 : =0FF34H                 ENDDAT	EQU	$		;end of data area
-     335/FF34 : =33AH                   DATSIZ	EQU	$-BEGDAT	;size of data area
-     336/FF34 :                         ;
-     337/FF34 :                         	END			;of BIOS
- AS V1.42 Beta [Bld 271] - Source File bios_8080.asm - Page 9 - 7/27/2024 16:26:39
+         FE37 : 00 00 00 00 00 00 00 00
+         FE3F : 00 00 00 00 00 00 00 00
+         FE47 : 00 00 00 00 00 00 00 00
+         FE4F : 00 00 00 00 00 00 00 00
+         FE57 : 00 00 00 00 00 00 00 00
+         FE5F : 00 00 00 00 00 00 00 00
+         FE67 : 00 00 00 00 00 00 00 00
+         FE6F : 00 00 00 00 00 00 00 00
+         FE77 : 00 00 00 00 00 00 00 00
+         FE7F : 00 00 00 00 00 00 00 00
+         FE87 : 00 00 00 00 00 00 00 00
+         FE8F : 00 00 00 00 00 00 00 00
+         FE97 : 00 00 00 00 00 00 00 00
+         FE9F : 00 00 00 00 00 00 00 00
+         FEA7 : 00 00 00 00 00 00 00 00
+         FEAF : 00 00 00 00 00 00 00 00
+         FEB7 : 00 00 00 00 00 00 00 00
+         FEBF : 00 00 00 00 00 00 00 00
+         FEC7 : 00 00 00 00 00 00 00 00
+         FECF : 00 00 00 00 00 00 00 00
+         FED7 : 00 00 00 00 00 00 00 00
+         FEDF : 00 00 00 00 00 00 00 00
+         FEE7 : 00 00 00 00 00 00 00 00
+         FEEF : 00 00 00 00 00 00 00   
+     326/FEF6 : 00 00 00 00 00 00 00 00 CHK00:	DB	16	dup(0)	;check vector 0
+         FEFE : 00 00 00 00 00 00 00 00
+     327/FF06 : 00 00 00 00 00 00 00 00 CHK01:	DB	16	dup(0)	;check vector 1
+         FF0E : 00 00 00 00 00 00 00 00
+     328/FF16 : 00 00 00 00 00 00 00 00 CHK02:	DB	16	dup(0)	;check vector 2
+         FF1E : 00 00 00 00 00 00 00 00
+     329/FF26 : 00 00 00 00 00 00 00 00 CHK03:	DB	16	dup(0)	;check vector 3
+         FF2E : 00 00 00 00 00 00 00 00
+     330/FF36 :                         CHKHD1:	DB	0	dup(0)	;check vector harddisk 1
+     331/FF36 :                         CHKHD2:	DB	0	dup(0)	;check vector harddisk 2
+     332/FF36 :                         
+     333/FF36 :                         	END			;of BIOS
+ AS V1.42 Beta [Bld 271] - Source File bios_8080.asm - Page 9 - 8/4/2024 17:43:41
 
 
   Symbol Table (* = unused):
   --------------------------
 
- ALL00 :                      0FC7A C |  ALL01 :                      0FC99 C |
- ALL02 :                      0FCB8 C |  ALL03 :                      0FCD7 C |
- ALLHD1 :                     0FCF6 C |  ALLHD2 :                     0FDF5 C |
+ ALL00 :                      0FC7C C |  ALL01 :                      0FC9B C |
+ ALL02 :                      0FCBA C |  ALL03 :                      0FCD9 C |
+ ALLHD1 :                     0FCF8 C |  ALLHD2 :                     0FDF7 C |
 *ARCHITECTURE :                                        "i386-unknown-win32" - |
- BDOS :                       0EC06 - |  BEGDAT :                     0FBFA - |
+ BDOS :                       0EC06 - | *BEGDAT :                     0FBFC - |
  BIAS :                       0B000 - |  BIOS :                       0FA00 - |
  BOOT :                       0FB3B C | *CASESENSITIVE :                  0 - |
  CCP :                        0E400 - |  CDISK :                          4 - |
- CHK00 :                      0FEF4 C |  CHK01 :                      0FF04 C |
- CHK02 :                      0FF14 C |  CHK03 :                      0FF24 C |
- CHKHD1 :                     0FF34 C |  CHKHD2 :                     0FF34 C |
- CONIN :                      0FB80 C |  CONOUT :                     0FB8A C |
- CONST :                      0FB74 C |  CONSTB :                     0FB7E C |
-*CONSTPI :        3.141592653589793 - | *DATE :                 "7/27/2024" - |
-*DATSIZ :                       33A - |  DIRBF :                      0FBFA C |
- DISK_READ :                     52 - |  DISK_WRITE :                    53 - |
- DMA_H :                      0FB24 - |  DMA_L :                      0FB23 - |
- DPBASE :                     0FA33 C |  DPBLK :                      0FA8D C |
- DRV_NO :                     0FB20 - | *D_ERROR :                        1 - |
-*D_SUCCESS :                      0 - | *ENDDAT :                     0FF34 - |
+ CHK00 :                      0FEF6 C |  CHK01 :                      0FF06 C |
+ CHK02 :                      0FF16 C |  CHK03 :                      0FF26 C |
+ CHKHD1 :                     0FF36 C |  CHKHD2 :                     0FF36 C |
+ CONIN :                      0FB82 C |  CONOUT :                     0FB8C C |
+ CONST :                      0FB76 C |  CONSTB :                     0FB80 C |
+*CONSTPI :        3.141592653589793 - | *DATE :                  "8/4/2024" - |
+ DIRBF :                      0FBFC C |  DISK_READ :                     52 - |
+ DISK_WRITE :                    53 - |  DMA_H :                      0FB24 - |
+ DMA_L :                      0FB23 - |  DPBASE :                     0FA33 C |
+ DPBLK :                      0FA8D C |  DRV_NO :                     0FB20 - |
+*D_ERROR :                        1 - | *D_SUCCESS :                      0 - |
 *FALSE :                          0 - |  FDCST :                         4E - |
  GET_BDOSCCP :                   46 - | *GET_BIOS :                      47 - |
- GOCPM :                      0FB53 C | *HAS64 :                          0 - |
+ GOCPM :                      0FB55 C | *HAS64 :                          0 - |
  HDB1 :                       0FA9C C |  HDB2 :                       0FAAC C |
- HDBLK :                      0FABC C |  HOME :                       0FB98 C |
-*IOBASE_180 :                   0C0 - |  IOBYTE :                         3 - |
- LIST :                       0FB97 C | *LISTON :                         1 - |
- LISTST :                     0FB95 C | *MACEXP :                         7 - |
-*MOMCPU :                        80 - | *MOMCPUNAME :                 "Z80" - |
- MSIZE :                         40 - | *NESTMAX :                      100 - |
-*NSECTS :                        2C - |  PIC_IOBASE :                    40 - |
- PRTMSG :                     0FB30 C |  PUNCH :                      0FB97 C |
- READ :                       0FBEF C |  READER :                     0FB97 C |
-*RELAXED :                        0 - |  SECT1 :                      0FBE0 C |
- SECTRAN :                    0FBD5 C |  SEC_NO :                     0FB22 - |
- SELDSK :                     0FB9D C |  SELFD :                      0FBB1 C |
- SELHD :                      0FBC7 C |  SELHD1 :                     0FBBE C |
- SELHD2 :                     0FBC4 C |  SETDMA :                     0FBE6 C |
- SETSEC :                     0FBD0 C |  SETTRK :                     0FBCB C |
- SIGNON :                     0FACB C | *TIME :                  "16:26:39" - |
- TRANS :                      0FA73 C |  TRK_NO :                     0FB21 - |
-*TRUE :                           1 - |  UART_C8251 :                     1 - |
- UART_D8251 :                     0 - | *VERSION :                     142F - |
-*WARNRELATIVE :                   0 - |  WBOOT :                      0FB4E C |
- WBOOTE :                     0FA03 C |  WRITE :                      0FBF5 C |
+ HDBLK :                      0FABC C |  HOME :                       0FB9A C |
+ IOBYTE :                         3 - |  LIST :                       0FB99 C |
+*LISTON :                         1 - |  LISTST :                     0FB97 C |
+*MACEXP :                         7 - | *MOMCPU :                        80 - |
+*MOMCPUNAME :                 "Z80" - |  MSIZE :                         40 - |
+*NESTMAX :                      100 - | *NSECTS :                        2C - |
+ PIC_IOBASE :                    40 - |  PRTMSG :                     0FB30 C |
+ PUNCH :                      0FB99 C |  READ :                       0FBF1 C |
+ READER :                     0FB99 C | *RELAXED :                        0 - |
+ SECT1 :                      0FBE2 C |  SECTRAN :                    0FBD7 C |
+ SEC_NO :                     0FB22 - |  SELDSK :                     0FB9F C |
+ SELFD :                      0FBB3 C |  SELHD :                      0FBC9 C |
+ SELHD1 :                     0FBC0 C |  SELHD2 :                     0FBC6 C |
+ SETDMA :                     0FBE8 C |  SETSEC :                     0FBD2 C |
+ SETTRK :                     0FBCD C |  SIGNON :                     0FACB C |
+*TIME :                  "17:43:41" - |  TRANS :                      0FA73 C |
+ TRK_NO :                     0FB21 - | *TRUE :                           1 - |
+ UART_C8251 :                     1 - |  UART_D8251 :                     0 - |
+*VERSION :                     142F - | *WARNRELATIVE :                   0 - |
+ WBOOT :                      0FB4F C |  WBOOTE :                     0FA03 C |
+ WRITE :                      0FBF7 C |
 
-     89 symbols
-     23 unused symbols
+     86 symbols
+     21 unused symbols
 
- AS V1.42 Beta [Bld 271] - Source File bios_8080.asm - Page 10 - 7/27/2024 16:26:39
+ AS V1.42 Beta [Bld 271] - Source File bios_8080.asm - Page 10 - 8/4/2024 17:43:41
 
 
   Code Pages:
@@ -549,9 +542,9 @@ STANDARD (0 changed characters)
 
 1 code page
 
-0.05 seconds assembly time
+0.03 seconds assembly time
 
-    362 lines source file
+    356 lines source file
       2 passes
       0 errors
       0 warnings

@@ -22,22 +22,29 @@
 ;WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 ;FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 ;OTHER DEALINGS IN THE SOFTWARE.
+;
+;2024/7/28	first release
+;2024/8/4	implement Z8S180 support
+;
 
 	page	0
 	cpu	Z180
 	include	"ipl_bios_inc.asm"
 
-	ORG	0		;mem base of boot
-MSIZE	EQU	64		;mem size in kbytes
+		ORG	0		;mem base of boot
+MSIZE		EQU	64		;mem size in kbytes
 
-BIAS	EQU	(MSIZE-20)*1024	;offset from 20k system
-CCP	EQU	3400H+BIAS	;base of the ccp
-BIOS	EQU	CCP+1600H	;base of the bios
+BIAS		EQU	(MSIZE-20)*1024	;offset from 20k system
+CCP		EQU	3400H+BIAS	;base of the ccp
+BIOS		EQU	CCP+1600H	;base of the bios
 
-OMCR_V	EQU	0E0h
-CLOCK_0	EQU	0
-CLOCK_1	EQU	0
-CLOCK_2	EQU	1
+IOBASE_180	EQU	0C0H
+OMCR_V		EQU	0E0h
+CLOCK_0		EQU	0
+CLOCK_1		EQU	0
+CLOCK_2		EQU	1
+MWAIT		EQU	0
+IOWAIT		EQU	1
 
 	NOP
 	NOP
@@ -51,8 +58,6 @@ IPLMSG:	DB	0dh,0ah,"IPL:",0
 COLD:
 	DI
 	LD	SP,IPLMSG
-	LD	HL,IPLMSG
-	CALL	STROUT
 
 ; check 8080/8085/MYCPU80
 	LD	A,07fh
@@ -91,7 +96,6 @@ COLD:
 	LD	A,E
 	AND	A,00101010B	;if bit 51 is writable
 	JP	Z,ID_8085	;then 8085
-	JP	LD_CPM
 
 ; check Z80 or Z80180
 check_z80:
@@ -105,7 +109,6 @@ check_z80:
 
 	LD	A,IOBASE_180
 	OUT0	(3Fh),A
-
 	LD	A,00H			; memory 0 wait IO 1 wait
 	OUT0	(IOBASE_180+32H),A	; DMA/WAIT Control Register (DCNTL)
 	LD	A,00H			; no refresh
@@ -117,7 +120,7 @@ check_z80:
 	OUT0	(IOBASE_180+3EH),A
 	IN0	A,(IOBASE_180+3EH)
 	AND	80H
-	JR	NZ, ID_180R		; HD64180R
+	JR	NZ,ID_180R		; HD64180R
 
 ;check HD64180Z(Z80180) or Z8S180
 
@@ -134,16 +137,37 @@ check_z80:
 
 ;; CPU clock = 2.0 x external clock
 	IF	CLOCK_2
-	LD	A,010H			; memory 0 wait IO 2 wait
+	LD	H,MWAIT
+	LD	A,(M_WAIT)
+	ADD	A,H
+	LD	(M_WAIT),A
+	LD	A,H
+	AND	011b
+	RLCA
+	RLCA
+	LD	H,A
+	LD	L,IOWAIT
+	LD	A,(IO_WAIT)
+	ADD	A,L
+	LD	(IO_WAIT),A
+	LD	A,L
+	AND	011b
+	ADD	A,H
+	RLCA
+	RLCA
+	RLCA
+	RLCA
 	OUT0	(IOBASE_180+32H),A	; DMA/WAIT Control Register (DCNTL)
 	LD	A,80H			; Clock Divide XTAL/1 Bit 7=1
 	OUT0	(IOBASE_180+1FH),A	; CPU Control Register (CCR)
 	LD	A,0FFH			; X2 Clock Multiplier Mode : Enable Bit 7=1
 	OUT0	(IOBASE_180+1EH),A	; Clock Multiplier Register (CMR)
 	LD	HL,Z8S_2
-	CALL	STROUT
 	JP	LD_CPM
-Z8S_2:	DB	"Z8S180 running memory 0wait I/O 2wait 2x clock",0dh,0ah,0ah,0
+Z8S_2:	DB	"Z8S180"
+	DB	" running memory "
+M_WAIT:	DB	"0wait I/O "
+IO_WAIT:DB	"1wait 2x clock",0dh,0ah,0ah,0
 	ENDIF
 
 ;; CPU clock = 1.0 x external clock
@@ -154,7 +178,6 @@ Z8S_2:	DB	"Z8S180 running memory 0wait I/O 2wait 2x clock",0dh,0ah,0ah,0
 	OUT0	(IOBASE_180+1EH),A	; Clock Multiplier Register (CMR)
 	OUT0	(IOBASE_180+1EH),A	; Clock Multiplier Register (CMR)
 	LD	HL,Z8S_1
-	CALL	STROUT
 	JP	LD_CPM
 Z8S_1:	DB	"Z8S180 running memory 0wait I/O 1wait 1x clock",0dh,0ah,0ah,0
 	ENDIF
@@ -167,7 +190,6 @@ Z8S_1:	DB	"Z8S180 running memory 0wait I/O 1wait 1x clock",0dh,0ah,0ah,0
 	OUT0	(IOBASE_180+1EH),A	; Clock Multiplier Register (CMR)
 	OUT0	(IOBASE_180+1EH),A	; Clock Multiplier Register (CMR)
 	LD	HL,Z8S_5
-	CALL	STROUT
 	JP	LD_CPM
 Z8S_5:	DB	"Z8S180 running memory 0wait I/O 1wait 0.5x clock",0dh,0ah,0ah,0
 	ENDIF
@@ -176,42 +198,38 @@ Z8S_5:	DB	"Z8S180 running memory 0wait I/O 1wait 0.5x clock",0dh,0ah,0ah,0
 ID_180R:
 ID_180Z:
 	LD	HL,HD64180
-	CALL	STROUT
 	JP	LD_CPM
 HD64180:DB	"HD64180 running memory 0wait I/O 1wait 0.5x clock",0dh,0ah,0ah,0
 
 ID_8080AF:
 	LD	HL,I8080AF
-	CALL	STROUT
 	JP	LD_CPM
 I8080AF:DB	"i8080 running (flag bit2 is Parity after arithmatic, bit531 is 001)",0dh,0ah,0ah,0
 
 ID_UPD8080A:
 	LD	HL,I8080A
-	CALL	STROUT
 	JP	LD_CPM
 I8080A:	DB	"uPD8080A running (flag bit2 is Parity after arithmatic, bit31 is 11)",0dh,0ah,0ah,0
 
 ID_8085:
 	LD	HL,I8085
-	CALL	STROUT
 	JP	LD_CPM
 I8085:	DB	"i8085 running (flag bit2 is Parity after arithmatic, bit5,1 writable)",0dh,0ah,0ah,0
 
-
 ID_MYCPU:
 	LD	HL,MYCPU
-	CALL	STROUT
 	JP	LD_CPM
 MYCPU:	DB	"MYCPU80 running (flag bit2 is Parity after arithmatic, bit1,5 always 0)",0dh,0ah,0ah,0
 
-ID_Z80:
-	LD	HL,Z80
-	CALL	STROUT
+ID_Z80:	LD	HL,Z80
 	JP	LD_CPM
 Z80:	DB	"Z80 running (flag bit2 is Overflow after arithmatic, no MLT function)",0dh,0ah,0ah,0
 
-LD_CPM:
+LD_CPM:	EX	HL,DE
+	LD	HL,IPLMSG
+	CALL	STROUT
+	EX	HL,DE
+	CALL	STROUT
 	IN	A,(GET_BIOS)	;LOAD BIOS from pic ROM
 	IN	A,(GET_BDOSCCP)	;LOAD BDOS & CCP from pic ROM
 	JP	BIOS

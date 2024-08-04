@@ -22,7 +22,9 @@
 ;WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 ;FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 ;OTHER DEALINGS IN THE SOFTWARE.
-
+;
+;2024/7/28	first release
+;2024/8/4	adustment for serial interrupt
 ;
 ;	Z80 CBIOS for Z80-Simulator
 ;
@@ -159,7 +161,8 @@ PRTMSG:	LD	A,(HL)
 ;	individual subroutines to perform each function
 ;	simplest case is to just perform parameter initialization
 ;
-BOOT:   LD	SP,80H		;use space below buffer for stack
+BOOT:   DI
+	LD	SP,80H		;use space below buffer for stack
 	LD	HL,SIGNON	;print message
 	CALL	PRTMSG
 	XOR	A		;zero in the accum
@@ -169,7 +172,8 @@ BOOT:   LD	SP,80H		;use space below buffer for stack
 ;
 ;	simplest case is to read the disk until all sectors loaded
 ;
-WBOOT:  LD	SP,80H		;use space below buffer for stack
+WBOOT:  DI
+	LD	SP,80H		;use space below buffer for stack
 	IN	A,(GET_BDOSCCP)
 GOCPM:
 	LD	A,0C3H		;c3 is a jmp instruction
@@ -202,8 +206,7 @@ CONIN:	IN	A,(UART_C8251)	;get character from console
 	IN	A,(UART_D8251)
 	RET
 
-CONOUT:
-	IN	A,(UART_C8251)
+CONOUT:	IN	A,(UART_C8251)
 	AND	1
 	JP	Z,CONOUT
 	LD	A,C
@@ -296,16 +299,14 @@ SETDMA: LD	A,C		;low order address
 ;
 ;	perform read operation
 ;
-READ:
-	IN	A,(DISK_READ)
+READ:	IN	A,(DISK_READ)
 	IN	A,(FDCST)	;status of i/o operation -> A
 	OR	A
 	RET
 ;
 ;	perform a write operation
 ;
-WRITE:
-	IN	A,(DISK_WRITE)
+WRITE:	IN	A,(DISK_WRITE)
 	IN	A,(FDCST)	;status of i/o operation -> A
 	RET
 
@@ -330,8 +331,5 @@ CHK02:	DB	16	dup(0)	;check vector 2
 CHK03:	DB	16	dup(0)	;check vector 3
 CHKHD1:	DB	0	dup(0)	;check vector harddisk 1
 CHKHD2:	DB	0	dup(0)	;check vector harddisk 2
-;
-ENDDAT	EQU	$		;end of data area
-DATSIZ	EQU	$-BEGDAT	;size of data area
-;
+
 	END			;of BIOS
