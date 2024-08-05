@@ -24,6 +24,7 @@
  *	https://github.com/hanyazou/SuperMEZ80
  *
  * 2024/8/4		first release https://github.com/Gazelle8087/SBC8080-CPM
+ * 2024/8/5		Z80 clock changed from 16MHz to 2.5MHz 
  */
  /*
  * Copyright (c) 2023 @hanyazou
@@ -238,11 +239,11 @@ static void emuz80_57q_sys_init()
 #ifdef CPU_CLK_NCO
 	PPS(CPU_CLK) = 0x3f;		// asign NCO1
 	TRIS(CPU_CLK) = 0;			// NCO output pin
-//	NCO1INC = 0x14000;			// 2.5MHz
+	NCO1INC = 0x14000;			// 2.5MHz
 //	NCO1INC = 0x20000;			// 4MHz		2^20/8
 //	NCO1INC = 0x30000;			// 6MHz		
 //	NCO1INC = 0x40000;			// 8MHz		2^20/4
-	NCO1INC = 0x80000;			// 16MHz	2^20/2
+//	NCO1INC = 0x80000;			// 16MHz	2^20/2
 	NCO1CLK = 0x00;				// Clock source Fosc
     NCO1PFM = 0;				// FDC mode
     NCO1OUT = 1;				// NCO output enable
