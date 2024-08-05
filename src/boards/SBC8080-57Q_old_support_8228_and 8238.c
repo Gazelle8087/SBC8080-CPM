@@ -24,10 +24,8 @@
  *	https://github.com/hanyazou/SuperMEZ80
  *
  * 2024/7/28 first release https://github.com/Gazelle8087/SBC8080-CPM
- * 2024/8/5 Implements serial receive interrupt.
- * (8238 is no longer supported, SBC 8085-57Q.c supports 8238 instead)
  */
-/*
+ /*
  * Copyright (c) 2023 @hanyazou
  *
  * Permission is hereby granted, free of charge, to any person obtaining
@@ -88,10 +86,6 @@ uint8_t io_addr;
 
 const unsigned char rom[] = {	// Initial program loader at 0x0000
 #include "../../z80/ipl_8080.inc"
-//#include "../../z80/MSBAS80.TXT"
-//#include "../../z80/MON80SA.TXT"
-//#include "../../z80/PTBEXSA.TXT"
-//#include "../../z80/PTBSA.TXT"
 };
 
 const unsigned char bdosccp[] = {	// CCP and BDOS of CP/M 2.2 at 0E400h
@@ -109,7 +103,7 @@ const unsigned char bios[] = {		// BIOS of CP/M 2.2 at 0FA00h
 #define CPU_IOWR		A1
 #define CPU_READY		A4
 #define CPU_HOLDA		C6
-//#define CPU_CLK		A3
+#define CPU_CLK			A3
 
 #define ADDR_BUS_L		B
 #define ADDR_BUS_H		D
@@ -233,6 +227,30 @@ static void emuz80_57q_sys_init()
 	LAT(SRAM_CS2) = 0;			// disable SRAM
 	TRIS(SRAM_CS2) = 0;
 
+    // 8085 clock
+//#define CPU_CLK_NCO
+#ifdef CPU_CLK_NCO
+	PPS(CPU_CLK) = 0x3f;		// asign NCO1
+	TRIS(CPU_CLK) = 0;			// NCO output pin
+	NCO1INC = 0x20000;			// 4MHz	
+//	NCO1INC = 0x28000;			// 5MHz	
+//	NCO1INC = 0x30000;			// 6MHz	
+//	NCO1INC = 0x40000;			// 8MHz	
+//	NCO1INC = 0x49249;			// 9.14Hz	
+//	NCO1INC = 0x55555;			// 10.6MHz	
+//	NCO1INC = 0x80000;			// 16MHz	
+	NCO1CLK = 0x00;				// Clock source Fosc
+    NCO1PFM = 0;				// FDC mode
+    NCO1OUT = 1;				// NCO output enable
+    NCO1EN = 1;					// NCO enable
+#else
+    // Disable clock output for Z80 (Use external clock for Z80)
+	PPS(CPU_CLK) = 0;			// select LATxy
+	TRIS(CPU_CLK) = 1;			// set as input
+	WPU(CPU_CLK) = 1;
+	NCO1OUT = 0;				// NCO output disable
+	NCO1EN = 0;					// NCO disable
+#endif
 	// HOLD output pin
 	LAT(CPU_HOLD) = 1;			// HOLD request
 	TRIS(CPU_HOLD) = 0;			// Set as output
@@ -258,8 +276,6 @@ static void emuz80_57q_sys_init()
 	WPUC3 = 1;
 	TRISA2 = 1;
 	WPUA2 = 1;
-	TRISA3 = 1;
-	WPUA3 = 1;
 
 	// UART3 initialize
 	U3BRG = 416;        // 9600bps @ 64MHz
@@ -334,6 +350,19 @@ static void emuz80_57q_start_cpu(void)
 	WPU(SRAM_WE) = 1;			// Week pull up
 	TRIS(SRAM_WE) = 1;			// Set as input
 
+	// Unlock IVT
+	IVTLOCK = 0x55;
+	IVTLOCK = 0xAA;
+	IVTLOCKbits.IVTLOCKED = 0x00;
+
+	// Default IVT base address
+	IVTBASE = 0x000008;
+
+	// Lock IVT
+	IVTLOCK = 0x55;
+	IVTLOCK = 0xAA;
+	IVTLOCKbits.IVTLOCKED = 0x01;
+
 //========== CLC pin assign ===========
 	CLCIN0PPS = 0x00;	// RA0 <- IORD
 	CLCIN1PPS = 0x01;	// RA1 <- IOWR
@@ -346,7 +375,7 @@ static void emuz80_57q_start_cpu(void)
 
 //========== CLC1 IORD -> READY latch ===========
 	CLCnSEL0 = 0;		// CLCIN0PPS <- RA0 <- IORD
-	CLCnSEL1 = 127;		//
+	CLCnSEL1 = 1;		// CLCIN1PPS <- RA1 <- IOWR
 	CLCnSEL2 = 127;		//
 	CLCnSEL3 = 127;		//
 
@@ -359,6 +388,8 @@ static void emuz80_57q_start_cpu(void)
 	CLCnCON = 0x84;		// D-FF, no interrupt
 	CLCDATA = 0x0;		// Clear all CLC outs
 
+	CLC1IF = 0;			// Clear the CLC interrupt flag
+	CLC1IE = 0;			// Interrupt is not enabled. This will be handled by polling.
 	TRISA4 = 0;
 	RA4PPS = 1;			// CLC1 -> READY
 // ========== CLC2 IOWR 00xxxxx0  ==========
@@ -375,9 +406,7 @@ static void emuz80_57q_start_cpu(void)
 	CLCnGLS3 = 0x40;	// A0 invert
 
 	CLCnPOL = 0x80;		// Q invert
-//	CLCnCON = 0x82;		// 4 input AND
-	CLCnCON = 0x8A;		// 4 input AND Negative edge interrupt
-
+	CLCnCON = 0x82;		// 4 input AND
 // ========== CLC3 bind CLC1 and CLC2  ==========
 	CLCSELECT = 2;      // CLC3 select
 
@@ -396,23 +425,6 @@ static void emuz80_57q_start_cpu(void)
 //================================================
     CLCSELECT = 0;		// Select CLC1
 
-	// Unlock IVT
-	IVTLOCK = 0x55;
-	IVTLOCK = 0xAA;
-	IVTLOCKbits.IVTLOCKED = 0x00;
-
-	// Default IVT base address
-	IVTBASE = 0x000008;
-
-	// Lock IVT
-	IVTLOCK = 0x55;
-	IVTLOCK = 0xAA;
-	IVTLOCKbits.IVTLOCKED = 0x01;
-
-	CLC2IF = 0;			// Clear the CLC2 interrupt flag
-	CLC2IE = 1;			// 00xxxxx0 no wait write
-	GIE = 1;
-
 	// CPU start
 	LAT(CPU_RESET) = 0;	// SET PC=0 again
 	__delay_ms(1);
@@ -422,15 +434,7 @@ static void emuz80_57q_start_cpu(void)
 
 #include "../../drivers/pic18f47q43_spi.c"
 #include "../../drivers/SDCard.c"
-//=================================================
-// CLC2 IO 00xxxxx0 no wait write
 
-void __interrupt(irq(CLC2),base(8)) IOWR_00_ISR(){	
-	U3TXB = PORT(DATA_BUS);
-	CLC2IF = 0;
-}
-
-//==================================================
 // main routine
 void main(void)
 {
@@ -458,6 +462,7 @@ void main(void)
 	emuz80_57q_write_to_sram(0x00000,(uint8_t*)rom, sizeof(rom));
 	emuz80_57q_start_cpu();		// Start 8080
 
+	GIE = 0;
 	goto IO_wait_loop;
 
 IO_wait_loop0:
@@ -468,59 +473,75 @@ IO_wait_loop0:
 	TRIS(DATA_BUS) = 0xff;		// set as input
 IO_wait_loop:
 	BSR = 0;
-	while(CLC1OUT){
-		if(U3RXIF){
-		LAT(CPU_INT) = 1;
-		}
-	}
+
+	asm(
+	"CLC3_check:			\n" // using assembler to eliminate "movlb 0"
+	"btfsc	CLCDATA,2,b		\n"	// polling CLC3 = L
+	"bra	CLC3_check		\n"	// repeat if it = H
+	"btfsc	CLCDATA,1,b		\n"	// CLC2 = 0(OUT 00xxxxx0)?
+	"bra	CLC3_exit		\n"	// exit and goto IORD operation
+
+	"movf	PORTF,w,c		\n"	// To accommodate 8238(faster IOWR)
+	"CLC2_check:			\n"
+	"btfsc	PORTA,1,c		\n"	// IOWR = H?
+	"bra	CLC2_exit		\n" // wait IOWR=H
+	"movf	PORTF,w,c		\n"	// To accommodate 8238(faster IOWR)
+	"bra	CLC2_check		\n" // wait IOWR=H
+
+	"CLC2_exit:				\n"
+	"movlb	2				\n"
+	"movwf	U3TXB,b			\n"	// transmit
+	"movlb	0				\n"
+	"bra	CLC3_check		\n"	// wait next IO
+	"CLC3_exit:				\n"
+	);
 
 	io_addr = PORT(ADDR_BUS_L);
 
 	switch (io_addr) {
 
-		case UART_C8251:			// keep compatible to SBC8080 SUB board
-			LAT(DATA_BUS) = U3TXIF + U3RXIF*2;
-			goto IO_wait_loop0;
+	case UART_C8251:			// keep compatible to SBC8080 SUB board
+		LAT(DATA_BUS) = U3TXIF + U3RXIF*2;
+		goto IO_wait_loop0;
 
-		case UART_D8251:			// keep compatible to SBC8080 SUB board
-			LAT(DATA_BUS) = U3RXB;
-			LAT(CPU_INT) = 0;
-			goto IO_wait_loop0;
+	case UART_D8251:			// keep compatible to SBC8080 SUB board
+		LAT(DATA_BUS) = U3RXB;
+		goto IO_wait_loop0;
 
-		case DISK_REG_FDCST:
-			LAT(DATA_BUS) = disk_stat;
-			goto IO_wait_loop0;		// let CPU read data and wait next IO
+	case DISK_REG_FDCST:
+		LAT(DATA_BUS) = disk_stat;
+		goto IO_wait_loop0;		// let CPU read data and wait next IO
 
-		case DISK_READ:
-		case DISK_WRITE:
-			LAT(CPU_HOLD) = 1;					// set hold
-			G3POL = 1;							// set ready
-			G3POL = 0;
-			emuz80_57q_enter_bus_master();
-			disk_io_handle();
-			emuz80_57q_exit_bus_master();
-			LAT(CPU_HOLD) = 0;					// clear hold
-			goto IO_wait_loop;					// wait next IO
+	case DISK_READ:
+	case DISK_WRITE:
+		LAT(CPU_HOLD) = 1;					// set hold
+		G3POL = 1;							// set ready
+		G3POL = 0;
+		emuz80_57q_enter_bus_master();
+		disk_io_handle();
+		emuz80_57q_exit_bus_master();
+		LAT(CPU_HOLD) = 0;					// clear hold
+		goto IO_wait_loop;					// wait next IO
 
-		case GET_BDOSCCP:	
-			LAT(CPU_HOLD) = 1;					// set hold
-			G3POL = 1;							// set ready
-			G3POL = 0;
-			emuz80_57q_enter_bus_master();
-			emuz80_57q_write_to_sram(0xe400, (uint8_t*)bdosccp, 0x1600);
-			emuz80_57q_exit_bus_master();
-			LAT(CPU_HOLD) = 0;					// clear hold
-			goto IO_wait_loop;					// wait next IO
+	case GET_BDOSCCP:
+		LAT(CPU_HOLD) = 1;					// set hold
+		G3POL = 1;							// set ready
+		G3POL = 0;
+		emuz80_57q_enter_bus_master();
+		emuz80_57q_write_to_sram(0xe400, (uint8_t*)bdosccp, 0x1600);
+		emuz80_57q_exit_bus_master();
+		LAT(CPU_HOLD) = 0;					// clear hold
+		goto IO_wait_loop;					// wait next IO
 
-		case GET_BIOS:
-			LAT(CPU_HOLD) = 1;					// set hold
-			G3POL = 1;							// set ready
-			G3POL = 0;
-			emuz80_57q_enter_bus_master();
-			emuz80_57q_write_to_sram(0xfa00, (uint8_t*)bios, sizeof(bios));
-			emuz80_57q_exit_bus_master();
-			LAT(CPU_HOLD) = 0;					// clear hold
-			goto IO_wait_loop;					// wait next IO
+	case GET_BIOS:
+		LAT(CPU_HOLD) = 1;					// set hold
+		G3POL = 1;							// set ready
+		G3POL = 0;
+		emuz80_57q_enter_bus_master();
+		emuz80_57q_write_to_sram(0xfa00, (uint8_t*)bios, sizeof(bios));
+		emuz80_57q_exit_bus_master();
+		LAT(CPU_HOLD) = 0;					// clear hold
+		goto IO_wait_loop;					// wait next IO
 	}
 
 	printf("WARNING: unknown I/O read (%02XH)\n\r", io_addr);
