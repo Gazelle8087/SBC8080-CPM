@@ -58,7 +58,7 @@ SDに書き込む必要がなくなります。
 
 HanyaZouさんが新規作成たドライバ部分および  
 ChaNさん作FatFsに関してはMITで公開されているソースを流用しました。  
-CP/MのBIOSはUdo-Munkさんの元ライセンスを聞き継ぎMITとします。  
+CP/MのBIOSはUdo-Munkさんの元ライセンスを引き継ぎMITとします。  
 IPLはMITとします。  
 CP/MのBDOS,CCPに関してのライセンス条項に関しては  
 The Unofficial CP/M Web site http://www.cpm.z80.de/ をご参照ください。
