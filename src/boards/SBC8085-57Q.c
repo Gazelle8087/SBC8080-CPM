@@ -25,7 +25,8 @@
  *
  * 2024/7/28 	first release https://github.com/Gazelle8087/SBC8080-CPM
  * 2024/8/4		implement serial interrupt
- */
+ * 2025/4/30	Interrupts temporarily disabled due to an interrupt processing error
+*/
  /*
  * Copyright (c) 2023 @hanyazou
  *
@@ -475,9 +476,9 @@ IO_wait_loop:
 
 	BSR = 0;
 	while(CLC1OUT){
-		if(U3RXIF){
-		LAT(CPU_INT) = 1;
-		}
+//		if(U3RXIF){
+//		LAT(CPU_INT) = 1;
+//		}
 	}
 
 	io_addr = PORT(ADDR_BUS_L);

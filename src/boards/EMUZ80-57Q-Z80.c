@@ -24,7 +24,8 @@
  *	https://github.com/hanyazou/SuperMEZ80
  *
  * 2024/8/4		first release https://github.com/Gazelle8087/SBC8080-CPM
- * 2024/8/5		Z80 clock changed from 16MHz to 2.5MHz 
+ * 2024/8/5		Z80 clock changed from 16MHz to 2.5MHz
+ * 2025/4/30	Interrupts temporarily disabled due to an interrupt processing error
  */
  /*
  * Copyright (c) 2023 @hanyazou
@@ -87,6 +88,10 @@ uint8_t io_addr;
 
 const unsigned char rom[] = {	// Initial program loader at 0x0000
 #include "../../z80/ipl_8080.inc"
+//#include "../../z80/MSBAS80.TXT"
+//#include "../../z80/MON80SA.TXT"
+//#include "../../z80/PTBEXSA.TXT"
+//#include "../../z80/PTBSA.TXT"
 };
 
 const unsigned char bdosccp[] = {	// CCP and BDOS of CP/M 2.2 at 0E400h
@@ -239,11 +244,11 @@ static void emuz80_57q_sys_init()
 #ifdef CPU_CLK_NCO
 	PPS(CPU_CLK) = 0x3f;		// asign NCO1
 	TRIS(CPU_CLK) = 0;			// NCO output pin
-	NCO1INC = 0x14000;			// 2.5MHz
+//	NCO1INC = 0x14000;			// 2.5MHz
 //	NCO1INC = 0x20000;			// 4MHz		2^20/8
 //	NCO1INC = 0x30000;			// 6MHz		
 //	NCO1INC = 0x40000;			// 8MHz		2^20/4
-//	NCO1INC = 0x80000;			// 16MHz	2^20/2
+	NCO1INC = 0x80000;			// 16MHz	2^20/2
 	NCO1CLK = 0x00;				// Clock source Fosc
     NCO1PFM = 0;				// FDC mode
     NCO1OUT = 1;				// NCO output enable
@@ -474,9 +479,9 @@ IO_wait_loop:
 
 	BSR = 0;
 	while(CLC1OUT){
-		if(U3RXIF){
-		LAT(CPU_INT) = 0;
-		}
+//		if(U3RXIF){
+//			LAT(CPU_INT) = 0;
+//		}
 	}
 
 	io_addr = PORT(ADDR_BUS_L);
